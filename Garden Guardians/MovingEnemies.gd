@@ -13,9 +13,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	for i in enemyPathManager:
-		i[1].addToOffset(i[0].speed)
-		i[0].position = i[1].getPathLocation()
+	updateEnemyLocation()
 
 func addEnemyPath():
 	var pathToFollow = importPathScene.instance()
@@ -27,3 +25,8 @@ func addEnemyPath():
 
 func _on_EnemySpawn_timeout():
 	addEnemyPath()
+
+func updateEnemyLocation():
+	for i in enemyPathManager:
+		i[1].addToOffset(i[0].speed)
+		i[0].position = i[1].getPathLocation()
