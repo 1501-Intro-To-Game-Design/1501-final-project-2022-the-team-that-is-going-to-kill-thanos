@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/MovingEnemies.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/EnemyScenes/Path.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/EnemyScenes/Enemy.tscn" type="PackedScene" id=3]
+
+[node name="MovingEnemies" type="Node2D"]
+script = ExtResource( 1 )
+importPathScene = ExtResource( 2 )
+importEnemyScene = ExtResource( 3 )
+
+[node name="EnemySpawn" type="Timer" parent="."]
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 447, 181 )
+current = true
+
+[connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]

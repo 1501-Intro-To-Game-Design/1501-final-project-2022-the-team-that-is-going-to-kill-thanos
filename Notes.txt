@@ -1,0 +1,3 @@
+Add enemy manager
+Make as many functions as possible
+Have everything in the update be a function

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Path.gd" type="Script" id=1]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 663.133, 210.19, 0, 0, 0, 0, 561.019, 210.19, 0, 0, 0, 0, 560, 83, 0, 0, 0, 0, 420, 84, 0, 0, 0, 0, 420, 184, 0, 0, 0, 0, 350, 184, 0, 0, 0, 0, 211.789, 84.9873, 0, 0, 0, 0, 53.5116, 86.9747, 0, 0, 0, 0, 52.4905, 175.411, 0, 0, 0, 0, -13.8837, 176.405 )
+}
+
+[node name="Path" type="Path2D"]
+position = Vector2( 65.7193, -1.1788 )
+scale = Vector2( 0.988158, 1.02625 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="Pathway" type="PathFollow2D" parent="."]
+position = Vector2( 663.133, 210.19 )
+rotation = 3.14159
+loop = false

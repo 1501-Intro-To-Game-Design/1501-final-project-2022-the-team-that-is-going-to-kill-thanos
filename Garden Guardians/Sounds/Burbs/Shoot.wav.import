@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Shoot.wav-59b584097196b5abeca77a6b4976b3c5.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Shoot.wav"
+dest_files=[ "res://.import/Shoot.wav-59b584097196b5abeca77a6b4976b3c5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

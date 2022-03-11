@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/PickUpStuff.wav-abaab0351c6cc8d71e4027fd9daa1554.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/PickUpStuff.wav"
+dest_files=[ "res://.import/PickUpStuff.wav-abaab0351c6cc8d71e4027fd9daa1554.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
