@@ -18,9 +18,13 @@ animations = [ {
 "speed": 4.0
 } ]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="KinematicBody2D"]
+scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
+speed = 20
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "Running"
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
