@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://MovingEnemies.gd" type="Script" id=1]
 [ext_resource path="res://Path.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
 
-[node name="MovingEnemies" type="Node"]
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[node name="MovingEnemies" type="Path2D"]
+curve = SubResource( 1 )
 script = ExtResource( 1 )
 importPathScene = ExtResource( 2 )
+importEnemyScene = ExtResource( 3 )
 
 [node name="EnemySpawn" type="Timer" parent="."]
 autostart = true
@@ -13,3 +21,5 @@ autostart = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 447, 181 )
 current = true
+
+[connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
