@@ -6,7 +6,7 @@ extends Area2D
 # var b = "text"
 export var health = 10
 export var damage = 2
-export var speed = 1
+export var speed = 50
 var dead = false
 
 # Called when the node enters the scene tree for the first time.
