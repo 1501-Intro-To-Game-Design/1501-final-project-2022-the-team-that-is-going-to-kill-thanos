@@ -11,6 +11,7 @@ extents = Vector2( 32, 32.5 )
 
 [node name="Enemy" type="RigidBody2D" groups=["Enemies"]]
 script = ExtResource( 2 )
+speed = 50
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.5, -0.5 )
