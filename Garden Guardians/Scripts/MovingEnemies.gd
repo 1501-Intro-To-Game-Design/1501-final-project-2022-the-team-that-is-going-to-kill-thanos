@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 #Import the enemy and path scenes
 export(PackedScene) var importPathScene
