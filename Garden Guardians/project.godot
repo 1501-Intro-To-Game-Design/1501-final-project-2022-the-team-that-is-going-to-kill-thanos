@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="Garden Guardians"
-run/main_scene="res://Scenes/EnemyScenes/MovingEnemies.tscn"
+run/main_scene="res://Scenes/CombatTest.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+combat="*res://Scripts/Combat.gd"
 
 [physics]
 

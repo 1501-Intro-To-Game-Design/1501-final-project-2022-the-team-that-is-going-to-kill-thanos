@@ -10,6 +10,7 @@ importPathScene = ExtResource( 2 )
 importEnemyScene = ExtResource( 3 )
 
 [node name="EnemySpawn" type="Timer" parent="."]
+one_shot = true
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
