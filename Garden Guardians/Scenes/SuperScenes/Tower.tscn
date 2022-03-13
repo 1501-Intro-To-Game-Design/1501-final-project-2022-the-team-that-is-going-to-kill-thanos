@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Sprites/boulderforwilliam.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Tower.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/TowerScences/Projectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/SuperScenes/Projectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Morsels/Morsel1.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]

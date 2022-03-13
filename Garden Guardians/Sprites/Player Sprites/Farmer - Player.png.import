@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Farmer - Player.png-7abfb88ccd71b400a92c5b6fb79f6ffb.stex"
+path="res://.import/Farmer - Player.png-f888c4a92dc42bbef1b2443db1d08570.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Farmer - Player.png"
-dest_files=[ "res://.import/Farmer - Player.png-7abfb88ccd71b400a92c5b6fb79f6ffb.stex" ]
+source_file="res://Sprites/Player Sprites/Farmer - Player.png"
+dest_files=[ "res://.import/Farmer - Player.png-f888c4a92dc42bbef1b2443db1d08570.stex" ]
 
 [params]
 

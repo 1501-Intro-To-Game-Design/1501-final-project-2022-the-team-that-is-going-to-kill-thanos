@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Morsel.png-ce1a13dd7cc901aa88583297810eadfa.stex"
+path="res://.import/Morsel.png-591a29a0906b8c18b1ee5d8fcd701b9d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Morsel.png"
-dest_files=[ "res://.import/Morsel.png-ce1a13dd7cc901aa88583297810eadfa.stex" ]
+source_file="res://Sprites/Morsal Sprites/Morsel.png"
+dest_files=[ "res://.import/Morsel.png-591a29a0906b8c18b1ee5d8fcd701b9d.stex" ]
 
 [params]
 

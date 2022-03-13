@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Plate.png-e30bf62280567940349dcd83c0f5fbc1.stex"
+path="res://.import/Plate.png-d6e901f573091987669c4f53b6ff48a3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Plate.png"
-dest_files=[ "res://.import/Plate.png-e30bf62280567940349dcd83c0f5fbc1.stex" ]
+source_file="res://Sprites/Tower Sprites/Plate.png"
+dest_files=[ "res://.import/Plate.png-d6e901f573091987669c4f53b6ff48a3.stex" ]
 
 [params]
 
