@@ -1,29 +1,53 @@
 extends Node2D
 
 var enemies = []
+var babys = 0
+var max_babys = 3
+
 var can_attack = false
 var can_spawn = false
 export var attack_cooldown = 1
 export var spawn_cooldown = 1
 export var attacking_tower = true
 export var morself_tower = false
+var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 
 export(PackedScene) var projectileScene
+export(PackedScene) var morsalScene
+var tower
+#this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
+#list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
+#LEGEND: A-attacking M-morsal T-Tower P-Projectile
+# each tower holds the following info in order [AT?, MT?, ACooldown, PDamage, PSpeed, PSprite, MspawnCooldown, MMaxBabys, MHealth, MDamage, MSpeed, MAttackSpeed, MSprite] (13 things, 0-12)
+var towers = [[true, false, 1, 2, 20, "res://icon.png", 0, 0, 0, 0, 0, 0, null]#Phase1 Fruit Tower 
+			 ,[]#Phase2 Fruit Tower
+			 ,[]#Phase3 Fruit Tower
+			 ,[]#Offshoot Fruit Tower
+			 ,[false, true, 0, 0, 0, null, 3, 3, 10, 2, 30, 2, "res://Sprites/Morsel.png"]#Phase1 Protien Tower
+]
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
+func _spawn(family,stage): #call this to set info about the tower, in OOP terms, the constructer
+	tower = (family*4) + stage
+	rank = stage
+	if towers[tower][0]: #if its an attacking tower
+		print("just made a shooting tower")
+		attacking_tower = true
+		attack_cooldown = towers[tower][2]
+		$AttackCooldown.wait_time = attack_cooldown
+	if towers[tower][1]:
+		print("just made a morsal tower")
+		morself_tower = true
+		spawn_cooldown =towers[tower][6]
+		max_babys = towers[tower][7]
+		$SpawnCooldown.wait_time = spawn_cooldown
+	pass
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	$AttackCooldown.wait_time = attack_cooldown
-	$SpawnCooldown.wait_time = spawn_cooldown
 
+func _ready():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#detect closest enemy, and call attack function on it
 	if(attacking_tower):
 		if enemies.size() > 0:
@@ -37,19 +61,39 @@ func _process(delta):
 			if not (index == -1):
 				if(can_attack):
 					can_attack = false
-					$AttackCooldown.wait_time = attack_cooldown
+					$AttackCooldown.start()
 					attack(enemies[index])
 	if(morself_tower):
-		pass
-		can_spawn = false
+		if can_spawn and (babys < max_babys):
+			make_Baby()
+			babys += 1
+			$SpawnCooldown.start(spawn_cooldown)
+			can_spawn = false
 		#do morself spawning stuff, if can_spawn is true, that is when the cooldown has passed (can spawn new morsels)
 				
 func attack(enemy):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
+	projectile._spawn(towers[tower][3],towers[tower][4],towers[tower][5]) #passes the aproprite atrabutes to the protectile
 	get_parent().add_child(projectile)
 	projectile.position = $ShootPoint.get_global_position()
 	projectile.target = enemy
+
+func make_Baby():
+	var morsal = morsalScene.instance()
+	morsal._spawn(towers[tower][8],towers[tower][9],towers[tower][10],towers[tower][11],towers[tower][12])
+	get_parent().add_child(morsal)
+	
+	if(babys == 0):
+		morsal.position = $ShootPoint.get_global_position() + Vector2(-10, -15) #in the future replace this with (go to the neerest point on the path)
+	elif(babys == 1):
+		morsal.position = $ShootPoint.get_global_position() + Vector2(0, -10) #in the future replace this with (go to the neerest point on the path)
+	elif(babys == 2):
+		morsal.position = $ShootPoint.get_global_position() + Vector2(10, -10) #in the future replace this with (go to the neerest point on the path)
+	elif(babys == 3):
+		morsal.position = $ShootPoint.get_global_position() + Vector2(-10, -5) #in the future replace this with (go to the neerest point on the path)
+	
+	print("morsal spawned")
 
 func _on_Range_area_entered(area):
 	if(area.is_in_group("Enemies")):
@@ -67,3 +111,4 @@ func _on_Range_area_exited(area):
 
 func _on_SpawnCooldown_timeout():
 	can_spawn = true
+

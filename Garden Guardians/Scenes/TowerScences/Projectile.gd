@@ -3,7 +3,6 @@ extends Node2D
 var target = null
 export var speed = 20
 export var damage = 2
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -13,6 +12,10 @@ export var damage = 2
 func _ready():
 	pass # Replace with function body.
 
+func _spawn(s, d, sprite):
+	speed = s
+	damage = d
+	$Sprite.set_texture(load(sprite))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

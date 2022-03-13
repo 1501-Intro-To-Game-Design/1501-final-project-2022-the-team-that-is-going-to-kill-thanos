@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/boulderforwilliam.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Tower.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/TowerScences/Projectile.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Morsels/Morsel1.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 125.196
@@ -10,6 +11,7 @@ radius = 125.196
 [node name="Tower" type="Node2D"]
 script = ExtResource( 2 )
 projectileScene = ExtResource( 3 )
+morsalScene = ExtResource( 4 )
 
 [node name="Range" type="Area2D" parent="."]
 
@@ -21,6 +23,7 @@ scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
 [node name="SpawnCooldown" type="Timer" parent="."]
+autostart = true
 
 [node name="AttackCooldown" type="Timer" parent="."]
 autostart = true
