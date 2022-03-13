@@ -78,7 +78,7 @@ func battle_action(dmg, attacker):
 		print("someone died")
 		destroy()
 		
-func change_health (change):
+func change_health(change):
 	current_health += change
 	if(current_health <= 0):
 		print("i died")

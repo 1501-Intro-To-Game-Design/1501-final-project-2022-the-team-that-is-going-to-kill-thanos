@@ -11,7 +11,7 @@ radius = 125.196
 [node name="Tower" type="Node2D"]
 script = ExtResource( 2 )
 projectileScene = ExtResource( 3 )
-morselScene = ExtResource( 4 )
+morsalScene = ExtResource( 4 )
 
 [node name="Range" type="Area2D" parent="."]
 

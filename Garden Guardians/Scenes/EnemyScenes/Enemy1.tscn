@@ -7,3 +7,5 @@ groups_to_check = [ "Morsels", "Traps" ]
 max_health = 4
 damage = 1
 attackSpeed = 1
+
+[node name="Area2D" parent="." index="3" groups=["Enemies"]]

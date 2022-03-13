@@ -8,40 +8,22 @@ var can_attack = false
 var can_spawn = false
 export var attack_cooldown = 1
 export var spawn_cooldown = 1
-export var attacking_tower = true
+
+export var attacking_tower = false
 export var morsel_tower = false
 var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 
 export(PackedScene) var projectileScene
-export(PackedScene) var morselScene
-var tower = 1
+export(PackedScene) var morsalScene
+var tower = 0 #defult
 
 #this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
 #list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
 #LEGEND: A-attacking M-morsel T-Tower P-Projectile
 # each tower holds the following info in order [AT?, MT?, ACooldown, PDamage, PSpeed, PSprite, MspawnCooldown, MMaxBabies, MHealth, MDamage, MSpeed, MAttackSpeed, MSprite] (13 things, 0-12)
-var towers = [[true, false, 1, 2, 20, "res://icon.png", 0, 0, 0, 0, 0, 0, null]#Phase1 Fruit Tower 
-			 ,[]#Phase2 Fruit Tower
-			 ,[]#Phase3 Fruit Tower
-			 ,[]#Offshoot Fruit Tower
-			 ,[false, true, 0, 0, 0, null, 3, 3, 10, 2, 30, 2, "res://Sprites/Morsel.png"]#Phase1 Protien Tower
-]
 
-func _spawn(family,stage): #call this to set info about the tower, in OOP terms, the constructer
-	tower = (family*4) + stage
-	rank = stage
-	if towers[tower][0]: #if its an attacking tower
-		print("just made a shooting tower")
-		attacking_tower = true
-		attack_cooldown = towers[tower][2]
-		$AttackCooldown.wait_time = attack_cooldown
-	if towers[tower][1]:
-		print("just made a morsel tower")
-		morsel_tower = true
-		spawn_cooldown =towers[tower][6]
-		max_babies = towers[tower][7]
-		$SpawnCooldown.wait_time = spawn_cooldown
-	pass
+
+
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
@@ -61,10 +43,8 @@ func _process(_delta):
 					index = i
 			if not (index == -1):
 				if(can_attack):
-					print("ye")
 					can_attack = false
 					$AttackCooldown.start()
-					print("can")
 					attack(enemies[index])
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
@@ -75,17 +55,14 @@ func _process(_delta):
 		#do morsel spawning stuff, if can_spawn is true, that is when the cooldown has passed (can spawn new morsels)
 				
 func attack(enemy):
-	print("stuff")
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
-	projectile._spawn(towers[tower][3],towers[tower][4],towers[tower][5]) #passes the aproprite atrabutes to the protectile
 	get_parent().add_child(projectile)
 	projectile.position = $ShootPoint.get_global_position()
 	projectile.target = enemy
 
 func make_Baby():
-	var morsel = morselScene.instance()
-	morsel._spawn(towers[tower][8],towers[tower][9],towers[tower][10],towers[tower][11],towers[tower][12])
+	var morsel = morsalScene.instance()
 	get_parent().add_child(morsel)
 	
 	if(babies == 0):
@@ -100,16 +77,16 @@ func make_Baby():
 	print("morsel spawned")
 
 func _on_Range_area_entered(area):
-	if(area.is_in_group("Enemies")):
+	if(area.get_parent().is_in_group("Enemies")):
 		enemies.append(area)
 
 
-func _on_Cooldown_timeout():
+func _on_Cooldown_timeout(): #for attack timer
 	can_attack = true
 
 
 func _on_Range_area_exited(area):
-	if(area.is_in_group("Enemies")):
+	if(area.get_parent().is_in_group("Enemies")):
 		enemies.remove(enemies.find(area))
 
 
