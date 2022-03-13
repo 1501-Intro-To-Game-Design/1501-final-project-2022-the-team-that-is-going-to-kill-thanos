@@ -4,6 +4,7 @@
 [ext_resource path="res://Sprites/Morsel.png" type="Texture" id=2]
 
 [node name="Unit" groups=["Morsels"] instance=ExtResource( 1 )]
+mode = 2
 mass = 0.00102041
 gravity_scale = 0.0
 groups_to_check = [ "Enemies" ]
