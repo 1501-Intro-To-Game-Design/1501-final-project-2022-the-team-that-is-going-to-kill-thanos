@@ -2,7 +2,7 @@ extends Node2D
 
 var enemies = []
 var babies = 0
-var max_babies = 3
+export var max_babies = 3
 
 var can_attack = false
 var can_spawn = false

@@ -7,5 +7,6 @@
 
 [node name="Tower" parent="." instance=ExtResource( 2 )]
 position = Vector2( 516, 179 )
+attacking_tower = true
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 1 )]
