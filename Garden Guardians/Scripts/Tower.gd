@@ -8,6 +8,7 @@ var can_attack = false
 var can_spawn = false
 export var attack_cooldown = 1
 export var spawn_cooldown = 1
+<<<<<<< HEAD
 export var attacking_tower = true
 export var morsel_tower = false
 var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
@@ -15,6 +16,15 @@ var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 export(PackedScene) var projectileScene
 export(PackedScene) var morselScene
 var tower
+=======
+export var attacking_tower = false
+export var morself_tower = false
+var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
+
+export(PackedScene) var projectileScene
+export(PackedScene) var morsalScene
+var tower = 1 #defult
+>>>>>>> 812bbf86092d2084dd991f8fa8fc86474be3481e
 #this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
 #list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
 #LEGEND: A-attacking M-morsel T-Tower P-Projectile
@@ -60,8 +70,10 @@ func _process(_delta):
 					index = i
 			if not (index == -1):
 				if(can_attack):
+					print("ye")
 					can_attack = false
 					$AttackCooldown.start()
+					print("can")
 					attack(enemies[index])
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
@@ -72,6 +84,7 @@ func _process(_delta):
 		#do morsel spawning stuff, if can_spawn is true, that is when the cooldown has passed (can spawn new morsels)
 				
 func attack(enemy):
+	print("stuff")
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
 	projectile._spawn(towers[tower][3],towers[tower][4],towers[tower][5]) #passes the aproprite atrabutes to the protectile
