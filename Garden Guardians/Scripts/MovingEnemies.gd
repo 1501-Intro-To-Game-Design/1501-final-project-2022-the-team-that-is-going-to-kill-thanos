@@ -30,5 +30,5 @@ func _on_EnemySpawn_timeout():
 func updateEnemyLocation(delta):
 	for i in enemyPathManager:
 		if is_instance_valid(i[0]):
-			i[1].addToOffset(i[0].speed * delta)
+			i[1].addToOffset(i[0].current_speed * delta)
 			i[0].position = i[1].getPathLocation()

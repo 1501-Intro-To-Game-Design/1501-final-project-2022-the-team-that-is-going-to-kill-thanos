@@ -3,6 +3,8 @@ extends Node2D
 var enemies = []
 var can_attack = false
 export var cooldown = 1
+export var attacking_tower = true
+export var morself_tower = false
 
 export(PackedScene) var projectileScene
 
@@ -20,19 +22,24 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#detect closest enemy, and call attack function on it
-	var lowest = 1000
-	var index = -1
-	for i in range(0, enemies.size()):
-		var distance = sqrt(pow((enemies[i].get_global_position().x - self.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - self.get_global_position().y), 2))
-		if(distance < lowest):
-			lowest = distance
-			index = i
-	if not (index == -1):
-		if(can_attack):
-			can_attack = false
-			$Cooldown.wait_time = cooldown
-			attack(enemies[index])
-		
+	if(attacking_tower):
+		if enemies.size() > 0:
+			var lowest = 1000
+			var index = -1
+			for i in range(0, enemies.size()):
+				var distance = sqrt(pow((enemies[i].get_global_position().x - self.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - self.get_global_position().y), 2))
+				if(distance < lowest):
+					lowest = distance
+					index = i
+			if not (index == -1):
+				if(can_attack):
+					can_attack = false
+					$Cooldown.wait_time = cooldown
+					attack(enemies[index])
+	if(morself_tower):
+		pass
+		#do morself spawning stuff, if can_attack is true, that is when the cooldown has passed (can spawn new morsels)
+				
 func attack(enemy):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
@@ -41,7 +48,7 @@ func attack(enemy):
 	projectile.target = enemy
 
 func _on_Range_area_entered(area):
-	if(area.is_in_group("enemy")):
+	if(area.is_in_group("Enemies")):
 		enemies.append(area)
 
 
@@ -50,5 +57,5 @@ func _on_Cooldown_timeout():
 
 
 func _on_Range_area_exited(area):
-	if(area.is_in_group("enemy")):
+	if(area.is_in_group("Enemies")):
 		enemies.remove(enemies.find(area))

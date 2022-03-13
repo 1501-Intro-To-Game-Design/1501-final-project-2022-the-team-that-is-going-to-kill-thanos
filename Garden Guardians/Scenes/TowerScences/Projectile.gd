@@ -2,6 +2,7 @@ extends Node2D
 
 var target = null
 export var speed = 20
+export var damage = 2
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -24,5 +25,5 @@ func _process(delta):
 
 func _on_Area2D_area_entered(area):
 	if(area == target):
-		#target should take damage and stuff here
+		target.change_health(-1 * damage)
 		queue_free()
