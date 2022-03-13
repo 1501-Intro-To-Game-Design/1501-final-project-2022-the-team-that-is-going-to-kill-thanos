@@ -28,5 +28,5 @@ func _on_MorselSpawn_timeout():
 func updateMorselLocation(delta):
 	for i in morselPathManager:
 		if is_instance_valid(i[0]):
-			i[1].addToOffset(-1 * (i[0].speed * delta))
+			i[1].addToOffset(-1 * (i[0].current_speed * delta))
 			i[0].position = i[1].getPathLocation()

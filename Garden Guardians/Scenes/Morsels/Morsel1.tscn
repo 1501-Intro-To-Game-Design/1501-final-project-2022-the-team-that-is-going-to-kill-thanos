@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Unit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Morsel.png" type="Texture" id=2]
+
+[node name="Unit" groups=["Morsels"] instance=ExtResource( 1 )]
+mode = 2
+mass = 0.00102041
+gravity_scale = 0.0
+groups_to_check = [ "Enemies" ]
+max_speed = 30
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( -4.76837e-07, 3 )
+scale = Vector2( 0.0800781, 0.0766602 )
+texture = ExtResource( 2 )

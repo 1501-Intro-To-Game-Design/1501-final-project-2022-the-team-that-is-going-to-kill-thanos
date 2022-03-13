@@ -5,7 +5,8 @@
 
 [node name="Level1" type="Node2D"]
 
-[node name="MovingEnemies" parent="." instance=ExtResource( 1 )]
-
-[node name="Tower" parent="MovingEnemies" instance=ExtResource( 2 )]
+[node name="Tower" parent="." instance=ExtResource( 2 )]
 position = Vector2( 516, 179 )
+attacking_tower = true
+
+[node name="MovingEnemies" parent="." instance=ExtResource( 1 )]
