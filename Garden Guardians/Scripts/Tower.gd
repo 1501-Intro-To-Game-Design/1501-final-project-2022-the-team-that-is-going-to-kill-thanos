@@ -2,7 +2,9 @@ extends Node2D
 
 var enemies = []
 var can_attack = false
-export var cooldown = 1
+var can_spawn = false
+export var attack_cooldown = 1
+export var spawn_cooldown = 1
 export var attacking_tower = true
 export var morself_tower = false
 
@@ -16,7 +18,8 @@ export(PackedScene) var projectileScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Cooldown.wait_time = cooldown
+	$AttackCooldown.wait_time = attack_cooldown
+	$SpawnCooldown.wait_time = spawn_cooldown
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,11 +37,12 @@ func _process(delta):
 			if not (index == -1):
 				if(can_attack):
 					can_attack = false
-					$Cooldown.wait_time = cooldown
+					$AttackCooldown.wait_time = attack_cooldown
 					attack(enemies[index])
 	if(morself_tower):
 		pass
-		#do morself spawning stuff, if can_attack is true, that is when the cooldown has passed (can spawn new morsels)
+		can_spawn = false
+		#do morself spawning stuff, if can_spawn is true, that is when the cooldown has passed (can spawn new morsels)
 				
 func attack(enemy):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
@@ -59,3 +63,7 @@ func _on_Cooldown_timeout():
 func _on_Range_area_exited(area):
 	if(area.is_in_group("Enemies")):
 		enemies.remove(enemies.find(area))
+
+
+func _on_SpawnCooldown_timeout():
+	can_spawn = true
