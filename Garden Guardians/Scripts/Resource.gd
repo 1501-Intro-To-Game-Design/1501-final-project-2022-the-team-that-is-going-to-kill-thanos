@@ -7,7 +7,8 @@ var is_Wood = true
 func _ready():
 	pass
 
-func _spawn(w):
+func _spawn(w, loc):
+	position = loc
 	is_Wood = w
 	if !is_Wood:
 		is_Metal = true

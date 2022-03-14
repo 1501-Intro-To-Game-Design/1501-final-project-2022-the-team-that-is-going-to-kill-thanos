@@ -7,6 +7,7 @@ export var damage = 2
 export var attackSpeed = 2
 var inCombat = false
 var target
+export (PackedScene) var resource
 
 #MOVING STUFF
 var velocity = Vector2.ZERO
@@ -89,4 +90,8 @@ func change_health(change):
 
 
 func destroy():
+	var r = resource.instance()
+	if is_in_group("Enemies"):
+		r._spawn(true, global_position) # true = wood, false = metal
+		get_parent().add_child(r)
 	queue_free()
