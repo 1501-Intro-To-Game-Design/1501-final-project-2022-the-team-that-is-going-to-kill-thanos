@@ -16,6 +16,8 @@ var direction = Vector2.ZERO
 export var max_speed = 50
 var current_speed = 0
 var moving = false;
+var homeTower
+var morselNum
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -76,6 +78,9 @@ func battle_action(dmg, attacker):
 	if(current_health - dmg <= 0):
 		attacker.inCombat = false
 		attacker.get_node("Attack").stop()
+		if self.is_in_group("Morsels"):
+			homeTower.babies -= 1
+			homeTower.morselPositions[morselNum] = false
 	change_health(-1 * dmg)
 		
 func change_health(change):

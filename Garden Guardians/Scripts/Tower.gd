@@ -17,6 +17,8 @@ export(PackedScene) var projectileScene
 export(PackedScene) var morsalScene
 var tower = 0 #defult
 
+var morselPositions = [false, false, false, false]
+
 #this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
 #list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
 #LEGEND: A-attacking M-morsel T-Tower P-Projectile
@@ -64,16 +66,25 @@ func attack(enemy):
 
 func make_Baby():
 	var morsel = morsalScene.instance()
+	morsel.homeTower = self
 	get_parent().add_child(morsel)
 	
-	if(babies == 0):
-		morsel.position = $ShootPoint.get_global_position() + Vector2(-10, -15) #in the future replace this with (go to the neerest point on the path)
-	elif(babies == 1):
-		morsel.position = $ShootPoint.get_global_position() + Vector2(0, -10) #in the future replace this with (go to the neerest point on the path)
-	elif(babies == 2):
-		morsel.position = $ShootPoint.get_global_position() + Vector2(10, -10) #in the future replace this with (go to the neerest point on the path)
-	elif(babies == 3):
-		morsel.position = $ShootPoint.get_global_position() + Vector2(-10, -5) #in the future replace this with (go to the neerest point on the path)
+	if(not morselPositions[0]): #Does this ever happen?
+		morsel.position = $ShootPoint.get_global_position() + Vector2(-60, -15) #in the future replace this with (go to the neerest point on the path)
+		morsel.morselNum = 0
+		morselPositions[0] = true
+	elif(not morselPositions[1]):
+		morsel.position = $ShootPoint.get_global_position() + Vector2(-10, -10) #in the future replace this with (go to the neerest point on the path)
+		morsel.morselNum = 1
+		morselPositions[1] = true
+	elif(not morselPositions[2]):
+		morsel.position = $ShootPoint.get_global_position() + Vector2(40, -10) #in the future replace this with (go to the neerest point on the path)
+		morsel.morselNum = 2
+		morselPositions[2] = true
+	elif(not morselPositions[3]):
+		morsel.position = $ShootPoint.get_global_position() + Vector2(90, -5) #in the future replace this with (go to the neerest point on the path)
+		morsel.morselNum = 3
+		morselPositions[3] = true
 	
 
 func _on_Range_area_entered(area):
