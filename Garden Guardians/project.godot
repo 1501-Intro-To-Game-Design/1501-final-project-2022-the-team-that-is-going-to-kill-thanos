@@ -14,6 +14,10 @@ config/name="Garden Guardians"
 run/main_scene="res://Scenes/LevelScenes/Level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ui="*res://Scenes/UI.tscn"
+
 [input]
 
 Mouse={

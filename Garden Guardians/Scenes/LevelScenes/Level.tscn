@@ -3,15 +3,21 @@
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/TowerScenes/Plate.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/EnemyScenes/MovingEnemies.tscn" type="PackedScene" id=6]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
 player = ExtResource( 2 )
 tower = ExtResource( 3 )
 
-[node name="UI" parent="." instance=ExtResource( 4 )]
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 494, 154 )
 
 [node name="Plate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 728, 110 )
+position = Vector2( 491, 383 )
+
+[node name="Plate2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 494, 198 )
+
+[node name="MovingEnemies" parent="." instance=ExtResource( 6 )]

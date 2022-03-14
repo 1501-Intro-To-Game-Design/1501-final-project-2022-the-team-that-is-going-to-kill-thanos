@@ -1,41 +1,40 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 1.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Stand.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 3.png" type="Texture" id=4]
-[ext_resource path="res://Scenes/UI.tscn" type="PackedScene" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "Running",
-"speed": 4.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Standing",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Running",
+"speed": 4.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 200.878
+radius = 456.07
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["Player"]]
 scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
 speed = 20
-ui = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "Running"
 
-[node name="PickUp" type="Area2D" parent="."]
+[node name="PickUp" type="Area2D" parent="." groups=["Player"]]
+collision_layer = 32769
+collision_mask = 32769
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp"]
 shape = SubResource( 2 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="area_entered" from="PickUp" to="." method="_on_PickUp_area_entered"]

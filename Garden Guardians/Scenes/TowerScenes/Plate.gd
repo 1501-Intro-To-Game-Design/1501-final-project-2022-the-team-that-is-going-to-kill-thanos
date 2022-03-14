@@ -8,7 +8,7 @@ export (PackedScene) var protein_scene
 export (PackedScene) var dairy_scene
 export (PackedScene) var grain_scene
 
-export var y_spawn_offset = -60
+export var y_spawn_offset = -5
 
 var current_menu
 
@@ -56,3 +56,10 @@ func make_tower(tower_type):
 
 func _on_BigArea_mouse_exited():
 	current_menu.hide()
+
+
+func _on_PArea_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		make_tower("protein")
+		current_menu.hide()
+		current_menu = $PUpgradeMenu

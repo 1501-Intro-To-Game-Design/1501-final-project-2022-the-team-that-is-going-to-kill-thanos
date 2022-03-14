@@ -4,7 +4,6 @@ extends Node2D
 var destination = Vector2.ZERO
 var direction = Vector2.ZERO
 export var speed = 1
-export (PackedScene) var ui
 
 var moving = false;
 var clicked = false;
@@ -39,11 +38,13 @@ func _process(delta):
 		position += direction.normalized() * speed * delta * 10
 	if items.size() > 0:
 		for item in items:
-			if abs((item.poosition - position).x) < 1.5 and abs((item.positon - position).y) < 1.5:
+			if abs((item.position - position).x) < 1.5 and abs((item.position - position).y) < 1.5:
 				if item.is_Wood:
-					ui._update_Resources(true)
+					get_parent().get_node("UI")._update_Resources(true)
 				if item.is_Metal:
-					ui._update_Resources(false)
+					get_parent().get_node("UI")._update_Resources(false)
+				items.remove(items.find(item))
+				item.queue_free()
 
 		
 		
@@ -67,6 +68,7 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_PickUp_area_entered(area:Area2D): #Resources
 	var item = area.get_parent()
+	
 	if item.is_in_group("Resources"):
-		item._pulled(position)
+		item._pulled(self)
 		items.append(item)

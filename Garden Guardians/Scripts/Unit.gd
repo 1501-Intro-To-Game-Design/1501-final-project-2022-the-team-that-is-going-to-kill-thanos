@@ -25,13 +25,6 @@ func _ready():
 	$Health.value = current_health
 	prepareAttackTimer()
 
-func _spawn(h, d, s, a, sprite):
-	max_health = h
-	damage = d
-	max_speed = s
-	attackSpeed = a
-	$Sprite.set_texture(load(sprite))
-
 func _go_To(loc):
 	destination = loc
 	moving = true
@@ -60,7 +53,7 @@ func checkType(body):
 		if group == "Traps" and "Traps" in groups_to_check:
 			body.applyEffects($Enemy)
 		if (group == "Morsels" and "Morsels" in groups_to_check) or (group == "Enemies" and "Enemies" in groups_to_check):
-			if !inCombat:
+			if not inCombat and not body.inCombat:
 				inCombat = true
 				target = body
 				$Attack.start()
@@ -70,9 +63,10 @@ func prepareAttackTimer():
 	$Attack.wait_time = attackSpeed
 
 func _on_Attack_timeout():
-	target.battle_action(damage, self)
-	print("someone attacked")
-		
+	if is_instance_valid(target):
+		target.battle_action(damage, self)
+		print("someone attacked")
+			
 func battle_action(dmg, attacker):
 	if(current_health - dmg <= 0):
 		attacker.inCombat = false

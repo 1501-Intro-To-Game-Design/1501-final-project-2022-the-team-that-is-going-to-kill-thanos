@@ -10,11 +10,11 @@ importPathScene = ExtResource( 2 )
 importEnemyScene = ExtResource( 3 )
 
 [node name="EnemySpawn" type="Timer" parent="."]
-one_shot = true
+wait_time = 2.0
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 447, 181 )
+position = Vector2( 512, 300 )
 current = true
 
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]
