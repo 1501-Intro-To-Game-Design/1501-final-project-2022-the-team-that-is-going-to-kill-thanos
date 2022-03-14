@@ -27,7 +27,6 @@ func _process(delta):
 		seek_player(delta)
 
 func seek_player(delta):
-	print("yo im here")
 	var direction = player.global_position - global_position
 	var distance = sqrt(pow((player.get_global_position().x - global_position.x), 2) + pow((player.get_global_position().y - global_position.y), 2))
 	if abs(distance) > 10:

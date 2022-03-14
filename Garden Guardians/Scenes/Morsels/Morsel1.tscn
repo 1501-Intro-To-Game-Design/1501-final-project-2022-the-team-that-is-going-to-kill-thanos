@@ -7,6 +7,7 @@
 mass = 0.00102041
 gravity_scale = 0.0
 groups_to_check = [ "Enemies" ]
+max_health = 5
 damage = 1
 attackSpeed = 1
 max_speed = 30

@@ -27,7 +27,8 @@ var tower = 0 #defult
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
-	pass
+	$SpawnCooldown.start(spawn_cooldown)
+	print($SpawnCooldown.time_left)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -74,7 +75,6 @@ func make_Baby():
 	elif(babies == 3):
 		morsel.position = $ShootPoint.get_global_position() + Vector2(-10, -5) #in the future replace this with (go to the neerest point on the path)
 	
-	print("morsel spawned")
 
 func _on_Range_area_entered(area):
 	if(area.get_parent().is_in_group("Enemies")):

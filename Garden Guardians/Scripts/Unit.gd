@@ -71,7 +71,6 @@ func prepareAttackTimer():
 func _on_Attack_timeout():
 	if is_instance_valid(target):
 		target.battle_action(damage, self)
-		print("someone attacked")
 			
 func battle_action(dmg, attacker):
 	if(current_health - dmg <= 0):
@@ -83,7 +82,6 @@ func change_health(change):
 	current_health += change
 	$Health.value = current_health
 	if(current_health <= 0):
-		print("i died")
 		destroy()
 	if(current_health > max_health):
 		current_health = max_health

@@ -3,5 +3,8 @@
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 
 [node name="Tower" instance=ExtResource( 1 )]
-spawn_cooldown = 3
+spawn_cooldown = 10
 morsel_tower = true
+
+[node name="SpawnCooldown" parent="." index="2"]
+autostart = false
