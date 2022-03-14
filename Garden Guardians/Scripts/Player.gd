@@ -4,15 +4,14 @@ extends Node2D
 var destination = Vector2.ZERO
 var direction = Vector2.ZERO
 export var speed = 1
-
+export (PackedScene) var ui
 
 var moving = false;
 var clicked = false;
 
 #Resources
 var items = []
-var wood = 0
-var metal = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -42,9 +41,9 @@ func _process(delta):
 		for item in items:
 			if abs((item.poosition - position).x) < 1.5 and abs((item.positon - position).y) < 1.5:
 				if item.is_Wood:
-					wood += 1
+					ui._update_Resources(true)
 				if item.is_Metal:
-					metal += 1
+					ui._update_Resources(false)
 
 		
 		

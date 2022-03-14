@@ -3,6 +3,8 @@ extends RigidBody2D
 var is_Metal = false
 var is_Wood = true
 
+var wSprite = load("res://Sprites/Wood.png")
+var mSprite = load("res://Sprites/Metal.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
@@ -12,9 +14,9 @@ func _spawn(w, loc):
 	is_Wood = w
 	if !is_Wood:
 		is_Metal = true
-		$Sprite.modulate = Color(107, 110, 95)
+		$Sprite.texture = mSprite
 	else:
-		$Sprite.modulate = Color(120, 65, 50)
+		$Sprite.texture = wSprite
 
 func _pulled(destination):
 	var direction = destination - position
