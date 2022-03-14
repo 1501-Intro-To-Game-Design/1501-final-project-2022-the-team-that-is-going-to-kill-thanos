@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 1.png" type="Texture" id=2]
@@ -7,16 +7,19 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Standing",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "Running",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Standing",
+"speed": 5.0
 } ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 200.878
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 0.25, 0.25 )
@@ -27,4 +30,10 @@ speed = 20
 frames = SubResource( 1 )
 animation = "Running"
 
+[node name="PickUp" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp"]
+shape = SubResource( 2 )
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="area_entered" from="PickUp" to="." method="_on_PickUp_area_entered"]

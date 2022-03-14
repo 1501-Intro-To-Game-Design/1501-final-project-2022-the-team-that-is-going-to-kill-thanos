@@ -20,6 +20,8 @@ var moving = false;
 func _ready():
 	current_health = max_health
 	current_speed = max_speed;
+	$Health.max_value = max_health
+	$Health.value = current_health
 	prepareAttackTimer()
 
 func _spawn(h, d, s, a, sprite):
@@ -71,15 +73,14 @@ func _on_Attack_timeout():
 	print("someone attacked")
 		
 func battle_action(dmg, attacker):
-	current_health -= dmg
-	if(current_health <= 0):
+	if(current_health - dmg <= 0):
 		attacker.inCombat = false
 		attacker.get_node("Attack").stop()
-		print("someone died")
-		destroy()
+	change_health(-1 * dmg)
 		
 func change_health(change):
 	current_health += change
+	$Health.value = current_health
 	if(current_health <= 0):
 		print("i died")
 		destroy()
