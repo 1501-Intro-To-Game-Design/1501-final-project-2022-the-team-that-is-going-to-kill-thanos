@@ -15,3 +15,6 @@ max_speed = 30
 position = Vector2( -4.76837e-07, 3 )
 scale = Vector2( 0.0800781, 0.0766602 )
 texture = ExtResource( 2 )
+
+[node name="Area2DShape" parent="Area2D" index="0"]
+position = Vector2( 0.5, -0.5 )

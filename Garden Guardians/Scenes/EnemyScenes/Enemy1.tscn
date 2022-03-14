@@ -9,3 +9,6 @@ damage = 1
 attackSpeed = 1
 
 [node name="Area2D" parent="." index="3" groups=["Enemies"]]
+
+[node name="Area2DShape" parent="Area2D" index="0"]
+position = Vector2( 0.5, -0.5 )
