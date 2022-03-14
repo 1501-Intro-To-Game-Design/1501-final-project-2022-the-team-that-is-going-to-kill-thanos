@@ -15,9 +15,9 @@ tower = ExtResource( 3 )
 position = Vector2( 494, 154 )
 
 [node name="Plate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 491, 383 )
+position = Vector2( 493, 331 )
 
 [node name="Plate2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 494, 198 )
+position = Vector2( 493, 151 )
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 6 )]

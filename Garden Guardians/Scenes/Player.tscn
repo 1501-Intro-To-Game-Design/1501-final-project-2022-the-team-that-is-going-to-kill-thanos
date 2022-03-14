@@ -7,19 +7,19 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Standing",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "Running",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Standing",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 456.07
+radius = 200.878
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 scale = Vector2( 0.25, 0.25 )

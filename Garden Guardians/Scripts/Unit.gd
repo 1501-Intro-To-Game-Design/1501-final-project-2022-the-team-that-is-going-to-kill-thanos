@@ -53,10 +53,16 @@ func checkType(body):
 		if group == "Traps" and "Traps" in groups_to_check:
 			body.applyEffects($Enemy)
 		if (group == "Morsels" and "Morsels" in groups_to_check) or (group == "Enemies" and "Enemies" in groups_to_check):
-			if not inCombat and not body.inCombat:
-				inCombat = true
-				target = body
-				$Attack.start()
+			if not inCombat:
+				if body.inCombat:
+					if body.target == self:
+						inCombat = true
+						target = body
+						$Attack.start()
+				else:
+					inCombat = true
+					target = body
+					$Attack.start()
 	pass
 
 func prepareAttackTimer():
