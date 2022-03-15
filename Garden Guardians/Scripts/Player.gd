@@ -31,20 +31,12 @@ func _process(delta):
 		$AnimatedSprite.animation = "Running"
 		$AnimatedSprite.flip_h = true
 	
-	if moving and abs((destination - position).x) < 1 and abs((destination - position).y) < 1: #if youve arived
+	var distance = sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2))
+	if moving and distance < 2: #if you've arrived
 		moving = false
 	#MOVEMENT STUFF
 	if moving:  
 		position += direction.normalized() * speed * delta * 10
-	if items.size() > 0:
-		for item in items:
-			if abs((item.position - position).x) < 1.5 and abs((item.position - position).y) < 1.5:
-				if item.is_Wood:
-					get_parent().get_node("UI")._update_Resources(true)
-				if item.is_Metal:
-					get_parent().get_node("UI")._update_Resources(false)
-				items.remove(items.find(item))
-				item.queue_free()
 
 		
 		

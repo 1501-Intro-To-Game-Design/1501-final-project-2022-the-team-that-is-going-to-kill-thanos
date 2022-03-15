@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/MovingEnemies.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/EnemyScenes/Path.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/EnemyScenes/Enemy1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/EnemyScenes/Fork.tscn" type="PackedScene" id=3]
 
 [node name="MovingEnemies" type="Node2D"]
 script = ExtResource( 1 )

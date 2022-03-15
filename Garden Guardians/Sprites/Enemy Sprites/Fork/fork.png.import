@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fork.png-d95acd453b845cc0a5438bfc55fe5b15.stex"
+path="res://.import/fork.png-b3840b88641862d897964bbe1a7316ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemy Sprites/fork.png"
-dest_files=[ "res://.import/fork.png-d95acd453b845cc0a5438bfc55fe5b15.stex" ]
+source_file="res://Sprites/Enemy Sprites/Fork/fork.png"
+dest_files=[ "res://.import/fork.png-b3840b88641862d897964bbe1a7316ee.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

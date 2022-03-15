@@ -1,13 +1,18 @@
 extends RigidBody2D
 
+var inactive_targets = []
+
 export var groups_to_check = []
 export var max_health = 10
 var current_health = 1
 export var damage = 2
-export var attackSpeed = 2
+export var attackSpeed = 1.0
 var inCombat = false
 var target
 export (PackedScene) var resource
+
+export var spawned_num_wood = 0
+export var spawned_num_metal = 0
 
 #MOVING STUFF
 var velocity = Vector2.ZERO
@@ -35,7 +40,7 @@ func _go_To(loc):
 func _process(delta):
 	checkInCombat()
 	#MOVING STUFF
-	if moving and abs((destination - position).x) < 1 and abs((destination - position).y) < 1: #if youve arived
+	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2: #if youve arrived
 		moving = false
 	velocity.x = 0
 	if moving:  
@@ -56,8 +61,8 @@ func checkType(body):
 			body.applyEffects($Enemy)
 		if (group == "Morsels" and "Morsels" in groups_to_check) or (group == "Enemies" and "Enemies" in groups_to_check):
 			if not inCombat:
-				if body.inCombat:
-					if body.target == self:
+				if body.inCombat: #if target is in combat
+					if body.target == self: #if target's target is me
 						inCombat = true
 						target = body
 						$Attack.start()
@@ -65,6 +70,9 @@ func checkType(body):
 					inCombat = true
 					target = body
 					$Attack.start()
+			else: #if not in combat
+				if not (body in inactive_targets):
+					inactive_targets.append(body)
 	pass
 
 func prepareAttackTimer():
@@ -74,10 +82,18 @@ func _on_Attack_timeout():
 	if is_instance_valid(target):
 		target.battle_action(damage, self)
 			
+			
+func on_combat_end():
+	inCombat = false
+	$Attack.stop()
+	for enemy in inactive_targets:
+		checkType(enemy)
+		enemy.checkType(self)
+	
+
 func battle_action(dmg, attacker):
-	if(current_health - dmg <= 0):
-		attacker.inCombat = false
-		attacker.get_node("Attack").stop()
+	if(current_health - dmg <= 0): #if dead
+		attacker.on_combat_end()
 		if self.is_in_group("Morsels"):
 			homeTower.babies -= 1
 			homeTower.morselPositions[morselNum] = false
@@ -93,8 +109,17 @@ func change_health(change):
 
 
 func destroy():
-	var r = resource.instance()
+	var r = resource.instance() #spawn resources
 	if is_in_group("Enemies"):
-		r._spawn(true, global_position) # true = wood, false = metal
-		get_parent().add_child(r)
+		for i in range(spawned_num_wood):
+			r._spawn(true, global_position) # true = wood, false = metal
+			get_parent().add_child(r)
+		for i in range(spawned_num_metal):
+			r._spawn(false, global_position) # true = wood, false = metal
+			get_parent().add_child(r)
 	queue_free()
+
+
+func _on_Area2D_body_exited(body):
+	if body in inactive_targets: #if body in array
+		inactive_targets.remove(inactive_targets.find(body))

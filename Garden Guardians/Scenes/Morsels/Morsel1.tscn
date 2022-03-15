@@ -1,21 +1,35 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Morsal Sprites/Morsel.png" type="Texture" id=2]
 
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 423.5, 334 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 423.5, 333.5 )
+
 [node name="Unit" groups=["Morsels"] instance=ExtResource( 1 )]
+scale = Vector2( 0.1, 0.1 )
 mass = 0.00102041
 gravity_scale = 0.0
 groups_to_check = [ "Enemies" ]
-max_health = 5
 damage = 1
-attackSpeed = 1
 max_speed = 30
 
-[node name="Sprite" parent="." index="1"]
-position = Vector2( -4.76837e-07, 3 )
-scale = Vector2( 0.0800781, 0.0766602 )
+[node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
 
-[node name="Area2DShape" parent="Area2D" index="0"]
-position = Vector2( 0.5, -0.5 )
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 8.5, -31 )
+shape = SubResource( 1 )
+
+[node name="Health" parent="." index="3"]
+margin_left = -170.0
+margin_top = -475.0
+margin_right = 210.0
+margin_bottom = -405.0
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2( 8.5, -31.5 )
+shape = SubResource( 2 )
