@@ -15,9 +15,19 @@ var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 
 export(PackedScene) var projectileScene
 export(PackedScene) var morsalScene
+export(PackedScene) var combination_scene
 var tower = 0 #defult
 
 var morselPositions = [false, false, false, false]
+
+var combinable = true
+var dragging = false
+var plate = null
+
+var mouse_pos = null
+var comb_node = null
+
+var hovering = false
 
 #this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
 #list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
@@ -35,6 +45,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	#detect closest enemy, and call attack function on it
+	if dragging and is_instance_valid(comb_node) and not (mouse_pos == null):
+		drag()
 	if(attacking_tower):
 		if enemies.size() > 0:
 			var lowest = 1000
@@ -63,6 +75,34 @@ func attack(enemy):
 	get_parent().add_child(projectile)
 	projectile.position = $ShootPoint.get_global_position()
 	projectile.target = enemy
+
+func drag():
+	comb_node.position = mouse_pos
+
+func _input(event):
+   # Mouse in viewport coordinates.
+	if event is InputEventMouseMotion and dragging:
+		mouse_pos = event.position
+	elif event is InputEventMouseButton: 
+		if event.button_index == BUTTON_LEFT:
+			if event.pressed:
+				if hovering:
+					dragging = true
+					comb_node = combination_scene.instance()
+					get_parent().add_child(comb_node)
+					comb_node.get_node("Sprite").set_texture($Sprite.texture)
+					comb_node.get_node("Sprite").scale = $Sprite.scale
+					comb_node.tower_to_combine = self
+			else:
+				hovering = false
+				if is_instance_valid(comb_node):
+					var worked = comb_node.on_drag_end()
+					comb_node.queue_free()
+					if worked:
+						plate.reset()
+						queue_free()
+				dragging = false
+				mouse_pos = null
 
 func make_Baby():
 	var morsel = morsalScene.instance()
@@ -103,3 +143,11 @@ func _on_Range_area_exited(area):
 
 func _on_SpawnCooldown_timeout():
 	can_spawn = true
+
+
+func _on_Area2D_mouse_entered():
+	hovering = true
+
+
+func _on_Area2D_mouse_exited():
+	hovering = false

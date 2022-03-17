@@ -11,7 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#move towards target (closest enemy)
-	if not (target == null):
+	if is_instance_valid(target):
 		var direction = (target.global_position - self.global_position).normalized()
 		position += direction * speed * delta
 		

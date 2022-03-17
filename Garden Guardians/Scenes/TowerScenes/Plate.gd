@@ -12,6 +12,7 @@ export var y_spawn_offset = -5
 
 var current_menu
 
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -51,8 +52,12 @@ func make_tower(tower_type):
 		tower = protein_scene.instance()
 	get_parent().add_child(tower)
 	tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
+	tower.plate = self
 		
 
+func reset():
+	current_menu = $TowerMenu
+	tower = null
 
 func _on_BigArea_mouse_exited():
 	current_menu.hide()
