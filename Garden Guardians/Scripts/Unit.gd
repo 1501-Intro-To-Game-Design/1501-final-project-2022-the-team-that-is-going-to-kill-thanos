@@ -95,8 +95,9 @@ func battle_action(dmg, attacker):
 	if(current_health - dmg <= 0): #if dead
 		attacker.on_combat_end()
 		if self.is_in_group("Morsels"):
-			homeTower.babies -= 1
-			homeTower.morselPositions[morselNum] = false
+			if is_instance_valid(homeTower):
+				homeTower.babies -= 1
+				homeTower.morselPositions[morselNum] = false
 	change_health(-1 * dmg)
 		
 func change_health(change):
