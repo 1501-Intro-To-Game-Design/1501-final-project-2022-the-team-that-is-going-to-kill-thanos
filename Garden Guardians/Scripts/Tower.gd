@@ -11,6 +11,7 @@ export var spawn_cooldown = 1
 
 export var attacking_tower = false
 export var morsel_tower = false
+
 var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 
 export(PackedScene) var projectileScene
@@ -37,7 +38,8 @@ var hovering = false
 
 
 # Called when the node enters the scene tree for the first time.
-
+func getstuff():
+	return 5
 func _ready():
 	$SpawnCooldown.start(spawn_cooldown)
 	print($SpawnCooldown.time_left)

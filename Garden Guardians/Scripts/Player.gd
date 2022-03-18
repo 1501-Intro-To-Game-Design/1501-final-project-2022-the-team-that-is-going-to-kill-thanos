@@ -60,7 +60,6 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_PickUp_area_entered(area:Area2D): #Resources
 	var item = area.get_parent()
-	
 	if item.is_in_group("Resources"):
 		item._pulled(self)
 		items.append(item)

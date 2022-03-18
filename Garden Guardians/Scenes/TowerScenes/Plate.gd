@@ -13,10 +13,17 @@ export var y_spawn_offset = -5
 var current_menu
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+#COSTS// each new element after the first is the cost of the upgrade
+var vegW = [9]
+var vegM = [2]
+var fruitW = [12]
+var fruitM = [0]
+var grainW = [4]
+var grainM = [5]
+var dairyW = [11]
+var dairyM = [7]
+var proW = [0]
+var proM = [4]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,15 +47,30 @@ func _on_VArea_input_event(viewport, event, shape_idx):
 		current_menu = $VUpgradeMenu
 
 func make_tower(tower_type):
-	if tower_type == "vegetable":
+	if tower_type == "vegetable" and vegW[0] <= ui.wood and vegM[0] <= ui.metal:
+		ui.wood -= vegW[0]
+		ui.metal -= vegM[0]
+		ui.update()
 		tower = vegetable_scene.instance()
-	elif tower_type == "fruit":
+	elif tower_type == "fruit" and fruitW[0] <= ui.wood and fruitM[0] <= ui.metal:
+		ui.wood -= fruitW[0]
+		ui.metal -= fruitM[0]
+		ui.update()
 		tower = fruit_scene.instance()
-	elif tower_type == "grain":
+	elif tower_type == "grain" and grainW[0] <= ui.wood and grainM[0] <= ui.metal:
+		ui.wood -= grainW[0]
+		ui.metal -= grainM[0]
+		ui.update()
 		tower = grain_scene.instance()
-	elif tower_type == "dairy":
+	elif tower_type == "dairy" and dairyW[0] <= ui.wood and dairyM[0] <= ui.metal:
+		ui.wood -= dairyW[0]
+		ui.metal -= dairyM[0]
+		ui.update()
 		tower = dairy_scene.instance()
-	else:
+	elif tower_type == "protein" and proW[0] <= ui.wood and proM[0] <= ui.metal:
+		ui.wood -= proW[0]
+		ui.metal -= proM[0]
+		ui.update()
 		tower = protein_scene.instance()
 	get_parent().add_child(tower)
 	tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
