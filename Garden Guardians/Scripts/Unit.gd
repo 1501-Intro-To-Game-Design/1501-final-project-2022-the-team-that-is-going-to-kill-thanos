@@ -14,6 +14,11 @@ export (PackedScene) var resource
 export var spawned_num_wood = 0
 export var spawned_num_metal = 0
 
+#SOUNDS STUFF
+export (Array, Resource) var sounds
+export (Array, Resource) var movingSounds #This is just for morsals
+var rng = RandomNumberGenerator.new()
+
 #MOVING STUFF
 var velocity = Vector2.ZERO
 var destination = Vector2.ZERO
@@ -32,8 +37,11 @@ func _ready():
 	$Health.value = current_health
 	prepareAttackTimer()
 
-func _go_To(loc):
+func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 	destination = loc
+	rng.randomize()
+	$AudioStreamPlayer2D.stream = movingSounds[rng.randf_range(0,movingSounds.size())] #picks radom sound and plays it
+	$AudioStreamPlayer2D.play()
 	moving = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -80,6 +88,9 @@ func prepareAttackTimer():
 
 func _on_Attack_timeout():
 	if is_instance_valid(target):
+		rng.randomize()
+		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+		$AudioStreamPlayer2D.play()
 		target.battle_action(damage, self)
 			
 			

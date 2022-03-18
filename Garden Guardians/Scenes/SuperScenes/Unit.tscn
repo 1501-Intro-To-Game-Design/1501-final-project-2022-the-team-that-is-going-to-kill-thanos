@@ -36,6 +36,8 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="timeout" from="Attack" to="." method="_on_Attack_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Enemy_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

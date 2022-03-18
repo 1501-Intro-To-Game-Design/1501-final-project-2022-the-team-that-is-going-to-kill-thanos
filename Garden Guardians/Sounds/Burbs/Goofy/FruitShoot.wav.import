@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FruitShoot.wav-b83f1f76fd2d77689962c6f70aa95393.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Goofy/FruitShoot.wav"
+dest_files=[ "res://.import/FruitShoot.wav-b83f1f76fd2d77689962c6f70aa95393.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

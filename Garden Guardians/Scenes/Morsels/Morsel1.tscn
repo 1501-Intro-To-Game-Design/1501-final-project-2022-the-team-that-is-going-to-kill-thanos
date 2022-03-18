@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Morsal Sprites/Morsel.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/Burbs/Foley/MorsalHit1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Burbs/Foley/MorsalHit3.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Burbs/Foley/MorsalHit2.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 423.5, 334 )
@@ -15,6 +18,7 @@ mass = 0.00102041
 gravity_scale = 0.0
 groups_to_check = [ "Enemies" ]
 damage = 1
+sounds = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ]
 max_speed = 30
 
 [node name="Sprite" parent="." index="0"]

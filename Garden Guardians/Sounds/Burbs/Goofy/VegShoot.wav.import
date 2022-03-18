@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/VegShoot.wav-8e41adb152a4d5793a5ce72abe246e87.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Goofy/VegShoot.wav"
+dest_files=[ "res://.import/VegShoot.wav-8e41adb152a4d5793a5ce72abe246e87.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

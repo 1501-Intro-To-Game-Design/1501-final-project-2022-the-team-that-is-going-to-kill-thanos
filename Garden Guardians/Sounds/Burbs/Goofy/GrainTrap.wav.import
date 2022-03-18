@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GrainTrap.wav-1ebd91c587c4c1be8610e649e1cda694.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Goofy/GrainTrap.wav"
+dest_files=[ "res://.import/GrainTrap.wav-1ebd91c587c4c1be8610e649e1cda694.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -19,6 +19,10 @@ export(PackedScene) var morsalScene
 export(PackedScene) var combination_scene
 var tower = 0 #defult
 
+#SOUND STUFF
+export (Array, Resource) var sounds
+var rng = RandomNumberGenerator.new()
+
 var morselPositions = [false, false, false, false]
 
 var combinable = true
@@ -75,6 +79,9 @@ func attack(enemy):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
 	get_parent().add_child(projectile)
+	rng.randomize()
+	$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+	$AudioStreamPlayer2D.play()
 	projectile.position = $ShootPoint.get_global_position()
 	projectile.target = enemy
 

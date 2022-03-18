@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MorsalExclimation2.wav-02bbd528d47c12f318ff8559143ace68.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav"
+dest_files=[ "res://.import/MorsalExclimation2.wav-02bbd528d47c12f318ff8559143ace68.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

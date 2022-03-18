@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/MetalPickup.wav-1e3e49014187a6b4718848608d231356.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Foley/MetalPickup.wav"
+dest_files=[ "res://.import/MetalPickup.wav-1e3e49014187a6b4718848608d231356.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
