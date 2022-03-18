@@ -14,6 +14,8 @@ func _process(delta):
 	if is_instance_valid(target):
 		var direction = (target.global_position - self.global_position).normalized()
 		position += direction * speed * delta
+	else:
+		queue_free()
 		
 
 

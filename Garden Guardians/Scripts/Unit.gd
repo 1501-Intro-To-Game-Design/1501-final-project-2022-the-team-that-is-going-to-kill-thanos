@@ -56,7 +56,10 @@ func _process(delta):
 
 func checkInCombat():
 	if inCombat:
-		current_speed = 0
+		if is_instance_valid(target):
+			current_speed = 0
+		else:
+			on_combat_end()
 	else:
 		current_speed = max_speed
 
@@ -91,7 +94,7 @@ func _on_Attack_timeout():
 		rng.randomize()
 		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 		$AudioStreamPlayer2D.play()
-		target.battle_action(damage, self)
+		target.battle_action(damage)
 			
 			
 func on_combat_end():
@@ -102,13 +105,7 @@ func on_combat_end():
 		enemy.checkType(self)
 	
 
-func battle_action(dmg, attacker):
-	if(current_health - dmg <= 0): #if dead
-		attacker.on_combat_end()
-		if self.is_in_group("Morsels"):
-			if is_instance_valid(homeTower):
-				homeTower.babies -= 1
-				homeTower.morselPositions[morselNum] = false
+func battle_action(dmg):
 	change_health(-1 * dmg)
 		
 func change_health(change):
@@ -122,6 +119,12 @@ func change_health(change):
 
 func destroy():
 	var r = resource.instance() #spawn resources
+	
+	if self.is_in_group("Morsels"): #decrease number of active morsels
+		if is_instance_valid(homeTower):
+			homeTower.babies -= 1
+			homeTower.morselPositions[morselNum] = false
+	
 	if is_in_group("Enemies"):
 		for i in range(spawned_num_wood):
 			r._spawn(true, global_position) # true = wood, false = metal
