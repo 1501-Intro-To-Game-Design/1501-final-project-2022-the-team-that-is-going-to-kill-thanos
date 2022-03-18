@@ -7,17 +7,18 @@ var metal = -1
 
 func _ready():
 	#FOR TESTING
-	wood = 24
-	metal = 24
-	add_wood()
-	add_metal()
+	wood = 25
+	metal = 25
+	update()
 
 func add_wood():
 	wood += 1
+	$AudioStreamPlayer2D.play()
 	$WLabel.text = str(wood)
 	
 func add_metal():
 	metal += 1
+	$AudioStreamPlayer2D.play()
 	$MLabel.text = str(metal)
 
 func update():

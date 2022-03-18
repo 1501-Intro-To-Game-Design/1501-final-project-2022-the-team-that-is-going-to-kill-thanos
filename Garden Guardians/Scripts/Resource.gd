@@ -8,7 +8,6 @@ var seeking_player = false
 var wSprite = load("res://Sprites/Wood.png")
 var mSprite = load("res://Sprites/Metal.png")
 var player = null
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
