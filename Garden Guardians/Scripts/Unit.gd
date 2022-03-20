@@ -56,7 +56,12 @@ func _process(delta):
 
 func checkInCombat():
 	if inCombat:
-		if is_instance_valid(target):
+		if "Player" in target.get_groups():
+			if not target.alive:
+				on_combat_end()
+			else:
+				current_speed = 0
+		elif is_instance_valid(target):
 			current_speed = 0
 		else:
 			on_combat_end()
@@ -71,20 +76,25 @@ func checkType(body):
 		if group == "Traps" and "Traps" in groups_to_check:
 			body.applyEffects($Enemy)
 		if (group == "Morsels" and "Morsels" in groups_to_check) or (group == "Enemies" and "Enemies" in groups_to_check):
-			if not inCombat:
-				if body.inCombat: #if target is in combat
-					if body.target == self: #if target's target is me
-						inCombat = true
-						target = body
-						$Attack.start()
-				else:
-					inCombat = true
-					target = body
-					$Attack.start()
-			else: #if not in combat
-				if not (body in inactive_targets):
-					inactive_targets.append(body)
-	pass
+			setTarget(body)
+		if (group == "Player" and "Player" in groups_to_check):
+			if body.alive:
+				setTarget(body)
+
+func setTarget(body):
+	if not inCombat:
+		if body.inCombat: #if target is in combat
+			if body.target == self: #if target's target is me
+				inCombat = true
+				target = body
+				$Attack.start()
+		else:
+			inCombat = true
+			target = body
+			$Attack.start()
+	else: #if I'm in combat
+		if not (body in inactive_targets):
+			inactive_targets.append(body)
 
 func prepareAttackTimer():
 	$Attack.wait_time = attackSpeed
@@ -138,3 +148,5 @@ func destroy():
 func _on_Area2D_body_exited(body):
 	if body in inactive_targets: #if body in array
 		inactive_targets.remove(inactive_targets.find(body))
+	if ("Player" in body.get_groups()) and (body == target):
+		on_combat_end()

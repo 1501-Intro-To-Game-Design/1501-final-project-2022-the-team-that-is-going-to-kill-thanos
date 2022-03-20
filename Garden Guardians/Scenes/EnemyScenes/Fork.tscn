@@ -13,7 +13,7 @@ extents = Vector2( 42.5, 235 )
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.2, 0.2 )
-groups_to_check = [ "Morsels", "Traps" ]
+groups_to_check = [ "Morsels", "Traps", "Player" ]
 max_health = 5
 damage = 3
 attackSpeed = 1.2

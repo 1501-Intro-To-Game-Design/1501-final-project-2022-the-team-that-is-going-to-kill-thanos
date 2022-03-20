@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 1.png" type="Texture" id=2]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Stand.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 3.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Player Sprites/Gravestone (TEMP).png" type="Texture" id=5]
+[ext_resource path="res://Sounds/Burbs/Hit.wav" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -16,19 +18,37 @@ animations = [ {
 "loop": true,
 "name": "Standing",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "Dead",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 360.089
 
+[sub_resource type="CircleShape2D" id=3]
+radius = 116.069
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 116.0
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.266667, 0.952941, 0.513726, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0.956863, 0.352941, 0.352941, 1 )
+
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
 speed = 20
+sounds = [ ExtResource( 6 ) ]
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "Running"
+animation = "Dead"
 
 [node name="PickUp" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 32769
@@ -37,4 +57,36 @@ collision_mask = 32769
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickUp"]
 shape = SubResource( 2 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )
+
+[node name="Respawn" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="CombatRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatRange"]
+shape = SubResource( 4 )
+
+[node name="Attack" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Health" type="ProgressBar" parent="."]
+margin_left = -68.0
+margin_top = -140.0
+margin_right = 64.0
+margin_bottom = -122.0
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
+[connection signal="body_entered" from="CombatRange" to="." method="_on_CombatRange_body_entered"]
+[connection signal="body_exited" from="CombatRange" to="." method="_on_CombatRange_body_exited"]
+[connection signal="timeout" from="Attack" to="." method="_on_Attack_timeout"]
