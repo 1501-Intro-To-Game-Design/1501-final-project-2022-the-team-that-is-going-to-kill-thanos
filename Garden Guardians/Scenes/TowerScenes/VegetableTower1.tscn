@@ -20,8 +20,11 @@ scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 3 )
 
 [node name="ShootPoint" parent="." index="4"]
-position = Vector2( -1, 0 )
+position = Vector2( 0, -35 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 1, -16.5 )
 shape = SubResource( 1 )
+
+[node name="AudioStreamPlayer2D" parent="." index="6"]
+position = Vector2( 0, -35 )
