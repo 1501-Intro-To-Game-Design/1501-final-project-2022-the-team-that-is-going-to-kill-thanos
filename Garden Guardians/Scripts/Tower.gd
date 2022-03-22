@@ -65,7 +65,7 @@ func _process(_delta):
 			if not (index == -1):
 				if(can_attack):
 					can_attack = false
-					$AttackCooldown.start()
+					$AttackCooldown.start(attack_cooldown)
 					attack(enemies[index])
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):

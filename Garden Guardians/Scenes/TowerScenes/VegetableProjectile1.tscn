@@ -4,6 +4,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/Turnip Projectile.png" type="Texture" id=2]
 
 [node name="Projectile" instance=ExtResource( 1 )]
+speed = 150
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 1 )
