@@ -56,13 +56,14 @@ func _process(delta):
 
 func checkInCombat():
 	if inCombat:
-		if "Player" in target.get_groups():
-			if not target.alive:
-				on_combat_end()
+		if is_instance_valid(target):
+			if "Player" in target.get_groups():
+				if not target.alive:
+					on_combat_end()
+				else:
+					current_speed = 0
 			else:
 				current_speed = 0
-		elif is_instance_valid(target):
-			current_speed = 0
 		else:
 			on_combat_end()
 	else:

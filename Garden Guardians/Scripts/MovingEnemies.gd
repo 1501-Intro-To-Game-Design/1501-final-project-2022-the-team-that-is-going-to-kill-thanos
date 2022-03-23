@@ -13,18 +13,19 @@ var dP = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	$"/root/ui".connect("nextRoundGo", self, "_on_nextRoundGo")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateEnemyLocation(delta)
 	if enemys.size() <= 0 and inProgres:
 		inProgres = false
-		$WaveWait.start()
 		$EnemySpawn.stop()
+		$"/root/ui".waveEnd()
 
 func start_wave():
 	dP = (wave*5) +15 #can revise this later
+	$"/root/ui".updateRound(wave)
 	rng.randomize()
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist
 		var value = rng.randf_range(0,importEnemyScene.size())
@@ -59,9 +60,8 @@ func updateEnemyLocation(delta):
 		if is_instance_valid(i[0]):
 			i[1].addToOffset(i[0].current_speed * delta)
 			i[0].position = i[1].getPathLocation()
-
-
-
-func _on_WaveWait_timeout():
+	
+func _on_nextRoundGo():
+	$"/root/ui".waveInProgress()
 	wave += 1
 	start_wave()
