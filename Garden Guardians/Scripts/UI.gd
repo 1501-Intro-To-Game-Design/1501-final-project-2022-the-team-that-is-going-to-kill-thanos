@@ -3,6 +3,7 @@ extends CanvasLayer
 
 var wood = -1
 var metal = -1
+var paused = false
 
 var hovering = false
 signal nextRoundGo
@@ -50,3 +51,17 @@ func waveEnd():
 
 func updateRound(roundNum):
 	$Round.text = "Wave: " + String(roundNum)
+
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.pressed:
+				if paused:
+					paused = false
+					get_tree().paused = false
+					$PauseButton.texture = load("res://Sprites/Pause.png")
+				else:
+					paused = true
+					get_tree().paused = true
+					$PauseButton.texture = load("res://Sprites/Play.png")
