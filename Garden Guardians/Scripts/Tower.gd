@@ -3,6 +3,7 @@ extends Node2D
 var explosive = false
 var stun_chance = 0.15
 var stun_duration = 0.4
+var target_type = "closest"
 
 var num_projectiles = 1
 
@@ -59,6 +60,9 @@ func _ready():
 	rng.randomize()
 	$SpawnCooldown.start(spawn_cooldown)
 
+func set_target_type(new_target_type): #can be: closest, farthest, lowest, highest, closest_end, closest_start
+	target_type = new_target_type
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	#detect closest enemy, and call attack function on it
@@ -67,17 +71,74 @@ func _process(_delta):
 	if(attacking_tower and can_attack):
 		if enemies.size() > 0:
 			while(num_projectiles > targeted_enemies.size()):
-				var lowest = 1000
-				var index = -1
-				for i in range(0, enemies.size()):
-					var distance = sqrt(pow((enemies[i].get_global_position().x - $ShootPoint.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - $ShootPoint.get_global_position().y), 2))
-					if(distance < lowest and not (enemies[i] in targeted_enemies)):
-						lowest = distance
-						index = i
-				if not (index == -1):
-					targeted_enemies.append(enemies[index])
-				else:
-					targeted_enemies.append(null)
+				if(target_type == "closest"):
+					var lowest = 1000
+					var index = -1
+					for i in range(0, enemies.size()):
+						var distance = sqrt(pow((enemies[i].get_global_position().x - $ShootPoint.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - $ShootPoint.get_global_position().y), 2))
+						if(distance < lowest and not (enemies[i] in targeted_enemies)):
+							lowest = distance
+							index = i
+					if not (index == -1):
+						targeted_enemies.append(enemies[index])
+					else:
+						targeted_enemies.append(null)
+				elif(target_type == "farthest"):
+					var highest = 0
+					var index = -1
+					for i in range(0, enemies.size()):
+						var distance = sqrt(pow((enemies[i].get_global_position().x - $ShootPoint.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - $ShootPoint.get_global_position().y), 2))
+						if(distance > highest and not (enemies[i] in targeted_enemies)):
+							highest = distance
+							index = i
+					if not (index == -1):
+						targeted_enemies.append(enemies[index])
+					else:
+						targeted_enemies.append(null)
+				elif(target_type == "lowest"):
+					var index = -1
+					var lowest = 1000
+					for i in range(0, enemies.size()):
+						if(enemies[i].get_parent().get_percent_health() < lowest and not (enemies[i] in targeted_enemies)):
+							lowest = enemies[i].get_parent().get_percent_health()
+							index = i
+					if not (index == -1):
+						targeted_enemies.append(enemies[index])
+					else:
+						targeted_enemies.append(null)
+				elif(target_type == "highest"):
+					var index = -1
+					var highest = 0
+					for i in range(0, enemies.size()):
+						if(enemies[i].get_parent().get_percent_health() > highest and not (enemies[i] in targeted_enemies)):
+							highest = enemies[i].get_parent().get_percent_health()
+							index = i
+					if not (index == -1):
+						targeted_enemies.append(enemies[index])
+					else:
+						targeted_enemies.append(null)
+				elif(target_type == "closest_end"):
+					var index = -1
+					var highest = 0
+					for i in range(0, enemies.size()):
+						if(enemies[i].get_parent().get_offset() > highest and not (enemies[i] in targeted_enemies)):
+							highest = enemies[i].get_parent().get_offset()
+							index = i
+					if not (index == -1):
+						targeted_enemies.append(enemies[index])
+					else:
+						targeted_enemies.append(null)
+				elif(target_type == "closest_start"):
+					var index = -1
+					var lowest = 10000
+					for i in range(0, enemies.size()):
+						if(enemies[i].get_parent().get_offset() < lowest and not (enemies[i] in targeted_enemies)):
+							lowest = enemies[i].get_parent().get_offset()
+							index = i
+					if not (index == -1):
+						targeted_enemies.append(enemies[index])
+					else:
+						targeted_enemies.append(null)
 			can_attack = false
 			$AttackCooldown.start(attack_cooldown)
 			for i in range(targeted_enemies.size()):

@@ -17,13 +17,13 @@ extents = Vector2( 45.5, 14 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 15, 15 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 59, 51 )
-
 [sub_resource type="DynamicFont" id=4]
 size = 10
 extra_spacing_bottom = -3
 font_data = ExtResource( 10 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 59, 62 )
 
 [node name="Plate" type="Node2D"]
 script = ExtResource( 2 )
@@ -51,9 +51,7 @@ __meta__ = {
 
 [node name="TowerMenu" type="Node2D" parent="."]
 visible = false
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2( 0, -11 )
 
 [node name="Vegetable" type="Node2D" parent="TowerMenu"]
 position = Vector2( -1, 37 )
@@ -148,16 +146,9 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="BigArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BigArea"]
-shape = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
-
 [node name="VUpgradeMenu" type="Node2D" parent="."]
 visible = false
+position = Vector2( 0, -11 )
 
 [node name="V1" type="Node2D" parent="VUpgradeMenu"]
 visible = false
@@ -288,6 +279,7 @@ texture = ExtResource( 3 )
 
 [node name="FUpgradeMenu" type="Node2D" parent="."]
 visible = false
+position = Vector2( 0, -11 )
 
 [node name="F1" type="Node2D" parent="FUpgradeMenu"]
 visible = false
@@ -430,6 +422,7 @@ margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "Build a Turnip tower."
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -449,6 +442,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -460,6 +454,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -483,6 +478,7 @@ margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "Upgrade to an Onion tower. Increased damage."
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -502,6 +498,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -513,6 +510,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -556,6 +554,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -567,6 +566,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -610,6 +610,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -621,6 +622,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -664,6 +666,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -675,6 +678,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -718,6 +722,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -729,6 +734,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -772,6 +778,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -783,6 +790,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -806,6 +814,7 @@ margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "Build a Seed tower."
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -825,6 +834,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -836,6 +846,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -859,6 +870,7 @@ margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "Upgrade to a Plum tower. Increased damage, faster fire rate."
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -878,6 +890,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -889,6 +902,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -912,6 +926,7 @@ margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "Upgrade to a Combinable Tomato tower. Greatly faster fire rate."
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -931,6 +946,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -942,6 +958,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -985,6 +1002,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -996,6 +1014,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1039,6 +1058,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1050,6 +1070,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1093,6 +1114,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1104,6 +1126,7 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1147,6 +1170,7 @@ margin_right = 63.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "123"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1158,9 +1182,37 @@ margin_right = 97.0
 margin_bottom = 41.0
 custom_fonts/normal_font = SubResource( 4 )
 text = "185"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Target" type="Node2D" parent="."]
+visible = false
+position = Vector2( -1, -10 )
+
+[node name="TargetSprite" type="Sprite" parent="Target"]
+position = Vector2( -0.5, 65 )
+scale = Vector2( 0.336667, 0.11 )
+texture = ExtResource( 8 )
+
+[node name="Text" type="RichTextLabel" parent="Target"]
+margin_left = -49.0
+margin_top = 53.0
+margin_right = 48.0
+margin_bottom = 75.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Target: Closest to Tower"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BigArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigArea"]
+position = Vector2( 0, 11 )
+shape = SubResource( 3 )
 
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_input_event"]
@@ -1170,7 +1222,6 @@ __meta__ = {
 [connection signal="input_event" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_input_event"]
 [connection signal="mouse_entered" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_mouse_entered"]
 [connection signal="mouse_exited" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_mouse_exited"]
-[connection signal="mouse_exited" from="BigArea" to="." method="_on_BigArea_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_input_event"]
 [connection signal="mouse_entered" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_mouse_entered"]
 [connection signal="mouse_exited" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_mouse_exited"]
@@ -1207,3 +1258,8 @@ __meta__ = {
 [connection signal="input_event" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_input_event"]
 [connection signal="mouse_entered" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_mouse_entered"]
 [connection signal="mouse_exited" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_mouse_exited"]
+[connection signal="gui_input" from="Target/Text" to="." method="_on_Text_gui_input"]
+[connection signal="mouse_entered" from="Target/Text" to="." method="_on_Text_mouse_entered"]
+[connection signal="mouse_exited" from="Target/Text" to="." method="_on_Text_mouse_exited"]
+[connection signal="input_event" from="BigArea" to="." method="_on_BigArea_input_event"]
+[connection signal="mouse_exited" from="BigArea" to="." method="_on_BigArea_mouse_exited"]

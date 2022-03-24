@@ -134,7 +134,12 @@ func change_health(change):
 		destroy()
 	if(current_health > max_health):
 		current_health = max_health
-
+		
+func get_percent_health():
+	return(current_health/max_health)
+	
+func get_offset():
+	return (get_parent().get_offset(self))
 
 func destroy():
 	var r = resource.instance() #spawn resources

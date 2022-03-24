@@ -14,6 +14,9 @@ func addToOffset(addNum):
 
 func addToUnitOffset(addNum):
 	$Pathway.set_unit_offset($Pathway.get_unit_offset() + addNum)
+	
+func get_offset():
+	return $Pathway.offset
 
 #Function that returns the position of the Pathway pathFollow2D
 func getPathLocation():

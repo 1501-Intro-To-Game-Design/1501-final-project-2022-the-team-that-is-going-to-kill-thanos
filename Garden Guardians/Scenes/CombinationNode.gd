@@ -26,12 +26,15 @@ func on_drag_end():
 			if tower_to_combine.is_in_group("Tomato"):
 				if towers[0].is_in_group("Potato"):
 					new_tower = fries_and_ketchup
+					towers[0].plate.simple_make_tower(new_tower, 0, 0)
+					towers[0].queue_free()
+					return true
 			elif tower_to_combine.is_in_group("Potato"):
 				if towers[0].is_in_group("Tomato"):
 					new_tower = fries_and_ketchup
-			towers[0].plate.simple_make_tower(new_tower, 0, 0)
-			towers[0].queue_free() 
-			return true
+					towers[0].plate.simple_make_tower(new_tower, 0, 0)
+					towers[0].queue_free()
+					return true
 	return false
 
 func _on_Area2D_area_entered(area):

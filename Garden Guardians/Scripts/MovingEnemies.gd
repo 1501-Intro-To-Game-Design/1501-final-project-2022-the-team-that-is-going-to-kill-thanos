@@ -60,6 +60,11 @@ func updateEnemyLocation(delta):
 		if is_instance_valid(i[0]):
 			i[1].addToOffset(i[0].current_speed * delta)
 			i[0].position = i[1].getPathLocation()
+
+func get_offset(enemy_node):
+	for i in enemyPathManager:
+		if i[0] == enemy_node:
+			return i[1].get_offset()
 	
 func _on_nextRoundGo():
 	$"/root/ui".waveInProgress()
