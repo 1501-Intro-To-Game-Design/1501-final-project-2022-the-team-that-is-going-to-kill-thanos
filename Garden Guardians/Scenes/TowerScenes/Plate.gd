@@ -163,8 +163,8 @@ func _on_VAreaSD_input_event(viewport, event, shape_idx):
 			var worked = buy_something(0, 0) #tower to make, wood cost, metal cost
 			current_menu.hide()
 			if worked:
-				tower.stun_duration += 0.2
-				if tower.stun_duration > .90:
+				tower.stun_duration += 0.25
+				if tower.stun_duration > 1.40:
 					$VUpgradeMenu/Carrot/VAreaSD.hide()
 					$VUpgradeMenu/Carrot/OptionSD.hide() #could also change this to change sprite
 
@@ -253,3 +253,115 @@ func _on_FArea_input_event(viewport, event, shape_idx):
 			current_menu.hide()
 			$FUpgradeMenu.show()
 			current_menu = $FUpgradeMenu/F1
+
+
+func _on_VArea_mouse_entered():
+	$Text/Turnip.show()
+
+
+func _on_VArea_mouse_exited():
+	$Text/Turnip.hide()
+
+
+func _on_FArea_mouse_entered():
+	$Text/Seed.show()
+
+
+func _on_FArea_mouse_exited():
+	$Text/Seed.hide()
+
+
+func _on_VArea1_mouse_entered():
+	$Text/Onion.show()
+
+
+func _on_VArea1_mouse_exited():
+	$Text/Onion.hide()
+
+
+func _on_VAreaPotato_mouse_entered():
+	$Text/Potato.show()
+
+
+func _on_VAreaCarrot_mouse_entered():
+	$Text/Carrot.show()
+
+
+func _on_VAreaPotato_mouse_exited():
+	$Text/Potato.hide()
+
+
+func _on_VAreaCarrot_mouse_exited():
+	$Text/Carrot.hide()
+
+
+func _on_VAreaSC_mouse_entered():
+	$Text/CarrotSC.show()
+
+
+func _on_VAreaSC_mouse_exited():
+	$Text/CarrotSC.hide()
+
+
+func _on_VAreaSD_mouse_entered():
+	$Text/CarrotSD.show()
+
+
+func _on_VAreaSD_mouse_exited():
+	$Text/CarrotSD.hide()
+
+
+func _on_VAreaACD_mouse_entered():
+	$Text/CarrotACD.show()
+
+
+func _on_VAreaACD_mouse_exited():
+	$Text/CarrotACD.hide()
+
+
+func _on_VAreaF1_mouse_entered():
+	$Text/Plum.show()
+
+
+func _on_VAreaF1_mouse_exited():
+	$Text/Plum.hide()
+
+
+func _on_VAreaTomato_mouse_entered():
+	$Text/Tomato.show()
+
+
+func _on_VAreaTomato_mouse_exited():
+	$Text/Tomato.hide()
+
+
+func _on_VAreaCherry_mouse_entered():
+	$Text/Cherry.show()
+
+
+func _on_VAreaCherry_mouse_exited():
+	$Text/Cherry.hide()
+
+
+func _on_VAreaEC_mouse_entered():
+	$Text/CherryEC.show()
+
+
+func _on_VAreaEC_mouse_exited():
+	$Text/CherryEC.hide()
+
+
+func _on_VAreaAR_mouse_entered():
+	$Text/CherryAR.show()
+
+
+func _on_VAreaAR_mouse_exited():
+	$Text/CherryAR.hide()
+
+
+func _on_VAreaAOE_mouse_entered():
+	$Text/CherryAOE.show()
+
+
+func _on_VAreaAOE_mouse_exited():
+	$Text/CherryAOE.hide()

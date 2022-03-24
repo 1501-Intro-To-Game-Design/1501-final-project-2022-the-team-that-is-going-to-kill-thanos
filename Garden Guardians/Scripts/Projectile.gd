@@ -8,7 +8,7 @@ export var speed = 20
 export var damage = 2.0
 export var stun = false
 var stun_chance = 0.15
-var stun_duration = 0.4
+var stun_duration = 0.75
 var enemies = []
 # Called when the node enters the scene tree for the first time.
 func _ready():

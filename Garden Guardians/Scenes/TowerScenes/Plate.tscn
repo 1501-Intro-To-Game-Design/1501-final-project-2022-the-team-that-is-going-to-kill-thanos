@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://Scenes/TowerScenes/VegetableTower1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/TowerScenes/MorselTower1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/TowerScenes/SeedTower.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/UpgradeBox.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/UpgradeBoxCost.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Xolonium-Regular.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 45.5, 14 )
@@ -16,6 +19,11 @@ extents = Vector2( 15, 15 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 59, 51 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 10
+extra_spacing_bottom = -3
+font_data = ExtResource( 10 )
 
 [node name="Plate" type="Node2D"]
 script = ExtResource( 2 )
@@ -400,20 +408,802 @@ __meta__ = {
 visible = false
 position = Vector2( -1, 37 )
 
+[node name="Text" type="Node2D" parent="."]
+z_index = 5
+
+[node name="Turnip" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Turnip"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Build a Turnip tower."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Turnip"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Turnip/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Turnip/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Onion" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Onion"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to an Onion tower. Increased damage."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Onion"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Onion/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Onion/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Potato" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Potato"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Combinable Potato tower. Greatly increased damage, slower fire rate."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Potato"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Potato/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Potato/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Carrot" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Carrot"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Carrot tower. Increased damage, projectiles now have a 15% chance to stun on hit."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Carrot"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Carrot/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Carrot/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarrotSC" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/CarrotSC"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "20% Increased projectile stun chance."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/CarrotSC"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/CarrotSC/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/CarrotSC/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarrotSD" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/CarrotSD"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increased projectile stun duration."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/CarrotSD"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/CarrotSD/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/CarrotSD/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarrotACD" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/CarrotACD"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increased fire rate."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/CarrotACD"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/CarrotACD/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/CarrotACD/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Seed" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Seed"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Build a Seed tower."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Seed"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Seed/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Seed/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Plum" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Plum"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Plum tower. Increased damage, faster fire rate."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Plum"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Plum/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Plum/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tomato" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Tomato"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Combinable Tomato tower. Greatly faster fire rate."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Tomato"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Tomato/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Tomato/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cherry" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Cherry"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Cherry tower. Increased damage, slower fire rate. Shoots at 2 different enemies."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Cherry"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Cherry/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Cherry/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CherryEC" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/CherryEC"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Now shoots at 3 different enemies."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/CherryEC"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/CherryEC/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/CherryEC/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CherryAR" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/CherryAR"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increased attack range."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/CherryAR"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/CherryAR/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/CherryAR/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CherryAOE" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/CherryAOE"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "10% Increased AOE damage."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/CherryAOE"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/CherryAOE/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/CherryAOE/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_input_event"]
+[connection signal="mouse_entered" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_mouse_entered"]
+[connection signal="mouse_exited" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_mouse_exited"]
 [connection signal="input_event" from="TowerMenu/Protein/PArea" to="." method="_on_PArea_input_event"]
 [connection signal="input_event" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_input_event"]
+[connection signal="mouse_entered" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_mouse_entered"]
+[connection signal="mouse_exited" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_mouse_exited"]
 [connection signal="mouse_exited" from="BigArea" to="." method="_on_BigArea_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_input_event"]
+[connection signal="mouse_entered" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_mouse_entered"]
+[connection signal="mouse_exited" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/V2/VAreaPotato" to="." method="_on_VAreaPotato_input_event"]
+[connection signal="mouse_entered" from="VUpgradeMenu/V2/VAreaPotato" to="." method="_on_VAreaPotato_mouse_entered"]
+[connection signal="mouse_exited" from="VUpgradeMenu/V2/VAreaPotato" to="." method="_on_VAreaPotato_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/V2/VAreaCarrot" to="." method="_on_VAreaCarrot_input_event"]
+[connection signal="mouse_entered" from="VUpgradeMenu/V2/VAreaCarrot" to="." method="_on_VAreaCarrot_mouse_entered"]
+[connection signal="mouse_exited" from="VUpgradeMenu/V2/VAreaCarrot" to="." method="_on_VAreaCarrot_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/Carrot/VAreaSC" to="." method="_on_VAreaSC_input_event"]
+[connection signal="mouse_entered" from="VUpgradeMenu/Carrot/VAreaSC" to="." method="_on_VAreaSC_mouse_entered"]
+[connection signal="mouse_exited" from="VUpgradeMenu/Carrot/VAreaSC" to="." method="_on_VAreaSC_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/Carrot/VAreaSD" to="." method="_on_VAreaSD_input_event"]
+[connection signal="mouse_entered" from="VUpgradeMenu/Carrot/VAreaSD" to="." method="_on_VAreaSD_mouse_entered"]
+[connection signal="mouse_exited" from="VUpgradeMenu/Carrot/VAreaSD" to="." method="_on_VAreaSD_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/Carrot/VAreaACD" to="." method="_on_VAreaACD_input_event"]
+[connection signal="mouse_entered" from="VUpgradeMenu/Carrot/VAreaACD" to="." method="_on_VAreaACD_mouse_entered"]
+[connection signal="mouse_exited" from="VUpgradeMenu/Carrot/VAreaACD" to="." method="_on_VAreaACD_mouse_exited"]
 [connection signal="input_event" from="FUpgradeMenu/F1/VAreaF1" to="." method="_on_VAreaF1_input_event"]
+[connection signal="mouse_entered" from="FUpgradeMenu/F1/VAreaF1" to="." method="_on_VAreaF1_mouse_entered"]
+[connection signal="mouse_exited" from="FUpgradeMenu/F1/VAreaF1" to="." method="_on_VAreaF1_mouse_exited"]
 [connection signal="input_event" from="FUpgradeMenu/F2/VAreaTomato" to="." method="_on_VAreaTomato_input_event"]
+[connection signal="mouse_entered" from="FUpgradeMenu/F2/VAreaTomato" to="." method="_on_VAreaTomato_mouse_entered"]
+[connection signal="mouse_exited" from="FUpgradeMenu/F2/VAreaTomato" to="." method="_on_VAreaTomato_mouse_exited"]
 [connection signal="input_event" from="FUpgradeMenu/F2/VAreaCherry" to="." method="_on_VAreaCherry_input_event"]
+[connection signal="mouse_entered" from="FUpgradeMenu/F2/VAreaCherry" to="." method="_on_VAreaCherry_mouse_entered"]
+[connection signal="mouse_exited" from="FUpgradeMenu/F2/VAreaCherry" to="." method="_on_VAreaCherry_mouse_exited"]
 [connection signal="input_event" from="FUpgradeMenu/Cherry/VAreaEC" to="." method="_on_VAreaEC_input_event"]
+[connection signal="mouse_entered" from="FUpgradeMenu/Cherry/VAreaEC" to="." method="_on_VAreaEC_mouse_entered"]
+[connection signal="mouse_exited" from="FUpgradeMenu/Cherry/VAreaEC" to="." method="_on_VAreaEC_mouse_exited"]
 [connection signal="input_event" from="FUpgradeMenu/Cherry/VAreaAR" to="." method="_on_VAreaAR_input_event"]
+[connection signal="mouse_entered" from="FUpgradeMenu/Cherry/VAreaAR" to="." method="_on_VAreaAR_mouse_entered"]
+[connection signal="mouse_exited" from="FUpgradeMenu/Cherry/VAreaAR" to="." method="_on_VAreaAR_mouse_exited"]
 [connection signal="input_event" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_input_event"]
+[connection signal="mouse_entered" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_mouse_entered"]
+[connection signal="mouse_exited" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_mouse_exited"]
