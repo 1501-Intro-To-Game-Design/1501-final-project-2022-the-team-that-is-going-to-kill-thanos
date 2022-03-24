@@ -67,13 +67,14 @@ func _input(event):
 	if alive:
 	   # Mouse in viewport coordinates.
 		if event is InputEventMouseButton:
-			if !clicked:
-				destination = event.position 
-				direction = destination - position
-				clicked = true
-				moving = true;
-			else: 
-				clicked = false
+			if event.button_index == BUTTON_RIGHT:
+				if !clicked:
+					destination = event.position 
+					direction = destination - position
+					clicked = true
+					moving = true;
+				else: 
+					clicked = false
 			
 		
 	

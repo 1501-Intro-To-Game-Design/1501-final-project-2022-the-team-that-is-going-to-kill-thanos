@@ -11,6 +11,8 @@ var inCombat = false
 var target
 export (PackedScene) var resource
 
+var stunned = false
+
 export var spawned_num_wood = 0
 export var spawned_num_metal = 0
 
@@ -67,10 +69,16 @@ func checkInCombat():
 		else:
 			on_combat_end()
 	else:
-		current_speed = max_speed
+		if not stunned:
+			current_speed = max_speed
 
 func _on_Enemy_body_entered(body):
 	checkType(body)
+
+func start_stun(duration):
+	stunned = true
+	current_speed = 0
+	$StunTimer.start(duration)
 
 func checkType(body):
 	for group in body.get_groups():
@@ -151,3 +159,8 @@ func _on_Area2D_body_exited(body):
 		inactive_targets.remove(inactive_targets.find(body))
 	if ("Player" in body.get_groups()) and (body == target):
 		on_combat_end()
+
+
+func _on_StunTimer_timeout():
+	stunned = false
+	current_speed = max_speed

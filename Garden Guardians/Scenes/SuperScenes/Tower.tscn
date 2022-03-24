@@ -4,7 +4,7 @@
 [ext_resource path="res://Scripts/Tower.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/SuperScenes/Projectile.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Morsels/Morsel1.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/CombinationNode.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sounds/Burbs/Goofy/VegShoot.wav" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 125.196
@@ -16,7 +16,7 @@ extents = Vector2( 50.5, 39 )
 script = ExtResource( 2 )
 projectileScene = ExtResource( 3 )
 morsalScene = ExtResource( 4 )
-combination_scene = ExtResource( 5 )
+sounds = [ ExtResource( 6 ) ]
 
 [node name="Range" type="Area2D" parent="."]
 

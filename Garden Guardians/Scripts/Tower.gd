@@ -1,13 +1,21 @@
 extends Node2D
 
+var stun_chance = 0.15
+var stun_duration = 0.4
+
+var num_projectiles = 1
+
 var enemies = []
 var babies = 0
 export var max_babies = 3
+var AOE_percent = 0.0
 
 var can_attack = false
 var can_spawn = false
-export var attack_cooldown = 1
-export var spawn_cooldown = 1
+export var attack_cooldown = 1.0
+export var spawn_cooldown = 1.0
+
+var targeted_enemies = []
 
 export var attacking_tower = false
 export var morsel_tower = false
@@ -16,7 +24,9 @@ var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 
 export(PackedScene) var projectileScene
 export(PackedScene) var morsalScene
-export(PackedScene) var combination_scene
+var combination_scene = load("res://Scenes/CombinationNode.tscn")
+export(PackedScene) var upgrade
+export(PackedScene) var offshoot_upgrade
 var tower = 0 #defult
 
 #SOUND STUFF
@@ -25,7 +35,7 @@ var rng = RandomNumberGenerator.new()
 
 var morselPositions = [false, false, false, false]
 
-var combinable = true
+export var combinable = false
 var dragging = false
 var plate = null
 
@@ -45,28 +55,34 @@ var hovering = false
 func getstuff():
 	return 5
 func _ready():
+	rng.randomize()
 	$SpawnCooldown.start(spawn_cooldown)
-	print($SpawnCooldown.time_left)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	#detect closest enemy, and call attack function on it
 	if dragging and is_instance_valid(comb_node) and not (mouse_pos == null):
 		drag()
-	if(attacking_tower):
+	if(attacking_tower and can_attack):
 		if enemies.size() > 0:
-			var lowest = 1000
-			var index = -1
-			for i in range(0, enemies.size()):
-				var distance = sqrt(pow((enemies[i].get_global_position().x - self.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - self.get_global_position().y), 2))
-				if(distance < lowest):
-					lowest = distance
-					index = i
-			if not (index == -1):
-				if(can_attack):
-					can_attack = false
-					$AttackCooldown.start(attack_cooldown)
-					attack(enemies[index])
+			while(num_projectiles > targeted_enemies.size()):
+				var lowest = 1000
+				var index = -1
+				for i in range(0, enemies.size()):
+					var distance = sqrt(pow((enemies[i].get_global_position().x - $ShootPoint.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - $ShootPoint.get_global_position().y), 2))
+					if(distance < lowest and not (enemies[i] in targeted_enemies)):
+						lowest = distance
+						index = i
+				if not (index == -1):
+					targeted_enemies.append(enemies[index])
+				else:
+					targeted_enemies.append(null)
+			can_attack = false
+			$AttackCooldown.start(attack_cooldown)
+			for i in range(targeted_enemies.size()):
+				attack(targeted_enemies[i])
+			targeted_enemies.clear()
+			print(targeted_enemies)
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
 			make_Baby()
@@ -79,20 +95,28 @@ func attack(enemy):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
 	get_parent().add_child(projectile)
+	projectile.stun_chance = stun_chance
+	projectile.stun_duration = stun_duration
 	rng.randomize()
 	$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 	$AudioStreamPlayer2D.play()
 	projectile.position = $ShootPoint.get_global_position()
 	projectile.target = enemy
 
+func increase_range(amount):
+	$Range/RangeShape.shape.radius += amount
+	
+func get_range():
+	return $Range/RangeShape.shape.radius
+
 func drag():
 	comb_node.position = mouse_pos
 
 func _input(event):
    # Mouse in viewport coordinates.
-	if event is InputEventMouseMotion and dragging:
+	if event is InputEventMouseMotion and combinable:
 		mouse_pos = event.position
-	elif event is InputEventMouseButton: 
+	elif event is InputEventMouseButton and combinable: 
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				if hovering:

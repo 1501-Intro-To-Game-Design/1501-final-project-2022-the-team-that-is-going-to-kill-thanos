@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/TowerScenes/OnionProjectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/TowerScenes/CarrotTower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=3]
+
+[node name="Tower" instance=ExtResource( 3 )]
+attack_cooldown = 4
+attacking_tower = true
+projectileScene = ExtResource( 1 )
+upgrade = ExtResource( 2 )

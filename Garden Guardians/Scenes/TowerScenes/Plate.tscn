@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/Turnip Projectile.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/TowerScenes/VegetableTower1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/TowerScenes/MorselTower1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/TowerScenes/SeedTower.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 45.5, 14 )
@@ -19,6 +20,7 @@ extents = Vector2( 59, 51 )
 [node name="Plate" type="Node2D"]
 script = ExtResource( 2 )
 vegetable_scene = ExtResource( 5 )
+fruit_scene = ExtResource( 7 )
 protein_scene = ExtResource( 6 )
 
 [node name="PlateArea" type="Area2D" parent="."]
@@ -107,6 +109,37 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Fruit" type="Node2D" parent="TowerMenu"]
+position = Vector2( -37, 37 )
+
+[node name="FSprite" type="Sprite" parent="TowerMenu/Fruit"]
+self_modulate = Color( 0, 1, 0.0862745, 1 )
+position = Vector2( 0, -9 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FArea" type="Area2D" parent="TowerMenu/Fruit"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FShape" type="CollisionShape2D" parent="TowerMenu/Fruit/FArea"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="FBackground" type="Sprite" parent="TowerMenu/Fruit"]
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="BigArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigArea"]
@@ -118,10 +151,124 @@ __meta__ = {
 [node name="VUpgradeMenu" type="Node2D" parent="."]
 visible = false
 
-[node name="Sprite" type="Sprite" parent="VUpgradeMenu"]
+[node name="V1" type="Node2D" parent="VUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
+
+[node name="Option1" type="Sprite" parent="VUpgradeMenu/V1"]
 modulate = Color( 0.243137, 1, 0, 1 )
-position = Vector2( 1, 52 )
+scale = Vector2( 0.46875, 0.46875 )
 texture = ExtResource( 3 )
+
+[node name="VArea1" type="Area2D" parent="VUpgradeMenu/V1"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShape1" type="CollisionShape2D" parent="VUpgradeMenu/V1/VArea1"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="V2" type="Node2D" parent="VUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
+
+[node name="OptionPotato" type="Sprite" parent="VUpgradeMenu/V2"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaPotato" type="Area2D" parent="VUpgradeMenu/V2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapePotato" type="CollisionShape2D" parent="VUpgradeMenu/V2/VAreaPotato"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionCarrot" type="Sprite" parent="VUpgradeMenu/V2"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaCarrot" type="Area2D" parent="VUpgradeMenu/V2"]
+position = Vector2( 35, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeCarrot" type="CollisionShape2D" parent="VUpgradeMenu/V2/VAreaCarrot"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Carrot" type="Node2D" parent="VUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
+
+[node name="OptionSC" type="Sprite" parent="VUpgradeMenu/Carrot"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaSC" type="Area2D" parent="VUpgradeMenu/Carrot"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeSC" type="CollisionShape2D" parent="VUpgradeMenu/Carrot/VAreaSC"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionSD" type="Sprite" parent="VUpgradeMenu/Carrot"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaSD" type="Area2D" parent="VUpgradeMenu/Carrot"]
+position = Vector2( 35, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeSD" type="CollisionShape2D" parent="VUpgradeMenu/Carrot/VAreaSD"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionACD" type="Sprite" parent="VUpgradeMenu/Carrot"]
+modulate = Color( 0.243137, 1, 0, 1 )
+position = Vector2( -69.6875, 0 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaACD" type="Area2D" parent="VUpgradeMenu/Carrot"]
+position = Vector2( -34.6875, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeACD" type="CollisionShape2D" parent="VUpgradeMenu/Carrot/VAreaACD"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Potato" type="Node2D" parent="VUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
 
 [node name="PUpgradeMenu" type="Node2D" parent="."]
 visible = false
@@ -131,7 +278,142 @@ modulate = Color( 0.988235, 0, 0.301961, 1 )
 position = Vector2( 1, 52 )
 texture = ExtResource( 3 )
 
+[node name="FUpgradeMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="F1" type="Node2D" parent="FUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
+
+[node name="OptionF1" type="Sprite" parent="FUpgradeMenu/F1"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaF1" type="Area2D" parent="FUpgradeMenu/F1"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeF1" type="CollisionShape2D" parent="FUpgradeMenu/F1/VAreaF1"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="F2" type="Node2D" parent="FUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
+
+[node name="OptionTomato" type="Sprite" parent="FUpgradeMenu/F2"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaTomato" type="Area2D" parent="FUpgradeMenu/F2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeTomato" type="CollisionShape2D" parent="FUpgradeMenu/F2/VAreaTomato"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionCherry" type="Sprite" parent="FUpgradeMenu/F2"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaCherry" type="Area2D" parent="FUpgradeMenu/F2"]
+position = Vector2( 35, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeCherry" type="CollisionShape2D" parent="FUpgradeMenu/F2/VAreaCherry"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Cherry" type="Node2D" parent="FUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
+
+[node name="OptionEC" type="Sprite" parent="FUpgradeMenu/Cherry"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaEC" type="Area2D" parent="FUpgradeMenu/Cherry"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeEC" type="CollisionShape2D" parent="FUpgradeMenu/Cherry/VAreaEC"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionAR" type="Sprite" parent="FUpgradeMenu/Cherry"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaAR" type="Area2D" parent="FUpgradeMenu/Cherry"]
+position = Vector2( 35, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeAR" type="CollisionShape2D" parent="FUpgradeMenu/Cherry/VAreaAR"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionAOE" type="Sprite" parent="FUpgradeMenu/Cherry"]
+modulate = Color( 0.243137, 1, 0, 1 )
+position = Vector2( -69.6875, 0 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaAOE" type="Area2D" parent="FUpgradeMenu/Cherry"]
+position = Vector2( -34.6875, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeAOE" type="CollisionShape2D" parent="FUpgradeMenu/Cherry/VAreaAOE"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Tomato" type="Node2D" parent="FUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
+
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_input_event"]
 [connection signal="input_event" from="TowerMenu/Protein/PArea" to="." method="_on_PArea_input_event"]
+[connection signal="input_event" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_input_event"]
 [connection signal="mouse_exited" from="BigArea" to="." method="_on_BigArea_mouse_exited"]
+[connection signal="input_event" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_input_event"]
+[connection signal="input_event" from="VUpgradeMenu/V2/VAreaPotato" to="." method="_on_VAreaPotato_input_event"]
+[connection signal="input_event" from="VUpgradeMenu/V2/VAreaCarrot" to="." method="_on_VAreaCarrot_input_event"]
+[connection signal="input_event" from="VUpgradeMenu/Carrot/VAreaSC" to="." method="_on_VAreaSC_input_event"]
+[connection signal="input_event" from="VUpgradeMenu/Carrot/VAreaSD" to="." method="_on_VAreaSD_input_event"]
+[connection signal="input_event" from="VUpgradeMenu/Carrot/VAreaACD" to="." method="_on_VAreaACD_input_event"]
+[connection signal="input_event" from="FUpgradeMenu/F1/VAreaF1" to="." method="_on_VAreaF1_input_event"]
+[connection signal="input_event" from="FUpgradeMenu/F2/VAreaTomato" to="." method="_on_VAreaTomato_input_event"]
+[connection signal="input_event" from="FUpgradeMenu/F2/VAreaCherry" to="." method="_on_VAreaCherry_input_event"]
+[connection signal="input_event" from="FUpgradeMenu/Cherry/VAreaEC" to="." method="_on_VAreaEC_input_event"]
+[connection signal="input_event" from="FUpgradeMenu/Cherry/VAreaAR" to="." method="_on_VAreaAR_input_event"]
+[connection signal="input_event" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_input_event"]

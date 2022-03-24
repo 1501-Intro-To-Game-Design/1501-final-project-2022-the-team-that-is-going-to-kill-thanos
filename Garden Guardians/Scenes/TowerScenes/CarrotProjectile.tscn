@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/SuperScenes/Projectile.tscn" type="PackedScene" id=1]
+
+[node name="Projectile" instance=ExtResource( 1 )]
+speed = 160
+damage = 4.0
+stun = true
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 19.3, 18.8 )
+scale = Vector2( 0.803125, 0.7875 )

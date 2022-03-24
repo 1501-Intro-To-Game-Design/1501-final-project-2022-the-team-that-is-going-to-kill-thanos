@@ -3,6 +3,8 @@ extends Node2D
 var towers = []
 var tower_to_combine = null
 
+export (PackedScene) var fries_and_ketchup
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -18,22 +20,25 @@ func _ready():
 #	pass
 
 func on_drag_end():
-	print("size: ", towers.size())
 	if towers.size() > 0:
 		if towers[0].combinable == true and not (towers[0] == tower_to_combine):
-			print("return true")
-			towers[0].queue_free() #here u would switch out the tower
+			var new_tower = null
+			if tower_to_combine.is_in_group("Tomato"):
+				if towers[0].is_in_group("Potato"):
+					new_tower = fries_and_ketchup
+			elif tower_to_combine.is_in_group("Potato"):
+				if towers[0].is_in_group("Tomato"):
+					new_tower = fries_and_ketchup
+			towers[0].plate.simple_make_tower(new_tower, 0, 0)
+			towers[0].queue_free() 
 			return true
-	print("return false")
 	return false
 
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("Tower"):
-		print("tower entered")
 		towers.append(area.get_parent())
 
 
 func _on_Area2D_area_exited(area):
 	if area.is_in_group("Tower"):
-		print("tower removed")
 		towers.remove(towers.find(area.get_parent()))
