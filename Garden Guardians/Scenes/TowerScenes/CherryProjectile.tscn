@@ -1,11 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Projectile.tscn" type="PackedScene" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 204.12
 
 [node name="Projectile" instance=ExtResource( 1 )]
 speed = 200
 damage = 0.5
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 15.8, 14.8 )
-scale = Vector2( 0.69375, 0.6625 )
+position = Vector2( 7.8, 8.3 )
+scale = Vector2( 0.44375, 0.459375 )
+
+[node name="AOE2D" type="Area2D" parent="." index="2"]
+
+[node name="AOEShape" type="CollisionShape2D" parent="AOE2D" index="0"]
+position = Vector2( 16, 15 )
+shape = SubResource( 1 )
+
+[connection signal="area_entered" from="AOE2D" to="." method="_on_AOE2D_area_entered"]
+[connection signal="area_exited" from="AOE2D" to="." method="_on_AOE2D_area_exited"]

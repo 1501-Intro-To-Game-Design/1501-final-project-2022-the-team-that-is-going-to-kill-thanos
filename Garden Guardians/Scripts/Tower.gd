@@ -1,5 +1,6 @@
 extends Node2D
 
+var explosive = false
 var stun_chance = 0.15
 var stun_duration = 0.4
 
@@ -82,7 +83,6 @@ func _process(_delta):
 			for i in range(targeted_enemies.size()):
 				attack(targeted_enemies[i])
 			targeted_enemies.clear()
-			print(targeted_enemies)
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
 			make_Baby()
@@ -95,6 +95,8 @@ func attack(enemy):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
 	get_parent().add_child(projectile)
+	projectile.explosive = explosive
+	projectile.AOE_percent = AOE_percent
 	projectile.stun_chance = stun_chance
 	projectile.stun_duration = stun_duration
 	rng.randomize()

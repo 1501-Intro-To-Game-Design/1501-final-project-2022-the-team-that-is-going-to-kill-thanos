@@ -239,8 +239,9 @@ func _on_VAreaAOE_input_event(viewport, event, shape_idx):
 			var worked = buy_something(0, 0) #tower to make, wood cost, metal cost
 			current_menu.hide()
 			if worked:
-				tower.AOE_percent += 0.05 #change this
-				if tower.AOE_percent > 0.08:
+				tower.explosive = true
+				tower.AOE_percent += 0.1 #change this
+				if tower.AOE_percent > 0.25:
 					$FUpgradeMenu/Cherry/VAreaAOE.hide()
 					$FUpgradeMenu/Cherry/OptionAOE.hide() #could also change this to change sprite
 
