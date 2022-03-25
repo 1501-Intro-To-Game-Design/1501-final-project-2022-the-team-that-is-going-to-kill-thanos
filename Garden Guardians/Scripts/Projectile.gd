@@ -35,7 +35,6 @@ func _on_Area2D_area_entered(area):
 		if explosive:
 			for enemy in enemies:
 				if not (enemy == target):
-					print("dealing AOE dmg")
 					enemy.get_parent().change_health(-1 * (damage * AOE_percent))
 		queue_free()
 

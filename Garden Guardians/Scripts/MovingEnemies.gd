@@ -47,6 +47,18 @@ func addEnemyPath():
 	add_child(pathToFollow)
 	add_child(enemy)
 	enemyPathManager.append([enemy, pathToFollow])
+	
+func add_enemy_to_path(spawner, spawned):
+	var pathToFollow = importPathScene.instance()
+	spawned.position = pathToFollow.getPathLocation()
+	add_child(pathToFollow)
+	add_child(spawned)
+	enemyPathManager.append([spawned, pathToFollow])
+	
+	for i in enemyPathManager:
+		if i[0] == spawner:
+			enemyPathManager[enemyPathManager.size()-1][1].addToOffset(i[1].get_offset() + 20)
+			enemyPathManager[enemyPathManager.size()-1][0].position = enemyPathManager[enemyPathManager.size()-1][1].getPathLocation()
 
 #Adds a new enemy and path when the timer timeouts
 func _on_EnemySpawn_timeout():

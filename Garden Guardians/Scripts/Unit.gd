@@ -1,5 +1,9 @@
 extends RigidBody2D
 
+export var spawner = false
+export (PackedScene) var to_spawn
+export var spawn_cooldown = 1
+
 var inactive_targets = []
 
 export var groups_to_check = []
@@ -33,10 +37,12 @@ var morselNum
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng.randomize()
 	current_health = max_health
 	current_speed = max_speed;
 	$Health.max_value = max_health
 	$Health.value = current_health
+	prepareSpawnTimer()
 	prepareAttackTimer()
 
 func _go_To(loc): #This is just for when moarsals are told to go somewhere else
@@ -107,6 +113,9 @@ func setTarget(body):
 
 func prepareAttackTimer():
 	$Attack.wait_time = attackSpeed
+	
+func prepareSpawnTimer():
+	$Spawn.start(spawn_cooldown)
 
 func _on_Attack_timeout():
 	if is_instance_valid(target):
@@ -128,6 +137,8 @@ func battle_action(dmg):
 	change_health(-1 * dmg)
 		
 func change_health(change):
+	var rand_num = rng.randf_range(-0.1, 0.15)
+	change = change + (change * rand_num)
 	current_health += change
 	$Health.value = current_health
 	if(current_health <= 0):
@@ -169,3 +180,9 @@ func _on_Area2D_body_exited(body):
 func _on_StunTimer_timeout():
 	stunned = false
 	current_speed = max_speed
+
+
+func _on_Spawn_timeout():
+	#can add a new timer to stop movement for .5 secs or something
+	var enemy_instance = to_spawn.instance()
+	get_parent().add_enemy_to_path(self, enemy_instance)

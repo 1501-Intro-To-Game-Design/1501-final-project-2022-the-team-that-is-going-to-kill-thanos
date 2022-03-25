@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/MovingEnemies.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/EnemyScenes/Path.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/EnemyScenes/Fork.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/EnemyScenes/Toothpick.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/EnemyScenes/ToothpickHolder.tscn" type="PackedScene" id=5]
 
 [node name="MovingEnemies" type="Node2D"]
 script = ExtResource( 1 )
 importPathScene = ExtResource( 2 )
-importEnemyScene = [ ExtResource( 3 ) ]
+importEnemyScene = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="EnemySpawn" type="Timer" parent="."]
 wait_time = 2.0

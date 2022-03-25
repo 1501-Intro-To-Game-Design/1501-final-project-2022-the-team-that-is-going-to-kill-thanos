@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sounds/Burbs/Foley/ForkHit1.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sounds/Burbs/Foley/ForkHit2.wav" type="AudioStream" id=2]
+[ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/EnemyScenes/Toothpick.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31, 30.5 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 31, 30.5 )
+
+[node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
+spawner = true
+to_spawn = ExtResource( 4 )
+spawn_cooldown = 4
+groups_to_check = [ "Morsels", "Traps", "Player" ]
+damage = 1
+attackSpeed = 2.0
+spawned_num_wood = 4
+sounds = [ ExtResource( 1 ), ExtResource( 2 ) ]
+max_speed = 30
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 1 )
+
+[node name="Health" parent="." index="4"]
+margin_left = -28.0
+margin_top = -52.0
+margin_right = 29.0
+margin_bottom = -40.0
+
+[node name="CollisionShape2D" parent="." index="5"]
+position = Vector2( -1, -0.5 )
+shape = SubResource( 2 )
+
+[connection signal="timeout" from="Spawn" to="." method="_on_Spawn_timeout"]
