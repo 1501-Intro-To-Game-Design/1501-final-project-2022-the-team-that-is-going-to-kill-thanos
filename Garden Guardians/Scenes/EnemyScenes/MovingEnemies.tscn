@@ -16,7 +16,7 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 512, 300 )
+position = Vector2( 960, 540 )
 current = true
 
 [connection signal="timeout" from="EnemySpawn" to="." method="_on_EnemySpawn_timeout"]

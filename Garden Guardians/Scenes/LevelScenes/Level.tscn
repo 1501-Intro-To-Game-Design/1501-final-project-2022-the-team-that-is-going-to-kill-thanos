@@ -12,7 +12,7 @@ player = ExtResource( 2 )
 tower = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 494, 154 )
+position = Vector2( 496, 132 )
 
 [node name="Plate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 493, 331 )
