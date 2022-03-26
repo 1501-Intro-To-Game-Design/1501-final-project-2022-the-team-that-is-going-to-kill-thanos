@@ -1,9 +1,16 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sprites/Enemy Sprites/Fork/fork.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sounds/Burbs/Foley/ForkHit1.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Burbs/Foley/ForkHit2.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/Enemy Sprites/Fork/fork_4.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Enemy Sprites/Fork/fork_3.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Enemy Sprites/Fork/fork_8.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Enemy Sprites/Fork/fork_1.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Enemy Sprites/Fork/fork_2.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Enemy Sprites/Fork/fork_7.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Enemy Sprites/Fork/fork_6.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 42.5, 235 )
@@ -13,7 +20,7 @@ extents = Vector2( 42.5, 235 )
 
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
-"frames": [  ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "default",
 "speed": 6.0
@@ -27,6 +34,7 @@ damage = 3
 attackSpeed = 1.2
 spawned_num_metal = 1
 sounds = [ ExtResource( 3 ), ExtResource( 4 ) ]
+max_speed = 30
 
 [node name="Sprite" parent="." index="0"]
 visible = false
@@ -50,5 +58,5 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="8"]
 frames = SubResource( 12 )
-animation = "walk"
+frame = 10
 playing = true
