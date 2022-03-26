@@ -10,8 +10,8 @@ signal nextRoundGo
 
 func _ready():
 	#FOR TESTING
-	wood = 25
-	metal = 25
+	wood = 100
+	metal = 100
 	update()
 
 func add_wood():
