@@ -9,6 +9,7 @@ var wave = 0
 var inProgres = false
 var rng = RandomNumberGenerator.new()
 var enemys = []
+var dps = []
 var dP = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -19,6 +20,7 @@ func _ready():
 func _process(delta):
 	updateEnemyLocation(delta)
 	if enemys.size() <= 0 and inProgres:
+		dps.clear() #jsut in case theres 1 left
 		inProgres = false
 		$EnemySpawn.stop()
 		$"/root/ui".waveEnd()
@@ -30,9 +32,10 @@ func start_wave():
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist
 		var value = rng.randf_range(0,importEnemyScene.size())
 		var temp = importEnemyScene[value].instance()
-		while (temp.spawned_num_wood + (temp.spawned_num_metal*3)) > dP +100: #Once toothpicks are added remove the +100
+		while (temp.spawned_num_wood + (temp.spawned_num_metal*3)) > dP:
 			value = rng.randf_range(0,importEnemyScene.size())
 			temp = importEnemyScene[value].instance()
+		dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
 		dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
 		print("dp is ", dP)
 		enemys.append(importEnemyScene[value])
@@ -64,7 +67,7 @@ func add_enemy_to_path(spawner, spawned):
 func _on_EnemySpawn_timeout():
 	if inProgres:
 		addEnemyPath()
-		$EnemySpawn.start()
+		$EnemySpawn.start(dps.pop_front()/2) #1dp = wait 0.5 seconds
 
 #Increases the path's offset and sets the enemy's position to the path's position
 func updateEnemyLocation(delta):
