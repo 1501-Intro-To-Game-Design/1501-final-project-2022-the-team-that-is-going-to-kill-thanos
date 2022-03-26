@@ -21,3 +21,5 @@ func get_offset():
 #Function that returns the position of the Pathway pathFollow2D
 func getPathLocation():
 	return $Pathway.position
+
+

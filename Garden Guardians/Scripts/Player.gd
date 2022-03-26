@@ -70,7 +70,6 @@ func _input(event):
 			if event.button_index == BUTTON_RIGHT:
 				if !clicked:
 					destination = event.position 
-					print(destination)
 					direction = destination - position
 					clicked = true
 					moving = true;

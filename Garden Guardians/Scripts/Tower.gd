@@ -36,6 +36,7 @@ export (Array, Resource) var sounds
 var rng = RandomNumberGenerator.new()
 
 var morselPositions = [false, false, false, false]
+var morselOffsets = [Vector2(0, -60),  Vector2(-40, -20),  Vector2(40, -20), Vector2(0, 20)]
 
 export var combinable = false
 var dragging = false
@@ -45,7 +46,8 @@ var mouse_pos = null
 var comb_node = null
 
 var hovering = false
-
+export(PackedScene) var path = null
+var closestOffset = Vector2.ZERO
 #this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
 #list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
 #LEGEND: A-attacking M-morsel T-Tower P-Projectile
@@ -59,6 +61,11 @@ func getstuff():
 func _ready():
 	rng.randomize()
 	$SpawnCooldown.start(spawn_cooldown)
+	if morsel_tower:
+		pass
+		#trying to grab direction of closest point on path to point the morsals towords it
+		#var p = path.instance()
+		#closestOffset = p.curve.get_closest_offset(path.to_local(global_position))
 
 func set_target_type(new_target_type): #can be: closest, farthest, lowest, highest, closest_end, closest_start
 	target_type = new_target_type
@@ -206,20 +213,24 @@ func make_Baby():
 	get_parent().add_child(morsel)
 	
 	if(not morselPositions[0]): #Does this ever happen?
-		morsel.position = $ShootPoint.get_global_position() + Vector2(-60, -15) #in the future replace this with (go to the neerest point on the path)
+		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 0
+		morsel._go_To(morsel.global_position + morselOffsets[0] + closestOffset)
 		morselPositions[0] = true
 	elif(not morselPositions[1]):
-		morsel.position = $ShootPoint.get_global_position() + Vector2(-10, -10) #in the future replace this with (go to the neerest point on the path)
+		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 1
+		morsel._go_To(morsel.global_position + morselOffsets[1] + closestOffset)
 		morselPositions[1] = true
 	elif(not morselPositions[2]):
-		morsel.position = $ShootPoint.get_global_position() + Vector2(40, -10) #in the future replace this with (go to the neerest point on the path)
+		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 2
+		morsel._go_To(morsel.global_position + morselOffsets[2] + closestOffset)
 		morselPositions[2] = true
 	elif(not morselPositions[3]):
-		morsel.position = $ShootPoint.get_global_position() + Vector2(90, -5) #in the future replace this with (go to the neerest point on the path)
+		morsel.position = $ShootPoint.get_global_position() #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 3
+		morsel._go_To(morsel.global_position + morselOffsets[3] + closestOffset)
 		morselPositions[3] = true
 	
 

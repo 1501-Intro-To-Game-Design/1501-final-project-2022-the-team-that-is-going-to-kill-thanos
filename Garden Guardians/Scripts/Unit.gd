@@ -47,6 +47,7 @@ func _ready():
 
 func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 	destination = loc
+	direction = destination - position
 	rng.randomize()
 	$AudioStreamPlayer2D.stream = movingSounds[rng.randf_range(0,movingSounds.size())] #picks radom sound and plays it
 	$AudioStreamPlayer2D.play()
@@ -60,7 +61,7 @@ func _process(delta):
 		moving = false
 	velocity.x = 0
 	if moving:  
-		position += direction.normalized() * current_speed * delta * 10
+		position += direction.normalized() * current_speed * delta * 2
 
 func checkInCombat():
 	if inCombat:
