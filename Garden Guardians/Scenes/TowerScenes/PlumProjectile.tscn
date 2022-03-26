@@ -10,5 +10,5 @@ damage = 0.3
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 1 )
 position = Vector2( 13.8, 3.3 )
-scale = Vector2( 0.45, 0.5 )
+scale = Vector2( 0.425, 0.425 )
 texture = ExtResource( 2 )
