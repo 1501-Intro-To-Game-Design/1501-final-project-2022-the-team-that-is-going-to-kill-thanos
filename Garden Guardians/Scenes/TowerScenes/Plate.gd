@@ -442,8 +442,9 @@ func _on_VAreaAOE_mouse_exited():
 
 func _on_BigArea_mouse_exited():
 	if not(in_area):
-		current_menu.hide()
-		$Target.hide()
+		if current_menu != null:
+			current_menu.hide()
+			$Target.hide()
 
 
 func _on_Text_mouse_entered():
