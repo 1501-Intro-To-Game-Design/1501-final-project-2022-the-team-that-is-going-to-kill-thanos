@@ -43,7 +43,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.1, 0.1 )
+scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true

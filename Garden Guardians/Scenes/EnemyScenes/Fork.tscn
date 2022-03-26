@@ -34,7 +34,7 @@ damage = 3
 attackSpeed = 1.2
 spawned_num_metal = 1
 sounds = [ ExtResource( 3 ), ExtResource( 4 ) ]
-max_speed = 30
+max_speed = 40
 
 [node name="Sprite" parent="." index="0"]
 visible = false
@@ -58,5 +58,5 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="8"]
 frames = SubResource( 12 )
-frame = 10
+frame = 6
 playing = true

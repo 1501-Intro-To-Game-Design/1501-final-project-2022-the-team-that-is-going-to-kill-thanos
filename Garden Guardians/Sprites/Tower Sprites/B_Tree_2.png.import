@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Blueberry Seed.png-e1b9a1577b41afa8074c73edb28aea59.stex"
+path="res://.import/B_Tree_2.png-b18213e1d997739c0d683424a333a562.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tower Sprites/Blueberry Seed.png"
-dest_files=[ "res://.import/Blueberry Seed.png-e1b9a1577b41afa8074c73edb28aea59.stex" ]
+source_file="res://Sprites/Tower Sprites/B_Tree_2.png"
+dest_files=[ "res://.import/B_Tree_2.png-b18213e1d997739c0d683424a333a562.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
