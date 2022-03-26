@@ -18,7 +18,7 @@ spawn_cooldown = 4
 groups_to_check = [ "Morsels", "Traps", "Player" ]
 damage = 1
 attackSpeed = 2.0
-spawned_num_wood = 4
+spawned_num_wood = 5
 sounds = [ ExtResource( 1 ), ExtResource( 2 ) ]
 max_speed = 10
 
