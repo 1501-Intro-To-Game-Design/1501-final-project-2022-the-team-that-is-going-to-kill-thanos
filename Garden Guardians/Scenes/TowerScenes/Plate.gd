@@ -17,11 +17,11 @@ export var y_spawn_offset = -50
 var current_menu
 
 
-#COSTS// each new element after the first is the cost of the upgrade
-var vegW = [9]
-var vegM = [2]
-var fruitW = [0]
-var fruitM = [0]
+#COSTS// each new element after the first is the cost of the upgrade -- 1, 2, 3, offshoot, upgrade1, up2, up3
+var vegW = [9, 12, 15, 5, 10, 4, 5] #SC, SD, ACD
+var vegM = [2, 3, 5, 7, 0, 2, 2]
+var fruitW = [12, 15, 17, 5, 10, 4, 2] #EC, AR, AOE
+var fruitM = [0, 0, 1, 5, 10, 1, 3 ]
 var grainW = [4]
 var grainM = [5]
 var dairyW = [11]
@@ -33,6 +33,36 @@ var proM = [4]
 func _ready():
 	current_menu = $TowerMenu
 
+	#Sets
+	$Text/Turnip/NinePatchRect/WoodCost.text = String(vegW[0])
+	$Text/Turnip/NinePatchRect/MetalCost.text = String(vegM[0])
+	$Text/Onion/NinePatchRect/WoodCost.text = String(vegW[1])
+	$Text/Onion/NinePatchRect/MetalCost.text = String(vegM[1])
+	$Text/Potato/NinePatchRect/WoodCost.text = String(vegW[2])
+	$Text/Potato/NinePatchRect/MetalCost.text = String(vegM[2])
+	$Text/Carrot/NinePatchRect/WoodCost.text = String(vegW[3])
+	$Text/Carrot/NinePatchRect/MetalCost.text = String(vegM[3])
+	$Text/CarrotSC/NinePatchRect/WoodCost.text = String(vegW[4])
+	$Text/CarrotSC/NinePatchRect/MetalCost.text = String(vegM[4])
+	$Text/CarrotSD/NinePatchRect/WoodCost.text = String(vegW[5])
+	$Text/CarrotSD/NinePatchRect/MetalCost.text = String(vegM[5])
+	$Text/CarrotACD/NinePatchRect/WoodCost.text = String(vegW[6])
+	$Text/CarrotACD/NinePatchRect/MetalCost.text = String(vegM[6])
+
+	$Text/Seed/NinePatchRect/WoodCost.text = String(fruitW[0])
+	$Text/Seed/NinePatchRect/MetalCost.text = String(fruitM[0])
+	$Text/Plum/NinePatchRect/WoodCost.text = String(fruitW[1])
+	$Text/Plum/NinePatchRect/MetalCost.text = String(fruitM[1])
+	$Text/Tomato/NinePatchRect/WoodCost.text = String(fruitW[2])
+	$Text/Tomato/NinePatchRect/MetalCost.text = String(fruitM[2])
+	$Text/Cherry/NinePatchRect/WoodCost.text = String(fruitW[3])
+	$Text/Cherry/NinePatchRect/MetalCost.text = String(fruitM[3])
+	$Text/CherryEC/NinePatchRect/WoodCost.text = String(fruitW[4])
+	$Text/CherryEC/NinePatchRect/MetalCost.text = String(fruitM[4])
+	$Text/CherryAR/NinePatchRect/WoodCost.text = String(fruitW[5])
+	$Text/CherryAR/NinePatchRect/MetalCost.text = String(fruitM[5])
+	$Text/CherryAOE/NinePatchRect/WoodCost.text = String(fruitW[6])
+	$Text/CherryAOE/NinePatchRect/MetalCost.text = String(fruitM[6])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -152,7 +182,7 @@ func _on_PArea_input_event(viewport, event, shape_idx):
 func _on_VArea1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = simple_make_tower(tower.upgrade, 0, 0) #tower to make, wood cost, metal cost
+			var worked = simple_make_tower(tower.upgrade, vegW[1], vegM[1]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -162,7 +192,7 @@ func _on_VArea1_input_event(viewport, event, shape_idx):
 func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = simple_make_tower(tower.offshoot_upgrade, 0, 0) #tower to make, wood cost, metal cost
+			var worked = simple_make_tower(tower.offshoot_upgrade, vegW[2], vegM[2]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -172,7 +202,7 @@ func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 func _on_VAreaPotato_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = simple_make_tower(tower.upgrade, 0, 0) #tower to make, wood cost, metal cost
+			var worked = simple_make_tower(tower.upgrade, vegW[2], vegM[2]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -182,7 +212,7 @@ func _on_VAreaPotato_input_event(viewport, event, shape_idx):
 func _on_VAreaSC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(0, 0) #tower to make, wood cost, metal cost
+			var worked = buy_something(vegW[3], vegM[3]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -195,7 +225,7 @@ func _on_VAreaSC_input_event(viewport, event, shape_idx):
 func _on_VAreaSD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(0, 0) #tower to make, wood cost, metal cost
+			var worked = buy_something(vegW[4], vegM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -208,7 +238,7 @@ func _on_VAreaSD_input_event(viewport, event, shape_idx):
 func _on_VAreaACD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(0, 0) #tower to make, wood cost, metal cost
+			var worked = buy_something(vegW[5], vegM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -221,7 +251,7 @@ func _on_VAreaACD_input_event(viewport, event, shape_idx):
 func _on_VAreaF1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = simple_make_tower(tower.upgrade, 0, 0) #tower to make, wood cost, metal cost
+			var worked = simple_make_tower(tower.upgrade, fruitW[1], fruitM[1]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -231,7 +261,7 @@ func _on_VAreaF1_input_event(viewport, event, shape_idx):
 func _on_VAreaTomato_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = simple_make_tower(tower.upgrade, 0, 0) #tower to make, wood cost, metal cost
+			var worked = simple_make_tower(tower.upgrade, fruitW[2], fruitM[2]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -241,7 +271,7 @@ func _on_VAreaTomato_input_event(viewport, event, shape_idx):
 func _on_VAreaCherry_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = simple_make_tower(tower.offshoot_upgrade, 0, 0) #tower to make, wood cost, metal cost
+			var worked = simple_make_tower(tower.offshoot_upgrade, fruitW[3], fruitM[3]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -252,7 +282,7 @@ func _on_VAreaCherry_input_event(viewport, event, shape_idx):
 func _on_VAreaEC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(0, 0) #tower to make, wood cost, metal cost
+			var worked = buy_something(fruitW[4], fruitM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -265,7 +295,7 @@ func _on_VAreaEC_input_event(viewport, event, shape_idx):
 func _on_VAreaAR_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(0, 0) #tower to make, wood cost, metal cost
+			var worked = buy_something(fruitW[5], fruitM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
@@ -278,7 +308,7 @@ func _on_VAreaAR_input_event(viewport, event, shape_idx):
 func _on_VAreaAOE_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(0, 0) #tower to make, wood cost, metal cost
+			var worked = buy_something(fruitW[6], fruitM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
