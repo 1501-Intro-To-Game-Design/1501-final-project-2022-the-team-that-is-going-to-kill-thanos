@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/T_Tree.png-d99bcd21d10e4b9c9cbcbec7b1904e72.stex"
+path="res://.import/Onion.png-89fde7a04aa308d5b4c8b6633ee10d75.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tower Sprites/T_Tree.png"
-dest_files=[ "res://.import/T_Tree.png-d99bcd21d10e4b9c9cbcbec7b1904e72.stex" ]
+source_file="res://Sprites/Tower Sprites/Onion.png"
+dest_files=[ "res://.import/Onion.png-89fde7a04aa308d5b4c8b6633ee10d75.stex" ]
 
 [params]
 

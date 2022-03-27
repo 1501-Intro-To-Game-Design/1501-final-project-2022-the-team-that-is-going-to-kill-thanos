@@ -18,8 +18,10 @@ groups_to_check = [ "Morsels", "Traps", "Player" ]
 max_health = 2
 damage = 1
 spawned_num_wood = 1
+
 sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 max_speed = 70
+
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
