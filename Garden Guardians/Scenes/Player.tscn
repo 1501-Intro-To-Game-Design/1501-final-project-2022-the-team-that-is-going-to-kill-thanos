@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 1.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 3.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Player Sprites/Gravestone (TEMP).png" type="Texture" id=5]
 [ext_resource path="res://Sounds/Burbs/Hit.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/Burbs/Goofy/Player_Alive_Sound.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/Burbs/Goofy/Player_Die_Sound.wav" type="AudioStream" id=8]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -45,6 +47,8 @@ scale = Vector2( 0.25, 0.25 )
 script = ExtResource( 1 )
 speed = 20
 sounds = [ ExtResource( 6 ) ]
+dieSound = ExtResource( 8 )
+aliveSound = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )

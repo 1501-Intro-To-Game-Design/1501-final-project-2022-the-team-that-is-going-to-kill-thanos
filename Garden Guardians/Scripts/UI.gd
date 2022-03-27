@@ -1,5 +1,12 @@
 extends CanvasLayer
-
+#sounds stuff
+export (Resource) var roundWin
+export (Resource) var roundLoss
+export (Resource) var roundStart
+export (Resource) var pause
+export (Resource) var play
+export (Resource) var defultButton
+export (Resource) var pickUp
 
 var wood = -1
 var metal = -1
@@ -21,12 +28,12 @@ func _ready():
 
 func add_wood():
 	wood += 1
-	$AudioStreamPlayer2D.play()
+	$ResourcePlayer.play()
 	$WLabel.text = str(wood)
 	
 func add_metal():
 	metal += 1
-	$AudioStreamPlayer2D.play()
+	$ResourcePlayer.play()
 	$MLabel.text = str(metal)
 
 func update():
@@ -46,6 +53,7 @@ func _input(event):
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				if hovering:
+					_load_n_play(roundStart,5)
 					emit_signal("nextRoundGo")
 
 func waveInProgress():
@@ -57,6 +65,9 @@ func waveEnd():
 func updateRound(roundNum):
 	$Round.text = "Wave: " + String(roundNum)
 
+func enemysDead():
+	_load_n_play(roundWin,10)
+
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
@@ -64,10 +75,13 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			if event.pressed:
 				if paused:
 					paused = false
+					_load_n_play(play,-1)
 					get_tree().paused = false
 					$PauseButton.texture = load("res://Sprites/Pause.png")
 				else:
 					paused = true
+					_load_n_play(pause,-1)
+					yield($AudioStreamPlayer, "finished")
 					get_tree().paused = true
 					$PauseButton.texture = load("res://Sprites/Play.png")
 
@@ -77,6 +91,8 @@ func _on_player_life_lost(livesLost):
 		playerLives = 0
 	$Lives.text = "Lives: " + String(playerLives)
 	if playerLives == 0:
+		_load_n_play(roundLoss,10)
+		yield($AudioStreamPlayer, "finished")
 		$PauseButton.visible = false
 		$RestartButton.visible = true
 		get_tree().paused = true
@@ -95,3 +111,12 @@ func _on_Restart_input_event(viewport, event, shape_idx):
 				$NextButton.visible = true
 				$PauseButton.visible = true
 				playerLives = 10
+
+func _load_n_play(sound, vol):
+	if vol != -1:
+		$AudioStreamPlayer.volume_db = vol
+	else:
+		$AudioStreamPlayer.volume_db = 24
+	$AudioStreamPlayer.stream = sound
+	$AudioStreamPlayer.play()
+	

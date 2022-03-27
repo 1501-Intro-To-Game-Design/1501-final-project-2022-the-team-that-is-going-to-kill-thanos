@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Round_Start_Sound.wav-87d1edc99f5878f58906a0e359fb5dcf.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Foley/Round_Start_Sound.wav"
+dest_files=[ "res://.import/Round_Start_Sound.wav-87d1edc99f5878f58906a0e359fb5dcf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ToothPick_Attack3_Sound.wav-b884e7e056ed15ea11fcacf0a92bb185.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Foley/ToothPick_Attack3_Sound.wav"
+dest_files=[ "res://.import/ToothPick_Attack3_Sound.wav-b884e7e056ed15ea11fcacf0a92bb185.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

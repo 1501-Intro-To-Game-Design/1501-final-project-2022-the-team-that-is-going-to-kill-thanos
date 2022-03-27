@@ -23,6 +23,8 @@ var items = []
 #SOUNDS STUFF
 export (Array, Resource) var sounds
 export (Array, Resource) var movingSounds
+export (Resource) var dieSound
+export (Resource) var aliveSound
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -109,6 +111,7 @@ func change_health(change):
 func die():
 	alive = false
 	on_combat_end()
+	_load_n_play(dieSound, -1)
 	current_health = 0
 	$Health.value = current_health
 	$Health.visible = false
@@ -116,6 +119,7 @@ func die():
 
 func _on_Respawn_timeout():
 	alive = true
+	_load_n_play(aliveSound, -1)
 	current_health = max_health
 	$Health.value = current_health
 	$Health.visible = true
@@ -169,3 +173,12 @@ func _on_CombatRange_body_exited(body):
 		inactive_targets.remove(inactive_targets.find(body))
 	if body == target:
 		on_combat_end()
+
+		
+func _load_n_play(sound, vol):
+	if vol != -1:
+		$AudioStreamPlayer2D.volume_db = vol
+	else:
+		$AudioStreamPlayer2D.volume_db = 24
+	$AudioStreamPlayer2D.stream = sound
+	$AudioStreamPlayer2D.play()

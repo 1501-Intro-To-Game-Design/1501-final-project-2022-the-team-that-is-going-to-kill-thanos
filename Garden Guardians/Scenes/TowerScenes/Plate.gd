@@ -12,6 +12,8 @@ export (PackedScene) var protein_scene
 export (PackedScene) var dairy_scene
 export (PackedScene) var grain_scene
 
+export (Resource) var upgradeSound
+
 export var y_spawn_offset = -50
 
 var current_menu
@@ -87,6 +89,7 @@ func _on_VArea_input_event(viewport, event, shape_idx):
 				current_menu = $VUpgradeMenu/V1
 
 func make_tower(tower_type):
+	upgrade()
 	if tower_type == "vegetable" and vegW[0] <= ui.wood and vegM[0] <= ui.metal:
 		ui.wood -= vegW[0]
 		ui.metal -= vegM[0]
@@ -143,6 +146,7 @@ func make_tower(tower_type):
 	
 func simple_make_tower(tower_to_make, wood_cost, metal_cost): #simpler than above?
 	if(ui.wood >= wood_cost and ui.metal >= metal_cost and not (tower_to_make == null)):
+		upgrade()
 		ui.wood -= wood_cost
 		ui.metal -= metal_cost
 		ui.update()
@@ -157,6 +161,7 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost): #simpler than abov
 	
 func buy_something(wood_cost, metal_cost):
 	if(ui.wood >= wood_cost and ui.metal >= metal_cost):
+		upgrade()
 		ui.wood -= wood_cost
 		ui.metal -= metal_cost
 		ui.update()
@@ -167,6 +172,10 @@ func buy_something(wood_cost, metal_cost):
 func reset():
 	current_menu = $TowerMenu
 	tower = null
+
+func upgrade():
+	$AudioStreamPlayer.stream = upgradeSound
+	$AudioStreamPlayer.play()
 
 
 func _on_PArea_input_event(viewport, event, shape_idx):

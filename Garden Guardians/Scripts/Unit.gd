@@ -35,6 +35,10 @@ var moving = false;
 var homeTower
 var morselNum
 
+signal dead
+signal alive
+var home
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rng.randomize()
@@ -164,6 +168,7 @@ func destroy(dropResources = true):
 			homeTower.morselPositions[morselNum] = false
 	
 	if is_in_group("Enemies") and dropResources:
+		emit_signal("dead")
 		for i in range(spawned_num_wood):
 			r._spawn(true, global_position) # true = wood, false = metal
 			get_parent().add_child(r)
@@ -188,4 +193,6 @@ func _on_StunTimer_timeout():
 func _on_Spawn_timeout():
 	#can add a new timer to stop movement for .5 secs or something
 	var enemy_instance = to_spawn.instance()
+	enemy_instance.connect("dead", home, "_enemy_killed")
 	get_parent().add_enemy_to_path(self, enemy_instance)
+	emit_signal("alive")

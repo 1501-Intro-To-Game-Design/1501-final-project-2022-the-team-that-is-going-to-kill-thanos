@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Sprites/Enemy Sprites/Toothpick/MainToothpick.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sounds/Burbs/Foley/ForkHit1.wav" type="AudioStream" id=3]
-[ext_resource path="res://Sounds/Burbs/Foley/ForkHit2.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack1_Sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack2_Sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack3_Sound.wav" type="AudioStream" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 43.3333, 166.667 )
@@ -17,8 +18,8 @@ groups_to_check = [ "Morsels", "Traps", "Player" ]
 max_health = 2
 damage = 1
 spawned_num_wood = 1
-sounds = [ ExtResource( 3 ), ExtResource( 4 ) ]
-max_speed = 1000
+sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
+max_speed = 70
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )

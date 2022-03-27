@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Genaric_Button_Press_Sound.wav-931ee0611646a9f588034b159f3ccaef.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Foley/Genaric_Button_Press_Sound.wav"
+dest_files=[ "res://.import/Genaric_Button_Press_Sound.wav-931ee0611646a9f588034b159f3ccaef.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

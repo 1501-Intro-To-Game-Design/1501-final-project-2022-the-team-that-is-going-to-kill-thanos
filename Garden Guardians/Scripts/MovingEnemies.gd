@@ -9,8 +9,10 @@ var wave = 0
 var inProgres = false
 var rng = RandomNumberGenerator.new()
 var enemys = []
+var enemyNum = 0
 var dps = []
 var dP = 0
+var endGate = false
 
 signal player_life_lost(livesLost)
 
@@ -21,11 +23,15 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateEnemyLocation(delta)
+	print(enemyNum)
 	if enemys.size() <= 0 and inProgres:
 		dps.clear() #jsut in case theres 1 left
 		inProgres = false
 		$EnemySpawn.stop()
 		$"/root/ui".waveEnd()
+	if enemyNum <= 0 and endGate:
+		endGate = false
+		$"/root/ui".enemysDead()
 
 func start_wave():
 	dP = (wave*5) +15 #can revise this later
@@ -48,10 +54,15 @@ func start_wave():
 func addEnemyPath():
 	var pathToFollow = importPathScene.instance()
 	var enemy = enemys.pop_front().instance()
+	enemy.connect("dead", self, "_enemy_killed")
+	enemy.connect("alive", self, "_enemy_created")
+	enemy.home = self
 	enemy.position = pathToFollow.getPathLocation()
 	add_child(pathToFollow)
 	add_child(enemy)
 	enemyPathManager.append([enemy, pathToFollow])
+	enemyNum += 1
+	endGate = true 
 	
 func add_enemy_to_path(spawner, spawned):
 	var pathToFollow = importPathScene.instance()
@@ -90,3 +101,11 @@ func _on_nextRoundGo():
 	$"/root/ui".waveInProgress()
 	wave += 1
 	start_wave()
+
+func _enemy_killed():
+	enemyNum -= 1
+	print("dead")
+
+func _enemy_created():
+	enemyNum += 1
+	print("spawned")
