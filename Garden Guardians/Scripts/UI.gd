@@ -80,10 +80,9 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 					$PauseButton.texture = load("res://Sprites/Pause.png")
 				else:
 					paused = true
-					_load_n_play(pause,-1)
-					yield($AudioStreamPlayer, "finished")
 					get_tree().paused = true
 					$PauseButton.texture = load("res://Sprites/Play.png")
+					_load_n_play(pause,-1)
 
 func _on_player_life_lost(livesLost):
 	playerLives -= livesLost

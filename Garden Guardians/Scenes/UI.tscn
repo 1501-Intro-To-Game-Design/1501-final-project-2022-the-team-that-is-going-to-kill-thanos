@@ -125,6 +125,7 @@ position = Vector2( 17.7862, -28.8531 )
 shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 
 [node name="ResourcePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
