@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Sprites/Wood.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Sounds/Burbs/Foley/Genaric_Button_Press_Sound.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sounds/Burbs/Foley/Play_Sound.wav" type="AudioStream" id=12]
 [ext_resource path="res://Sounds/Burbs/Foley/Round_Win_Sound.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/Burbs/Goofy/Lost_Live_Sound.wav" type="AudioStream" id=14]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 63.2471
@@ -32,6 +33,7 @@ pause = ExtResource( 10 )
 play = ExtResource( 12 )
 defultButton = ExtResource( 11 )
 pickUp = ExtResource( 4 )
+lostLife = ExtResource( 14 )
 
 [node name="Wood" type="Sprite" parent="."]
 position = Vector2( 63.6, 50 )

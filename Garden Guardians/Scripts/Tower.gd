@@ -46,7 +46,7 @@ var mouse_pos = null
 var comb_node = null
 
 var hovering = false
-export(PackedScene) var path = null
+
 var closestOffset = Vector2.ZERO
 #this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
 #list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
@@ -61,11 +61,6 @@ func getstuff():
 func _ready():
 	rng.randomize()
 	$SpawnCooldown.start(spawn_cooldown)
-	if morsel_tower:
-		pass
-		#trying to grab direction of closest point on path to point the morsals towords it
-		#var p = path.instance()
-		#closestOffset = p.curve.get_closest_offset(path.to_local(global_position))
 
 func set_target_type(new_target_type): #can be: closest, farthest, lowest, highest, closest_end, closest_start
 	target_type = new_target_type

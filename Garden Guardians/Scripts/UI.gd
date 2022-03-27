@@ -7,6 +7,7 @@ export (Resource) var pause
 export (Resource) var play
 export (Resource) var defultButton
 export (Resource) var pickUp
+export (Resource) var lostLife
 
 var wood = -1
 var metal = -1
@@ -14,7 +15,7 @@ var paused = false
 
 var hovering = false
 
-var playerLives = 10
+var playerLives = 25
 signal nextRoundGo
 
 func _ready():
@@ -86,6 +87,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 
 func _on_player_life_lost(livesLost):
 	playerLives -= livesLost
+	_load_n_play(lostLife, 15)
 	if playerLives < 0:
 		playerLives = 0
 	$Lives.text = "Lives: " + String(playerLives)

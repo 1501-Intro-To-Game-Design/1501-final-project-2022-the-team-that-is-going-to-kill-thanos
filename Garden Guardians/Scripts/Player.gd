@@ -119,7 +119,7 @@ func die():
 
 func _on_Respawn_timeout():
 	alive = true
-	_load_n_play(aliveSound, -1)
+	_load_n_play(aliveSound, 15)
 	current_health = max_health
 	$Health.value = current_health
 	$Health.visible = true
