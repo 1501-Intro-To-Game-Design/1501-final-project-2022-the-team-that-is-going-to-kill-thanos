@@ -9,6 +9,9 @@ damage = 3.0
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 1 )
-position = Vector2( 18.3, 16.3 )
+position = Vector2( 0, -6 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 1, 30 )

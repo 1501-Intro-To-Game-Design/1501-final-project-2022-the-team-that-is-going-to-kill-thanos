@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cherry_3.png-cdabd3e133f3e69d1beee57959bf7562.stex"
+path="res://.import/Carrot.png-3a2788787ec4e70050a36aecf06d9ed0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tower Sprites/Cherry_3.png"
-dest_files=[ "res://.import/Cherry_3.png-cdabd3e133f3e69d1beee57959bf7562.stex" ]
+source_file="res://Sprites/Tower Sprites/Carrot.png"
+dest_files=[ "res://.import/Carrot.png-3a2788787ec4e70050a36aecf06d9ed0.stex" ]
 
 [params]
 

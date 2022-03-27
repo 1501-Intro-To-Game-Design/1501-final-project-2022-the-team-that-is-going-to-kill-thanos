@@ -17,3 +17,6 @@ offshoot_upgrade = ExtResource( 3 )
 position = Vector2( 0, -6 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 5 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( 0, 0 )

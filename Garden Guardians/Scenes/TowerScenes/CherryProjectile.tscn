@@ -12,8 +12,8 @@ damage = 0.5
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 1 )
-position = Vector2( 20.8, 9.3 )
-scale = Vector2( 0.44375, 0.459375 )
+position = Vector2( 18.8, 9.3 )
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 2 )
 
 [node name="AOE2D" type="Area2D" parent="." index="2"]

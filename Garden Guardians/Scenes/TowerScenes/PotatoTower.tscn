@@ -5,7 +5,6 @@
 [ext_resource path="res://Sprites/Tower Sprites/P_Tower.png" type="Texture" id=3]
 
 [node name="Tower" groups=["Potato"] instance=ExtResource( 2 )]
-attack_cooldown = 5
 attacking_tower = true
 projectileScene = ExtResource( 1 )
 upgrade = ExtResource( 1 )
@@ -15,3 +14,6 @@ combinable = true
 position = Vector2( 0, -6 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 3 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( 0, 0 )

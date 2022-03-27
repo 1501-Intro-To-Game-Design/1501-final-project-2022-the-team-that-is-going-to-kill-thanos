@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Tower Sprites/Carrot.png" type="Texture" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 18.0
+height = 78.0
 
 [node name="Projectile" instance=ExtResource( 1 )]
 speed = 160
@@ -8,5 +13,11 @@ damage = 4.0
 stun = true
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 19.3, 18.8 )
-scale = Vector2( 0.803125, 0.7875 )
+modulate = Color( 1, 1, 1, 1 )
+position = Vector2( 0, -6 )
+scale = Vector2( 0.35, 0.35 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 1, 23 )
+shape = SubResource( 1 )
