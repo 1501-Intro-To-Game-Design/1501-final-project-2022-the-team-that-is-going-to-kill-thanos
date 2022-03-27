@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/Wood.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=2]
@@ -6,12 +6,16 @@
 [ext_resource path="res://Sounds/Burbs/Foley/GenaricPickup.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sprites/NextRoundButton.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Pause.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/RestartButton.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 63.2471
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 97.7464, 98.3415 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 130.584, 67.5804 )
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource( 2 )
@@ -98,23 +102,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Restart" type="Label" parent="."]
+[node name="RestartButton" type="Sprite" parent="."]
 pause_mode = 2
-margin_left = 526.0
-margin_top = 326.0
-margin_right = 611.0
-margin_bottom = 357.0
-rect_scale = Vector2( 10, 10 )
-text = "Restart"
-align = 1
-valign = 1
-uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+position = Vector2( 894, 525 )
+scale = Vector2( 3.28906, 2.23438 )
+texture = ExtResource( 7 )
+
+[node name="Restart" type="Area2D" parent="RestartButton"]
+position = Vector2( 0, 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RestartButton/Restart"]
+position = Vector2( 17.7862, -28.8531 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
 
 [connection signal="mouse_entered" from="NextButton/Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="NextButton/Area2D" to="." method="_on_Area2D_mouse_exited"]
 [connection signal="input_event" from="PauseButton/Area2D" to="." method="_on_Area2D_input_event"]
-[connection signal="mouse_entered" from="Restart" to="." method="_on_Restart_mouse_entered"]
-[connection signal="mouse_exited" from="Restart" to="." method="_on_Restart_mouse_exited"]
+[connection signal="input_event" from="RestartButton/Restart" to="." method="_on_Restart_input_event"]

@@ -6,7 +6,6 @@ var metal = -1
 var paused = false
 
 var hovering = false
-var restartHovering = false
 
 var playerLives = 10
 signal nextRoundGo
@@ -18,7 +17,7 @@ func _ready():
 	metal = 100
 	update()
 	$Lives.text = "Lives: " + String(playerLives)
-	$Restart.visible = false
+	$RestartButton.visible = false
 
 func add_wood():
 	wood += 1
@@ -48,8 +47,6 @@ func _input(event):
 			if event.pressed:
 				if hovering:
 					emit_signal("nextRoundGo")
-				if restartHovering:
-					get_tree().reload_current_scene()
 
 func waveInProgress():
 	$NextButton.visible = false
@@ -81,12 +78,20 @@ func _on_player_life_lost(livesLost):
 	$Lives.text = "Lives: " + String(playerLives)
 	if playerLives == 0:
 		$PauseButton.visible = false
-		$Restart.visible = true
+		$RestartButton.visible = true
 		get_tree().paused = true
 
-func _on_Restart_mouse_entered():
-	restartHovering = true
 
 
-func _on_Restart_mouse_exited():
-	restartHovering = false
+
+func _on_Restart_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if event.pressed:
+				print("Restart Pressed")
+				get_tree().reload_current_scene()
+				get_tree().paused = false
+				$RestartButton.visible = false
+				$NextButton.visible = true
+				$PauseButton.visible = true
+				playerLives = 10
