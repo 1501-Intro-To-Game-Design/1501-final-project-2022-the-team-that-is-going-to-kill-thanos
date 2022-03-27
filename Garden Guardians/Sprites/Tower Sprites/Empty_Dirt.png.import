@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/T_Tree.png-d99bcd21d10e4b9c9cbcbec7b1904e72.stex"
+path="res://.import/Empty_Dirt.png-5461fc25e4d5ef2898ac50e68a1e2fb3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tower Sprites/T_Tree.png"
-dest_files=[ "res://.import/T_Tree.png-d99bcd21d10e4b9c9cbcbec7b1904e72.stex" ]
+source_file="res://Sprites/Tower Sprites/Empty_Dirt.png"
+dest_files=[ "res://.import/Empty_Dirt.png-5461fc25e4d5ef2898ac50e68a1e2fb3.stex" ]
 
 [params]
 

@@ -18,7 +18,7 @@ max_health = 2
 damage = 1
 spawned_num_wood = 1
 sounds = [ ExtResource( 3 ), ExtResource( 4 ) ]
-max_speed = 1000
+max_speed = 80
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )
