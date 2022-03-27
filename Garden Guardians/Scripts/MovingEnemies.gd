@@ -12,6 +12,8 @@ var enemys = []
 var dps = []
 var dP = 0
 
+signal player_life_lost(livesLost)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"/root/ui".connect("nextRoundGo", self, "_on_nextRoundGo")
@@ -75,6 +77,9 @@ func updateEnemyLocation(delta):
 		if is_instance_valid(i[0]):
 			i[1].addToOffset(i[0].current_speed * delta)
 			i[0].position = i[1].getPathLocation()
+			if i[1].get_unit_offset() >= 1:
+				i[0].destroy(false)
+				emit_signal("player_life_lost", i[0].spawned_num_wood + (i[0].spawned_num_metal*3))
 
 func get_offset(enemy_node):
 	for i in enemyPathManager:

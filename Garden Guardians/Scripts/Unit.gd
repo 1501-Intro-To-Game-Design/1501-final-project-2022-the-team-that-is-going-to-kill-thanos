@@ -153,15 +153,17 @@ func get_percent_health():
 func get_offset():
 	return (get_parent().get_offset(self))
 
-func destroy():
-	var r = resource.instance() #spawn resources
+func destroy(dropResources = true):
+	var r
+	if(dropResources):
+		r = resource.instance() #spawn resources
 	
 	if self.is_in_group("Morsels"): #decrease number of active morsels
 		if is_instance_valid(homeTower):
 			homeTower.babies -= 1
 			homeTower.morselPositions[morselNum] = false
 	
-	if is_in_group("Enemies"):
+	if is_in_group("Enemies") and dropResources:
 		for i in range(spawned_num_wood):
 			r._spawn(true, global_position) # true = wood, false = metal
 			get_parent().add_child(r)
