@@ -90,11 +90,10 @@ func _on_player_life_lost(livesLost):
 		playerLives = 0
 	$Lives.text = "Lives: " + String(playerLives)
 	if playerLives == 0:
-		_load_n_play(roundLoss,10)
-		yield($AudioStreamPlayer, "finished")
 		$PauseButton.visible = false
 		$RestartButton.visible = true
 		get_tree().paused = true
+		_load_n_play(roundLoss,10)
 
 
 

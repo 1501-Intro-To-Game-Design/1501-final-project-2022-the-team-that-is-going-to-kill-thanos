@@ -68,7 +68,7 @@ __meta__ = {
 }
 
 [node name="NextButton" type="Sprite" parent="."]
-position = Vector2( 1823, 508 )
+position = Vector2( 1815, 370 )
 scale = Vector2( 0.664063, 0.640625 )
 texture = ExtResource( 5 )
 
