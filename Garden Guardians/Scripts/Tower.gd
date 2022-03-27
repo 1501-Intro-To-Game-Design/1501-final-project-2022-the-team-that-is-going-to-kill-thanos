@@ -65,6 +65,8 @@ func getstuff():
 	return 5
 func _ready():
 	rng.randomize()
+	if morsel_tower:
+			can_spawn = true
 	$SpawnCooldown.start(spawn_cooldown)
 
 func set_target_type(new_target_type): #can be: closest, farthest, lowest, highest, closest_end, closest_start
@@ -215,7 +217,7 @@ func make_Baby():
 	get_parent().add_child(morsel)
 	tower_morsels.append(morsel)
 	
-	if(not morselPositions[0]): #Does this ever happen?
+	if(not morselPositions[0]): #Does this ever happen? // ya I think so
 		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 0
 		morsel._go_To(morsel.global_position + morselOffsets[0] + closestOffset)

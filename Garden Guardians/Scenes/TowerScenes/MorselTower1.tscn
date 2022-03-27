@@ -10,7 +10,7 @@
 radius = 200.0
 
 [node name="Tower" instance=ExtResource( 1 )]
-spawn_cooldown = 8.0
+spawn_cooldown = 6.0
 morsel_tower = true
 upgrade = ExtResource( 5 )
 sounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]

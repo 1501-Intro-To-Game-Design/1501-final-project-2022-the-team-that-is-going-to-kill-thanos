@@ -10,7 +10,8 @@
 radius = 200.0
 
 [node name="Tower" instance=ExtResource( 1 )]
-spawn_cooldown = 6.0
+max_babies = 2
+spawn_cooldown = 4.0
 morsel_tower = true
 morsalScene = ExtResource( 5 )
 sounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]

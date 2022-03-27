@@ -17,8 +17,8 @@ export (Resource) var upgradeSound
 export var y_spawn_offset = -50
 
 var current_menu
-
-
+var moveMode = false
+var clicked = false
 #COSTS// each new element after the first is the cost of the upgrade -- 1, 2, 3, offshoot, upgrade1, up2, up3
 var vegW = [9, 12, 15, 5, 10, 4, 5] #SC, SD, ACD
 var vegM = [2, 3, 5, 7, 0, 2, 2]
@@ -28,8 +28,8 @@ var grainW = [4]
 var grainM = [5]
 var dairyW = [11]
 var dairyM = [7]
-var proW = [0, 0, 0, 2, 4, 4, 8] #AttackSpeed, Damage, ExtraUnit
-var proM = [4, 3, 4, 6, 4, 4, 8]
+var proW = [0, 0, 0, 6, 5, 0, 20] #AttackSpeed, Damage, ExtraUnit
+var proM = [4, 3, 5, 2, 1, 4, 10]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -648,9 +648,21 @@ func _on_VAreaUnit_mouse_exited():
 
 
 func _on_VAreaMove_input_event(viewport, event, shape_idx):
-	pass # Replace with function body.
-	#this is code to move morsel
-
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and !moveMode and event.is_action_released("Mouse"):
+			moveMode = true
+			print("can Move")
+	
+func _unhandled_input(event):
+	var counter = 0
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and moveMode and event.is_action_released("Mouse"):
+			print("check")
+			for m in tower.tower_morsels:
+				print("moving")
+				m._go_To(event.position + tower.morselOffsets[counter])
+				counter += 1
+			moveMode = false
 
 func _on_VAreaMove_mouse_entered():
 	$Text/MorselMove.show()
