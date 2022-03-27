@@ -23,7 +23,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateEnemyLocation(delta)
-	print(enemyNum)
 	if enemys.size() <= 0 and inProgres:
 		dps.clear() #jsut in case theres 1 left
 		inProgres = false
@@ -45,7 +44,6 @@ func start_wave():
 			temp = importEnemyScene[value].instance()
 		dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
 		dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
-		print("dp is ", dP)
 		enemys.append(importEnemyScene[value])
 	inProgres = true 
 	$EnemySpawn.start()
@@ -104,8 +102,6 @@ func _on_nextRoundGo():
 
 func _enemy_killed():
 	enemyNum -= 1
-	print("dead")
 
 func _enemy_created():
 	enemyNum += 1
-	print("spawned")

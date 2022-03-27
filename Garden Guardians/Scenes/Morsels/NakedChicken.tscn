@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Morsal Sprites/Morsel.png" type="Texture" id=2]
+[ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/Burbs/Foley/MorsalHit1.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/Burbs/Foley/MorsalHit3.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/Burbs/Foley/MorsalHit2.wav" type="AudioStream" id=7]
+[ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=8]
+[ext_resource path="res://Scenes/Morsels/NakedChickenProjectile.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 410, 330 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 410, 330 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 4720.17
+
+[node name="Unit" groups=["Morsels"] instance=ExtResource( 1 )]
+scale = Vector2( 0.05, 0.05 )
+ranged_morsel = true
+proj_scene = ExtResource( 9 )
+groups_to_check = [ "Enemies" ]
+max_health = 7.0
+attackSpeed = 1.2
+sounds = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ) ]
+movingSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ) ]
+max_speed = 35
+
+[node name="Sprite" parent="." index="0"]
+self_modulate = Color( 0.992157, 0, 1, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 10, -30 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 1 )
+
+[node name="Health" parent="." index="4"]
+margin_left = -240.0
+margin_top = -480.0
+margin_right = 260.0
+margin_bottom = -405.0
+
+[node name="CollisionShape2D" parent="." index="5"]
+position = Vector2( 9.99996, -30 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 2 )
+
+[node name="RangedAttack" type="Timer" parent="." index="8"]
+
+[node name="RangeArea" type="Area2D" parent="." index="9"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea" index="0"]
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="ShootPoint" type="Node2D" parent="." index="10"]
+position = Vector2( 0, -360 )
+
+[connection signal="timeout" from="RangedAttack" to="." method="_on_RangedAttack_timeout"]
+[connection signal="area_entered" from="RangeArea" to="." method="_on_RangeArea_area_entered"]
+[connection signal="area_exited" from="RangeArea" to="." method="_on_RangeArea_area_exited"]

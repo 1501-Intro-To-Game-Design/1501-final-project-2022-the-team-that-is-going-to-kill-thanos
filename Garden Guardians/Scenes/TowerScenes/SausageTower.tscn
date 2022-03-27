@@ -1,22 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation1.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=4]
-[ext_resource path="res://Scenes/TowerScenes/SausageTower.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/TowerScenes/NakedChickenTower.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/TowerScenes/BackribsTower.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Morsels/Sausage.tscn" type="PackedScene" id=7]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
 
 [node name="Tower" instance=ExtResource( 1 )]
-spawn_cooldown = 8.0
+spawn_cooldown = 7.0
 morsel_tower = true
-upgrade = ExtResource( 5 )
+morsalScene = ExtResource( 7 )
+upgrade = ExtResource( 6 )
+offshoot_upgrade = ExtResource( 5 )
 sounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
 
 [node name="RangeShape" parent="Range" index="0"]
 shape = SubResource( 1 )
 
-[node name="SpawnCooldown" parent="." index="2"]
-autostart = false
+[node name="Sprite" parent="." index="1"]
+self_modulate = Color( 0.14902, 1, 0, 1 )

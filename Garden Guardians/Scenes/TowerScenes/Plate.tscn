@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
@@ -13,10 +13,13 @@
 [ext_resource path="res://Sounds/Burbs/Foley/Build_and_Upgrade_Sound.wav" type="AudioStream" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 45.5, 14 )
+extents = Vector2( 68.5, 20 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 15, 15 )
+extents = Vector2( 14, 14.5 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 26, 4 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 10
@@ -24,7 +27,10 @@ extra_spacing_bottom = -3
 font_data = ExtResource( 10 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 59, 62 )
+extents = Vector2( 59, 65 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 11, 5 )
 
 [node name="Plate" type="Node2D"]
 script = ExtResource( 2 )
@@ -39,6 +45,7 @@ __meta__ = {
 }
 
 [node name="Shape" type="CollisionShape2D" parent="PlateArea"]
+position = Vector2( 0.5, -6 )
 shape = SubResource( 1 )
 __meta__ = {
 "_edit_lock_": true
@@ -274,10 +281,188 @@ position = Vector2( -1, 37 )
 [node name="PUpgradeMenu" type="Node2D" parent="."]
 visible = false
 
-[node name="Sprite" type="Sprite" parent="PUpgradeMenu"]
-modulate = Color( 0.988235, 0, 0.301961, 1 )
-position = Vector2( 1, 52 )
+[node name="P1" type="Node2D" parent="PUpgradeMenu"]
+visible = false
+position = Vector2( -1, 26 )
+
+[node name="OptionP1" type="Sprite" parent="PUpgradeMenu/P1"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
 texture = ExtResource( 3 )
+
+[node name="VAreaP1" type="Area2D" parent="PUpgradeMenu/P1"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeP1" type="CollisionShape2D" parent="PUpgradeMenu/P1/VAreaP1"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Move" type="Node2D" parent="PUpgradeMenu/P1"]
+position = Vector2( 3, -26 )
+
+[node name="MoveSprite" type="Sprite" parent="PUpgradeMenu/P1/Move"]
+modulate = Color( 0.243137, 1, 0, 1 )
+position = Vector2( -2.5, 72.75 )
+scale = Vector2( 0.828125, 0.148437 )
+texture = ExtResource( 3 )
+
+[node name="VAreaMove" type="Area2D" parent="PUpgradeMenu/P1/Move"]
+position = Vector2( -40, 54 )
+
+[node name="VShapeMove" type="CollisionShape2D" parent="PUpgradeMenu/P1/Move/VAreaMove"]
+position = Vector2( 38, 18.75 )
+shape = SubResource( 5 )
+
+[node name="P2" type="Node2D" parent="PUpgradeMenu"]
+visible = false
+position = Vector2( -1, 26 )
+
+[node name="OptionBackribs" type="Sprite" parent="PUpgradeMenu/P2"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaBackribs" type="Area2D" parent="PUpgradeMenu/P2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeBackribs" type="CollisionShape2D" parent="PUpgradeMenu/P2/VAreaBackribs"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionNakedChicken" type="Sprite" parent="PUpgradeMenu/P2"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaNakedChicken" type="Area2D" parent="PUpgradeMenu/P2"]
+position = Vector2( 35, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeNakedChicken" type="CollisionShape2D" parent="PUpgradeMenu/P2/VAreaNakedChicken"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Move" type="Node2D" parent="PUpgradeMenu/P2"]
+position = Vector2( 3, -26 )
+
+[node name="MoveSprite" type="Sprite" parent="PUpgradeMenu/P2/Move"]
+modulate = Color( 0.243137, 1, 0, 1 )
+position = Vector2( -2.5, 72.75 )
+scale = Vector2( 0.828125, 0.148437 )
+texture = ExtResource( 3 )
+
+[node name="VAreaMove" type="Area2D" parent="PUpgradeMenu/P2/Move"]
+position = Vector2( -40, 54 )
+
+[node name="VShapeMove" type="CollisionShape2D" parent="PUpgradeMenu/P2/Move/VAreaMove"]
+position = Vector2( 38, 18.75 )
+shape = SubResource( 5 )
+
+[node name="NakedChicken" type="Node2D" parent="PUpgradeMenu"]
+visible = false
+position = Vector2( -1, 26 )
+
+[node name="OptionAS" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaAS" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeAS" type="CollisionShape2D" parent="PUpgradeMenu/NakedChicken/VAreaAS"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionAD" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
+modulate = Color( 0.243137, 1, 0, 1 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaAD" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
+position = Vector2( 35, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeAD" type="CollisionShape2D" parent="PUpgradeMenu/NakedChicken/VAreaAD"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionUnit" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
+modulate = Color( 0.243137, 1, 0, 1 )
+position = Vector2( -69.6875, 0 )
+scale = Vector2( 0.46875, 0.46875 )
+texture = ExtResource( 3 )
+offset = Vector2( 74, 0 )
+
+[node name="VAreaUnit" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
+position = Vector2( -34.6875, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeUnit" type="CollisionShape2D" parent="PUpgradeMenu/NakedChicken/VAreaUnit"]
+shape = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Move" type="Node2D" parent="PUpgradeMenu/NakedChicken"]
+position = Vector2( 3, -26 )
+
+[node name="MoveSprite" type="Sprite" parent="PUpgradeMenu/NakedChicken/Move"]
+modulate = Color( 0.243137, 1, 0, 1 )
+position = Vector2( -2.5, 72.75 )
+scale = Vector2( 0.828125, 0.148437 )
+texture = ExtResource( 3 )
+
+[node name="VAreaMove" type="Area2D" parent="PUpgradeMenu/NakedChicken/Move"]
+position = Vector2( -40, 54 )
+
+[node name="VShapeMove" type="CollisionShape2D" parent="PUpgradeMenu/NakedChicken/Move/VAreaMove"]
+position = Vector2( 38, 18.75 )
+shape = SubResource( 5 )
+
+[node name="Backribs" type="Node2D" parent="PUpgradeMenu"]
+visible = false
+position = Vector2( -1, 37 )
+
+[node name="Move" type="Node2D" parent="PUpgradeMenu/Backribs"]
+position = Vector2( 3, -37 )
+
+[node name="MoveSprite" type="Sprite" parent="PUpgradeMenu/Backribs/Move"]
+modulate = Color( 0.243137, 1, 0, 1 )
+position = Vector2( -2.5, 72.75 )
+scale = Vector2( 0.828125, 0.148437 )
+texture = ExtResource( 3 )
+
+[node name="VAreaMove" type="Area2D" parent="PUpgradeMenu/Backribs/Move"]
+position = Vector2( -40, 54 )
+
+[node name="VShapeMove" type="CollisionShape2D" parent="PUpgradeMenu/Backribs/Move/VAreaMove"]
+position = Vector2( 38, 18.75 )
+shape = SubResource( 5 )
 
 [node name="FUpgradeMenu" type="Node2D" parent="."]
 visible = false
@@ -815,7 +1000,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Build a Seed tower."
+text = "Build a Blueberry tower."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1189,6 +1374,446 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MeatCube" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/MeatCube"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Build a Meatcube morsel tower."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/MeatCube"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/MeatCube/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/MeatCube/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sausage" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Sausage"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Sausage morsel tower. Increased health and damage."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Sausage"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Sausage/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Sausage/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Backribs" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Backribs"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Combinable Backribs morsel tower. Higher health and damage, less movespeed."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Backribs"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Backribs/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Backribs/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NakedChicken" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/NakedChicken"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 128.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Naked Chicken morsel tower. Higher damage, less movespeed. Can now use ranged attacks."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/NakedChicken"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/NakedChicken/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/NakedChicken/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NakedChickenAS" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/NakedChickenAS"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increased attack speed."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/NakedChickenAS"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/NakedChickenAS/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/NakedChickenAS/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NakedChickenAD" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/NakedChickenAD"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increased damage."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/NakedChickenAD"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/NakedChickenAD/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/NakedChickenAD/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NakedChickenUnit" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/NakedChickenUnit"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Can now spawn 4 Naked Chickens."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/NakedChickenUnit"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/NakedChickenUnit/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/NakedChickenUnit/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MorselMove" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/MorselMove"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Move this tower's morsels."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Delete" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Delete"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Remove the tower from this plate."
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Target" type="Node2D" parent="."]
 visible = false
 position = Vector2( -1, -10 )
@@ -1213,16 +1838,35 @@ __meta__ = {
 [node name="BigArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigArea"]
-position = Vector2( 0, 11 )
+position = Vector2( 0, 14 )
 shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Delete" type="Node2D" parent="."]
+visible = false
+position = Vector2( 3, -26 )
+
+[node name="DeleteSprite" type="Sprite" parent="Delete"]
+modulate = Color( 1, 0, 0.4, 1 )
+position = Vector2( 42, 98.125 )
+scale = Vector2( 0.359375, 0.160156 )
+texture = ExtResource( 3 )
+
+[node name="VAreaDelete" type="Area2D" parent="Delete"]
+position = Vector2( -40, 54 )
+
+[node name="VShapeDelete" type="CollisionShape2D" parent="Delete/VAreaDelete"]
+position = Vector2( 82, 44 )
+shape = SubResource( 6 )
 
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_input_event"]
 [connection signal="mouse_entered" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_mouse_entered"]
 [connection signal="mouse_exited" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_mouse_exited"]
 [connection signal="input_event" from="TowerMenu/Protein/PArea" to="." method="_on_PArea_input_event"]
+[connection signal="mouse_entered" from="TowerMenu/Protein/PArea" to="." method="_on_PArea_mouse_entered"]
+[connection signal="mouse_exited" from="TowerMenu/Protein/PArea" to="." method="_on_PArea_mouse_exited"]
 [connection signal="input_event" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_input_event"]
 [connection signal="mouse_entered" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_mouse_entered"]
 [connection signal="mouse_exited" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_mouse_exited"]
@@ -1244,6 +1888,36 @@ shape = SubResource( 3 )
 [connection signal="input_event" from="VUpgradeMenu/Carrot/VAreaACD" to="." method="_on_VAreaACD_input_event"]
 [connection signal="mouse_entered" from="VUpgradeMenu/Carrot/VAreaACD" to="." method="_on_VAreaACD_mouse_entered"]
 [connection signal="mouse_exited" from="VUpgradeMenu/Carrot/VAreaACD" to="." method="_on_VAreaACD_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/P1/VAreaP1" to="." method="_on_VAreaP1_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/P1/VAreaP1" to="." method="_on_VAreaP1_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/P1/VAreaP1" to="." method="_on_VAreaP1_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/P1/Move/VAreaMove" to="." method="_on_VAreaMove_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/P1/Move/VAreaMove" to="." method="_on_VAreaMove_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/P1/Move/VAreaMove" to="." method="_on_VAreaMove_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/P2/VAreaBackribs" to="." method="_on_VAreaBackribs_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/P2/VAreaBackribs" to="." method="_on_VAreaBackribs_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/P2/VAreaBackribs" to="." method="_on_VAreaBackribs_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/P2/VAreaNakedChicken" to="." method="_on_VAreaNakedChicken_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/P2/VAreaNakedChicken" to="." method="_on_VAreaNakedChicken_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/P2/VAreaNakedChicken" to="." method="_on_VAreaNakedChicken_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/P2/Move/VAreaMove" to="." method="_on_VAreaMove_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/P2/Move/VAreaMove" to="." method="_on_VAreaMove_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/P2/Move/VAreaMove" to="." method="_on_VAreaMove_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/NakedChicken/VAreaAS" to="." method="_on_VAreaAS_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/NakedChicken/VAreaAS" to="." method="_on_VAreaAS_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/NakedChicken/VAreaAS" to="." method="_on_VAreaAS_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/NakedChicken/VAreaAD" to="." method="_on_VAreaAD_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/NakedChicken/VAreaAD" to="." method="_on_VAreaAD_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/NakedChicken/VAreaAD" to="." method="_on_VAreaAD_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/NakedChicken/VAreaUnit" to="." method="_on_VAreaUnit_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/NakedChicken/VAreaUnit" to="." method="_on_VAreaUnit_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/NakedChicken/VAreaUnit" to="." method="_on_VAreaUnit_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/NakedChicken/Move/VAreaMove" to="." method="_on_VAreaMove_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/NakedChicken/Move/VAreaMove" to="." method="_on_VAreaMove_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/NakedChicken/Move/VAreaMove" to="." method="_on_VAreaMove_mouse_exited"]
+[connection signal="input_event" from="PUpgradeMenu/Backribs/Move/VAreaMove" to="." method="_on_VAreaMove_input_event"]
+[connection signal="mouse_entered" from="PUpgradeMenu/Backribs/Move/VAreaMove" to="." method="_on_VAreaMove_mouse_entered"]
+[connection signal="mouse_exited" from="PUpgradeMenu/Backribs/Move/VAreaMove" to="." method="_on_VAreaMove_mouse_exited"]
 [connection signal="input_event" from="FUpgradeMenu/F1/VAreaF1" to="." method="_on_VAreaF1_input_event"]
 [connection signal="mouse_entered" from="FUpgradeMenu/F1/VAreaF1" to="." method="_on_VAreaF1_mouse_entered"]
 [connection signal="mouse_exited" from="FUpgradeMenu/F1/VAreaF1" to="." method="_on_VAreaF1_mouse_exited"]
@@ -1267,3 +1941,6 @@ shape = SubResource( 3 )
 [connection signal="mouse_exited" from="Target/Text" to="." method="_on_Text_mouse_exited"]
 [connection signal="input_event" from="BigArea" to="." method="_on_BigArea_input_event"]
 [connection signal="mouse_exited" from="BigArea" to="." method="_on_BigArea_mouse_exited"]
+[connection signal="input_event" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_input_event"]
+[connection signal="mouse_entered" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_entered"]
+[connection signal="mouse_exited" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_exited"]

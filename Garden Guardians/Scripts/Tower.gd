@@ -2,8 +2,11 @@ extends Node2D
 
 var explosive = false
 var stun_chance = 0.15
-var stun_duration = 0.4
+var stun_duration = 0.75
 var target_type = "closest"
+
+var attack_speed_buff = 0.0
+var damage_buff = 0.0
 
 var num_projectiles = 1
 
@@ -16,6 +19,8 @@ var can_attack = false
 var can_spawn = false
 export var attack_cooldown = 1.0
 export var spawn_cooldown = 1.0
+
+var tower_morsels = []
 
 var targeted_enemies = []
 
@@ -205,7 +210,10 @@ func _input(event):
 func make_Baby():
 	var morsel = morsalScene.instance()
 	morsel.homeTower = self
+	morsel.attackSpeed -= attack_speed_buff
+	morsel.damage += damage_buff
 	get_parent().add_child(morsel)
+	tower_morsels.append(morsel)
 	
 	if(not morselPositions[0]): #Does this ever happen?
 		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
@@ -228,6 +236,13 @@ func make_Baby():
 		morsel._go_To(morsel.global_position + morselOffsets[3] + closestOffset)
 		morselPositions[3] = true
 	
+func morsel_death(dead_morsel):
+	tower_morsels.remove(tower_morsels.find(dead_morsel))
+	
+func buff_morsels():
+	for i in tower_morsels:
+		i.attackSpeed -= attack_speed_buff
+		i.damage += damage_buff
 
 func _on_Range_area_entered(area):
 	if(area.get_parent().is_in_group("Enemies")):
@@ -253,3 +268,7 @@ func _on_Area2D_mouse_entered():
 
 func _on_Area2D_mouse_exited():
 	hovering = false
+	
+func _exit_tree():
+	for i in tower_morsels:
+		i.queue_free()

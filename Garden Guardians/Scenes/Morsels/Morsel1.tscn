@@ -20,10 +20,11 @@ scale = Vector2( 0.05, 0.05 )
 mass = 0.00102041
 gravity_scale = 0.0
 groups_to_check = [ "Enemies" ]
-damage = 1
+max_health = 3.5
+damage = 0.2
+attackSpeed = 1.2
 sounds = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ]
 movingSounds = [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 6 ) ]
-max_speed = 30
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
@@ -33,9 +34,9 @@ position = Vector2( 8.5, -31 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
-margin_left = -170.0
-margin_top = -475.0
-margin_right = 210.0
+margin_left = -240.0
+margin_top = -480.0
+margin_right = 260.0
 margin_bottom = -405.0
 
 [node name="CollisionShape2D" parent="." index="5"]

@@ -28,8 +28,8 @@ var grainW = [4]
 var grainM = [5]
 var dairyW = [11]
 var dairyM = [7]
-var proW = [0]
-var proM = [4]
+var proW = [0, 0, 0, 2, 4, 4, 8] #AttackSpeed, Damage, ExtraUnit
+var proM = [4, 3, 4, 6, 4, 4, 8]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -65,6 +65,21 @@ func _ready():
 	$Text/CherryAR/NinePatchRect/MetalCost.text = String(fruitM[5])
 	$Text/CherryAOE/NinePatchRect/WoodCost.text = String(fruitW[6])
 	$Text/CherryAOE/NinePatchRect/MetalCost.text = String(fruitM[6])
+	
+	$Text/MeatCube/NinePatchRect/WoodCost.text = String(proW[0])
+	$Text/MeatCube/NinePatchRect/MetalCost.text = String(proM[0])
+	$Text/Sausage/NinePatchRect/WoodCost.text = String(proW[1])
+	$Text/Sausage/NinePatchRect/MetalCost.text = String(proM[1])
+	$Text/Backribs/NinePatchRect/WoodCost.text = String(proW[2])
+	$Text/Backribs/NinePatchRect/MetalCost.text = String(proM[2])
+	$Text/NakedChicken/NinePatchRect/WoodCost.text = String(proW[3])
+	$Text/NakedChicken/NinePatchRect/MetalCost.text = String(proM[3])
+	$Text/NakedChickenAS/NinePatchRect/WoodCost.text = String(proW[4])
+	$Text/NakedChickenAS/NinePatchRect/MetalCost.text = String(proM[4])
+	$Text/NakedChickenAD/NinePatchRect/WoodCost.text = String(proW[5])
+	$Text/NakedChickenAD/NinePatchRect/MetalCost.text = String(proM[5])
+	$Text/NakedChickenUnit/NinePatchRect/WoodCost.text = String(proW[6])
+	$Text/NakedChickenUnit/NinePatchRect/MetalCost.text = String(proM[6])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -77,6 +92,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			current_menu.show()
 			if not (tower == null):
 				$Target.show()
+				$Delete.show()
 
 
 func _on_VArea_input_event(viewport, event, shape_idx):
@@ -195,16 +211,18 @@ func _on_VArea1_input_event(viewport, event, shape_idx):
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				current_menu = $VUpgradeMenu/V2
 
 
 func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = simple_make_tower(tower.offshoot_upgrade, vegW[2], vegM[2]) #tower to make, wood cost, metal cost
+			var worked = simple_make_tower(tower.offshoot_upgrade, vegW[3], vegM[3]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				current_menu = $VUpgradeMenu/Carrot
 
 
@@ -215,16 +233,18 @@ func _on_VAreaPotato_input_event(viewport, event, shape_idx):
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				current_menu = $VUpgradeMenu/Potato
 
 
 func _on_VAreaSC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(vegW[3], vegM[3]) #tower to make, wood cost, metal cost
+			var worked = buy_something(vegW[4], vegM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				tower.stun_chance += 0.2
 				if tower.stun_chance > .70:
 					$VUpgradeMenu/Carrot/VAreaSC.hide()
@@ -234,10 +254,11 @@ func _on_VAreaSC_input_event(viewport, event, shape_idx):
 func _on_VAreaSD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(vegW[4], vegM[4]) #tower to make, wood cost, metal cost
+			var worked = buy_something(vegW[5], vegM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				tower.stun_duration += 0.25
 				if tower.stun_duration > 1.40:
 					$VUpgradeMenu/Carrot/VAreaSD.hide()
@@ -247,10 +268,11 @@ func _on_VAreaSD_input_event(viewport, event, shape_idx):
 func _on_VAreaACD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			var worked = buy_something(vegW[5], vegM[5]) #tower to make, wood cost, metal cost
+			var worked = buy_something(vegW[6], vegM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				tower.attack_cooldown -= 0.5
 				if tower.attack_cooldown < 3.1:
 					$VUpgradeMenu/Carrot/VAreaACD.hide()
@@ -264,6 +286,7 @@ func _on_VAreaF1_input_event(viewport, event, shape_idx):
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				current_menu = $FUpgradeMenu/F2
 
 
@@ -274,6 +297,7 @@ func _on_VAreaTomato_input_event(viewport, event, shape_idx):
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				current_menu = $FUpgradeMenu/Tomato
 
 
@@ -284,6 +308,7 @@ func _on_VAreaCherry_input_event(viewport, event, shape_idx):
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				tower.num_projectiles += 1
 				current_menu = $FUpgradeMenu/Cherry
 
@@ -295,6 +320,7 @@ func _on_VAreaEC_input_event(viewport, event, shape_idx):
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				tower.num_projectiles += 1
 				if tower.num_projectiles > 2:
 					$FUpgradeMenu/Cherry/VAreaEC.hide()
@@ -308,8 +334,9 @@ func _on_VAreaAR_input_event(viewport, event, shape_idx):
 			if worked:
 				current_menu.hide()
 				$Target.hide()
-				tower.increase_range(20) #change this
-				if tower.get_range() > 185:
+				$Delete.hide()
+				tower.increase_range(25) #change this
+				if tower.get_range() > 290:
 					$FUpgradeMenu/Cherry/VAreaAR.hide()
 					$FUpgradeMenu/Cherry/OptionAR.hide() #could also change this to change sprite
 
@@ -321,6 +348,7 @@ func _on_VAreaAOE_input_event(viewport, event, shape_idx):
 			if worked:
 				current_menu.hide()
 				$Target.hide()
+				$Delete.hide()
 				tower.explosive = true
 				tower.AOE_percent += 0.1 #change this
 				if tower.AOE_percent > 0.25:
@@ -454,6 +482,7 @@ func _on_BigArea_mouse_exited():
 		if current_menu != null:
 			current_menu.hide()
 			$Target.hide()
+			$Delete.hide()
 
 
 func _on_Text_mouse_entered():
@@ -484,3 +513,167 @@ func _on_Text_gui_input(event):
 				if target_types[target_index] == "closest_start":
 					$Target/Text.text = "Target: Closest to Start"
 				tower.set_target_type(target_types[target_index])
+
+
+func _on_VAreaP1_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.upgrade, proW[1], proM[1]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $PUpgradeMenu/P2
+
+
+func _on_VAreaBackribs_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.upgrade, proW[2], proM[2]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $PUpgradeMenu/Backribs
+
+
+func _on_VAreaNakedChicken_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.offshoot_upgrade, proW[3], proM[3]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $PUpgradeMenu/NakedChicken
+
+
+func _on_VAreaAS_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(proW[4], proM[4]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.attack_speed_buff += 0.2
+				tower.buff_morsels()
+				if tower.attack_speed_buff > 0.3:
+					$PUpgradeMenu/NakedChicken/VAreaAS.hide()
+					$PUpgradeMenu/NakedChicken/OptionAS.hide() #could also change this to change sprite
+
+
+func _on_VAreaAD_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(proW[5], proM[5]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.damage_buff += 0.2
+				tower.buff_morsels()
+				if tower.damage_buff > 0.3:
+					$PUpgradeMenu/NakedChicken/VAreaAD.hide()
+					$PUpgradeMenu/NakedChicken/OptionAD.hide() #could also change this to change sprite
+
+
+func _on_VAreaUnit_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(proW[6], proM[6]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.max_babies += 1
+				$PUpgradeMenu/NakedChicken/VAreaUnit.hide()
+				$PUpgradeMenu/NakedChicken/OptionUnit.hide() #could also change this to change sprite
+
+
+func _on_VAreaP1_mouse_entered():
+	$Text/Sausage.show()
+
+
+func _on_VAreaP1_mouse_exited():
+	$Text/Sausage.hide()
+
+
+func _on_PArea_mouse_entered():
+	$Text/MeatCube.show()
+
+
+func _on_PArea_mouse_exited():
+	$Text/MeatCube.hide()
+
+
+func _on_VAreaBackribs_mouse_entered():
+	$Text/Backribs.show()
+
+
+func _on_VAreaBackribs_mouse_exited():
+	$Text/Backribs.hide()
+
+
+func _on_VAreaNakedChicken_mouse_entered():
+	$Text/NakedChicken.show()
+
+
+func _on_VAreaNakedChicken_mouse_exited():
+	$Text/NakedChicken.hide()
+
+
+func _on_VAreaAS_mouse_entered():
+	$Text/NakedChickenAS.show()
+
+
+func _on_VAreaAS_mouse_exited():
+	$Text/NakedChickenAS.hide()
+
+
+func _on_VAreaAD_mouse_entered():
+	$Text/NakedChickenAD.show()
+
+
+func _on_VAreaAD_mouse_exited():
+	$Text/NakedChickenAD.hide()
+
+
+func _on_VAreaUnit_mouse_entered():
+	$Text/NakedChickenUnit.show()
+
+
+func _on_VAreaUnit_mouse_exited():
+	$Text/NakedChickenUnit.hide()
+
+
+func _on_VAreaMove_input_event(viewport, event, shape_idx):
+	pass # Replace with function body.
+	#this is code to move morsel
+
+
+func _on_VAreaMove_mouse_entered():
+	$Text/MorselMove.show()
+
+
+func _on_VAreaMove_mouse_exited():
+	$Text/MorselMove.hide()
+
+
+func _on_VAreaDelete_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			if not (tower == null):
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.queue_free()
+				reset()
+
+
+func _on_VAreaDelete_mouse_entered():
+	$Text/Delete.show()
+
+
+func _on_VAreaDelete_mouse_exited():
+	$Text/Delete.hide()

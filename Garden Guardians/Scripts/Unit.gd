@@ -1,15 +1,19 @@
 extends RigidBody2D
 
+export var ranged_morsel = false
+var can_attack = false
 export var spawner = false
 export (PackedScene) var to_spawn
-export var spawn_cooldown = 1
+export (PackedScene) var proj_scene
+export var spawn_cooldown = 1.0
 
 var inactive_targets = []
 
+var enemies = []
 export var groups_to_check = []
-export var max_health = 10
+export var max_health = 10.0
 var current_health = 1
-export var damage = 2
+export var damage = 2.0
 export var attackSpeed = 1.0
 var inCombat = false
 var target
@@ -48,6 +52,8 @@ func _ready():
 	$Health.value = current_health
 	prepareSpawnTimer()
 	prepareAttackTimer()
+	if ranged_morsel:
+		$RangedAttack.start(attackSpeed*1.5)
 
 func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 	destination = loc
@@ -60,12 +66,37 @@ func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	checkInCombat()
+	if (not inCombat) and (can_attack) and (ranged_morsel):
+		ranged_attack() 
 	#MOVING STUFF
 	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2: #if youve arrived
 		moving = false
 	velocity.x = 0
 	if moving:  
 		position += direction.normalized() * current_speed * delta * 2
+
+func ranged_attack():
+	if enemies.size() > 0:
+		var lowest = 1000
+		var index = -1
+		for i in range(0, enemies.size()):
+			var distance = sqrt(pow((enemies[i].get_global_position().x - self.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - self.get_global_position().y), 2))
+			if(distance < lowest):
+				lowest = distance
+				index = i
+		can_attack = false
+		$RangedAttack.start(attackSpeed*1.5)
+		
+		var projectile = proj_scene.instance()
+		get_parent().add_child(projectile)
+		print("PROJ DMG B4", projectile.damage)
+		projectile.damage = damage/5
+		print("PROJ DMG AFTER", projectile.damage)
+		rng.randomize()
+		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+		$AudioStreamPlayer2D.play()
+		projectile.position = $ShootPoint.get_global_position()
+		projectile.target = enemies[index]
 
 func checkInCombat():
 	if inCombat:
@@ -136,6 +167,9 @@ func on_combat_end():
 	for enemy in inactive_targets:
 		checkType(enemy)
 		enemy.checkType(self)
+	can_attack = false
+	if ranged_morsel:
+		$RangedAttack.start(attackSpeed*1.5)
 	
 
 func battle_action(dmg):
@@ -147,6 +181,9 @@ func change_health(change):
 	current_health += change
 	$Health.value = current_health
 	if(current_health <= 0):
+		if self.is_in_group("Morsels"): #decrease number of active morsels
+			if is_instance_valid(homeTower):
+				homeTower.morsel_death(self)
 		destroy()
 	if(current_health > max_health):
 		current_health = max_health
@@ -196,3 +233,17 @@ func _on_Spawn_timeout():
 	enemy_instance.connect("dead", home, "_enemy_killed")
 	get_parent().add_enemy_to_path(self, enemy_instance)
 	emit_signal("alive")
+
+
+func _on_RangedAttack_timeout():
+	can_attack = true
+
+
+func _on_RangeArea_area_entered(area):
+	if(area.get_parent().is_in_group("Enemies")):
+		enemies.append(area)
+
+
+func _on_RangeArea_area_exited(area):
+	if(area.get_parent().is_in_group("Enemies")):
+		enemies.remove(enemies.find(area))
