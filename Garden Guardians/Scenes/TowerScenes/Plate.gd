@@ -657,7 +657,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and moveMode and event.is_action_released("Mouse") and tower.inRange:
 			print(event.position)
-			tower.posOffset = event.position - tower.position
+			tower.posOffset = event.position - tower.position + Vector2(0,60)
 			for m in tower.tower_morsels:
 				m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
 				counter += 1
