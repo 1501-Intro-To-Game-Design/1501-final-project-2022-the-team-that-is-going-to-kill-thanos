@@ -18,7 +18,7 @@ extents = Vector2( 420, 330 )
 [node name="Unit" groups=["Morsels"] instance=ExtResource( 1 )]
 scale = Vector2( 0.05, 0.05 )
 groups_to_check = [ "Enemies" ]
-max_health = 5.0
+max_health = 4.0
 damage = 0.5
 attackSpeed = 1.2
 sounds = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ) ]
@@ -30,7 +30,7 @@ texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 20, -30 )
-scale = Vector2( 0.999999, 0.999999 )
+scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
@@ -41,5 +41,5 @@ margin_bottom = -405.0
 
 [node name="CollisionShape2D" parent="." index="5"]
 position = Vector2( 20, -30 )
-scale = Vector2( 1, 1 )
+scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )

@@ -29,7 +29,7 @@ animations = [ {
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.2, 0.2 )
 groups_to_check = [ "Morsels", "Traps", "Player" ]
-max_health = 5
+max_health = 6.0
 damage = 3
 attackSpeed = 1.2
 spawned_num_metal = 1
@@ -58,4 +58,5 @@ shape = SubResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="8"]
 frames = SubResource( 12 )
+frame = 7
 playing = true

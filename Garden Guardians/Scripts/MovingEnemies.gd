@@ -23,11 +23,14 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateEnemyLocation(delta)
-	if enemys.size() <= 0 and inProgres:
+	if enemyNum <= 0 and enemys.size() <= 0 and inProgres:
 		dps.clear() #jsut in case theres 1 left
 		inProgres = false
 		$EnemySpawn.stop()
 		$"/root/ui".waveEnd()
+		for i in get_tree().get_nodes_in_group("Towers"):
+			if i.morsel_tower:
+				i.spawn_remainder()
 	if enemyNum <= 0 and endGate:
 		endGate = false
 		$"/root/ui".enemysDead()
@@ -76,9 +79,9 @@ func add_enemy_to_path(spawner, spawned):
 
 #Adds a new enemy and path when the timer timeouts
 func _on_EnemySpawn_timeout():
-	if inProgres:
+	if inProgres and enemys.size() > 0:
 		addEnemyPath()
-		$EnemySpawn.start(dps.pop_front()/2) #1dp = wait 0.5 seconds
+		$EnemySpawn.start(dps.pop_front() * 1.25) #1dp = wait 0.5 seconds
 
 #Increases the path's offset and sets the enemy's position to the path's position
 func updateEnemyLocation(delta):

@@ -42,6 +42,7 @@ var rng = RandomNumberGenerator.new()
 
 var morselPositions = [false, false, false, false]
 var morselOffsets = [Vector2(0, -60),  Vector2(-40, -20),  Vector2(40, -20), Vector2(0, 20)]
+var inRange = false
 
 export var combinable = false
 var dragging = false
@@ -66,7 +67,8 @@ func getstuff():
 func _ready():
 	rng.randomize()
 	if morsel_tower:
-			can_spawn = true
+		yield(get_tree().create_timer(0.1), "timeout")
+		spawn_remainder()		
 	$SpawnCooldown.start(spawn_cooldown)
 
 func set_target_type(new_target_type): #can be: closest, farthest, lowest, highest, closest_end, closest_start
@@ -238,6 +240,10 @@ func make_Baby():
 		morsel._go_To(morsel.global_position + morselOffsets[3] + posOffset)
 		morselPositions[3] = true
 	
+func spawn_remainder():
+	for i in range(babies, max_babies):
+		make_Baby()
+		babies += 1
 func morsel_death(dead_morsel):
 	tower_morsels.remove(tower_morsels.find(dead_morsel))
 	
@@ -274,3 +280,14 @@ func _on_Area2D_mouse_exited():
 func _exit_tree():
 	for i in tower_morsels:
 		i.queue_free()
+
+
+func _on_Range_mouse_entered():
+	if morsel_tower:
+		inRange = true
+
+
+
+func _on_Range_mouse_exited():
+	if morsel_tower:
+		inRange = false

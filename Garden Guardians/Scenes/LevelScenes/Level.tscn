@@ -21,7 +21,7 @@ __meta__ = {
 }
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1026, 429 )
+position = Vector2( 1451, 225 )
 
 [node name="Plate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1421, 790 )
@@ -36,12 +36,18 @@ position = Vector2( 295, 319 )
 position = Vector2( 1070, 680 )
 
 [node name="Plate6" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1446, 454 )
+position = Vector2( 1596, 525 )
 
 [node name="Plate7" parent="." instance=ExtResource( 5 )]
 position = Vector2( 738, 586 )
 
 [node name="Plate2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 804, 227 )
+
+[node name="Plate8" parent="." instance=ExtResource( 5 )]
+position = Vector2( 991, 402 )
+
+[node name="Plate9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1724, 212 )
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 6 )]

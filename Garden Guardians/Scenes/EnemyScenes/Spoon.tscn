@@ -24,7 +24,6 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( -4.17232e-06, 2.49998 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
@@ -35,5 +34,4 @@ margin_bottom = -240.0
 
 [node name="CollisionShape2D" parent="." index="5" groups=["Enemies"]]
 position = Vector2( -7.15256e-06, 2.49998 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
