@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/BG.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/TowerScenes/Plate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/EnemyScenes/MovingEnemies.tscn" type="PackedScene" id=6]
 
@@ -11,13 +12,36 @@ script = ExtResource( 1 )
 player = ExtResource( 2 )
 tower = ExtResource( 3 )
 
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1026, 429 )
 
 [node name="Plate" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1431, 811 )
+position = Vector2( 1421, 790 )
+
+[node name="Plate3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 607, 430 )
+
+[node name="Plate4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 295, 319 )
+
+[node name="Plate5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1070, 680 )
+
+[node name="Plate6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1446, 454 )
+
+[node name="Plate7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 738, 586 )
 
 [node name="Plate2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 788, 289 )
+position = Vector2( 804, 227 )
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 6 )]

@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/SpoonHit2.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Burbs/Foley/SpoonHit1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sprites/Enemy Sprites/Spoon/spoon.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 65, 65 )
+extents = Vector2( 65, 237.5 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 65, 65 )
+extents = Vector2( 65, 237.5 )
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 1 )]
 scale = Vector2( 0.2, 0.2 )
@@ -19,21 +20,20 @@ sounds = [ ExtResource( 3 ), ExtResource( 2 ) ]
 max_speed = 40
 
 [node name="Sprite" parent="." index="0"]
-self_modulate = Color( 1, 0.819608, 0, 1 )
-scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -4.17232e-06, 1.11759e-05 )
+position = Vector2( -4.17232e-06, 2.49998 )
 scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
 margin_left = -95.0
-margin_top = -115.0
+margin_top = -275.0
 margin_right = 95.0
-margin_bottom = -80.0
+margin_bottom = -240.0
 
 [node name="CollisionShape2D" parent="." index="5" groups=["Enemies"]]
-position = Vector2( -7.15256e-06, -7.15256e-06 )
+position = Vector2( -7.15256e-06, 2.49998 )
 scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
