@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 1.png" type="Texture" id=2]
@@ -8,9 +8,15 @@
 [ext_resource path="res://Sounds/Burbs/Hit.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Burbs/Goofy/Player_Alive_Sound.wav" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/Burbs/Goofy/Player_Die_Sound.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sprites/Player Sprites/Farmer - Player_Small.png" type="Texture" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Running",
+"speed": 4.0
+}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Standing",
@@ -20,11 +26,6 @@ animations = [ {
 "loop": true,
 "name": "Dead",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "Running",
-"speed": 4.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -53,7 +54,12 @@ sounds = [ ExtResource( 6 ) ]
 dieSound = ExtResource( 8 )
 aliveSound = ExtResource( 7 )
 
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 9 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+visible = false
 frames = SubResource( 1 )
 animation = "Dead"
 

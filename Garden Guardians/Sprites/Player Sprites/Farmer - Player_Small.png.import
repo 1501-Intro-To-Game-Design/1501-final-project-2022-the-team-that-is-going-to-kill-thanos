@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Rib_Tower.png-9ec694789af219f2f082f014fb33f491.stex"
+path="res://.import/Farmer - Player_Small.png-d53a12b9d61999c3d0cc8dc135fbc392.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tower Sprites/Rib_Tower.png"
-dest_files=[ "res://.import/Rib_Tower.png-9ec694789af219f2f082f014fb33f491.stex" ]
+source_file="res://Sprites/Player Sprites/Farmer - Player_Small.png"
+dest_files=[ "res://.import/Farmer - Player_Small.png-d53a12b9d61999c3d0cc8dc135fbc392.stex" ]
 
 [params]
 
