@@ -8,6 +8,7 @@ export (Resource) var play
 export (Resource) var defultButton
 export (Resource) var pickUp
 export (Resource) var lostLife
+export (Resource) var backgroundTrack
 
 var wood = -1
 var metal = -1
@@ -26,6 +27,7 @@ func _ready():
 	update()
 	$Lives.text = "Lives: " + String(playerLives)
 	$RestartButton.visible = false
+	playBackgroundTrack()
 
 func add_wood():
 	wood += 1
@@ -110,7 +112,7 @@ func _on_Restart_input_event(viewport, event, shape_idx):
 				$RestartButton.visible = false
 				$NextButton.visible = true
 				$PauseButton.visible = true
-				playerLives = 10
+				playerLives = 25
 
 func _load_n_play(sound, vol):
 	if vol != -1:
@@ -119,4 +121,11 @@ func _load_n_play(sound, vol):
 		$AudioStreamPlayer.volume_db = 24
 	$AudioStreamPlayer.stream = sound
 	$AudioStreamPlayer.play()
+
+func playBackgroundTrack():
+	$BackgroundTrack.play()
 	
+
+
+func _on_BackgroundTrack_finished():
+	playBackgroundTrack()
