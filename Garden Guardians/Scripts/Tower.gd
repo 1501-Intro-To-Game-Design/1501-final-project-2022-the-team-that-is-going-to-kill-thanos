@@ -52,7 +52,7 @@ var comb_node = null
 
 var hovering = false
 
-var closestOffset = Vector2.ZERO
+var posOffset = Vector2.ZERO
 #this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
 #list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
 #LEGEND: A-attacking M-morsel T-Tower P-Projectile
@@ -220,22 +220,22 @@ func make_Baby():
 	if(not morselPositions[0]): #Does this ever happen? // ya I think so
 		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 0
-		morsel._go_To(morsel.global_position + morselOffsets[0] + closestOffset)
+		morsel._go_To(morsel.global_position + morselOffsets[0] + posOffset)
 		morselPositions[0] = true
 	elif(not morselPositions[1]):
 		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 1
-		morsel._go_To(morsel.global_position + morselOffsets[1] + closestOffset)
+		morsel._go_To(morsel.global_position + morselOffsets[1] + posOffset)
 		morselPositions[1] = true
 	elif(not morselPositions[2]):
 		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 2
-		morsel._go_To(morsel.global_position + morselOffsets[2] + closestOffset)
+		morsel._go_To(morsel.global_position + morselOffsets[2] + posOffset)
 		morselPositions[2] = true
 	elif(not morselPositions[3]):
 		morsel.position = $ShootPoint.get_global_position() #in the future replace this with (go to the neerest point on the path)
 		morsel.morselNum = 3
-		morsel._go_To(morsel.global_position + morselOffsets[3] + closestOffset)
+		morsel._go_To(morsel.global_position + morselOffsets[3] + posOffset)
 		morselPositions[3] = true
 	
 func morsel_death(dead_morsel):

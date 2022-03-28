@@ -651,15 +651,14 @@ func _on_VAreaMove_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and !moveMode and event.is_action_released("Mouse"):
 			moveMode = true
-			print("can Move")
 	
 func _unhandled_input(event):
 	var counter = 0
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and moveMode and event.is_action_released("Mouse"):
-			print("check")
+			print(event.position)
+			tower.posOffset = event.position - tower.position
 			for m in tower.tower_morsels:
-				print("moving")
 				m._go_To(event.position + tower.morselOffsets[counter])
 				counter += 1
 			moveMode = false
