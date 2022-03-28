@@ -12,7 +12,7 @@ extents = Vector2( 65, 237.5 )
 extents = Vector2( 65, 237.5 )
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 1 )]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.2, 0.198473 )
 groups_to_check = [ "Morsels", "Traps", "Player" ]
 attackSpeed = 1.4
 spawned_num_metal = 1

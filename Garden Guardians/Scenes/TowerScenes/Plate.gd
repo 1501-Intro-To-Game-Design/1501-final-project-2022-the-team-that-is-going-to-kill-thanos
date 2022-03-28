@@ -659,7 +659,7 @@ func _unhandled_input(event):
 			print(event.position)
 			tower.posOffset = event.position - tower.position
 			for m in tower.tower_morsels:
-				m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 15))
+				m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
 				counter += 1
 			moveMode = false
 

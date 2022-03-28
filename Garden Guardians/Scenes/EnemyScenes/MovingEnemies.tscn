@@ -11,7 +11,9 @@
 [node name="MovingEnemies" type="Node2D"]
 script = ExtResource( 1 )
 importPathScene = ExtResource( 2 )
-importEnemyScene = [ ExtResource( 5 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 7 ) ]
+enemyScene1 = [ ExtResource( 4 ) ]
+enemyScene2 = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 6 ) ]
+enemyScene3 = [ ExtResource( 5 ) ]
 
 [node name="EnemySpawn" type="Timer" parent="."]
 one_shot = true

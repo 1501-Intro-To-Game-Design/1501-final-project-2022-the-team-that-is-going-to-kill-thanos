@@ -2,7 +2,9 @@ extends Node2D
 
 #Import the enemy and path scenes
 export(PackedScene) var importPathScene
-export(Array, PackedScene) var importEnemyScene
+export(Array, PackedScene) var enemyScene1
+export(Array, PackedScene) var enemyScene2
+export(Array, PackedScene) var enemyScene3
 var enemyPathManager = []
 
 var wave = 0
@@ -12,8 +14,9 @@ var enemys = []
 var enemyNum = 0
 var dps = []
 var dP = 0
+var budget = 0
 var endGate = false
-
+var toPluck = 0 
 signal player_life_lost(livesLost)
 
 # Called when the node enters the scene tree for the first time.
@@ -36,25 +39,41 @@ func _process(delta):
 		$"/root/ui".enemysDead()
 
 func start_wave():
-	dP = (wave*5) +15 #can revise this later
+	dP = (wave*8) +5 #can revise this later
+	budget = dP
 	$"/root/ui".updateRound(wave)
-	rng.randomize()
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist
-		var value = rng.randf_range(0,importEnemyScene.size())
-		var temp = importEnemyScene[value].instance()
-		while (temp.spawned_num_wood + (temp.spawned_num_metal*3)) > dP:
-			value = rng.randf_range(0,importEnemyScene.size())
-			temp = importEnemyScene[value].instance()
-		dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
-		dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
-		enemys.append(importEnemyScene[value])
+		rng.randomize()
+		var value
+		var temp
+		if budget *0.75 >= dP and wave >= 3:
+			value = rng.randi_range(0,enemyScene3.size()-1)
+			temp = enemyScene3[value].instance()
+			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			enemys.append(enemyScene3[value])
+		elif budget *0.25 >= dP and wave >= 2:	
+			value = rng.randi_range(0,enemyScene2.size()-1)
+			temp = enemyScene2[value].instance()
+			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			enemys.append(enemyScene2[value])
+		else:
+			value = rng.randi_range(0,enemyScene1.size()-1)
+			temp = enemyScene1[value].instance()
+			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			enemys.append(enemyScene1[value])
+			#while (temp.spawned_num_wood + (temp.spawned_num_metal*3)) > dP:
+				#value = rng.randi_range(0,enemyScene1.size())
+				#temp = enemyScene1[value].instance()
 	inProgres = true 
 	$EnemySpawn.start()
 
 #Adds an instance of enemy and path and stores them in enemyPathManager
 func addEnemyPath():
 	var pathToFollow = importPathScene.instance()
-	var enemy = enemys.pop_front().instance()
+	var enemy = enemys.pop_at(toPluck).instance()
 	enemy.connect("dead", self, "_enemy_killed")
 	enemy.connect("alive", self, "_enemy_created")
 	enemy.home = self
@@ -80,8 +99,10 @@ func add_enemy_to_path(spawner, spawned):
 #Adds a new enemy and path when the timer timeouts
 func _on_EnemySpawn_timeout():
 	if inProgres and enemys.size() > 0:
+		rng.randomize()
+		toPluck = rng.randi_range(0,enemys.size()-1)
 		addEnemyPath()
-		$EnemySpawn.start(dps.pop_front() * 1.25) #1dp = wait 0.5 seconds
+		$EnemySpawn.start(dps.pop_at(toPluck) * 1.25) #1dp = wait 0.5 seconds
 
 #Increases the path's offset and sets the enemy's position to the path's position
 func updateEnemyLocation(delta):

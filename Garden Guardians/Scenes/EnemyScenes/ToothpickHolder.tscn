@@ -14,7 +14,7 @@ extents = Vector2( 31, 30.5 )
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
 spawner = true
 to_spawn = ExtResource( 4 )
-spawn_cooldown = 3.0
+spawn_cooldown = 4.0
 groups_to_check = [ "Morsels", "Traps", "Player" ]
 max_health = 25.0
 damage = 0.5
