@@ -31,7 +31,6 @@ scale = Vector2( 0.914063, 2.63281 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( -3.57628e-06, -9.53674e-06 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
@@ -42,5 +41,4 @@ margin_bottom = -100.0
 
 [node name="CollisionShape2D" parent="." index="5"]
 position = Vector2( -3.57628e-06, -9.53674e-06 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )

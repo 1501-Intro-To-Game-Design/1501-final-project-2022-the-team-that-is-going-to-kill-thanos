@@ -36,7 +36,7 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 10, -30 )
-scale = Vector2( 1, 1 )
+scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
@@ -47,7 +47,7 @@ margin_bottom = -405.0
 
 [node name="CollisionShape2D" parent="." index="5"]
 position = Vector2( 9.99996, -30 )
-scale = Vector2( 1, 1 )
+scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )
 
 [node name="RangedAttack" type="Timer" parent="." index="8"]
@@ -55,7 +55,6 @@ shape = SubResource( 2 )
 [node name="RangeArea" type="Area2D" parent="." index="9"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangeArea" index="0"]
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
 
 [node name="ShootPoint" type="Node2D" parent="." index="10"]

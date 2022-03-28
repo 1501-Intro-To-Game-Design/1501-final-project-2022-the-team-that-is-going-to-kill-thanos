@@ -43,9 +43,12 @@ bg_color = Color( 0.266667, 0.952941, 0.513726, 1 )
 bg_color = Color( 0.956863, 0.352941, 0.352941, 1 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
-scale = Vector2( 0.25, 0.25 )
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
 speed = 20
+max_health = 20
+attackSpeed = 1
+damage = 1
 sounds = [ ExtResource( 6 ) ]
 dieSound = ExtResource( 8 )
 aliveSound = ExtResource( 7 )
@@ -89,8 +92,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RegenTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="body_entered" from="CombatRange" to="." method="_on_CombatRange_body_entered"]
 [connection signal="body_exited" from="CombatRange" to="." method="_on_CombatRange_body_exited"]
 [connection signal="timeout" from="Attack" to="." method="_on_Attack_timeout"]
+[connection signal="timeout" from="RegenTimer" to="." method="_on_RegenTimer_timeout"]

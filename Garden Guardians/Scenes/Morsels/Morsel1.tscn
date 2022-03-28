@@ -20,7 +20,7 @@ scale = Vector2( 0.05, 0.05 )
 mass = 0.00102041
 gravity_scale = 0.0
 groups_to_check = [ "Enemies" ]
-max_health = 3.5
+max_health = 3.0
 damage = 0.2
 attackSpeed = 1.2
 sounds = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ) ]
@@ -31,6 +31,7 @@ texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 8.5, -31 )
+scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
@@ -41,4 +42,5 @@ margin_bottom = -405.0
 
 [node name="CollisionShape2D" parent="." index="5"]
 position = Vector2( 8.5, -31.5 )
+scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )

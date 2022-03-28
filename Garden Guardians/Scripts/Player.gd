@@ -16,6 +16,7 @@ var moving = false;
 var clicked = false;
 var alive = true
 var inCombat = false
+var hasBeenHit = true
 
 #Resources
 var items = []
@@ -39,7 +40,6 @@ func _ready():
 func _process(delta):
 	if alive:
 		checkInCombat()
-		
 		if moving:
 			$AnimatedSprite.play()
 		else:
@@ -49,7 +49,7 @@ func _process(delta):
 		if direction.x >= 0 and moving: #moving right
 			$AnimatedSprite.animation = "Running"
 			$AnimatedSprite.flip_h = false		
-		elif direction.x < 0: #moving left
+		elif direction.x < 0 and moving: #moving left
 			$AnimatedSprite.animation = "Running"
 			$AnimatedSprite.flip_h = true
 		
@@ -70,7 +70,7 @@ func _input(event):
 	   # Mouse in viewport coordinates.
 		if event is InputEventMouseButton:
 			if event.button_index == BUTTON_RIGHT:
-				if !clicked:
+				if !clicked and hasBeenHit:
 					destination = event.position 
 					direction = destination - position
 					clicked = true
@@ -102,6 +102,8 @@ func battle_action(dmg):
 
 func change_health(change):
 	current_health += change;
+	if(change < 0):
+		hasBeenHit = true
 	$Health.value = current_health
 	if(current_health <= 0):
 		die()
@@ -141,10 +143,12 @@ func setTarget(body):
 				if body.target == self:
 					inCombat = true
 					target = body
+					hasBeenHit = false
 					$Attack.start()
 			else:
 				inCombat = true
 				target = body
+				hasBeenHit = false
 				$Attack.start()
 		else:
 			if not (body in inactive_targets):		
@@ -161,6 +165,7 @@ func _on_Attack_timeout():
 		target.battle_action(damage)
 
 func on_combat_end():
+	hasBeenHit = true
 	inCombat = false
 	$Attack.stop()
 	if alive:
@@ -182,3 +187,11 @@ func _load_n_play(sound, vol):
 		$AudioStreamPlayer2D.volume_db = 24
 	$AudioStreamPlayer2D.stream = sound
 	$AudioStreamPlayer2D.play()
+
+
+
+
+func _on_RegenTimer_timeout():
+	if !inCombat:
+		change_health(1)
+
