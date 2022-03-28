@@ -136,7 +136,7 @@ stream = ExtResource( 4 )
 
 [node name="BackgroundTrack" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
-volume_db = 1.0
+volume_db = -4.0
 
 [connection signal="mouse_entered" from="NextButton/Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="NextButton/Area2D" to="." method="_on_Area2D_mouse_exited"]

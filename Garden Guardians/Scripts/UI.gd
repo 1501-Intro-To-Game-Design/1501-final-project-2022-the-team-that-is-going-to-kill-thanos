@@ -115,9 +115,9 @@ func _on_Restart_input_event(viewport, event, shape_idx):
 
 func _load_n_play(sound, vol):
 	if vol != -1:
-		$AudioStreamPlayer.volume_db = vol
+		$AudioStreamPlayer.volume_db = vol - 5
 	else:
-		$AudioStreamPlayer.volume_db = 24
+		$AudioStreamPlayer.volume_db = 24 - 5
 	$AudioStreamPlayer.stream = sound
 	$AudioStreamPlayer.play()
 
