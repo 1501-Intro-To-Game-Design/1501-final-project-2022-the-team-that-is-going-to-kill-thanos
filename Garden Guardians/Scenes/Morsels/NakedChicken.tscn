@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sprites/Morsal Sprites/Morsel.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Tower Sprites/Neked_Chicken.png" type="Texture" id=2]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation1.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit1.wav" type="AudioStream" id=5]
@@ -31,7 +31,8 @@ movingSounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 8 ) ]
 max_speed = 35
 
 [node name="Sprite" parent="." index="0"]
-self_modulate = Color( 0.992157, 0, 1, 1 )
+position = Vector2( -140, -220 )
+scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]

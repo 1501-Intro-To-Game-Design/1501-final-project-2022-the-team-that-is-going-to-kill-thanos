@@ -4,7 +4,7 @@
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation1.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit1.wav" type="AudioStream" id=4]
-[ext_resource path="res://Sprites/Morsal Sprites/Morsel.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Tower Sprites/Rib.png" type="Texture" id=5]
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit3.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit2.wav" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=8]
@@ -26,7 +26,8 @@ movingSounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ) ]
 max_speed = 45
 
 [node name="Sprite" parent="." index="0"]
-self_modulate = Color( 0, 0.788235, 1, 1 )
+position = Vector2( -640, -540 )
+scale = Vector2( 6, 6 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]

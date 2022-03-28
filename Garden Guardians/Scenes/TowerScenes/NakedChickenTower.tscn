@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation1.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/Morsels/NakedChicken.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/Tower Sprites/Neked_C_Tower.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
@@ -20,4 +21,6 @@ sounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-self_modulate = Color( 0.968627, 0, 1, 1 )
+position = Vector2( 0, 3 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
