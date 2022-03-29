@@ -12,6 +12,7 @@ extents = Vector2( 31, 30.5 )
 extents = Vector2( 31, 30.5 )
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
+z_index = 1
 spawner = true
 to_spawn = ExtResource( 4 )
 spawn_cooldown = 4.0

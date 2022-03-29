@@ -46,6 +46,7 @@ var home
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	max_speed *= util.g_speed
+	attackSpeed /= util.g_speed
 	rng.randomize()
 	current_health = max_health
 	current_speed = max_speed;

@@ -116,6 +116,9 @@ func die():
 	alive = false
 	on_combat_end()
 	_load_n_play(dieSound, -1)
+	ui.wood  = round(ui.wood * 0.8)
+	ui.metal = round(ui.metal * 0.9)
+	ui.update()
 	current_health = 0
 	$Health.value = current_health
 	$Health.visible = false

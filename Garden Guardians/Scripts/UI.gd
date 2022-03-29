@@ -31,12 +31,12 @@ func _ready():
 func add_wood():
 	wood += 1
 	$ResourcePlayer.play()
-	$WLabel.text = str(wood)
+	update()
 	
 func add_metal():
 	metal += 1
 	$ResourcePlayer.play()
-	$MLabel.text = str(metal)
+	update()
 
 func update():
 	$WLabel.text = str(wood)
@@ -115,9 +115,9 @@ func _on_Restart_input_event(viewport, event, shape_idx):
 
 func _load_n_play(sound, vol):
 	if vol != -1:
-		$AudioStreamPlayer.volume_db = vol - 5
+		$AudioStreamPlayer.volume_db = vol - 1
 	else:
-		$AudioStreamPlayer.volume_db = 24 - 5
+		$AudioStreamPlayer.volume_db = 24 - 1
 	$AudioStreamPlayer.stream = sound
 	$AudioStreamPlayer.play()
 

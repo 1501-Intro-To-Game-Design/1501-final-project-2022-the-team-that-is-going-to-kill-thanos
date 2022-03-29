@@ -65,8 +65,8 @@ var posOffset = Vector2.ZERO
 func getstuff():
 	return 5
 func _ready():
-	spawn_cooldown *= util.g_speed
-	attack_cooldown *= util.g_speed
+	spawn_cooldown /= util.g_speed
+	attack_cooldown /= util.g_speed
 	rng.randomize()
 	if morsel_tower:
 		yield(get_tree().create_timer(0.1), "timeout")

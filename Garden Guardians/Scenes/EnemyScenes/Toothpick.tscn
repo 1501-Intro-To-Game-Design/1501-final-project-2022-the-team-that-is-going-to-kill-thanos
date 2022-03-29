@@ -14,6 +14,7 @@ extents = Vector2( 43.3333, 166.667 )
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.15, 0.15 )
+z_index = 3
 groups_to_check = [ "Morsels", "Traps", "Player" ]
 max_health = 1.5
 spawned_num_wood = 1
