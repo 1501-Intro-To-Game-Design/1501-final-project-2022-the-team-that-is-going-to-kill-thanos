@@ -8,8 +8,10 @@ var seeking_player = false
 var wSprite = load("res://Sprites/Wood.png")
 var mSprite = load("res://Sprites/Metal.png")
 var player = null
+var speed = 180
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speed *= util.g_speed
 	pass
 
 func _spawn(w, loc):
@@ -29,7 +31,7 @@ func seek_player(delta):
 	var direction = player.global_position - global_position
 	var distance = sqrt(pow((player.get_global_position().x - global_position.x), 2) + pow((player.get_global_position().y - global_position.y), 2))
 	if abs(distance) > 10:
-		position += direction.normalized() * delta * 70
+		position += direction.normalized() * delta * speed
 	else:
 		if is_Wood:
 			ui.add_wood()

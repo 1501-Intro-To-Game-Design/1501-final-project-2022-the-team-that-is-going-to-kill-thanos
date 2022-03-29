@@ -10,7 +10,7 @@ bg_color = Color( 0, 0.752941, 0.2, 1 )
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.552941, 0, 0, 1 )
 
-[node name="Unit" type="RigidBody2D"]
+[node name="Unit2" type="RigidBody2D"]
 mode = 3
 script = ExtResource( 2 )
 resource = ExtResource( 3 )

@@ -45,6 +45,7 @@ var home
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	max_speed *= util.g_speed
 	rng.randomize()
 	current_health = max_health
 	current_speed = max_speed;
@@ -236,6 +237,9 @@ func _on_StunTimer_timeout():
 func _on_Spawn_timeout():
 	#can add a new timer to stop movement for .5 secs or something
 	var enemy_instance = to_spawn.instance()
+	enemy_instance.spawned_num_wood = 0
+	enemy_instance.spawned_num_metal = 0
+	enemy_instance.Sprite.modulate = Color(102, 77, 75)
 	enemy_instance.connect("dead", home, "_enemy_killed")
 	get_parent().add_enemy_to_path(self, enemy_instance)
 	emit_signal("alive")
@@ -260,4 +264,4 @@ func _on_RegenWait_timeout():
 
 
 func _on_Regen_timeout():
-	change_health(.5)
+	change_health(max_health*0.15)

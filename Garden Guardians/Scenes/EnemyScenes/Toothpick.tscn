@@ -16,7 +16,6 @@ extents = Vector2( 43.3333, 166.667 )
 scale = Vector2( 0.15, 0.15 )
 groups_to_check = [ "Morsels", "Traps", "Player" ]
 max_health = 1.5
-damage = 1
 spawned_num_wood = 1
 sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 max_speed = 70

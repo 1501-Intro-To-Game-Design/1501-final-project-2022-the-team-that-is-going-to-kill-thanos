@@ -12,6 +12,7 @@ var stun_duration = 0.75
 var enemies = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speed *= util.g_speed
 	rng.randomize()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

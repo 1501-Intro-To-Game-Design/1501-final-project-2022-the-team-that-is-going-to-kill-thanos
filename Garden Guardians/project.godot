@@ -17,6 +17,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ui="*res://Scenes/UI.tscn"
+util="*res://Scripts/Utilities.gd"
 
 [display]
 

@@ -7,7 +7,7 @@ export var speed = 1
 export var max_health = 10
 var current_health = 1
 export var attackSpeed = 2
-export var damage = 2
+export var damage = 0
 
 var target
 var inactive_targets = []
@@ -30,6 +30,8 @@ var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	speed *= util.g_speed
+	attackSpeed *= util.g_speed
 	current_health = max_health
 	$Attack.wait_time = attackSpeed
 	$Health.max_value = max_health
@@ -144,16 +146,16 @@ func setTarget(body):
 					inCombat = true
 					target = body
 					hasBeenHit = false
-					$Attack.start()
 					$RegenTimer.stop()
 					$RegenWait.stop()
+					#$Attack.start()
 			else:
 				inCombat = true
 				target = body
 				hasBeenHit = false
-				$Attack.start()
 				$RegenTimer.stop()
 				$RegenWait.stop()
+				#$Attack.start()
 		else:
 			if not (body in inactive_targets):		
 				inactive_targets.append(body)
@@ -196,7 +198,7 @@ func _load_n_play(sound, vol):
 
 
 func _on_RegenTimer_timeout():
-	change_health(1)
+	change_health(max_health *0.1)
 
 
 func _on_RegenWait_timeout():
