@@ -100,8 +100,10 @@ __meta__ = {
 }
 
 [node name="RegenTimer" type="Timer" parent="."]
-wait_time = 2.0
-autostart = true
+
+[node name="RegenWait" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
@@ -109,3 +111,4 @@ autostart = true
 [connection signal="body_exited" from="CombatRange" to="." method="_on_CombatRange_body_exited"]
 [connection signal="timeout" from="Attack" to="." method="_on_Attack_timeout"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_RegenTimer_timeout"]
+[connection signal="timeout" from="RegenWait" to="." method="_on_RegenWait_timeout"]

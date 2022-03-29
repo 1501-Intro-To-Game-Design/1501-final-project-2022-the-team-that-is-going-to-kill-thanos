@@ -145,11 +145,15 @@ func setTarget(body):
 					target = body
 					hasBeenHit = false
 					$Attack.start()
+					$RegenTimer.stop()
+					$RegenWait.stop()
 			else:
 				inCombat = true
 				target = body
 				hasBeenHit = false
 				$Attack.start()
+				$RegenTimer.stop()
+				$RegenWait.stop()
 		else:
 			if not (body in inactive_targets):		
 				inactive_targets.append(body)
@@ -169,6 +173,8 @@ func on_combat_end():
 	inCombat = false
 	$Attack.stop()
 	if alive:
+		if(self.is_in_group("Player")):
+			$RegenWait.start()
 		for enemy in inactive_targets:
 			checkType(enemy)
 			enemy.checkType(self)
@@ -189,9 +195,9 @@ func _load_n_play(sound, vol):
 	$AudioStreamPlayer2D.play()
 
 
-
-
 func _on_RegenTimer_timeout():
-	if !inCombat:
-		change_health(1)
+	change_health(1)
 
+
+func _on_RegenWait_timeout():
+	$RegenTimer.start()

@@ -139,10 +139,14 @@ func setTarget(body):
 				inCombat = true
 				target = body
 				$Attack.start()
+				$Regen.stop()
+				$RegenWait.stop()
 		else:
 			inCombat = true
 			target = body
 			$Attack.start()
+			$Regen.stop()
+			$RegenWait.stop()
 	else: #if I'm in combat
 		if not (body in inactive_targets):
 			inactive_targets.append(body)
@@ -164,6 +168,8 @@ func _on_Attack_timeout():
 func on_combat_end():
 	inCombat = false
 	$Attack.stop()
+	if(self.is_in_group("Morsels")):
+		$RegenWait.start()
 	for enemy in inactive_targets:
 		checkType(enemy)
 		enemy.checkType(self)
@@ -247,3 +253,11 @@ func _on_RangeArea_area_entered(area):
 func _on_RangeArea_area_exited(area):
 	if(area.get_parent().is_in_group("Enemies")):
 		enemies.remove(enemies.find(area))
+
+
+func _on_RegenWait_timeout():
+	$Regen.start()
+
+
+func _on_Regen_timeout():
+	change_health(.5)
