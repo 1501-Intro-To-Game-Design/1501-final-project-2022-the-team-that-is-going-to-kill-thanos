@@ -11,10 +11,10 @@
 radius = 200.0
 
 [node name="Tower" groups=["Backribs"] instance=ExtResource( 1 )]
-spawn_cooldown = 7.0
-morsel_tower = true
 morsalScene = ExtResource( 5 )
 sounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+spawn_cooldown = 7.0
+morsel_tower = true
 combinable = true
 
 [node name="RangeShape" parent="Range" index="0"]

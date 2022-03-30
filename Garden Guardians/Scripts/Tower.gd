@@ -59,7 +59,8 @@ var posOffset = Vector2.ZERO
 #LEGEND: A-attacking M-morsel T-Tower P-Projectile
 # each tower holds the following info in order [AT?, MT?, ACooldown, PDamage, PSpeed, PSprite, MspawnCooldown, MMaxBabies, MHealth, MDamage, MSpeed, MAttackSpeed, MSprite] (13 things, 0-12)
 
-
+var rangePoints = []
+var rangePointsBorder = []
 
 # Called when the node enters the scene tree for the first time.
 func getstuff():
@@ -72,6 +73,8 @@ func _ready():
 		yield(get_tree().create_timer(0.1), "timeout")
 		spawn_remainder()		
 	$SpawnCooldown.start(spawn_cooldown)
+	#Testing
+	initializeRangePolygon()
 
 func set_target_type(new_target_type): #can be: closest, farthest, lowest, highest, closest_end, closest_start
 	target_type = new_target_type
@@ -202,6 +205,7 @@ func _input(event):
 					comb_node.get_node("Sprite").set_texture($Sprite.texture)
 					comb_node.get_node("Sprite").scale = $Sprite.scale
 					comb_node.tower_to_combine = self
+					$RangeCircle.visible = true
 			else:
 				hovering = false
 				if is_instance_valid(comb_node):
@@ -212,6 +216,7 @@ func _input(event):
 						queue_free()
 				dragging = false
 				mouse_pos = null
+				$RangeCircle.visible = false
 
 func make_Baby():
 	var morsel = morsalScene.instance()
@@ -274,10 +279,12 @@ func _on_SpawnCooldown_timeout():
 
 func _on_Area2D_mouse_entered():
 	hovering = true
+	$RangeCircle.visible = true
 
 
 func _on_Area2D_mouse_exited():
 	hovering = false
+	$RangeCircle.visible = false
 	
 func _exit_tree():
 	for i in tower_morsels:
@@ -293,3 +300,13 @@ func _on_Range_mouse_entered():
 func _on_Range_mouse_exited():
 	if morsel_tower:
 		inRange = false
+
+func initializeRangePolygon():
+	for i in range(361):
+		rangePoints.append(Vector2(cos(deg2rad(i)), sin(deg2rad(i))))
+	for i in range(361):
+		rangePoints[i].x *= $"Range/RangeShape".shape.radius
+		rangePoints[i].y *= $"Range/RangeShape".shape.radius
+	$RangeCircle.set_polygon(rangePoints)
+	$RangeCircle.set_color(Color(0.68, 0.85, 0.9, 0.25))
+	$RangeCircle.visible = false
