@@ -17,15 +17,15 @@ animations = [ {
 "name": "Dead",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Standing",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "Running",
 "speed": 4.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Standing",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]

@@ -184,6 +184,7 @@ func attack(enemy):
 
 func increase_range(amount):
 	$Range/RangeShape.shape.radius += amount
+	initializeRangePolygon()
 	
 func get_range():
 	return $Range/RangeShape.shape.radius
@@ -205,7 +206,6 @@ func _input(event):
 					comb_node.get_node("Sprite").set_texture($Sprite.texture)
 					comb_node.get_node("Sprite").scale = $Sprite.scale
 					comb_node.tower_to_combine = self
-					$RangeCircle.visible = true
 			else:
 				hovering = false
 				if is_instance_valid(comb_node):
@@ -216,7 +216,6 @@ func _input(event):
 						queue_free()
 				dragging = false
 				mouse_pos = null
-				$RangeCircle.visible = false
 
 func make_Baby():
 	var morsel = morsalScene.instance()
@@ -279,12 +278,10 @@ func _on_SpawnCooldown_timeout():
 
 func _on_Area2D_mouse_entered():
 	hovering = true
-	$RangeCircle.visible = true
 
 
 func _on_Area2D_mouse_exited():
 	hovering = false
-	$RangeCircle.visible = false
 	
 func _exit_tree():
 	for i in tower_morsels:
@@ -295,13 +292,15 @@ func _on_Range_mouse_entered():
 	if morsel_tower:
 		inRange = true
 
-
-
 func _on_Range_mouse_exited():
 	if morsel_tower:
 		inRange = false
 
+func show_range(bool_show):
+	$RangeCircle.visible = bool_show
+
 func initializeRangePolygon():
+	rangePoints.clear()
 	for i in range(361):
 		rangePoints.append(Vector2(cos(deg2rad(i)), sin(deg2rad(i))))
 	for i in range(361):
@@ -310,3 +309,14 @@ func initializeRangePolygon():
 	$RangeCircle.set_polygon(rangePoints)
 	$RangeCircle.set_color(Color(0.68, 0.85, 0.9, 0.25))
 	$RangeCircle.visible = false
+	
+func set_blue_range():
+	rangePoints.clear()
+	for i in range(361):
+		rangePoints.append(Vector2(cos(deg2rad(i)), sin(deg2rad(i))))
+	for i in range(361):
+		rangePoints[i].x *= $"Range/RangeShape".shape.radius
+		rangePoints[i].y *= $"Range/RangeShape".shape.radius
+	$RangeCircle.set_polygon(rangePoints)
+	$RangeCircle.set_color(Color(0.25, 0.5, 1, 0.5))
+	$RangeCircle.visible = true

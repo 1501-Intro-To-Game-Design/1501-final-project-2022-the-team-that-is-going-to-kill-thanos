@@ -93,6 +93,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 			if not (tower == null):
 				$Target.show()
 				$Delete.show()
+				tower.show_range(true)
 
 
 func _on_VArea_input_event(viewport, event, shape_idx):
@@ -212,6 +213,7 @@ func _on_VArea1_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				current_menu = $VUpgradeMenu/V2
 
 
@@ -223,6 +225,7 @@ func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				current_menu = $VUpgradeMenu/Carrot
 
 
@@ -234,6 +237,7 @@ func _on_VAreaPotato_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				current_menu = $VUpgradeMenu/Potato
 
 
@@ -245,6 +249,7 @@ func _on_VAreaSC_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.stun_chance += 0.2
 				if tower.stun_chance > .70:
 					$VUpgradeMenu/Carrot/VAreaSC.hide()
@@ -259,6 +264,7 @@ func _on_VAreaSD_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.stun_duration += 0.25
 				if tower.stun_duration > 1.40:
 					$VUpgradeMenu/Carrot/VAreaSD.hide()
@@ -273,6 +279,7 @@ func _on_VAreaACD_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.attack_cooldown -= 0.5
 				if tower.attack_cooldown < 3.1:
 					$VUpgradeMenu/Carrot/VAreaACD.hide()
@@ -287,6 +294,7 @@ func _on_VAreaF1_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				current_menu = $FUpgradeMenu/F2
 
 
@@ -298,6 +306,7 @@ func _on_VAreaTomato_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				current_menu = $FUpgradeMenu/Tomato
 
 
@@ -309,6 +318,7 @@ func _on_VAreaCherry_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.num_projectiles += 1
 				current_menu = $FUpgradeMenu/Cherry
 
@@ -321,6 +331,7 @@ func _on_VAreaEC_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.num_projectiles += 1
 				if tower.num_projectiles > 2:
 					$FUpgradeMenu/Cherry/VAreaEC.hide()
@@ -335,8 +346,10 @@ func _on_VAreaAR_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
-				tower.increase_range(25) #change this
-				if tower.get_range() > 290:
+				tower.show_range(false)
+				tower.increase_range(30) #change this
+				#tower.initializeRangePolygon()
+				if tower.get_range() > 300:
 					$FUpgradeMenu/Cherry/VAreaAR.hide()
 					$FUpgradeMenu/Cherry/OptionAR.hide() #could also change this to change sprite
 
@@ -349,6 +362,7 @@ func _on_VAreaAOE_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.explosive = true
 				tower.AOE_percent += 0.1 #change this
 				if tower.AOE_percent > 0.25:
@@ -483,6 +497,8 @@ func _on_BigArea_mouse_exited():
 			current_menu.hide()
 			$Target.hide()
 			$Delete.hide()
+			if tower != null and !moveMode:
+				tower.show_range(false)
 
 
 func _on_Text_mouse_entered():
@@ -523,6 +539,7 @@ func _on_VAreaP1_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				current_menu = $PUpgradeMenu/P2
 
 
@@ -534,6 +551,7 @@ func _on_VAreaBackribs_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				current_menu = $PUpgradeMenu/Backribs
 
 
@@ -545,6 +563,7 @@ func _on_VAreaNakedChicken_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				current_menu = $PUpgradeMenu/NakedChicken
 
 
@@ -556,6 +575,7 @@ func _on_VAreaAS_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.attack_speed_buff += 0.2
 				tower.buff_morsels()
 				if tower.attack_speed_buff > 0.3:
@@ -571,6 +591,7 @@ func _on_VAreaAD_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.damage_buff += 0.2
 				tower.buff_morsels()
 				if tower.damage_buff > 0.3:
@@ -586,6 +607,7 @@ func _on_VAreaUnit_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.max_babies += 1
 				$PUpgradeMenu/NakedChicken/VAreaUnit.hide()
 				$PUpgradeMenu/NakedChicken/OptionUnit.hide() #could also change this to change sprite
@@ -651,17 +673,19 @@ func _on_VAreaMove_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and !moveMode and event.is_action_released("Mouse"):
 			moveMode = true
+			tower.set_blue_range()
 	
 func _unhandled_input(event):
 	var counter = 0
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and moveMode and event.is_action_released("Mouse") and tower.inRange:
-			print(event.position)
-			tower.posOffset = event.position - tower.position + Vector2(0,60)
-			for m in tower.tower_morsels:
-				m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
-				counter += 1
+		if event.button_index == BUTTON_LEFT and moveMode and event.is_action_released("Mouse"):
+			if tower.inRange:
+				tower.posOffset = event.position - tower.position + Vector2(0,60)
+				for m in tower.tower_morsels:
+					m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
+					counter += 1
 			moveMode = false
+			tower.initializeRangePolygon()
 
 func _on_VAreaMove_mouse_entered():
 	$Text/MorselMove.show()
@@ -678,6 +702,7 @@ func _on_VAreaDelete_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
+				tower.show_range(false)
 				tower.queue_free()
 				reset()
 
