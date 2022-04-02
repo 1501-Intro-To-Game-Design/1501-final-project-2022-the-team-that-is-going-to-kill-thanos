@@ -99,6 +99,28 @@ func checkInCombat():
 		if not is_instance_valid(target):
 			on_combat_end()
 
+func red_glow():
+	var t = Timer.new()
+	t.set_wait_time(.1)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	$Sprite.self_modulate = Color(1, 0, 0, 1)
+	yield(t, "timeout")
+	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	t.queue_free()
+
+func green_glow():
+	var t = Timer.new()
+	t.set_wait_time(.2)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	$Sprite.self_modulate = Color(0, 1, 0, 1)
+	yield(t, "timeout")
+	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	t.queue_free()
+
 func battle_action(dmg):
 	change_health(-1 * dmg)
 
@@ -108,13 +130,17 @@ func change_health(change):
 	current_health += change
 	$Health.value = current_health
 	if(change < 0):
+		red_glow()
 		hasBeenHit = true
 		if(not inCombat and current_health > 0):
 			$RegenWait.start()
+	else:
+		green_glow()
 	$Health.value = current_health
 	if(current_health <= 0):
 		die()
 	if(current_health > max_health):
+		$RegenTimer.stop()
 		current_health = max_health
 
 func die():

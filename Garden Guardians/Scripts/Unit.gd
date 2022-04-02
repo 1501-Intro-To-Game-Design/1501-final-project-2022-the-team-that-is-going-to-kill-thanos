@@ -52,6 +52,7 @@ export var num_spawn_on_death = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$AnimationPlayer.playback_speed = util.g_speed
 	max_speed *= util.g_speed
 	attackSpeed /= util.g_speed
 	rng.randomize()
@@ -80,9 +81,11 @@ func _process(delta):
 	#MOVING STUFF
 	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2: #if youve arrived
 		moving = false
+		$AnimationPlayer.play("Idle")
 	velocity.x = 0
 	if moving:  
 		position += direction.normalized() * current_speed * delta * 2
+		$AnimationPlayer.play("Move")
 
 func ranged_attack():
 	if enemies.size() > 0:
@@ -155,13 +158,17 @@ func setTarget(body):
 			if body.target == self or body.is_in_group("Player"): #if target's target is me
 				inCombat = true
 				target = body
+				$AnimationPlayer.play("RESET")
 				$Attack.start()
+				$AnimationPlayer.play("Attack")
 				$Regen.stop()
 				$RegenWait.stop()
 		else:
 			inCombat = true
 			target = body
+			$AnimationPlayer.play("RESET")
 			$Attack.start()
+			$AnimationPlayer.play("Attack")
 			$Regen.stop()
 			$RegenWait.stop()
 	else: #if I'm in combat
@@ -183,6 +190,9 @@ func _on_Attack_timeout():
 			target.battle_action(damage)
 		else:
 			target.battle_action(target.max_health)
+		if target != null:
+			$AnimationPlayer.play("RESET")
+			$AnimationPlayer.play("Attack")
 			
 func on_combat_end():
 	inCombat = false
@@ -190,11 +200,14 @@ func on_combat_end():
 	if(self.is_in_group("Morsels")):
 		$RegenWait.start()
 	for enemy in inactive_targets:
-		checkType(enemy)
-		enemy.checkType(self)
+		if(is_instance_valid(enemy)):
+			checkType(enemy)
+			enemy.checkType(self)
 	can_attack = false
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed*1.5)
+	$AnimationPlayer.play("RESET")
+	$AnimationPlayer.play("Move")
 	
 
 func battle_action(dmg):
@@ -206,6 +219,10 @@ func change_health(change):
 	if(armored and change < 0):
 		change = change - 0.2
 		change = (0.7 * change)
+	if(change < 0):
+		red_glow()
+	else:
+		green_glow()
 	current_health += change
 	$Health.value = current_health
 	if(current_health <= 0):
@@ -334,3 +351,25 @@ func _on_Area2D_area_entered(area):
 	if item.is_in_group("Resources"):
 		if("Resources" in groups_to_check):
 			setResourceTarget(area)
+
+func red_glow():
+	var t = Timer.new()
+	t.set_wait_time(.1)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	$Sprite.self_modulate = Color(1, 0, 0, 1)
+	yield(t, "timeout")
+	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	t.queue_free()
+
+func green_glow():
+	var t = Timer.new()
+	t.set_wait_time(.2)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	$Sprite.self_modulate = Color(0, 1, 0, 1)
+	yield(t, "timeout")
+	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	t.queue_free()
