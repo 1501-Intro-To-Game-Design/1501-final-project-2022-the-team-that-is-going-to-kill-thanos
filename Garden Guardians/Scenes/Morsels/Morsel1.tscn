@@ -13,7 +13,7 @@
 extents = Vector2( 423.5, 334 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 423.5, 333.5 )
+extents = Vector2( 156, 124 )
 
 [node name="Unit2" groups=["Morsels"] instance=ExtResource( 1 )]
 scale = Vector2( 0.05, 0.05 )
@@ -42,7 +42,7 @@ margin_top = -480.0
 margin_right = 260.0
 margin_bottom = -405.0
 
-[node name="CollisionShape2D" parent="." index="5"]
-position = Vector2( 8.5, -31.5 )
+[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
+position = Vector2( 50, 10 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )

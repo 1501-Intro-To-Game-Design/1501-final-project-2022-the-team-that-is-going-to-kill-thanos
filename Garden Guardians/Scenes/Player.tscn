@@ -12,14 +12,14 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "Standing",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "Standing",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
@@ -45,7 +45,7 @@ bg_color = Color( 0.956863, 0.352941, 0.352941, 1 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 scale = Vector2( 0.5, 0.5 )
-z_index = 4
+z_index = 3
 script = ExtResource( 1 )
 speed = 20
 max_health = 20
@@ -72,7 +72,7 @@ collision_mask = 32769
 scale = Vector2( 1.00249, 1 )
 shape = SubResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Hitbox"]]
 shape = SubResource( 3 )
 
 [node name="Respawn" type="Timer" parent="."]

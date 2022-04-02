@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack1_Sound.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack3_Sound.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack2_Sound.wav" type="AudioStream" id=3]
+[ext_resource path="res://Scenes/EnemyScenes/Toothpick.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 104, 116 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 76 )
+
+[node name="Unit2" groups=["Enemies"] instance=ExtResource( 5 )]
+scale = Vector2( 0.25, 0.25 )
+groups_to_check = [ "Morsels", "Traps", "Player" ]
+max_health = 3.0
+damage = 1.5
+attackSpeed = 1.2
+spawned_num_wood = 3
+sounds = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ]
+max_speed = 60
+spawns_on_death = true
+death_spawn_scene = ExtResource( 4 )
+num_spawn_on_death = 3
+
+[node name="Sprite" parent="." index="0"]
+self_modulate = Color( 1, 0.701961, 0, 1 )
+scale = Vector2( 1.5625, 2.4375 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, 8 )
+shape = SubResource( 1 )
+
+[node name="Health" parent="." index="4"]
+margin_left = -92.0
+margin_top = -136.0
+margin_right = 98.0
+margin_bottom = -101.0
+
+[node name="CollisionShape2D" parent="." index="5"]
+shape = SubResource( 2 )

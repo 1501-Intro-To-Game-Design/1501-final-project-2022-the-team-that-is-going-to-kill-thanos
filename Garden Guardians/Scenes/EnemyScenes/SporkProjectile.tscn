@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/SuperScenes/Projectile.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6, 6.5 )
+
+[node name="Projectile" instance=ExtResource( 1 )]
+speed = 115
+damage = 4.0
+
+[node name="Sprite" parent="." index="0"]
+modulate = Color( 1, 1, 1, 1 )
+self_modulate = Color( 0.709804, 0, 1, 1 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 0, -0.5 )
+shape = SubResource( 1 )

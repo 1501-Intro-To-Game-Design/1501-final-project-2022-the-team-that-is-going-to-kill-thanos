@@ -11,10 +11,10 @@
 [ext_resource path="res://Scenes/Morsels/NakedChickenProjectile.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 410, 330 )
+extents = Vector2( 648, 660 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 410, 330 )
+extents = Vector2( 368, 395 )
 
 [sub_resource type="CircleShape2D" id=3]
 radius = 4720.17
@@ -36,7 +36,7 @@ scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 10, -30 )
+position = Vector2( 19.9999, 90 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
@@ -46,8 +46,8 @@ margin_top = -480.0
 margin_right = 260.0
 margin_bottom = -405.0
 
-[node name="CollisionShape2D" parent="." index="5"]
-position = Vector2( 9.99996, -30 )
+[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
+position = Vector2( 19.9999, 132.5 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )
 

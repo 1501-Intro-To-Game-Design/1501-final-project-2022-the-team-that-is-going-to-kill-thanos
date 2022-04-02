@@ -103,9 +103,14 @@ func battle_action(dmg):
 	change_health(-1 * dmg)
 
 func change_health(change):
-	current_health += change;
+	var rand_num = rng.randf_range(0, 0.12)
+	change = change + (change * rand_num)
+	current_health += change
+	$Health.value = current_health
 	if(change < 0):
 		hasBeenHit = true
+		if(not inCombat and current_health > 0):
+			$RegenWait.start()
 	$Health.value = current_health
 	if(current_health <= 0):
 		die()

@@ -14,7 +14,6 @@ tower = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1451, 225 )
-movingSounds = null
 
 [node name="Plate" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1421, 790 )

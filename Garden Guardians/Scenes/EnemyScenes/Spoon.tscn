@@ -14,6 +14,7 @@ extents = Vector2( 65, 237.5 )
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 1 )]
 scale = Vector2( 0.2, 0.198473 )
 z_index = 2
+armored = true
 groups_to_check = [ "Morsels", "Traps", "Player" ]
 attackSpeed = 1.4
 spawned_num_metal = 1
@@ -33,6 +34,6 @@ margin_top = -275.0
 margin_right = 95.0
 margin_bottom = -240.0
 
-[node name="CollisionShape2D" parent="." index="5" groups=["Enemies"]]
+[node name="CollisionShape2D" parent="." index="5" groups=["Enemies", "Hitbox"]]
 position = Vector2( -7.15256e-06, 2.49998 )
 shape = SubResource( 2 )

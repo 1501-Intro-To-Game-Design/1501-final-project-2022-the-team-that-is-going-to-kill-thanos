@@ -10,6 +10,7 @@
 extents = Vector2( 50.5, 39 )
 
 [node name="Tower" type="Node2D" groups=["Towers"]]
+z_index = 4
 script = ExtResource( 2 )
 projectileScene = ExtResource( 3 )
 morsalScene = ExtResource( 4 )

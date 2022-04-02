@@ -40,6 +40,6 @@ margin_top = -135.0
 margin_right = 95.0
 margin_bottom = -100.0
 
-[node name="CollisionShape2D" parent="." index="5"]
+[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
 position = Vector2( -3.57628e-06, -9.53674e-06 )
 shape = SubResource( 2 )

@@ -5,6 +5,7 @@ export(PackedScene) var importPathScene
 export(Array, PackedScene) var enemyScene1
 export(Array, PackedScene) var enemyScene2
 export(Array, PackedScene) var enemyScene3
+export(Array, PackedScene) var enemyScene4
 var enemyPathManager = []
 
 var wave = 0
@@ -95,6 +96,12 @@ func add_enemy_to_path(spawner, spawned):
 		if i[0] == spawner:
 			enemyPathManager[enemyPathManager.size()-1][1].addToOffset(i[1].get_offset() + 20)
 			enemyPathManager[enemyPathManager.size()-1][0].position = enemyPathManager[enemyPathManager.size()-1][1].getPathLocation()
+
+func add_to_offset(enemy_node, amount):
+	for i in enemyPathManager:
+		if i[0] == enemy_node:
+			i[1].addToOffset(amount)
+			i[0].position = i[1].getPathLocation()
 
 #Adds a new enemy and path when the timer timeouts
 func _on_EnemySpawn_timeout():

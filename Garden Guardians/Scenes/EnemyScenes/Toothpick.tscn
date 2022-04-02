@@ -17,6 +17,7 @@ scale = Vector2( 0.15, 0.15 )
 z_index = 3
 groups_to_check = [ "Morsels", "Traps", "Player" ]
 max_health = 1.5
+damage = 1.0
 spawned_num_wood = 1
 sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 max_speed = 70
@@ -34,6 +35,6 @@ margin_top = -273.0
 margin_right = 80.0
 margin_bottom = -240.0
 
-[node name="CollisionShape2D" parent="." index="5"]
+[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
 position = Vector2( -3.33333, -53.3333 )
 shape = SubResource( 2 )

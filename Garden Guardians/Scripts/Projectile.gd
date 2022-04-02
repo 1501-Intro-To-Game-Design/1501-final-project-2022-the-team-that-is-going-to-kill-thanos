@@ -23,11 +23,19 @@ func _process(delta):
 		position += direction * speed * delta
 	else:
 		queue_free()
-		
+
+func _on_AOE2D_area_exited(area):
+	if(area.get_parent().is_in_group("Enemies")):
+		enemies.remove(enemies.find(area))
 
 
-func _on_Area2D_area_entered(area):
-	if(area == target):
+func _on_AOE2D_area_entered(area):
+	if(area.get_parent().is_in_group("Enemies")):
+		enemies.append(area)
+
+
+func _on_Area2D_body_entered(body):
+	if(body == target.get_parent()):
 		target.get_parent().change_health(-1 * damage)
 		if stun:
 			var my_random_number = rng.randf_range(0.00, 1.00)
@@ -38,13 +46,3 @@ func _on_Area2D_area_entered(area):
 				if not (enemy == target):
 					enemy.get_parent().change_health(-1 * (damage * AOE_percent))
 		queue_free()
-
-
-func _on_AOE2D_area_exited(area):
-	if(area.get_parent().is_in_group("Enemies")):
-		enemies.remove(enemies.find(area))
-
-
-func _on_AOE2D_area_entered(area):
-	if(area.get_parent().is_in_group("Enemies")):
-		enemies.append(area)
