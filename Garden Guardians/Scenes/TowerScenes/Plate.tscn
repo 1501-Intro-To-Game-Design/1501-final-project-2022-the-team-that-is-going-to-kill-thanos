@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
@@ -33,6 +33,9 @@ extents = Vector2( 59, 68.8333 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 11.5, 8.16667 )
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 118.068
 
 [node name="Plate" type="Node2D"]
 script = ExtResource( 2 )
@@ -1877,6 +1880,12 @@ position = Vector2( -40, 54 )
 position = Vector2( 81.5, 40.8333 )
 shape = SubResource( 6 )
 
+[node name="PlayerArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+position = Vector2( 0, -8 )
+shape = SubResource( 8 )
+
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_input_event"]
 [connection signal="mouse_entered" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_mouse_entered"]
@@ -1961,3 +1970,5 @@ shape = SubResource( 6 )
 [connection signal="input_event" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_input_event"]
 [connection signal="mouse_entered" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_entered"]
 [connection signal="mouse_exited" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_exited"]
+[connection signal="body_entered" from="PlayerArea" to="." method="_on_PlayerArea_body_entered"]
+[connection signal="body_exited" from="PlayerArea" to="." method="_on_PlayerArea_body_exited"]

@@ -24,6 +24,6 @@ sounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-position = Vector2( 0, 4 )
+position = Vector2( -1, -24 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 8 )

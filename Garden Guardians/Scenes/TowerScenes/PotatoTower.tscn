@@ -17,7 +17,7 @@ combinable = true
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-position = Vector2( 0, -6 )
+position = Vector2( -4, -32 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 3 )
 

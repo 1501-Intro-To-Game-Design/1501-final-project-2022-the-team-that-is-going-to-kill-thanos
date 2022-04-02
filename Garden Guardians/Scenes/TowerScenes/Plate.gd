@@ -1,7 +1,7 @@
 extends Node2D
 
 var tower = null #tower will be the tower assigned to this plate (needed for upgrading)
-
+var player_in_range = false
 var target_types = ["closest", "farthest", "lowest", "highest", "closest_end", "closest_start"]
 var target_index = 0
 var in_area = false
@@ -14,7 +14,7 @@ export (PackedScene) var grain_scene
 
 export (Resource) var upgradeSound
 
-export var y_spawn_offset = -50
+var y_spawn_offset = -23
 
 var current_menu
 var moveMode = false
@@ -111,13 +111,11 @@ func make_tower(tower_type):
 		ui.wood -= vegW[0]
 		ui.metal -= vegM[0]
 		ui.update()
-		y_spawn_offset = -5
 		tower = vegetable_scene.instance()
 		get_parent().add_child(tower)
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
-		y_spawn_offset = -50
 		return true
 	elif tower_type == "fruit" and fruitW[0] <= ui.wood and fruitM[0] <= ui.metal:
 		ui.wood -= fruitW[0]
@@ -713,3 +711,26 @@ func _on_VAreaDelete_mouse_entered():
 
 func _on_VAreaDelete_mouse_exited():
 	$Text/Delete.hide()
+
+
+func _on_PlayerArea_body_entered(body):
+	pass
+	#if(body.is_in_group("Player")):
+		#player_in_range = true
+		#current_menu.show()
+		#if not (tower == null):
+			#$Target.show()
+			#$Delete.show()
+			#tower.show_range(true)
+
+
+func _on_PlayerArea_body_exited(body):
+	pass
+	#if(body.is_in_group("Player")):
+		#player_in_range = false
+		#if current_menu != null:
+			#current_menu.hide()
+			#$Target.hide()
+			#$Delete.hide()
+			#if tower != null and !moveMode:
+				#tower.show_range(false)

@@ -16,7 +16,7 @@ projectileScene = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-position = Vector2( 0, -6 )
+position = Vector2( -2, -21 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 3 )
 

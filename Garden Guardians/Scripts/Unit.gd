@@ -133,7 +133,6 @@ func start_stun(duration):
 
 func checkType(body):
 	for group in body.get_groups():
-		print(group)
 		if group == "Traps" and "Traps" in groups_to_check:
 			body.applyEffects($Enemy)
 		if (group == "Morsels" and "Morsels" in groups_to_check) or (group == "Enemies" and "Enemies" in groups_to_check):
@@ -153,7 +152,7 @@ func setResourceTarget(body):
 func setTarget(body):
 	if not inCombat:
 		if body.inCombat: #if target is in combat
-			if body.target == self: #if target's target is me
+			if body.target == self or body.is_in_group("Player"): #if target's target is me
 				inCombat = true
 				target = body
 				$Attack.start()
