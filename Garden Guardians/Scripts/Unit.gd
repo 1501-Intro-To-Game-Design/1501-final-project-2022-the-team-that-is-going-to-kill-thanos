@@ -64,7 +64,6 @@ func _ready():
 	prepareAttackTimer()
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed + 1)
-		$RangedAttackAnimTimer.start()
 		pass
 
 func _go_To(loc): #This is just for when moarsals are told to go somewhere else
@@ -99,23 +98,30 @@ func ranged_attack():
 				lowest = distance
 				index = i
 		can_attack = false
+		var t = Timer.new()
+		$AnimationPlayer.play("RangedAttack")
+		t.set_wait_time(.2)
+		t.set_one_shot(true)
+		self.add_child(t)
+		t.start()
+		yield(t, "timeout")
+		t.queue_free()
 		if(ranged_morsel):
 			$RangedAttack.start(attackSpeed + 1)
-			$RangedAttackAnimTimer.start()
 		
-		var projectile = proj_scene.instance()
-		get_parent().add_child(projectile)
-		projectile.damage = damage/5
-		rng.randomize()
-		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
-		$AudioStreamPlayer2D.play()
-		projectile.position = $ShootPoint.get_global_position()
-		projectile.target = enemies[index]
+		if is_instance_valid(target):
+			var projectile = proj_scene.instance()
+			get_parent().add_child(projectile)
+			projectile.damage = damage/5
+			rng.randomize()
+			$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+			$AudioStreamPlayer2D.play()
+			projectile.position = $ShootPoint.get_global_position()
+			projectile.target = enemies[index]
 
 func checkInCombat():
 	if inCombat:
 		if(ranged_morsel):
-			$RangedAttackAnimTimer.stop()
 			$RangedAttack.stop()
 		if is_instance_valid(target):
 			if "Player" in target.get_groups():
@@ -167,6 +173,7 @@ func setTarget(body):
 				target = body
 				$AnimationPlayer.play("RESET")
 				$Attack.start()
+				$AnimationPlayer.stop()
 				$AnimationPlayer.play("Attack")
 				$Regen.stop()
 				$RegenWait.stop()
@@ -175,6 +182,7 @@ func setTarget(body):
 			target = body
 			$AnimationPlayer.play("RESET")
 			$Attack.start()
+			$AnimationPlayer.stop()
 			$AnimationPlayer.play("Attack")
 			$Regen.stop()
 			$RegenWait.stop()
@@ -199,6 +207,7 @@ func _on_Attack_timeout():
 			target.battle_action(target.max_health)
 		if target != null:
 			$AnimationPlayer.play("RESET")
+			$AnimationPlayer.stop()
 			$AnimationPlayer.play("Attack")
 			
 			
@@ -214,7 +223,6 @@ func on_combat_end():
 	can_attack = false
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed + 1)
-		$RangedAttackAnimTimer.start()
 	$AnimationPlayer.play("RESET")
 	if self.is_in_group("Morsels"):
 		$AnimationPlayer.play("Idle")
