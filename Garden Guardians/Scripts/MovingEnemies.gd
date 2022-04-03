@@ -123,7 +123,15 @@ func _on_EnemySpawn_timeout():
 		rng.randomize()
 		toPluck = rng.randi_range(0,enemys.size()-1)
 		addEnemyPath()
-		$EnemySpawn.start(dps.pop_at(toPluck) * 1.25) #1dp = wait 0.5 seconds
+		var temp = dps.pop_at(toPluck)
+		if temp == 1:#if its toothpick
+			$EnemySpawn.start(0.4) 
+		elif temp <= 3: #if its soilder
+			$EnemySpawn.start(1) 
+		else: #if its a big boy
+			$EnemySpawn.start(2.2) 
+
+		
 
 #Increases the path's offset and sets the enemy's position to the path's position
 func updateEnemyLocation(delta):
