@@ -63,7 +63,8 @@ func _ready():
 	prepareSpawnTimer()
 	prepareAttackTimer()
 	if ranged_morsel:
-		$RangedAttack.start(attackSpeed*1.5)
+		$RangedAttack.start(attackSpeed + 1)
+		$RangedAttackAnimTimer.start()
 
 func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 	destination = loc
@@ -97,7 +98,9 @@ func ranged_attack():
 				lowest = distance
 				index = i
 		can_attack = false
-		$RangedAttack.start(attackSpeed*1.5)
+		if(ranged_morsel):
+			$RangedAttack.start(attackSpeed + 1)
+			$RangedAttackAnimTimer.start()
 		
 		var projectile = proj_scene.instance()
 		get_parent().add_child(projectile)
@@ -110,6 +113,9 @@ func ranged_attack():
 
 func checkInCombat():
 	if inCombat:
+		if(ranged_morsel):
+			$RangedAttackAnimTimer.stop()
+			$RangedAttack.stop()
 		if is_instance_valid(target):
 			if "Player" in target.get_groups():
 				if not target.alive:
@@ -205,9 +211,10 @@ func on_combat_end():
 			enemy.checkType(self)
 	can_attack = false
 	if ranged_morsel:
-		$RangedAttack.start(attackSpeed*1.5)
+		$RangedAttack.start(attackSpeed + 1)
+		$RangedAttackAnimTimer.start()
 	$AnimationPlayer.play("RESET")
-	$AnimationPlayer.play("Move")
+	$AnimationPlayer.play("Idle")
 	
 
 func battle_action(dmg):
@@ -242,7 +249,9 @@ func change_health(change):
 		destroy()
 	if(current_health > max_health):
 		current_health = max_health
-	if(not inCombat and change < 0):
+		if not (self.is_in_group("Enemies")):
+			$RegenTimer.stop()
+	if(not inCombat and change < 0 and not(self.is_in_group("Enemies"))):
 		$RegenWait.start()
 		
 func get_percent_health():
@@ -373,3 +382,7 @@ func green_glow():
 	yield(t, "timeout")
 	$Sprite.self_modulate = Color(1, 1, 1, 1)
 	t.queue_free()
+
+
+func _on_RangedAttackAnimTimer_timeout():
+	$AnimationPlayer.play("RangedAttack")

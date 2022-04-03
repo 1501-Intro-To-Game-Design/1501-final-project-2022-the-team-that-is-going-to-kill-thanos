@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sausage.png-1dfdf35e9e6e410c168d42c12b2d0093.stex"
+path="res://.import/Rib.png-19c3e33222dc6b6abae7ae3cefac0d95.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Tower Sprites/Sausage.png"
-dest_files=[ "res://.import/Sausage.png-1dfdf35e9e6e410c168d42c12b2d0093.stex" ]
+source_file="res://Sprites/Morsal Sprites/Rib.png"
+dest_files=[ "res://.import/Rib.png-19c3e33222dc6b6abae7ae3cefac0d95.stex" ]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
 flags/filter=true
-flags/mipmaps=true
+flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true

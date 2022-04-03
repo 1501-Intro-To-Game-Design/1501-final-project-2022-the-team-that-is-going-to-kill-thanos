@@ -106,7 +106,7 @@ scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
-autoplay = "Move"
+autoplay = "Idle"
 anims/Attack = ExtResource( 10 )
 anims/Idle = SubResource( 3 )
 anims/Move = ExtResource( 9 )

@@ -5,7 +5,7 @@
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=4]
 [ext_resource path="res://Scenes/Morsels/Backribs.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Sprites/Tower Sprites/Rib_Tower.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Tower Sprites/RibTower.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
