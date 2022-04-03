@@ -433,13 +433,9 @@ func green_glow():
 
 
 func _on_RangedAttackAnimTimer_timeout():
-<<<<<<< Updated upstream
 	if(is_instance_valid($AnimationPlayer)):	
 		$AnimationPlayer.play("RangedAttack")
 	
-=======
-	$AnimationPlayer.play("RangedAttack")
-
 func posess():
 	remove_from_group("Enemies")
 	add_to_group("Traitor")
@@ -459,4 +455,3 @@ func posess():
 
 func _on_Area2D_body_entered(body):
 	checkType(body)
->>>>>>> Stashed changes

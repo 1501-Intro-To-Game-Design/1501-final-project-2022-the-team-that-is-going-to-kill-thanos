@@ -9,7 +9,7 @@
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 50.5, 39 )
 
-[node name="Tower" type="Node2D" groups=["Towers"]]
+[node name="Tower2" type="Node2D" groups=["Towers"]]
 z_index = 4
 script = ExtResource( 2 )
 projectileScene = ExtResource( 3 )
