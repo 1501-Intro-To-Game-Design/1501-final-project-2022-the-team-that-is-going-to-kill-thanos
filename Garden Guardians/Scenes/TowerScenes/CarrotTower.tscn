@@ -8,7 +8,6 @@
 radius = 200.0
 
 [node name="Tower" instance=ExtResource( 2 )]
-attack_cooldown = 4
 attacking_tower = true
 projectileScene = ExtResource( 1 )
 

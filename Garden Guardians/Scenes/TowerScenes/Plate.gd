@@ -953,7 +953,7 @@ func _on_VAreaPDP_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
-				tower.posession_DP_limit += 1
+				tower.posession_DP_limit += 2
 				$DUpgradeMenu/Butter/VAreaPDP.hide()
 				$DUpgradeMenu/Butter/OptionPDP.hide() #could also change this to change sprite
 

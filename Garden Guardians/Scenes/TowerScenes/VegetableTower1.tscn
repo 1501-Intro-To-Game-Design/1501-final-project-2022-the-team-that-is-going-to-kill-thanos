@@ -12,7 +12,6 @@ radius = 200.0
 extents = Vector2( 38, 19.5 )
 
 [node name="Tower" instance=ExtResource( 1 )]
-attack_cooldown = 4
 attacking_tower = true
 projectileScene = ExtResource( 2 )
 upgrade = ExtResource( 5 )
