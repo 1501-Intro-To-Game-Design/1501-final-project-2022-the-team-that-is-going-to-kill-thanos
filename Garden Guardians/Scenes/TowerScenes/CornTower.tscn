@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/TowerScenes/PretzelTower.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 200.0
+radius = 225.0
 
 [node name="Tower" instance=ExtResource( 1 )]
 self_modulate = Color( 0.921569, 0.74902, 0.121569, 1 )

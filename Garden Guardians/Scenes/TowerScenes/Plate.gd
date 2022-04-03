@@ -24,10 +24,10 @@ var vegW = [9, 12, 15, 5, 10, 4, 5] #SC, SD, ACD
 var vegM = [2, 3, 5, 7, 0, 2, 2]
 var fruitW = [12, 15, 17, 5, 10, 4, 2] #EC, AR, AOE
 var fruitM = [0, 0, 1, 5, 10, 1, 3 ]
-var grainW = [4, 8, 13, 10, 4, 7, 13] #TEMP TD, DOT, PB
-var grainM = [5, 7, 11, 8, 3, 8, 10]
-var dairyW = [11, 14, 17, 20, 25, 14, 18] #TEMP PDP, PC, SE
-var dairyM = [7, 9, 12, 15, 17, 8, 13]
+var grainW = [4, 8, 13, 10, 4, 0, 25] #TEMP TD, DOT, PB
+var grainM = [5, 7, 11, 8, 1, 6, 0]
+var dairyW = [11, 18, 24, 10, 0, 5, 8] #TEMP PDP, PC, SE
+var dairyM = [7, 10, 15, 17, 12, 4, 1]
 var proW = [0, 0, 0, 6, 5, 0, 20] #AttackSpeed, Damage, ExtraUnit
 var proM = [4, 3, 5, 2, 1, 4, 10]
 
@@ -827,9 +827,10 @@ func _on_VAreaDOT_input_event(viewport, event, shape_idx):
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
-				tower.DOTDamage += 0.05
-				$GUpgradeMenu/Pretzel/VAreaDOT.hide()
-				$GUpgradeMenu/Pretzel/OptionDOT.hide() #could also change this to change sprite
+				tower.DOTDamage += 0.025
+				if tower.DOTDamage >= 0.125:
+					$GUpgradeMenu/Pretzel/VAreaDOT.hide()
+					$GUpgradeMenu/Pretzel/OptionDOT.hide() #could also change this to change sprite
 
 
 func _on_VAreaPB_input_event(viewport, event, shape_idx):
@@ -841,7 +842,7 @@ func _on_VAreaPB_input_event(viewport, event, shape_idx):
 				$Target.hide()
 				$Delete.hide()
 				tower.pullBackChance += 0.1
-				if tower.pullBackChance >= 0.3:
+				if tower.pullBackChance >= 0.2:
 					$GUpgradeMenu/Pretzel/VAreaPB.hide()
 					$GUpgradeMenu/Pretzel/OptionPB.hide() #could also change this to change sprite
 
