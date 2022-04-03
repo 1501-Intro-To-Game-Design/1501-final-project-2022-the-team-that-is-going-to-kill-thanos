@@ -46,6 +46,9 @@ show_behind_parent = true
 z_index = -1
 color = Color( 0.929412, 0.635294, 0.486275, 1 )
 
+[node name="AbilityCooldown" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_entered" from="Range" to="." method="_on_Range_area_entered"]
 [connection signal="area_exited" from="Range" to="." method="_on_Range_area_exited"]
 [connection signal="mouse_entered" from="Range" to="." method="_on_Range_mouse_entered"]
@@ -54,3 +57,4 @@ color = Color( 0.929412, 0.635294, 0.486275, 1 )
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_Cooldown_timeout"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
+[connection signal="timeout" from="AbilityCooldown" to="." method="_on_AbilityCooldown_timeout"]

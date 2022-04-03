@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Sprites/Xolonium-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Sounds/Burbs/Foley/Build_and_Upgrade_Sound.wav" type="AudioStream" id=11]
 [ext_resource path="res://Scenes/TowerScenes/RiceTower.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/TowerScenes/MilkTower.tscn" type="PackedScene" id=13]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 68.5, 20 )
@@ -21,6 +22,9 @@ extents = Vector2( 14, 14.5 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 15.3333, 15 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 15.6667, 15.6667 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 26, 10.4375 )
@@ -43,6 +47,24 @@ extents = Vector2( 22, 22.5 )
 [sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 21.5, 22.5 )
 
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 21.5, 21.5 )
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 22.5, 22.5 )
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 23, 22.5 )
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 22, 23 )
+
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 22, 22.5 )
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 21.5, 22.5 )
+
 [sub_resource type="DynamicFont" id=4]
 size = 10
 extra_spacing_bottom = -3
@@ -51,19 +73,17 @@ font_data = ExtResource( 10 )
 [sub_resource type="DynamicFont" id=7]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 77.1667, 68.8333 )
+extents = Vector2( 95.3333, 68.8333 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 11.5, 8.16667 )
-
-[sub_resource type="CircleShape2D" id=8]
-radius = 118.068
 
 [node name="Plate" type="Node2D"]
 script = ExtResource( 2 )
 vegetable_scene = ExtResource( 5 )
 fruit_scene = ExtResource( 7 )
 protein_scene = ExtResource( 6 )
+dairy_scene = ExtResource( 13 )
 grain_scene = ExtResource( 12 )
 upgradeSound = ExtResource( 11 )
 
@@ -206,6 +226,32 @@ shape = SubResource( 8 )
 [node name="GBackground" type="Sprite" parent="TowerMenu/Grain"]
 position = Vector2( 70, 37 )
 scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Dairy" type="Node2D" parent="TowerMenu"]
+
+[node name="DSprite" type="Sprite" parent="TowerMenu/Dairy"]
+self_modulate = Color( 0.317647, 0.937255, 0.984314, 1 )
+position = Vector2( -73, 28 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="DArea" type="Area2D" parent="TowerMenu/Dairy"]
+
+[node name="DShape" type="CollisionShape2D" parent="TowerMenu/Dairy/DArea"]
+position = Vector2( -73, 37 )
+shape = SubResource( 15 )
+
+[node name="DBackground" type="Sprite" parent="TowerMenu/Dairy"]
+position = Vector2( -73, 37 )
+scale = Vector2( 0.489583, 0.489583 )
 z_index = -1
 texture = ExtResource( 3 )
 __meta__ = {
@@ -771,6 +817,130 @@ __meta__ = {
 }
 
 [node name="Spaghetti" type="Node2D" parent="GUpgradeMenu"]
+visible = false
+
+[node name="DUpgradeMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="D1" type="Node2D" parent="DUpgradeMenu"]
+visible = false
+
+[node name="OptionD1" type="Sprite" parent="DUpgradeMenu/D1"]
+self_modulate = Color( 0.156863, 0.929412, 0.14902, 1 )
+position = Vector2( -1.5, 44 )
+scale = Vector2( 0.671875, 0.6875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaD1" type="Area2D" parent="DUpgradeMenu/D1"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeD1" type="CollisionShape2D" parent="DUpgradeMenu/D1/VAreaD1"]
+position = Vector2( -1.5, 44.5 )
+shape = SubResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="D2" type="Node2D" parent="DUpgradeMenu"]
+visible = false
+
+[node name="OpitionParmesan" type="Sprite" parent="DUpgradeMenu/D2"]
+self_modulate = Color( 0.192157, 0.92549, 0.188235, 1 )
+position = Vector2( -1.5, 44.5 )
+scale = Vector2( 0.703125, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="VAreaParmesan" type="Area2D" parent="DUpgradeMenu/D2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeParmesan" type="CollisionShape2D" parent="DUpgradeMenu/D2/VAreaParmesan"]
+position = Vector2( -1.5, 44.5 )
+shape = SubResource( 17 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionButter" type="Sprite" parent="DUpgradeMenu/D2"]
+self_modulate = Color( 0.247059, 0.870588, 0.211765, 1 )
+position = Vector2( 51, 44.5 )
+scale = Vector2( 0.71875, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="VAreaButter" type="Area2D" parent="DUpgradeMenu/D2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeButter" type="CollisionShape2D" parent="DUpgradeMenu/D2/VAreaButter"]
+position = Vector2( 51, 44.5 )
+shape = SubResource( 18 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Butter" type="Node2D" parent="DUpgradeMenu"]
+visible = false
+
+[node name="OptionPDP" type="Sprite" parent="DUpgradeMenu/Butter"]
+self_modulate = Color( 0.211765, 0.917647, 0.254902, 1 )
+position = Vector2( -54, 44 )
+scale = Vector2( 0.6875, 0.71875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaPDP" type="Area2D" parent="DUpgradeMenu/Butter"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapePDP" type="CollisionShape2D" parent="DUpgradeMenu/Butter/VAreaPDP"]
+position = Vector2( -54, 44 )
+shape = SubResource( 19 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionPC" type="Sprite" parent="DUpgradeMenu/Butter"]
+self_modulate = Color( 0.384314, 0.937255, 0.286275, 1 )
+position = Vector2( -2, 43.5 )
+scale = Vector2( 0.6875, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="VAreaPC" type="Area2D" parent="DUpgradeMenu/Butter"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapePC" type="CollisionShape2D" parent="DUpgradeMenu/Butter/VAreaPC"]
+position = Vector2( -2, 43.5 )
+shape = SubResource( 20 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionSE" type="Sprite" parent="DUpgradeMenu/Butter"]
+self_modulate = Color( 0.443137, 0.952941, 0.278431, 1 )
+position = Vector2( 50.5, 43.5 )
+scale = Vector2( 0.671875, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="VAreaSE" type="Area2D" parent="DUpgradeMenu/Butter"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeSE" type="CollisionShape2D" parent="DUpgradeMenu/Butter/VAreaSE"]
+position = Vector2( 50.5, 43.5 )
+shape = SubResource( 21 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Parmesan" type="Node2D" parent="DUpgradeMenu"]
+visible = false
 
 [node name="Text" type="Node2D" parent="."]
 scale = Vector2( 1.5, 1.5 )
@@ -2392,6 +2562,398 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Milk" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Milk"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Build a Carton of Milk Dairy tower"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Milk"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Milk/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Milk/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cream" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Cream"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Cream tower, with an increased damage cap"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Cream"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Cream/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Cream/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Parmesan" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Parmesan"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a combinable Nacho Parmesan Cheese tower, with increased damage cap"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Parmesan"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Parmesan/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Parmesan/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Butter" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Butter"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Butter tower, which has faster growing damage and can posess enemies"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Butter"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Butter/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Butter/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButterPDP" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/ButterPDP"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Can posess stronger enemies"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/ButterPDP"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/ButterPDP/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/ButterPDP/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButterPC" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/ButterPC"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Decreases posession cooldown"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/ButterPC"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/ButterPC/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/ButterPC/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButterSE" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/ButterSE"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increases slowing effect"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/ButterSE"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/ButterSE/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "123"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/ButterSE/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "185"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Target" type="Node2D" parent="."]
 visible = false
 position = Vector2( -1, -10 )
@@ -2419,7 +2981,7 @@ __meta__ = {
 scale = Vector2( 1.5, 1.5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigArea"]
-position = Vector2( 16.1667, 18 )
+position = Vector2( -0.666667, 18 )
 shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -2462,6 +3024,9 @@ shape = SubResource( 8 )
 [connection signal="input_event" from="TowerMenu/Grain/GArea" to="." method="_on_GArea_input_event"]
 [connection signal="mouse_entered" from="TowerMenu/Grain/GArea" to="." method="_on_GArea_mouse_entered"]
 [connection signal="mouse_exited" from="TowerMenu/Grain/GArea" to="." method="_on_GArea_mouse_exited"]
+[connection signal="input_event" from="TowerMenu/Dairy/DArea" to="." method="_on_DArea_input_event"]
+[connection signal="mouse_entered" from="TowerMenu/Dairy/DArea" to="." method="_on_DArea_mouse_entered"]
+[connection signal="mouse_exited" from="TowerMenu/Dairy/DArea" to="." method="_on_DArea_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_input_event"]
 [connection signal="mouse_entered" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_mouse_entered"]
 [connection signal="mouse_exited" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_mouse_exited"]
@@ -2546,6 +3111,24 @@ shape = SubResource( 8 )
 [connection signal="input_event" from="GUpgradeMenu/Pretzel/VAreaPB" to="." method="_on_VAreaPB_input_event"]
 [connection signal="mouse_entered" from="GUpgradeMenu/Pretzel/VAreaPB" to="." method="_on_VAreaPB_mouse_entered"]
 [connection signal="mouse_exited" from="GUpgradeMenu/Pretzel/VAreaPB" to="." method="_on_VAreaPB_mouse_exited"]
+[connection signal="input_event" from="DUpgradeMenu/D1/VAreaD1" to="." method="_on_VAreaD1_input_event"]
+[connection signal="mouse_entered" from="DUpgradeMenu/D1/VAreaD1" to="." method="_on_VAreaD1_mouse_entered"]
+[connection signal="mouse_exited" from="DUpgradeMenu/D1/VAreaD1" to="." method="_on_VAreaD1_mouse_exited"]
+[connection signal="input_event" from="DUpgradeMenu/D2/VAreaParmesan" to="." method="_on_VAreaParmesan_input_event"]
+[connection signal="mouse_entered" from="DUpgradeMenu/D2/VAreaParmesan" to="." method="_on_VAreaParmesan_mouse_entered"]
+[connection signal="mouse_exited" from="DUpgradeMenu/D2/VAreaParmesan" to="." method="_on_VAreaParmesan_mouse_exited"]
+[connection signal="input_event" from="DUpgradeMenu/D2/VAreaButter" to="." method="_on_VAreaButter_input_event"]
+[connection signal="mouse_entered" from="DUpgradeMenu/D2/VAreaButter" to="." method="_on_VAreaButter_mouse_entered"]
+[connection signal="mouse_exited" from="DUpgradeMenu/D2/VAreaButter" to="." method="_on_VAreaButter_mouse_exited"]
+[connection signal="input_event" from="DUpgradeMenu/Butter/VAreaPDP" to="." method="_on_VAreaPDP_input_event"]
+[connection signal="mouse_entered" from="DUpgradeMenu/Butter/VAreaPDP" to="." method="_on_VAreaPDP_mouse_entered"]
+[connection signal="mouse_exited" from="DUpgradeMenu/Butter/VAreaPDP" to="." method="_on_VAreaPDP_mouse_exited"]
+[connection signal="input_event" from="DUpgradeMenu/Butter/VAreaPC" to="." method="_on_VAreaPC_input_event"]
+[connection signal="mouse_entered" from="DUpgradeMenu/Butter/VAreaPC" to="." method="_on_VAreaPC_mouse_entered"]
+[connection signal="mouse_exited" from="DUpgradeMenu/Butter/VAreaPC" to="." method="_on_VAreaPC_mouse_exited"]
+[connection signal="input_event" from="DUpgradeMenu/Butter/VAreaSE" to="." method="_on_VAreaSE_input_event"]
+[connection signal="mouse_entered" from="DUpgradeMenu/Butter/VAreaSE" to="." method="_on_VAreaSE_mouse_entered"]
+[connection signal="mouse_exited" from="DUpgradeMenu/Butter/VAreaSE" to="." method="_on_VAreaSE_mouse_exited"]
 [connection signal="gui_input" from="Target/Text" to="." method="_on_Text_gui_input"]
 [connection signal="mouse_entered" from="Target/Text" to="." method="_on_Text_mouse_entered"]
 [connection signal="mouse_exited" from="Target/Text" to="." method="_on_Text_mouse_exited"]

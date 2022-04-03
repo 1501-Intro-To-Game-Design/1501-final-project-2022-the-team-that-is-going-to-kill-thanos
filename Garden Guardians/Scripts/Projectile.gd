@@ -5,9 +5,11 @@ var rng = RandomNumberGenerator.new()
 var target = null
 export var speed = 20
 export var damage = 2.0
+export var damageCap = -1.000
 export var stun = false
 export var explosive = false
 export var field = false
+export var piercing = false
 var stun_chance = 0.15
 var stun_duration = 0.75
 var enemies = []
@@ -47,25 +49,31 @@ func _on_AOE2D_area_entered(area):
 
 
 func _on_Area2D_body_entered(body):
-	if(body == target.get_parent()):
-		target.get_parent().change_health(-1 * damage)
-		var pullBack
-		for i in target.get_parent().pullingBack:
-			if i[1] == true:
-				pullBack = true
-		if stun and not pullBack:
-			var my_random_number = rng.randf_range(0.00, 1.00)
-			if my_random_number <= stun_chance:
-				target.get_parent().start_stun(stun_duration)
-		if explosive:
-			for enemy in enemies:
-				if not (enemy == target):
-					enemy.get_parent().change_health(-1 * (damage * AOE_percent))
-		if field:
-			var initField = effectField.instance()
-			initField.position = position
-			initFieldStats(initField)
-			get_parent().add_child(initField)
+	if is_instance_valid(target.get_parent()):
+		if(body == target.get_parent()):
+			if piercing:
+				target.get_parent().change_health(-1 * damage, false, true)
+			else:
+				target.get_parent().change_health(-1 * damage)
+			var pullBack
+			for i in target.get_parent().pullingBack:
+				if i[1] == true:
+					pullBack = true
+			if stun and not pullBack:
+				var my_random_number = rng.randf_range(0.00, 1.00)
+				if my_random_number <= stun_chance:
+					target.get_parent().start_stun(stun_duration)
+			if explosive:
+				for enemy in enemies:
+					if not (enemy == target):
+						enemy.get_parent().change_health(-1 * (damage * AOE_percent))
+			if field:
+				var initField = effectField.instance()
+				initField.position = position
+				initFieldStats(initField)
+				get_parent().add_child(initField)
+			queue_free()
+	else:
 		queue_free()
 
 func initTowerStats():

@@ -26,8 +26,8 @@ var fruitW = [12, 15, 17, 5, 10, 4, 2] #EC, AR, AOE
 var fruitM = [0, 0, 1, 5, 10, 1, 3 ]
 var grainW = [4, 8, 13, 10, 4, 7, 13] #TEMP TD, DOT, PB
 var grainM = [5, 7, 11, 8, 3, 8, 10]
-var dairyW = [11]
-var dairyM = [7]
+var dairyW = [11, 14, 17, 20, 25, 14, 18] #TEMP PDP, PC, SE
+var dairyM = [7, 9, 12, 15, 17, 8, 13]
 var proW = [0, 0, 0, 6, 5, 0, 20] #AttackSpeed, Damage, ExtraUnit
 var proM = [4, 3, 5, 2, 1, 4, 10]
 
@@ -80,6 +80,21 @@ func _ready():
 	$Text/NakedChickenAD/NinePatchRect/MetalCost.text = String(proM[5])
 	$Text/NakedChickenUnit/NinePatchRect/WoodCost.text = String(proW[6])
 	$Text/NakedChickenUnit/NinePatchRect/MetalCost.text = String(proM[6])
+	
+	$Text/Rice/NinePatchRect/WoodCost.text = String(grainW[0])
+	$Text/Rice/NinePatchRect/MetalCost.text = String(grainM[0])
+	$Text/Corn/NinePatchRect/WoodCost.text = String(grainW[1])
+	$Text/Corn/NinePatchRect/MetalCost.text = String(grainM[1])
+	$Text/Spaghetti/NinePatchRect/WoodCost.text = String(grainW[2])
+	$Text/Spaghetti/NinePatchRect/MetalCost.text = String(grainM[2])
+	$Text/Pretzel/NinePatchRect/WoodCost.text = String(grainW[3])
+	$Text/Pretzel/NinePatchRect/MetalCost.text = String(grainM[3])
+	$Text/PretzelTD/NinePatchRect/WoodCost.text = String(grainW[4])
+	$Text/PretzelTD/NinePatchRect/MetalCost.text = String(grainM[4])
+	$Text/PretzelDOT/NinePatchRect/WoodCost.text = String(grainW[5])
+	$Text/PretzelDOT/NinePatchRect/MetalCost.text = String(grainM[5])
+	$Text/PretzelPB/NinePatchRect/WoodCost.text = String(grainW[6])
+	$Text/PretzelPB/NinePatchRect/MetalCost.text = String(grainM[6])
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -871,3 +886,143 @@ func _on_VAreaPB_mouse_entered():
 
 func _on_VAreaPB_mouse_exited():
 	$Text/PretzelPB.hide()
+
+
+func _on_DArea_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = make_tower("dairy")
+			if worked:
+				current_menu.hide()
+				$DUpgradeMenu.show()
+				current_menu = $DUpgradeMenu/D1
+
+
+func _on_VAreaD1_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.upgrade, dairyW[1], dairyM[1]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $DUpgradeMenu/D2
+
+
+func _on_VAreaParmesan_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.upgrade, dairyW[2], dairyM[2]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $DUpgradeMenu/Parmesan
+
+
+func _on_VAreaButter_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.offshoot_upgrade, dairyW[3], dairyM[3]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $DUpgradeMenu/Butter
+
+
+func _on_VAreaPDP_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(dairyW[4], dairyM[4]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.posession_DP_limit += 1
+				$DUpgradeMenu/Butter/VAreaPDP.hide()
+				$DUpgradeMenu/Butter/OptionPDP.hide() #could also change this to change sprite
+
+
+func _on_VAreaPC_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(dairyW[5], dairyM[5]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.ability_cooldown -= 1.5
+				if tower.ability_cooldown <= 5.5:
+					$DUpgradeMenu/Butter/VAreaPC.hide()
+					$DUpgradeMenu/Butter/OptionPC.hide() #could also change this to change sprite
+
+
+func _on_VAreaSE_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(dairyW[6], dairyM[6]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.slowing_tower = true
+				tower.towerSlowEffect += 0.1
+				if tower.towerSlowEffect >= 0.2:
+					$DUpgradeMenu/Butter/VAreaSE.hide()
+					$DUpgradeMenu/Butter/OptionSE.hide() #could also change this to change sprite
+
+func _on_DArea_mouse_entered():
+	$Text/Milk.show()
+
+
+func _on_DArea_mouse_exited():
+	$Text/Milk.hide()
+
+
+func _on_VAreaD1_mouse_entered():
+	$Text/Cream.show()
+
+
+func _on_VAreaD1_mouse_exited():
+	$Text/Cream.hide()
+
+
+func _on_VAreaParmesan_mouse_entered():
+	$Text/Parmesan.show()
+
+
+func _on_VAreaParmesan_mouse_exited():
+	$Text/Parmesan.hide()
+
+
+func _on_VAreaButter_mouse_entered():
+	$Text/Butter.show()
+
+
+func _on_VAreaButter_mouse_exited():
+	$Text/Butter.hide()
+
+
+func _on_VAreaPDP_mouse_entered():
+	$Text/ButterPDP.show()
+
+
+func _on_VAreaPDP_mouse_exited():
+	$Text/ButterPDP.hide()
+
+
+func _on_VAreaPC_mouse_entered():
+	$Text/ButterPC.show()
+
+
+func _on_VAreaPC_mouse_exited():
+	$Text/ButterPC.hide()
+
+
+func _on_VAreaSE_mouse_entered():
+	$Text/ButterSE.show()
+
+
+func _on_VAreaSE_mouse_exited():
+	$Text/ButterSE.hide()

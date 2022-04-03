@@ -18,7 +18,7 @@ radius = 430.116
 scale = Vector2( 0.2, 0.2 )
 ranged_morsel = true
 proj_scene = ExtResource( 4 )
-groups_to_check = [ "Morsels", "Traps", "Player" ]
+groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 damage = 4.0
 attackSpeed = 1.2
 spawned_num_metal = 2
@@ -30,7 +30,6 @@ scale = Vector2( 2.53125, 1.20313 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( -7.15256e-06, 2.08616e-06 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
@@ -41,7 +40,6 @@ margin_bottom = -70.0
 
 [node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
 position = Vector2( -4.76837e-06, 3.57628e-06 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="Range2" type="Area2D" parent="." index="10"]

@@ -44,7 +44,7 @@ tracks/1/keys = {
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.15, 0.15 )
 z_index = 3
-groups_to_check = [ "Morsels", "Traps", "Player" ]
+groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 1.5
 damage = 1.0
 spawned_num_wood = 1
@@ -74,3 +74,5 @@ autoplay = "Move"
 anims/Attack = ExtResource( 7 )
 anims/Move = ExtResource( 6 )
 anims/RESET = SubResource( 3 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

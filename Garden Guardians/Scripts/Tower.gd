@@ -18,7 +18,10 @@ var AOE_percent = 0.0
 var can_attack = false
 var can_spawn = false
 export var attack_cooldown = 1.0
+export var ability_cooldown = 1.0
 export var spawn_cooldown = 1.0
+export var damageRampUp = 0.0
+export var towerSlowEffect = 0.0
 
 export var duration = 0
 export var slowEffect = 0.0
@@ -26,12 +29,21 @@ export var allyBuff = 0.0
 export var pullBackChance = 0.0
 export var DOTDamage = 0.0
 
+export var posession_DP_limit = 1
+
 var tower_morsels = []
 
 var targeted_enemies = []
+var slowed_enemies = []
+var posessedEnemy = null
 
 export var attacking_tower = false
 export var morsel_tower = false
+export var ramping_tower = false
+export var slowing_tower = false
+export var posessing_tower = false
+
+var incrementValue = 0
 
 var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 
@@ -74,6 +86,9 @@ func getstuff():
 func _ready():
 	spawn_cooldown /= util.g_speed
 	attack_cooldown /= util.g_speed
+	$AbilityCooldown.wait_time = ability_cooldown
+	$AbilityCooldown.one_shot = true
+	$AbilityCooldown.start()
 	rng.randomize()
 	if morsel_tower:
 		yield(get_tree().create_timer(0.1), "timeout")
@@ -90,6 +105,11 @@ func _process(_delta):
 	#detect closest enemy, and call attack function on it
 	if dragging and is_instance_valid(comb_node) and not (mouse_pos == null):
 		drag()
+	if posessing_tower:
+		if (not is_instance_valid(posessedEnemy)) or posessedEnemy == null:
+			posessedEnemy = null
+			if $AbilityCooldown.is_stopped() and $PosessCheck.is_stopped():
+				$AbilityCooldown.start()
 	if(attacking_tower and can_attack):
 		if enemies.size() > 0:
 			while(num_projectiles > targeted_enemies.size()):
@@ -165,7 +185,34 @@ func _process(_delta):
 			$AttackCooldown.start(attack_cooldown)
 			for i in range(targeted_enemies.size()):
 				attack(targeted_enemies[i])
+				if slowing_tower:
+					var checkSlowed = false
+					for j in slowed_enemies:
+						if is_instance_valid(j[0]):
+							if targeted_enemies[i].get_parent() == j[0]:
+								checkSlowed = true
+					if not checkSlowed:
+						slowed_enemies.append([targeted_enemies[i].get_parent(), targeted_enemies[i].get_parent().current_speed * towerSlowEffect, true])
+						targeted_enemies[i].get_parent().max_speed -= targeted_enemies[i].get_parent().current_speed * towerSlowEffect
+						targeted_enemies[i].get_parent().current_speed -= targeted_enemies[i].get_parent().current_speed * towerSlowEffect
+			if slowing_tower:
+				for i in slowed_enemies:
+					if is_instance_valid(i[0]):
+						var targeted = false
+						for j in targeted_enemies:
+							if is_instance_valid(j):
+								if i[0] == j.get_parent():
+									targeted = true
+						if not targeted:
+							if i[2] == true:
+								i[0].max_speed += i[1]
+								i[0].current_speed += i[1]
+								i[2] = false
+					else:
+						slowed_enemies.remove(slowed_enemies.find(i))
 			targeted_enemies.clear()
+		else:
+			incrementValue = 0
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
 			make_Baby()
@@ -183,6 +230,12 @@ func attack(enemy):
 	projectile.AOE_percent = AOE_percent
 	projectile.stun_chance = stun_chance
 	projectile.stun_duration = stun_duration
+	if ramping_tower:
+		projectile.damage += incrementValue
+		if projectile.damage > projectile.damageCap:
+			projectile.damage = projectile.damageCap
+		if projectile.damage < projectile.damageCap:
+			incrementValue += damageRampUp
 	rng.randomize()
 	$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 	$AudioStreamPlayer2D.play()
@@ -277,6 +330,16 @@ func _on_Cooldown_timeout(): #for attack timer
 func _on_Range_area_exited(area):
 	if(area.get_parent().is_in_group("Enemies")):
 		enemies.remove(enemies.find(area))
+	if slowing_tower:
+		for i in slowed_enemies:
+			if is_instance_valid(i[0]):
+				if area.get_parent() == i[0]:
+					if i[2] == true:
+						i[0].max_speed += i[1]
+						i[0].current_speed += i[1]
+					slowed_enemies.remove(slowed_enemies.find(i))
+			else:
+				slowed_enemies.remove(slowed_enemies.find(i))
 
 
 func _on_SpawnCooldown_timeout():
@@ -327,3 +390,32 @@ func set_blue_range():
 	$RangeCircle.set_polygon(rangePoints)
 	$RangeCircle.set_color(Color(0.25, 0.5, 1, 0.5))
 	$RangeCircle.visible = true
+
+
+func _on_AbilityCooldown_timeout():
+	if posessing_tower:
+		var posessed = false
+		if (not is_instance_valid(posessedEnemy)) or posessedEnemy == null:
+			for i in enemies:
+				if not posessed:
+					if is_instance_valid(i.get_parent()):
+						if (i.get_parent().spawned_num_wood + (i.get_parent().spawned_num_metal * 3)) <= posession_DP_limit:
+							i.get_parent().posess()
+							posessedEnemy = i.get_parent()
+							enemies.remove(enemies.find(i))
+							posessed = true
+			if not posessed:
+				$PosessCheck.start()
+
+
+func _on_PosessCheck_timeout():
+	var posessed = false
+	for i in enemies:
+		if not posessed:
+			if is_instance_valid(i.get_parent()):
+				if (i.get_parent().spawned_num_wood + (i.get_parent().spawned_num_metal * 3)) <= posession_DP_limit:
+					i.get_parent().posess()
+					posessedEnemy = i.get_parent()
+					enemies.remove(enemies.find(i))
+					posessed = true
+					$PosessCheck.stop()

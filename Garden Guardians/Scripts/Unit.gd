@@ -46,6 +46,7 @@ var tempMaxSpeed = 0
 var moving = false;
 var homeTower
 var morselNum
+var isTraitor = false
 
 signal dead
 signal alive
@@ -174,6 +175,8 @@ func checkType(body):
 		if (group == "Player" and "Player" in groups_to_check):
 			if body.alive:
 				setTarget(body)
+		if (group == "Traitor" and "Traitor" in groups_to_check):
+			setTarget(body)
 
 func setResourceTarget(body):
 	if not inCombat:
@@ -430,6 +433,30 @@ func green_glow():
 
 
 func _on_RangedAttackAnimTimer_timeout():
+<<<<<<< Updated upstream
 	if(is_instance_valid($AnimationPlayer)):	
 		$AnimationPlayer.play("RangedAttack")
 	
+=======
+	$AnimationPlayer.play("RangedAttack")
+
+func posess():
+	remove_from_group("Enemies")
+	add_to_group("Traitor")
+	groups_to_check = []
+	groups_to_check.append("Enemies")
+	emit_signal("dead")
+	isTraitor = true
+	current_speed *= -1
+	max_speed *= -1
+	tempMaxSpeed *= -1
+	tempSpeed *= -1
+	min_speed *= -1
+	$Sprite.set_modulate(Color(0.368627, 0.058824, 0.556863))
+	$Area2D.monitoring = false
+	$Area2D.monitoring = true
+
+
+func _on_Area2D_body_entered(body):
+	checkType(body)
+>>>>>>> Stashed changes
