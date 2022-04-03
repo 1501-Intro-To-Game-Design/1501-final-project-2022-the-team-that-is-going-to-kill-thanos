@@ -7,7 +7,7 @@ export var spawner = false
 export (PackedScene) var to_spawn
 export (PackedScene) var proj_scene
 export var spawn_cooldown = 1.0
-
+var original_mod
 var ranged_attacking = false
 var followPath
 
@@ -57,7 +57,9 @@ export var num_spawn_on_death = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimationPlayer.playback_speed = util.g_speed
+	original_mod = $Sprite.get_self_modulate()
+	if(is_instance_valid($AnimationPlayer)):
+		$AnimationPlayer.playback_speed = util.g_speed
 	max_speed *= util.g_speed
 	attackSpeed /= util.g_speed
 	rng.randomize()
@@ -90,11 +92,13 @@ func _process(delta):
 	#MOVING STUFF
 	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2.2: #if youve arrived
 		moving = false
-		$AnimationPlayer.play("Idle")
+		if(is_instance_valid($AnimationPlayer)):
+			$AnimationPlayer.play("Idle")
 	velocity.x = 0
 	if moving:  
 		position += direction.normalized() * current_speed * delta * 2
-		$AnimationPlayer.play("Move")
+		if(is_instance_valid($AnimationPlayer)):	
+			$AnimationPlayer.play("Move")
 	var checkAffected = false
 	for i in pullingBack:
 		if not is_instance_valid(i[0]):
@@ -114,7 +118,8 @@ func ranged_attack():
 				index = i
 		can_attack = false
 		var t = Timer.new()
-		$AnimationPlayer.play("RangedAttack")
+		if(is_instance_valid($AnimationPlayer)):
+			$AnimationPlayer.play("RangedAttack")
 		t.set_wait_time(.2)
 		t.set_one_shot(true)
 		self.add_child(t)
@@ -153,8 +158,6 @@ func checkInCombat():
 			current_speed = max_speed
 
 func _on_Enemy_body_entered(body):
-	if(body.is_in_group("Resources")):
-		print("is resource")
 	checkType(body)
 
 func start_stun(duration):
@@ -186,19 +189,21 @@ func setTarget(body):
 			if body.target == self or body.is_in_group("Player"): #if target's target is me
 				inCombat = true
 				target = body
-				$AnimationPlayer.play("RESET")
+				if(is_instance_valid($AnimationPlayer)):
+					$AnimationPlayer.play("RESET")
+					$AnimationPlayer.stop()
+					$AnimationPlayer.play("Attack")
 				$Attack.start()
-				$AnimationPlayer.stop()
-				$AnimationPlayer.play("Attack")
 				$Regen.stop()
 				$RegenWait.stop()
 		else:
 			inCombat = true
 			target = body
-			$AnimationPlayer.play("RESET")
+			if(is_instance_valid($AnimationPlayer)):
+				$AnimationPlayer.play("RESET")
+				$AnimationPlayer.play("Attack")
+				$AnimationPlayer.stop()
 			$Attack.start()
-			$AnimationPlayer.stop()
-			$AnimationPlayer.play("Attack")
 			$Regen.stop()
 			$RegenWait.stop()
 	else: #if I'm in combat
@@ -221,9 +226,10 @@ func _on_Attack_timeout():
 		else:
 			target.battle_action(target.max_health)
 		if target != null:
-			$AnimationPlayer.play("RESET")
-			$AnimationPlayer.stop()
-			$AnimationPlayer.play("Attack")
+			if(is_instance_valid($AnimationPlayer)):
+				$AnimationPlayer.play("RESET")
+				$AnimationPlayer.stop()
+				$AnimationPlayer.play("Attack")
 			
 			
 func on_combat_end():
@@ -238,12 +244,15 @@ func on_combat_end():
 	can_attack = false
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed + 1)
-	$AnimationPlayer.play("RESET")
+	if(is_instance_valid($AnimationPlayer)):
+		$AnimationPlayer.play("RESET")
 	if self.is_in_group("Morsels"):
-		$AnimationPlayer.play("Idle")
+		if(is_instance_valid($AnimationPlayer)):
+			$AnimationPlayer.play("Idle")
 		
 	elif self.is_in_group("Enemies"):
-		$AnimationPlayer.play("Move")
+		if(is_instance_valid($AnimationPlayer)):	
+			$AnimationPlayer.play("Move")
 		
 func yellow_glow():
 	var t = Timer.new()
@@ -251,9 +260,9 @@ func yellow_glow():
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
-	$Sprite.self_modulate = Color(1, .63, .06, 1)
+	$Sprite.self_modulate = Color(1, 0, 0, 1)
 	yield(t, "timeout")
-	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	$Sprite.self_modulate = original_mod
 	t.queue_free()	
 
 func battle_action(dmg):
@@ -387,13 +396,6 @@ func _on_Range2_area_exited(area):
 
 func _on_ResourceKillTimer_timeout():
 	#start animation + pause timer thing
-	var t = Timer.new()
-	t.set_wait_time(1)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	yield(t, "timeout")
-	t.queue_free()
 	target.get_parent().queue_free()
 	on_combat_end()
 
@@ -412,7 +414,7 @@ func red_glow():
 	t.start()
 	$Sprite.self_modulate = Color(1, 0, 0, 1)
 	yield(t, "timeout")
-	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	$Sprite.self_modulate = original_mod
 	t.queue_free()
 
 func green_glow():
@@ -421,12 +423,13 @@ func green_glow():
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
-	$Sprite.self_modulate = Color(0, 1, 0, 1)
+	$Sprite.self_modulate = Color(1, 0, 0, 1)
 	yield(t, "timeout")
-	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	$Sprite.self_modulate = original_mod
 	t.queue_free()
 
 
 func _on_RangedAttackAnimTimer_timeout():
-	$AnimationPlayer.play("RangedAttack")
+	if(is_instance_valid($AnimationPlayer)):	
+		$AnimationPlayer.play("RangedAttack")
 	
