@@ -65,6 +65,7 @@ func _ready():
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed + 1)
 		$RangedAttackAnimTimer.start()
+		pass
 
 func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 	destination = loc
@@ -80,7 +81,7 @@ func _process(delta):
 	if (not inCombat) and (can_attack) and (ranged_morsel):
 		ranged_attack() 
 	#MOVING STUFF
-	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2: #if youve arrived
+	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2.2: #if youve arrived
 		moving = false
 		$AnimationPlayer.play("Idle")
 	velocity.x = 0
@@ -200,6 +201,7 @@ func _on_Attack_timeout():
 			$AnimationPlayer.play("RESET")
 			$AnimationPlayer.play("Attack")
 			
+			
 func on_combat_end():
 	inCombat = false
 	$Attack.stop()
@@ -214,7 +216,12 @@ func on_combat_end():
 		$RangedAttack.start(attackSpeed + 1)
 		$RangedAttackAnimTimer.start()
 	$AnimationPlayer.play("RESET")
-	$AnimationPlayer.play("Idle")
+	if self.is_in_group("Morsels"):
+		$AnimationPlayer.play("Idle")
+		
+	elif self.is_in_group("Enemies"):
+		$AnimationPlayer.play("Move")
+		
 	
 
 func battle_action(dmg):
@@ -250,7 +257,7 @@ func change_health(change):
 	if(current_health > max_health):
 		current_health = max_health
 		if not (self.is_in_group("Enemies")):
-			$RegenTimer.stop()
+			$Regen.stop()
 	if(not inCombat and change < 0 and not(self.is_in_group("Enemies"))):
 		$RegenWait.start()
 		
@@ -386,3 +393,4 @@ func green_glow():
 
 func _on_RangedAttackAnimTimer_timeout():
 	$AnimationPlayer.play("RangedAttack")
+	

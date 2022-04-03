@@ -18,6 +18,7 @@ var dP = 0
 var budget = 0
 var endGate = false
 var toPluck = 0 
+var bossFight = false
 signal player_life_lost(livesLost)
 
 # Called when the node enters the scene tree for the first time.
@@ -47,13 +48,25 @@ func start_wave():
 		rng.randomize()
 		var value
 		var temp
-		if budget *0.75 >= dP and wave >= 3:
+		if wave > 4:
+			value = rng.randi_range(0, 2)
+			if value == 0:
+				bossFight = true
+			else:
+				bossFight = false
+		if budget *0.90 >= dP and wave >= 4 and bossFight:
+			value = rng.randi_range(0,enemyScene4.size()-1)
+			temp = enemyScene4[value].instance()
+			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			enemys.append(enemyScene4[value])
+		elif budget *0.65 >= dP and wave >= 3:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
 			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
 			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
 			enemys.append(enemyScene3[value])
-		elif budget *0.25 >= dP and wave >= 2:	
+		elif budget *0.15 >= dP and wave >= 2:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
 			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
