@@ -142,6 +142,9 @@ func _on_DamageFrequency_timeout():
 		if is_instance_valid(i[0]):
 			if i[2] == true:
 				i[0].change_health(-damage, false, true)
+	for i in affectedAllies:
+		if is_instance_valid(i[0]):
+			i[0].change_health(0)
 			
 func initTestPolygon():
 	for i in range(721):

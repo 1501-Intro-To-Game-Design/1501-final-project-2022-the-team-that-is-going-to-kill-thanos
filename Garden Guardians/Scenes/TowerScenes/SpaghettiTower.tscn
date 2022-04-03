@@ -13,6 +13,7 @@ slowEffect = 0.5
 allyBuff = 0.1
 attacking_tower = true
 projectileScene = ExtResource( 2 )
+combinable = true
 
 [node name="RangeShape" parent="Range" index="0"]
 shape = SubResource( 1 )

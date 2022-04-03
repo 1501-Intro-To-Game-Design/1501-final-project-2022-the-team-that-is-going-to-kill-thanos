@@ -245,7 +245,16 @@ func on_combat_end():
 	elif self.is_in_group("Enemies"):
 		$AnimationPlayer.play("Move")
 		
-	
+func yellow_glow():
+	var t = Timer.new()
+	t.set_wait_time(.2)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	$Sprite.self_modulate = Color(1, .63, .06, 1)
+	yield(t, "timeout")
+	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	t.queue_free()	
 
 func battle_action(dmg):
 	change_health(-1 * dmg)
@@ -260,8 +269,10 @@ func change_health(change, direct = false, pierce = false):
 			change = (0.7 * change)
 	if(change < 0):
 		red_glow()
-	else:
+	elif(change > 0):
 		green_glow()
+	else:
+		yellow_glow()
 	current_health += change
 	$Health.value = current_health
 	if(current_health <= 0):

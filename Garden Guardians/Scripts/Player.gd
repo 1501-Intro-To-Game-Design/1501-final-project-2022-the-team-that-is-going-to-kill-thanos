@@ -122,6 +122,17 @@ func green_glow():
 	$Sprite.self_modulate = Color(1, 1, 1, 1)
 	t.queue_free()
 
+func yellow_glow():
+	var t = Timer.new()
+	t.set_wait_time(.2)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	$Sprite.self_modulate = Color(1, .63, .06, 1)
+	yield(t, "timeout")
+	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	t.queue_free()
+
 func battle_action(dmg):
 	change_health(-1 * dmg)
 
@@ -135,8 +146,10 @@ func change_health(change):
 		hasBeenHit = true
 		if(not inCombat and current_health > 0):
 			$RegenWait.start()
-	else:
+	elif(change > 0):
 		green_glow()
+	else:
+		yellow_glow()
 	$Health.value = current_health
 	if(current_health <= 0):
 		die()
