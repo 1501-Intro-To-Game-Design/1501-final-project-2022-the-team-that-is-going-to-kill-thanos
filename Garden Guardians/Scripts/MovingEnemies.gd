@@ -92,6 +92,7 @@ func addEnemyPath():
 	enemy.connect("alive", self, "_enemy_created")
 	enemy.home = self
 	enemy.position = pathToFollow.getPathLocation()
+	enemy.followPath = pathToFollow
 	add_child(pathToFollow)
 	add_child(enemy)
 	enemyPathManager.append([enemy, pathToFollow])

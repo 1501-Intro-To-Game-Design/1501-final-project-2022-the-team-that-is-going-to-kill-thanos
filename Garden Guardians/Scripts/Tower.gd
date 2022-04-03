@@ -20,6 +20,12 @@ var can_spawn = false
 export var attack_cooldown = 1.0
 export var spawn_cooldown = 1.0
 
+export var duration = 0
+export var slowEffect = 0.0
+export var allyBuff = 0.0
+export var pullBackChance = 0.0
+export var DOTDamage = 0.0
+
 var tower_morsels = []
 
 var targeted_enemies = []
@@ -172,6 +178,7 @@ func attack(enemy):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
 	get_parent().add_child(projectile)
+	projectile.towerFrom = self
 	projectile.explosive = explosive
 	projectile.AOE_percent = AOE_percent
 	projectile.stun_chance = stun_chance

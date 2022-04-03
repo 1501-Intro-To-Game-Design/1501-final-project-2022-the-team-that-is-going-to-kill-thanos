@@ -17,6 +17,7 @@ var clicked = false;
 var alive = true
 var inCombat = false
 var hasBeenHit = true
+var pullingBack = []
 
 #Resources
 var items = []

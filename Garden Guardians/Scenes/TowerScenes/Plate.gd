@@ -24,8 +24,8 @@ var vegW = [9, 12, 15, 5, 10, 4, 5] #SC, SD, ACD
 var vegM = [2, 3, 5, 7, 0, 2, 2]
 var fruitW = [12, 15, 17, 5, 10, 4, 2] #EC, AR, AOE
 var fruitM = [0, 0, 1, 5, 10, 1, 3 ]
-var grainW = [4]
-var grainM = [5]
+var grainW = [4, 8, 13, 10, 4, 7, 13] #TEMP TD, DOT, PB
+var grainM = [5, 7, 11, 8, 3, 8, 10]
 var dairyW = [11]
 var dairyM = [7]
 var proW = [0, 0, 0, 6, 5, 0, 20] #AttackSpeed, Damage, ExtraUnit
@@ -713,6 +713,7 @@ func _on_VAreaDelete_mouse_exited():
 	$Text/Delete.hide()
 
 
+<<<<<<< Updated upstream
 func _on_PlayerArea_body_entered(body):
 	pass
 	#if(body.is_in_group("Player")):
@@ -734,3 +735,142 @@ func _on_PlayerArea_body_exited(body):
 			#$Delete.hide()
 			#if tower != null and !moveMode:
 				#tower.show_range(false)
+=======
+func _on_GArea_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = make_tower("grain")
+			if worked:
+				current_menu.hide()
+				$GUpgradeMenu.show()
+				current_menu = $GUpgradeMenu/G1
+
+
+func _on_VAreaG1_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.upgrade, grainW[1], grainM[1]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $GUpgradeMenu/G2
+
+
+func _on_VAreaSpaghetti_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.upgrade, grainW[2], grainM[2]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $GUpgradeMenu/Spaghetti
+
+func _on_VAreaPretzel_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = simple_make_tower(tower.offshoot_upgrade, grainW[3], grainM[3]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				current_menu = $GUpgradeMenu/Pretzel
+
+
+func _on_VAreaTD_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(grainW[4], grainM[4]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.duration += 2
+				if tower.duration >= 14:
+					$GUpgradeMenu/Pretzel/VAreaTD.hide()
+					$GUpgradeMenu/Pretzel/OptionTD.hide() #could also change this to change sprite
+
+
+func _on_VAreaDOT_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(grainW[5], grainM[5]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.DOTDamage += 0.05
+				$GUpgradeMenu/Pretzel/VAreaDOT.hide()
+				$GUpgradeMenu/Pretzel/OptionDOT.hide() #could also change this to change sprite
+
+
+func _on_VAreaPB_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT:
+			var worked = buy_something(grainW[6], grainM[6]) #tower to make, wood cost, metal cost
+			if worked:
+				current_menu.hide()
+				$Target.hide()
+				$Delete.hide()
+				tower.pullBackChance += 0.1
+				if tower.pullBackChance >= 0.3:
+					$GUpgradeMenu/Pretzel/VAreaPB.hide()
+					$GUpgradeMenu/Pretzel/OptionPB.hide() #could also change this to change sprite
+
+
+func _on_GArea_mouse_entered():
+	$Text/Rice.show()
+
+
+func _on_GArea_mouse_exited():
+	$Text/Rice.hide()
+
+
+func _on_VAreaG1_mouse_entered():
+	$Text/Corn.show()
+
+
+func _on_VAreaG1_mouse_exited():
+	$Text/Corn.hide()
+
+
+func _on_VAreaSpaghetti_mouse_entered():
+	$Text/Spaghetti.show()
+
+
+func _on_VAreaSpaghetti_mouse_exited():
+	$Text/Spaghetti.hide()
+
+
+func _on_VAreaPretzel_mouse_entered():
+	$Text/Pretzel.show()
+
+
+func _on_VAreaPretzel_mouse_exited():
+	$Text/Pretzel.hide()
+
+
+func _on_VAreaTD_mouse_entered():
+	$Text/PretzelTD.show()
+
+
+func _on_VAreaTD_mouse_exited():
+	$Text/PretzelTD.hide()
+
+
+func _on_VAreaDOT_mouse_entered():
+	$Text/PretzelDOT.show()
+
+
+func _on_VAreaDOT_mouse_exited():
+	$Text/PretzelDOT.hide()
+
+
+func _on_VAreaPB_mouse_entered():
+	$Text/PretzelPB.show()
+
+
+func _on_VAreaPB_mouse_exited():
+	$Text/PretzelPB.hide()
+>>>>>>> Stashed changes

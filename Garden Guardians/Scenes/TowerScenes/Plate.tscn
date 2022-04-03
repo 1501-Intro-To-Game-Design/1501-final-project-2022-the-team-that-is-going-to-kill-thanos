@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=20 format=2]
+=======
+[gd_scene load_steps=27 format=2]
+>>>>>>> Stashed changes
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
@@ -11,6 +15,7 @@
 [ext_resource path="res://Sprites/UpgradeBoxCost.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/Xolonium-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Sounds/Burbs/Foley/Build_and_Upgrade_Sound.wav" type="AudioStream" id=11]
+[ext_resource path="res://Scenes/TowerScenes/RiceTower.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 68.5, 20 )
@@ -18,8 +23,29 @@ extents = Vector2( 68.5, 20 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 14, 14.5 )
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 15.3333, 15 )
+
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 26, 10.4375 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 21.5, 21.5 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 22.5, 22.5 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 23, 22.5 )
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 22, 23 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 22, 22.5 )
+
+[sub_resource type="RectangleShape2D" id=14]
+extents = Vector2( 21.5, 22.5 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 10
@@ -29,7 +55,7 @@ font_data = ExtResource( 10 )
 [sub_resource type="DynamicFont" id=7]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 59, 68.8333 )
+extents = Vector2( 77.1667, 68.8333 )
 
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 11.5, 8.16667 )
@@ -42,6 +68,7 @@ script = ExtResource( 2 )
 vegetable_scene = ExtResource( 5 )
 fruit_scene = ExtResource( 7 )
 protein_scene = ExtResource( 6 )
+grain_scene = ExtResource( 12 )
 upgradeSound = ExtResource( 11 )
 
 [node name="PlateArea" type="Area2D" parent="."]
@@ -156,6 +183,32 @@ __meta__ = {
 }
 
 [node name="FBackground" type="Sprite" parent="TowerMenu/Fruit"]
+scale = Vector2( 0.5, 0.5 )
+z_index = -1
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Grain" type="Node2D" parent="TowerMenu"]
+
+[node name="GSprite" type="Sprite" parent="TowerMenu/Grain"]
+self_modulate = Color( 0.941176, 0.737255, 0.121569, 1 )
+position = Vector2( 70, 28 )
+scale = Vector2( 0.05, 0.05 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="GArea" type="Area2D" parent="TowerMenu/Grain"]
+
+[node name="GShape" type="CollisionShape2D" parent="TowerMenu/Grain/GArea"]
+position = Vector2( 70, 37 )
+shape = SubResource( 8 )
+
+[node name="GBackground" type="Sprite" parent="TowerMenu/Grain"]
+position = Vector2( 70, 37 )
 scale = Vector2( 0.5, 0.5 )
 z_index = -1
 texture = ExtResource( 3 )
@@ -600,6 +653,128 @@ __meta__ = {
 [node name="Tomato" type="Node2D" parent="FUpgradeMenu"]
 visible = false
 position = Vector2( -1, 37 )
+
+[node name="GUpgradeMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="G1" type="Node2D" parent="GUpgradeMenu"]
+visible = false
+
+[node name="OptionG1" type="Sprite" parent="GUpgradeMenu/G1"]
+self_modulate = Color( 0.168627, 0.956863, 0.235294, 1 )
+position = Vector2( -1.5, 44.5 )
+scale = Vector2( 0.671875, 0.671875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaG1" type="Area2D" parent="GUpgradeMenu/G1"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeG1" type="CollisionShape2D" parent="GUpgradeMenu/G1/VAreaG1"]
+position = Vector2( -1.5, 44.5 )
+shape = SubResource( 9 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="G2" type="Node2D" parent="GUpgradeMenu"]
+visible = false
+
+[node name="OptionSpaghetti" type="Sprite" parent="GUpgradeMenu/G2"]
+modulate = Color( 0.176471, 0.87451, 0.137255, 1 )
+position = Vector2( -1.5, 44.5 )
+scale = Vector2( 0.703125, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="VAreaSpaghetti" type="Area2D" parent="GUpgradeMenu/G2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeSpaghetti" type="CollisionShape2D" parent="GUpgradeMenu/G2/VAreaSpaghetti"]
+position = Vector2( -1.5, 44.5 )
+shape = SubResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionPretzel" type="Sprite" parent="GUpgradeMenu/G2"]
+modulate = Color( 0.133333, 0.909804, 0.14902, 1 )
+position = Vector2( 51, 44.5 )
+scale = Vector2( 0.71875, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="VAreaPretzel" type="Area2D" parent="GUpgradeMenu/G2"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GUpgradeMenu/G2/VAreaPretzel"]
+position = Vector2( 51, 44.5 )
+shape = SubResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Pretzel" type="Node2D" parent="GUpgradeMenu"]
+visible = false
+
+[node name="OptionTD" type="Sprite" parent="GUpgradeMenu/Pretzel"]
+modulate = Color( 0.121569, 0.815686, 0.278431, 1 )
+position = Vector2( -54, 44 )
+scale = Vector2( 0.6875, 0.71875 )
+texture = ExtResource( 3 )
+
+[node name="VAreaTD" type="Area2D" parent="GUpgradeMenu/Pretzel"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeTD" type="CollisionShape2D" parent="GUpgradeMenu/Pretzel/VAreaTD"]
+position = Vector2( -54, 44 )
+shape = SubResource( 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionDOT" type="Sprite" parent="GUpgradeMenu/Pretzel"]
+modulate = Color( 0.333333, 0.882353, 0.215686, 1 )
+position = Vector2( -2, 43.5 )
+scale = Vector2( 0.6875, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="VAreaDOT" type="Area2D" parent="GUpgradeMenu/Pretzel"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapeDOT" type="CollisionShape2D" parent="GUpgradeMenu/Pretzel/VAreaDOT"]
+position = Vector2( -2, 43.5 )
+shape = SubResource( 13 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="OptionPB" type="Sprite" parent="GUpgradeMenu/Pretzel"]
+modulate = Color( 0.321569, 0.901961, 0.2, 1 )
+position = Vector2( 50.5, 43.5 )
+scale = Vector2( 0.671875, 0.703125 )
+texture = ExtResource( 3 )
+
+[node name="VAreaPB" type="Area2D" parent="GUpgradeMenu/Pretzel"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="VShapePB" type="CollisionShape2D" parent="GUpgradeMenu/Pretzel/VAreaPB"]
+position = Vector2( 50.5, 43.5 )
+shape = SubResource( 14 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Spaghetti" type="Node2D" parent="GUpgradeMenu"]
 
 [node name="Text" type="Node2D" parent="."]
 scale = Vector2( 1.5, 1.5 )
@@ -1829,6 +2004,398 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Rice" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Rice"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Build a rice grain tower"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Rice"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Rice/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "5"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Rice/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "4"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Corn" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Corn"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a corn tower, with improved speed reduction and ally boost"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Corn"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Corn/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "7"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Corn/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "10"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spaghetti" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Spaghetti"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a Combinable grain tower. More slow effect, ally boost, attack speed"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Spaghetti"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Spaghetti/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "11"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Spaghetti/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "13"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pretzel" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/Pretzel"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Upgrade to a pretzel tower. Deals damage, lowers other stats. Advanced upgrades available"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/Pretzel"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/Pretzel/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "8"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/Pretzel/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "10"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PretzelTD" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/PretzelTD"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increased trap duration"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/PretzelTD"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/PretzelTD/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "3"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/PretzelTD/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "4"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PretzelDOT" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/PretzelDOT"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increases damage"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/PretzelDOT"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/PretzelDOT/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "8"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/PretzelDOT/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "7"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PretzelPB" type="NinePatchRect" parent="Text"]
+visible = false
+margin_left = -64.0
+margin_top = -119.0
+margin_right = 66.0
+margin_bottom = -52.0
+texture = ExtResource( 8 )
+patch_margin_right = 12
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Text/PretzelPB"]
+margin_left = 4.0
+margin_top = 3.0
+margin_right = 127.0
+margin_bottom = 64.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "Increases chance that enemies will get pulled back to the start of the trap upon exiting"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Text/PretzelPB"]
+margin_top = -27.0
+margin_right = 130.0
+texture = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MetalCost" type="RichTextLabel" parent="Text/PretzelPB/NinePatchRect"]
+margin_left = 35.0
+margin_top = 7.0
+margin_right = 63.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "10"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WoodCost" type="RichTextLabel" parent="Text/PretzelPB/NinePatchRect"]
+margin_left = 69.0
+margin_top = 7.0
+margin_right = 97.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 4 )
+text = "13"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Target" type="Node2D" parent="."]
 visible = false
 position = Vector2( -1, -10 )
@@ -1856,7 +2423,7 @@ __meta__ = {
 scale = Vector2( 1.5, 1.5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigArea"]
-position = Vector2( -1.5, 17.8333 )
+position = Vector2( 16.1667, 18 )
 shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -1896,6 +2463,9 @@ shape = SubResource( 8 )
 [connection signal="input_event" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_input_event"]
 [connection signal="mouse_entered" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_mouse_entered"]
 [connection signal="mouse_exited" from="TowerMenu/Fruit/FArea" to="." method="_on_FArea_mouse_exited"]
+[connection signal="input_event" from="TowerMenu/Grain/GArea" to="." method="_on_GArea_input_event"]
+[connection signal="mouse_entered" from="TowerMenu/Grain/GArea" to="." method="_on_GArea_mouse_entered"]
+[connection signal="mouse_exited" from="TowerMenu/Grain/GArea" to="." method="_on_GArea_mouse_exited"]
 [connection signal="input_event" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_input_event"]
 [connection signal="mouse_entered" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_mouse_entered"]
 [connection signal="mouse_exited" from="VUpgradeMenu/V1/VArea1" to="." method="_on_VArea1_mouse_exited"]
@@ -1962,6 +2532,24 @@ shape = SubResource( 8 )
 [connection signal="input_event" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_input_event"]
 [connection signal="mouse_entered" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_mouse_entered"]
 [connection signal="mouse_exited" from="FUpgradeMenu/Cherry/VAreaAOE" to="." method="_on_VAreaAOE_mouse_exited"]
+[connection signal="input_event" from="GUpgradeMenu/G1/VAreaG1" to="." method="_on_VAreaG1_input_event"]
+[connection signal="mouse_entered" from="GUpgradeMenu/G1/VAreaG1" to="." method="_on_VAreaG1_mouse_entered"]
+[connection signal="mouse_exited" from="GUpgradeMenu/G1/VAreaG1" to="." method="_on_VAreaG1_mouse_exited"]
+[connection signal="input_event" from="GUpgradeMenu/G2/VAreaSpaghetti" to="." method="_on_VAreaSpaghetti_input_event"]
+[connection signal="mouse_entered" from="GUpgradeMenu/G2/VAreaSpaghetti" to="." method="_on_VAreaSpaghetti_mouse_entered"]
+[connection signal="mouse_exited" from="GUpgradeMenu/G2/VAreaSpaghetti" to="." method="_on_VAreaSpaghetti_mouse_exited"]
+[connection signal="input_event" from="GUpgradeMenu/G2/VAreaPretzel" to="." method="_on_VAreaPretzel_input_event"]
+[connection signal="mouse_entered" from="GUpgradeMenu/G2/VAreaPretzel" to="." method="_on_VAreaPretzel_mouse_entered"]
+[connection signal="mouse_exited" from="GUpgradeMenu/G2/VAreaPretzel" to="." method="_on_VAreaPretzel_mouse_exited"]
+[connection signal="input_event" from="GUpgradeMenu/Pretzel/VAreaTD" to="." method="_on_VAreaTD_input_event"]
+[connection signal="mouse_entered" from="GUpgradeMenu/Pretzel/VAreaTD" to="." method="_on_VAreaTD_mouse_entered"]
+[connection signal="mouse_exited" from="GUpgradeMenu/Pretzel/VAreaTD" to="." method="_on_VAreaTD_mouse_exited"]
+[connection signal="input_event" from="GUpgradeMenu/Pretzel/VAreaDOT" to="." method="_on_VAreaDOT_input_event"]
+[connection signal="mouse_entered" from="GUpgradeMenu/Pretzel/VAreaDOT" to="." method="_on_VAreaDOT_mouse_entered"]
+[connection signal="mouse_exited" from="GUpgradeMenu/Pretzel/VAreaDOT" to="." method="_on_VAreaDOT_mouse_exited"]
+[connection signal="input_event" from="GUpgradeMenu/Pretzel/VAreaPB" to="." method="_on_VAreaPB_input_event"]
+[connection signal="mouse_entered" from="GUpgradeMenu/Pretzel/VAreaPB" to="." method="_on_VAreaPB_mouse_entered"]
+[connection signal="mouse_exited" from="GUpgradeMenu/Pretzel/VAreaPB" to="." method="_on_VAreaPB_mouse_exited"]
 [connection signal="gui_input" from="Target/Text" to="." method="_on_Text_gui_input"]
 [connection signal="mouse_entered" from="Target/Text" to="." method="_on_Text_mouse_entered"]
 [connection signal="mouse_exited" from="Target/Text" to="." method="_on_Text_mouse_exited"]

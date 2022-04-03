@@ -1,15 +1,19 @@
 extends Node2D
 
-var explosive = false
 var AOE_percent = 0.0
 var rng = RandomNumberGenerator.new()
 var target = null
 export var speed = 20
 export var damage = 2.0
 export var stun = false
+export var explosive = false
+export var field = false
 var stun_chance = 0.15
 var stun_duration = 0.75
 var enemies = []
+var towerFrom
+
+export(PackedScene) var effectField
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	speed *= util.g_speed
@@ -37,7 +41,11 @@ func _on_AOE2D_area_entered(area):
 func _on_Area2D_body_entered(body):
 	if(body == target.get_parent()):
 		target.get_parent().change_health(-1 * damage)
-		if stun:
+		var pullBack
+		for i in target.get_parent().pullingBack:
+			if i[1] == true:
+				pullBack = true
+		if stun and not pullBack:
 			var my_random_number = rng.randf_range(0.00, 1.00)
 			if my_random_number <= stun_chance:
 				target.get_parent().start_stun(stun_duration)
@@ -45,4 +53,9 @@ func _on_Area2D_body_entered(body):
 			for enemy in enemies:
 				if not (enemy == target):
 					enemy.get_parent().change_health(-1 * (damage * AOE_percent))
+		if field:
+			var initField = effectField.instance()
+			initField.position = position
+			initField.towerFrom = towerFrom
+			get_parent().add_child(initField)
 		queue_free()

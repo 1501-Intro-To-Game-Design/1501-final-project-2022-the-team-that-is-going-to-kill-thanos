@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/TowerScenes/CornProjectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/TowerScenes/SpaghettiTower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/TowerScenes/PretzelTower.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 200.0
+
+[node name="Tower" instance=ExtResource( 1 )]
+self_modulate = Color( 0.921569, 0.74902, 0.121569, 1 )
+attack_cooldown = 12.0
+duration = 10
+slowEffect = 0.35
+allyBuff = 0.075
+attacking_tower = true
+projectileScene = ExtResource( 2 )
+upgrade = ExtResource( 3 )
+offshoot_upgrade = ExtResource( 4 )
+
+[node name="RangeShape" parent="Range" index="0"]
+shape = SubResource( 1 )
