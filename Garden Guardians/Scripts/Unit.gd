@@ -399,7 +399,8 @@ func _on_Range2_area_exited(area):
 
 func _on_ResourceKillTimer_timeout():
 	#start animation + pause timer thing
-	target.get_parent().queue_free()
+	if is_instance_valid(target):
+		target.get_parent().queue_free()
 	on_combat_end()
 
 

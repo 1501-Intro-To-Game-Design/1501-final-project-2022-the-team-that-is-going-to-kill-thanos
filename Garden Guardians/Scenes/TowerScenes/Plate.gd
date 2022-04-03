@@ -96,6 +96,20 @@ func _ready():
 	$Text/PretzelPB/NinePatchRect/WoodCost.text = String(grainW[6])
 	$Text/PretzelPB/NinePatchRect/MetalCost.text = String(grainM[6])
 
+	$Text/Milk/NinePatchRect/WoodCost.text = String(dairyW[0])
+	$Text/Milk/NinePatchRect/MetalCost.text = String(dairyM[0])
+	$Text/Cream/NinePatchRect/WoodCost.text = String(dairyW[1])
+	$Text/Cream/NinePatchRect/MetalCost.text = String(dairyM[1])
+	$Text/Parmesan/NinePatchRect/WoodCost.text = String(dairyW[2])
+	$Text/Parmesan/NinePatchRect/MetalCost.text = String(dairyM[2])
+	$Text/Butter/NinePatchRect/WoodCost.text = String(dairyW[3])
+	$Text/Butter/NinePatchRect/MetalCost.text = String(dairyM[3])
+	$Text/ButterPDP/NinePatchRect/WoodCost.text = String(dairyW[4])
+	$Text/ButterPDP/NinePatchRect/MetalCost.text = String(dairyM[4])
+	$Text/ButterPC/NinePatchRect/WoodCost.text = String(dairyW[5])
+	$Text/ButterPC/NinePatchRect/MetalCost.text = String(dairyM[5])
+	$Text/ButterSE/NinePatchRect/WoodCost.text = String(dairyW[6])
+	$Text/ButterSE/NinePatchRect/MetalCost.text = String(dairyM[6])
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
