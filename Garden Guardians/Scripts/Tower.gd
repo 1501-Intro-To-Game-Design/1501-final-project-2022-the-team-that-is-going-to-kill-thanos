@@ -403,6 +403,7 @@ func _on_AbilityCooldown_timeout():
 							i.get_parent().posess()
 							posessedEnemy = i.get_parent()
 							enemies.remove(enemies.find(i))
+							#do we need to do smth with number of enemies b4 round end
 							posessed = true
 			if not posessed:
 				$PosessCheck.start()

@@ -263,7 +263,7 @@ func yellow_glow():
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
-	$Sprite.self_modulate = Color(1, 0, 0, 1)
+	$Sprite.self_modulate = Color(1, .65, .1, 1)
 	yield(t, "timeout")
 	$Sprite.self_modulate = original_mod
 	t.queue_free()	
@@ -427,7 +427,7 @@ func green_glow():
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
-	$Sprite.self_modulate = Color(1, 0, 0, 1)
+	$Sprite.self_modulate = Color(0, 1, 0, 1)
 	yield(t, "timeout")
 	$Sprite.self_modulate = original_mod
 	t.queue_free()

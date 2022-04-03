@@ -374,9 +374,9 @@ func _on_VAreaAR_input_event(viewport, event, shape_idx):
 				$Target.hide()
 				$Delete.hide()
 				tower.show_range(false)
-				tower.increase_range(30) #change this
+				tower.increase_range(20) #change this
 				#tower.initializeRangePolygon()
-				if tower.get_range() > 300:
+				if tower.get_range() > 275:
 					$FUpgradeMenu/Cherry/VAreaAR.hide()
 					$FUpgradeMenu/Cherry/OptionAR.hide() #could also change this to change sprite
 
