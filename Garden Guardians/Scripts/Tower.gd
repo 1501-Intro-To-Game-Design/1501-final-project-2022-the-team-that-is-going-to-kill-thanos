@@ -3,7 +3,7 @@ extends Node2D
 var explosive = false
 var stun_chance = 0.15
 var stun_duration = 0.75
-var target_type = "closest"
+var target_type = "closest_end"
 
 var attack_speed_buff = 0.0
 var damage_buff = 0.0

@@ -9,7 +9,7 @@
 radius = 200.0
 
 [node name="Tower" groups=["Tomato"] instance=ExtResource( 2 )]
-attack_cooldown = 0.25
+attack_cooldown = 0.375
 attacking_tower = true
 projectileScene = ExtResource( 1 )
 offshoot_upgrade = ExtResource( 3 )

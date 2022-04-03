@@ -6,12 +6,13 @@
 [ext_resource path="res://Scenes/TowerScenes/OnionTower.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 200.0
+radius = 250.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 38, 19.5 )
 
 [node name="Tower" instance=ExtResource( 1 )]
+attack_cooldown = 4.0
 attacking_tower = true
 projectileScene = ExtResource( 2 )
 upgrade = ExtResource( 5 )

@@ -7,9 +7,10 @@
 [ext_resource path="res://Sprites/Tower Sprites/O_Tower.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 200.0
+radius = 270.0
 
 [node name="Tower" instance=ExtResource( 1 )]
+attack_cooldown = 4.0
 attacking_tower = true
 projectileScene = ExtResource( 2 )
 upgrade = ExtResource( 4 )
