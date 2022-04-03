@@ -177,8 +177,8 @@ func _process(_delta):
 func attack(enemy):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
-	get_parent().add_child(projectile)
 	projectile.towerFrom = self
+	get_parent().add_child(projectile)
 	projectile.explosive = explosive
 	projectile.AOE_percent = AOE_percent
 	projectile.stun_chance = stun_chance

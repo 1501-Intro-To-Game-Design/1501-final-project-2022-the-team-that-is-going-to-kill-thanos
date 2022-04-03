@@ -7,8 +7,6 @@ var pullBackChance = 0.0
 var dealsDamage = false
 var damage = 0.0
 
-var towerFrom
-
 var rng = RandomNumberGenerator.new()
 
 var affectedEnemies = []
@@ -23,7 +21,6 @@ var rangePoints = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	initTestPolygon()
-	initFieldStats()
 	$LifeTime.wait_time = duration
 	$LifeTime.start()
 
@@ -144,7 +141,7 @@ func _on_DamageFrequency_timeout():
 	for i in affectedEnemies:
 		if is_instance_valid(i[0]):
 			if i[2] == true:
-				i[0].change_health(-damage)
+				i[0].change_health(-damage, false, true)
 			
 func initTestPolygon():
 	for i in range(721):
@@ -154,10 +151,3 @@ func initTestPolygon():
 		rangePoints[i].y *= $"EffectArea/CollisionShape2D".shape.radius
 	$Polygon2D.set_polygon(rangePoints)
 	$Polygon2D.set_color(Color(1, 0.65, 0, 0.25))
-
-func initFieldStats():
-	duration = towerFrom.duration
-	slowEffect = towerFrom.slowEffect
-	allyBuff = towerFrom.allyBuff
-	pullBackChance = towerFrom.pullBackChance
-	damage = towerFrom.DOTDamage

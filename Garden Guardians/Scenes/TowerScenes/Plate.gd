@@ -712,8 +712,6 @@ func _on_VAreaDelete_mouse_entered():
 func _on_VAreaDelete_mouse_exited():
 	$Text/Delete.hide()
 
-
-<<<<<<< Updated upstream
 func _on_PlayerArea_body_entered(body):
 	pass
 	#if(body.is_in_group("Player")):
@@ -735,7 +733,7 @@ func _on_PlayerArea_body_exited(body):
 			#$Delete.hide()
 			#if tower != null and !moveMode:
 				#tower.show_range(false)
-=======
+
 func _on_GArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
@@ -873,4 +871,3 @@ func _on_VAreaPB_mouse_entered():
 
 func _on_VAreaPB_mouse_exited():
 	$Text/PretzelPB.hide()
->>>>>>> Stashed changes

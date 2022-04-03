@@ -12,12 +12,20 @@ var stun_chance = 0.15
 var stun_duration = 0.75
 var enemies = []
 var towerFrom
+#EffectField Variables
+var duration
+var slowEffect
+var allyBuff
+var pullBackChance
+var DOTDamage
 
 export(PackedScene) var effectField
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	speed *= util.g_speed
 	rng.randomize()
+	if field:
+		initTowerStats()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -56,6 +64,19 @@ func _on_Area2D_body_entered(body):
 		if field:
 			var initField = effectField.instance()
 			initField.position = position
-			initField.towerFrom = towerFrom
+			initFieldStats(initField)
 			get_parent().add_child(initField)
 		queue_free()
+
+func initTowerStats():
+	duration = towerFrom.duration
+	slowEffect = towerFrom.slowEffect
+	allyBuff = towerFrom.allyBuff
+	pullBackChance = towerFrom.pullBackChance
+	DOTDamage = towerFrom.DOTDamage
+func initFieldStats(initField):
+	initField.duration = duration
+	initField.slowEffect = slowEffect
+	initField.allyBuff = allyBuff
+	initField.pullBackChance = pullBackChance
+	initField.damage = DOTDamage

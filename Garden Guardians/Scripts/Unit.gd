@@ -8,11 +8,8 @@ export (PackedScene) var to_spawn
 export (PackedScene) var proj_scene
 export var spawn_cooldown = 1.0
 
-<<<<<<< Updated upstream
 var ranged_attacking = false
-=======
 var followPath
->>>>>>> Stashed changes
 
 var inactive_targets = []
 
@@ -97,9 +94,7 @@ func _process(delta):
 	velocity.x = 0
 	if moving:  
 		position += direction.normalized() * current_speed * delta * 2
-<<<<<<< Updated upstream
 		$AnimationPlayer.play("Move")
-=======
 	var checkAffected = false
 	for i in pullingBack:
 		if not is_instance_valid(i[0]):
@@ -107,7 +102,6 @@ func _process(delta):
 				max_speed = tempMaxSpeed
 				min_speed = tempSpeed
 				i[0] = false
->>>>>>> Stashed changes
 
 func ranged_attack():
 	if enemies.size() > 0:
@@ -255,24 +249,19 @@ func on_combat_end():
 
 func battle_action(dmg):
 	change_health(-1 * dmg)
-		
-<<<<<<< Updated upstream
-func change_health(change):
-	var rand_num = rng.randf_range(0, 0.12)
-	change = change + (change * rand_num)
-	if(armored and change < 0):
-		change = change - 0.2
-		change = (0.7 * change)
+
+func change_health(change, direct = false, pierce = false):
+	if not direct:
+		var rand_num = rng.randf_range(0, 0.12)
+		change = change + (change * rand_num)
+	if not pierce:
+		if(armored and change < 0):
+			change = change - 0.2
+			change = (0.7 * change)
 	if(change < 0):
 		red_glow()
 	else:
 		green_glow()
-=======
-func change_health(change, direct = false):
-	if not direct:
-		var rand_num = rng.randf_range(-0.1, 0.15)
-		change = change + (change * rand_num)
->>>>>>> Stashed changes
 	current_health += change
 	$Health.value = current_health
 	if(current_health <= 0):
