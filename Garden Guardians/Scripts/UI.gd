@@ -21,7 +21,7 @@ signal nextRoundGo
 
 func _ready():
 	get_parent().get_node("Level/MovingEnemies").connect("player_life_lost", self, "_on_player_life_lost")
-	wood = 24 #24
+	wood = 16 #16
 	metal = 6 #6
 	update()
 	$Lives.text = "Lives: " + String(playerLives)
