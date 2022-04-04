@@ -141,7 +141,11 @@ func updateEnemyLocation(delta):
 			i[0].position = i[1].getPathLocation()
 			if i[1].get_unit_offset() >= 1:
 				i[0].destroy(false)
-				emit_signal("player_life_lost", i[0].spawned_num_wood + (i[0].spawned_num_metal*3))
+				if i[0].spawned_num_wood + i[0].spawned_num_metal*3 > 0:
+					emit_signal("player_life_lost", i[0].spawned_num_wood + (i[0].spawned_num_metal*3))
+				else:
+					emit_signal("player_life_lost", 1)
+
 
 func get_offset(enemy_node):
 	for i in enemyPathManager:
