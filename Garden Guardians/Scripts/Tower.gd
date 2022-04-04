@@ -186,12 +186,14 @@ func _process(_delta):
 						targeted_enemies.append(null)
 			can_attack = false
 			$AttackCooldown.start(attack_cooldown)
+			var num_shots = 0
 			for i in range(targeted_enemies.size()):
-				if is_instance_valid(targeted_enemies[i].get_parent()):
+				if is_instance_valid(targeted_enemies[i]):
 					if not currentSingleTarget == targeted_enemies[i].get_parent():
 						incrementValue = 0
 					currentSingleTarget = targeted_enemies[i].get_parent()
-					attack(targeted_enemies[i])
+					num_shots += 1
+					attack(targeted_enemies[i], num_shots)
 					if slowing_tower:
 						var checkSlowed = false
 						for j in slowed_enemies:
@@ -228,7 +230,7 @@ func _process(_delta):
 			can_spawn = false
 		#do morsel spawning stuff, if can_spawn is true, that is when the cooldown has passed (can spawn new morsels)
 				
-func attack(enemy):
+func attack(enemy, proj_num):
 	#spawn a projectile at shootPoint, and set projectile's target to closest enemy
 	var projectile = projectileScene.instance()
 	projectile.towerFrom = self
@@ -251,7 +253,12 @@ func attack(enemy):
 	rng.randomize()
 	$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 	$AudioStreamPlayer2D.play()
-	projectile.position = $ShootPoint.get_global_position()
+	if proj_num == 1:
+		projectile.position = $ShootPoint.get_global_position()
+	elif proj_num == 2:
+		projectile.position = $ShootPoint2.get_global_position()
+	elif proj_num == 3:
+		projectile.position = $ShootPoint3.get_global_position()
 	projectile.target = enemy
 
 func increase_range(amount):

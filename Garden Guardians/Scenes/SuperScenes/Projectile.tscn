@@ -4,6 +4,7 @@
 [ext_resource path="res://Scripts/Projectile.gd" type="Script" id=2]
 
 [node name="Projectile" type="Node2D"]
+z_index = 6
 script = ExtResource( 2 )
 speed = 100
 

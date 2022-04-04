@@ -75,7 +75,6 @@ func _ready():
 	prepareAttackTimer()
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed + 1)
-		pass
 
 func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 	destination = loc
@@ -93,12 +92,12 @@ func _process(delta):
 	#MOVING STUFF
 	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2.2: #if youve arrived
 		moving = false
-		if(is_instance_valid($AnimationPlayer)):
+		if(is_instance_valid($AnimationPlayer) and not $AnimationPlayer.get_current_animation() == "Attack" and not $AnimationPlayer.get_current_animation() == "RangedAttack" and not inCombat):
 			$AnimationPlayer.play("Idle")
 	velocity.x = 0
 	if moving:  
 		position += direction.normalized() * current_speed * delta * 2
-		if(is_instance_valid($AnimationPlayer)):	
+		if(is_instance_valid($AnimationPlayer) and not $AnimationPlayer.get_current_animation() == "Attack" and not $AnimationPlayer.get_current_animation() == "RangedAttack" and not inCombat):	
 			$AnimationPlayer.play("Move")
 	var checkAffected = false
 	for i in pullingBack:
@@ -119,8 +118,15 @@ func ranged_attack():
 				index = i
 		can_attack = false
 		var t = Timer.new()
-		if(is_instance_valid($AnimationPlayer)):
+		if(is_instance_valid($AnimationPlayer) and is_instance_valid(enemies[index])):
+			$AnimationPlayer.play("RESET")
+			$AnimationPlayer.stop()
 			$AnimationPlayer.play("RangedAttack")
+		else:
+			if not inCombat:	
+				$AnimationPlayer.play("RESET")
+				$AnimationPlayer.stop()
+				$AnimationPlayer.play("Idle")
 		t.set_wait_time(.2)
 		t.set_one_shot(true)
 		self.add_child(t)
@@ -130,15 +136,22 @@ func ranged_attack():
 		if(ranged_morsel):
 			$RangedAttack.start(attackSpeed + 1)
 		
-		if is_instance_valid(target):
-			var projectile = proj_scene.instance()
-			get_parent().add_child(projectile)
-			projectile.damage = damage/5
-			rng.randomize()
-			$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
-			$AudioStreamPlayer2D.play()
-			projectile.position = $ShootPoint.get_global_position()
-			projectile.target = enemies[index]
+		if index < enemies.size():
+			if is_instance_valid(enemies[index]):
+				var projectile = proj_scene.instance()
+				get_parent().add_child(projectile)
+				projectile.damage = damage/5
+				rng.randomize()
+				$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+				$AudioStreamPlayer2D.play()
+				projectile.position = $ShootPoint.get_global_position()
+				projectile.target = enemies[index]
+		else:
+			if not inCombat:
+				$AnimationPlayer.play("Idle")
+	else:
+		if not $AnimationPlayer.get_current_animation() == "Move" and not inCombat:
+			$AnimationPlayer.play("Idle")
 
 func checkInCombat():
 	if inCombat:
@@ -204,8 +217,8 @@ func setTarget(body):
 			target = body
 			if(is_instance_valid($AnimationPlayer)):
 				$AnimationPlayer.play("RESET")
-				$AnimationPlayer.play("Attack")
 				$AnimationPlayer.stop()
+				$AnimationPlayer.play("Attack")
 			$Attack.start()
 			$Regen.stop()
 			$RegenWait.stop()
@@ -247,14 +260,15 @@ func on_combat_end():
 	can_attack = false
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed + 1)
-	if(is_instance_valid($AnimationPlayer)):
+	if(is_instance_valid($AnimationPlayer) and not inCombat):
 		$AnimationPlayer.play("RESET")
+		$AnimationPlayer.stop()
 	if self.is_in_group("Morsels"):
-		if(is_instance_valid($AnimationPlayer)):
+		if(is_instance_valid($AnimationPlayer) and not inCombat):
 			$AnimationPlayer.play("Idle")
 		
 	elif self.is_in_group("Enemies"):
-		if(is_instance_valid($AnimationPlayer)):	
+		if(is_instance_valid($AnimationPlayer) and not inCombat):	
 			$AnimationPlayer.play("Move")
 		
 func yellow_glow():
@@ -275,6 +289,7 @@ func change_health(change, direct = false, pierce = false):
 	if not direct:
 		var rand_num = rng.randf_range(0, 0.12)
 		change = change + (change * rand_num)
+	var lowest_dmg = change * .1
 	if not pierce:
 		if(armored and change < 0):
 			change = change - 0.2
@@ -285,6 +300,8 @@ func change_health(change, direct = false, pierce = false):
 		green_glow()
 	else:
 		yellow_glow()
+	if(change < 0 and change > lowest_dmg):
+		change = lowest_dmg
 	current_health += change
 	$Health.value = current_health
 	if(current_health <= 0):

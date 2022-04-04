@@ -9,6 +9,7 @@
 radius = 77.026
 
 [node name="Projectile" instance=ExtResource( 1 )]
+z_index = 5
 speed = 200
 damage = 0.5
 

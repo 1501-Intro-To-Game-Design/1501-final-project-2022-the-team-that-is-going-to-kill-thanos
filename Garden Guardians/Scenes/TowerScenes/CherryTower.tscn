@@ -22,3 +22,9 @@ texture = ExtResource( 3 )
 
 [node name="ShootPoint" parent="." index="4"]
 position = Vector2( -24, -21 )
+
+[node name="ShootPoint2" type="Node2D" parent="." index="9"]
+position = Vector2( 5, -22 )
+
+[node name="ShootPoint3" type="Node2D" parent="." index="10"]
+position = Vector2( 31, -30 )
