@@ -3,7 +3,7 @@ extends Node2D
 var tower = null #tower will be the tower assigned to this plate (needed for upgrading)
 var player_in_range = false
 var target_types = ["closest", "farthest", "lowest", "highest", "closest_end", "closest_start"]
-var target_index = 0
+var target_index = 4
 var in_area = false
 
 export (PackedScene) var vegetable_scene
@@ -34,7 +34,6 @@ var proM = [4, 3, 5, 2, 1, 4, 10]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_menu = $TowerMenu
-
 	#Sets
 	$Text/Turnip/NinePatchRect/WoodCost.text = String(vegW[0])
 	$Text/Turnip/NinePatchRect/MetalCost.text = String(vegM[0])
