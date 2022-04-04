@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/TowerScenes/PretzelProjectile.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 200.0
+radius = 225.0
 
 [node name="Tower" instance=ExtResource( 1 )]
 attack_cooldown = 14.0

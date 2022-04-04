@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/TowerScenes/ButterTower.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 200.0
+radius = 170.0
 
 [node name="Tower" instance=ExtResource( 1 )]
 attack_cooldown = 0.125
