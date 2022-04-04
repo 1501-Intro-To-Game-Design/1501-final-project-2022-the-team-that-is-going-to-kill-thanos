@@ -17,15 +17,15 @@ animations = [ {
 "name": "Dead",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
-"loop": true,
-"name": "Running",
-"speed": 4.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Standing",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Running",
+"speed": 4.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -56,13 +56,13 @@ dieSound = ExtResource( 8 )
 aliveSound = ExtResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-visible = false
 frames = SubResource( 1 )
-animation = "Dead"
+animation = "Running"
 
 [node name="PickUp" type="Area2D" parent="." groups=["Player"]]
 collision_layer = 32769

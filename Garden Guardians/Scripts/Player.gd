@@ -164,6 +164,8 @@ func die():
 	ui.wood  = round(ui.wood * 0.8)
 	ui.metal = round(ui.metal * 0.9)
 	ui.update()
+	$PickUp.monitorable = false
+	$CombatRange.monitorable = false
 	current_health = 0
 	$Health.value = current_health
 	$Health.visible = false
@@ -175,6 +177,8 @@ func _on_Respawn_timeout():
 	current_health = max_health
 	$Health.value = current_health
 	$Health.visible = true
+	$PickUp.monitorable = true
+	$CombatRange.monitorable = true
 	for enemy in inactive_targets:
 		checkType(enemy)
 		enemy.checkType(self)
