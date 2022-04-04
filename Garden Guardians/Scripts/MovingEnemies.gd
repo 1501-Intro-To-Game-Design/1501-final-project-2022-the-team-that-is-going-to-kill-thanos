@@ -13,10 +13,10 @@ var inProgres = false
 var rng = RandomNumberGenerator.new()
 var enemys = []
 var enemyNum = 0
+var enemystoKill = 0
 var dps = []
 var dP = 0
 var budget = 0
-var endGate = false
 var toPluck = 0 
 var bossFight = false
 signal player_life_lost(livesLost)
@@ -28,7 +28,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateEnemyLocation(delta)
-	if enemyNum <= 0 and enemys.size() <= 0 and inProgres:
+	if enemyNum <= 0 and enemys.size() <= 0 and inProgres and enemystoKill == 0:
 		dps.clear() #jsut in case theres 1 left
 		inProgres = false
 		$EnemySpawn.stop()
@@ -36,9 +36,6 @@ func _process(delta):
 		for i in get_tree().get_nodes_in_group("Towers"):
 			if i.morsel_tower:
 				i.spawn_remainder()
-	if enemyNum <= 0 and endGate:
-		endGate = false
-		$"/root/ui".enemysDead()
 
 func start_wave():
 	dP = (wave*8) +5 #can revise this later
@@ -81,6 +78,8 @@ func start_wave():
 			#while (temp.spawned_num_wood + (temp.spawned_num_metal*3)) > dP:
 				#value = rng.randi_range(0,enemyScene1.size())
 				#temp = enemyScene1[value].instance()
+		enemystoKill += 1
+	print(enemystoKill)
 	inProgres = true 
 	$EnemySpawn.start()
 
@@ -97,7 +96,6 @@ func addEnemyPath():
 	add_child(enemy)
 	enemyPathManager.append([enemy, pathToFollow])
 	enemyNum += 1
-	endGate = true 
 	
 func add_enemy_to_path(spawner, spawned):
 	var pathToFollow = importPathScene.instance()
@@ -159,6 +157,8 @@ func _on_nextRoundGo():
 
 func _enemy_killed():
 	enemyNum -= 1
+	enemystoKill -= 1
 
 func _enemy_created():
 	enemyNum += 1
+	enemystoKill += 1

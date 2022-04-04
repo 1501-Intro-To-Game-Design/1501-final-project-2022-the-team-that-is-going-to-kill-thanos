@@ -359,20 +359,18 @@ func get_offset():
 
 func destroy(dropResources = true):
 	var r
-	if(dropResources):
-		r = resource.instance() #spawn resources
-	
 	if self.is_in_group("Morsels"): #decrease number of active morsels
 		if is_instance_valid(homeTower):
 			homeTower.babies -= 1
 			homeTower.morselPositions[morselNum] = false
-	
 	if is_in_group("Enemies") and dropResources:
 		emit_signal("dead")
 		for i in range(spawned_num_wood):
+			r = resource.instance() #spawn resources
 			r._spawn(true, global_position) # true = wood, false = metal
 			get_parent().add_child(r)
 		for i in range(spawned_num_metal):
+			r = resource.instance() #spawn resources
 			r._spawn(false, global_position) # true = wood, false = metal
 			get_parent().add_child(r)
 	queue_free()

@@ -21,8 +21,8 @@ signal nextRoundGo
 
 func _ready():
 	get_parent().get_node("Level/MovingEnemies").connect("player_life_lost", self, "_on_player_life_lost")
-	wood = 24 #24
-	metal = 6 #6
+	wood = 100 #24
+	metal = 100 #6
 	update()
 	$Lives.text = "Lives: " + String(playerLives)
 	$RestartButton.visible = false
@@ -63,12 +63,10 @@ func waveInProgress():
 
 func waveEnd():
 	$NextButton.visible = true
+	_load_n_play(roundWin,10)
 
 func updateRound(roundNum):
-	$Round.text = "Wave: " + String(roundNum)
-
-func enemysDead():
-	_load_n_play(roundWin,10)
+	$Round.text = "Wave: " + String(roundNum)	
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
