@@ -66,7 +66,7 @@ func start_wave():
 			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
 			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
 			enemys.append(enemyScene3[value])
-		elif budget *0.2 <= dP and wave >= 2:	
+		elif budget *0.3 <= dP and wave >= 2:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
 			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
