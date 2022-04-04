@@ -120,7 +120,7 @@ one_shot = true
 shape = SubResource( 3 )
 
 [node name="ShootPoint" type="Node2D" parent="." index="10"]
-position = Vector2( 20, -760 )
+position = Vector2( 220, -1020 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
 autoplay = "Idle"

@@ -49,7 +49,7 @@ func _on_AOE2D_area_entered(area):
 
 
 func _on_Area2D_body_entered(body):
-	if is_instance_valid(target.get_parent()):
+	if is_instance_valid(target):
 		if(body == target.get_parent()):
 			if piercing:
 				target.get_parent().change_health(-1 * damage, false, true)

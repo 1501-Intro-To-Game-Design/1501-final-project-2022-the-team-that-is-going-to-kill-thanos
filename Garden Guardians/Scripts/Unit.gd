@@ -2,6 +2,7 @@ extends RigidBody2D
 export var armored = false
 export var chefs_knife = false
 export var ranged_morsel = false
+var ranged_enemies = []
 var can_attack = false
 export var spawner = false
 export (PackedScene) var to_spawn
@@ -62,6 +63,7 @@ func _ready():
 	if(is_instance_valid($AnimationPlayer)):
 		$AnimationPlayer.playback_speed = util.g_speed
 	max_speed *= util.g_speed
+	spawn_cooldown /= util.g_speed
 	attackSpeed /= util.g_speed
 	rng.randomize()
 	current_health = max_health
@@ -71,7 +73,8 @@ func _ready():
 	tempMaxSpeed = max_speed
 	$Health.max_value = max_health
 	$Health.value = current_health
-	prepareSpawnTimer()
+	if spawner:
+		prepareSpawnTimer()
 	prepareAttackTimer()
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed + 1)
@@ -87,17 +90,21 @@ func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	checkInCombat()
-	if (not inCombat) and (can_attack) and (ranged_morsel):
+	if (not inCombat) and (can_attack) and (ranged_morsel) and ranged_attacking:
 		ranged_attack() 
 	#MOVING STUFF
 	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2.2: #if youve arrived
 		moving = false
-		if(is_instance_valid($AnimationPlayer) and not $AnimationPlayer.get_current_animation() == "Attack" and not $AnimationPlayer.get_current_animation() == "RangedAttack" and not inCombat):
+		print("arrived")
+		if(is_instance_valid($AnimationPlayer) and not inCombat and not ranged_attacking):
+			$AnimationPlayer.stop()
 			$AnimationPlayer.play("Idle")
 	velocity.x = 0
 	if moving:  
+		if is_in_group("Morsels") and not inCombat:
+			current_speed = max_speed
 		position += direction.normalized() * current_speed * delta * 2
-		if(is_instance_valid($AnimationPlayer) and not $AnimationPlayer.get_current_animation() == "Attack" and not $AnimationPlayer.get_current_animation() == "RangedAttack" and not inCombat):	
+		if(is_instance_valid($AnimationPlayer) and $AnimationPlayer.current_animation != "RangedAttack" and not inCombat):	
 			$AnimationPlayer.play("Move")
 	var checkAffected = false
 	for i in pullingBack:
@@ -108,26 +115,24 @@ func _process(delta):
 				i[0] = false
 
 func ranged_attack():
-	if enemies.size() > 0:
+	if ranged_enemies.size() > 0:
 		var lowest = 1000
 		var index = -1
-		for i in range(0, enemies.size()):
-			var distance = sqrt(pow((enemies[i].get_global_position().x - self.get_global_position().x), 2) + pow((enemies[i].get_global_position().y - self.get_global_position().y), 2))
+		for i in range(0, ranged_enemies.size()):
+			var distance = sqrt(pow((ranged_enemies[i].get_global_position().x - self.get_global_position().x), 2) + pow((ranged_enemies[i].get_global_position().y - self.get_global_position().y), 2))
 			if(distance < lowest):
 				lowest = distance
 				index = i
 		can_attack = false
 		var t = Timer.new()
-		if(is_instance_valid($AnimationPlayer) and is_instance_valid(enemies[index])):
-			$AnimationPlayer.play("RESET")
-			$AnimationPlayer.stop()
+		if(is_instance_valid($AnimationPlayer) and is_instance_valid(ranged_enemies[index])):
 			$AnimationPlayer.play("RangedAttack")
 		else:
-			if not inCombat:	
+			if not inCombat and not moving:	
 				$AnimationPlayer.play("RESET")
 				$AnimationPlayer.stop()
 				$AnimationPlayer.play("Idle")
-		t.set_wait_time(.2)
+		t.set_wait_time(.2 / util.g_speed)
 		t.set_one_shot(true)
 		self.add_child(t)
 		t.start()
@@ -136,8 +141,8 @@ func ranged_attack():
 		if(ranged_morsel):
 			$RangedAttack.start(attackSpeed + 1)
 		
-		if index < enemies.size():
-			if is_instance_valid(enemies[index]):
+		if index < ranged_enemies.size():
+			if is_instance_valid(ranged_enemies[index]):
 				var projectile = proj_scene.instance()
 				get_parent().add_child(projectile)
 				projectile.damage = damage/5
@@ -145,7 +150,7 @@ func ranged_attack():
 				$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 				$AudioStreamPlayer2D.play()
 				projectile.position = $ShootPoint.get_global_position()
-				projectile.target = enemies[index]
+				projectile.target = ranged_enemies[index]
 		else:
 			if not inCombat:
 				$AnimationPlayer.play("Idle")
@@ -157,6 +162,7 @@ func checkInCombat():
 	if inCombat:
 		if(ranged_morsel):
 			$RangedAttack.stop()
+			ranged_attacking = false
 		if is_instance_valid(target):
 			if "Player" in target.get_groups():
 				if not target.alive:
@@ -170,9 +176,13 @@ func checkInCombat():
 	else:
 		if not stunned and not ranged_attacking:
 			current_speed = max_speed
+		if enemies.size() > 0:
+			for enemy in enemies:
+				checkType(enemy)
 
 func _on_Enemy_body_entered(body):
 	checkType(body)
+	
 
 func start_stun(duration):
 	stunned = true
@@ -205,6 +215,7 @@ func setTarget(body):
 			if body.target == self or body.is_in_group("Player"): #if target's target is me
 				inCombat = true
 				target = body
+				ranged_attacking = false
 				if(is_instance_valid($AnimationPlayer)):
 					$AnimationPlayer.play("RESET")
 					$AnimationPlayer.stop()
@@ -215,6 +226,8 @@ func setTarget(body):
 		else:
 			inCombat = true
 			target = body
+			ranged_attacking = false
+			body.setTarget(self)
 			if(is_instance_valid($AnimationPlayer)):
 				$AnimationPlayer.play("RESET")
 				$AnimationPlayer.stop()
@@ -231,6 +244,16 @@ func prepareAttackTimer():
 	
 func prepareSpawnTimer():
 	$Spawn.start(spawn_cooldown)
+	var t = Timer.new()
+	t.set_wait_time(3.1 / util.g_speed)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	$AnimationPlayer.play("RESET")
+	$AnimationPlayer.stop()
+	$AnimationPlayer.play("Spawn")
+	t.queue_free()	
 
 func _on_Attack_timeout():
 	if is_instance_valid(target):
@@ -260,9 +283,11 @@ func on_combat_end():
 	can_attack = false
 	if ranged_morsel:
 		$RangedAttack.start(attackSpeed + 1)
-	if(is_instance_valid($AnimationPlayer) and not inCombat):
-		$AnimationPlayer.play("RESET")
-		$AnimationPlayer.stop()
+		if(ranged_enemies.size() > 0):
+			ranged_attacking = true
+	#if(is_instance_valid($AnimationPlayer) and not inCombat):
+		#$AnimationPlayer.play("RESET")
+		#$AnimationPlayer.stop()
 	if self.is_in_group("Morsels"):
 		if(is_instance_valid($AnimationPlayer) and not inCombat):
 			$AnimationPlayer.play("Idle")
@@ -368,6 +393,7 @@ func _on_StunTimer_timeout():
 
 func _on_Spawn_timeout():
 	#can add a new timer to stop movement for .5 secs or something
+	#.9
 	var enemy_instance = to_spawn.instance()
 	enemy_instance.spawned_num_wood = 0
 	enemy_instance.spawned_num_metal = 0
@@ -375,6 +401,11 @@ func _on_Spawn_timeout():
 	enemy_instance.connect("dead", home, "_enemy_killed")
 	get_parent().add_enemy_to_path(self, enemy_instance)
 	emit_signal("alive")
+	if not inCombat:
+		$AnimationPlayer.play("Move")
+	else:
+		$AnimationPlayer.play("Attack")
+	prepareSpawnTimer()
 
 
 func _on_RangedAttack_timeout():
@@ -383,12 +414,27 @@ func _on_RangedAttack_timeout():
 
 func _on_RangeArea_area_entered(area):
 	if(area.get_parent().is_in_group("Enemies")):
-		enemies.append(area)
+		ranged_enemies.append(area)
+		if not inCombat:
+			ranged_attacking = true
+			current_speed = 0
 
 
 func _on_RangeArea_area_exited(area):
 	if(area.get_parent().is_in_group("Enemies")):
-		enemies.remove(enemies.find(area))
+		ranged_enemies.remove(ranged_enemies.find(area))
+		if ranged_enemies.size() == 0:
+			ranged_attacking = false
+			current_speed = max_speed
+			if not inCombat:
+				if moving:
+					$AnimationPlayer.play("RESET")
+					$AnimationPlayer.stop()
+					$AnimationPlayer.play("Move")
+				else:
+					$AnimationPlayer.play("RESET")
+					$AnimationPlayer.stop()
+					$AnimationPlayer.play("Idle")
 
 
 func _on_RegenWait_timeout():
@@ -401,17 +447,22 @@ func _on_Regen_timeout():
 
 func _on_Range2_area_entered(area):
 	if(area.get_parent().is_in_group("Morsels") or area.get_parent().is_in_group("Player")):
-		enemies.append(area)
-		ranged_attacking = true
-		current_speed = 0
+		ranged_enemies.append(area)
+		if not inCombat:
+			ranged_attacking = true
+			current_speed = 0
 
 
 func _on_Range2_area_exited(area):
 	if(area.get_parent().is_in_group("Morsels") or area.get_parent().is_in_group("Player")):
-		enemies.remove(enemies.find(area))
-		if enemies.size() == 0:
+		ranged_enemies.remove(ranged_enemies.find(area))
+		if ranged_enemies.size() == 0:
 			ranged_attacking = false
 			current_speed = max_speed
+			if not inCombat:
+				$AnimationPlayer.play("RESET")
+				$AnimationPlayer.stop()
+				$AnimationPlayer.play("Move")
 
 
 func _on_ResourceKillTimer_timeout():

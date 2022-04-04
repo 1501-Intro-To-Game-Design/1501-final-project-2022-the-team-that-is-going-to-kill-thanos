@@ -1,18 +1,64 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/ForkHit1.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sounds/Burbs/Foley/SpoonHit1.wav" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/EnemyScenes/SporkProjectile.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Animations/Spork/Attack.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/Spork/Move.tres" type="Animation" id=6]
+[ext_resource path="res://Sprites/Enemy Sprites/Spork/spork.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 80, 40 )
+extents = Vector2( 147.5, 275 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 80, 40 )
+extents = Vector2( 45.0001, 192.5 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 430.116
+radius = 550.0
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "RangedAttack"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 20.0, 40.0, -40.0, 0.0 ]
+}
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.2, 0.2 )
@@ -27,21 +73,23 @@ sounds = [ ExtResource( 3 ), ExtResource( 1 ) ]
 max_speed = 40
 
 [node name="Sprite" parent="." index="0"]
-self_modulate = Color( 0.992157, 0, 1, 1 )
-scale = Vector2( 2.53125, 1.20313 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -7.15256e-06, 2.08616e-06 )
+position = Vector2( 2.49999, -4.99999 )
+scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
 margin_left = -95.0
-margin_top = -105.0
+margin_top = -250.0
 margin_right = 95.0
-margin_bottom = -70.0
+margin_bottom = -215.0
 
 [node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
-position = Vector2( -4.76837e-06, 3.57628e-06 )
+position = Vector2( -1.78814e-06, 2.49999 )
+scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 2 )
 
 [node name="Range2" type="Area2D" parent="." index="10"]
@@ -50,9 +98,17 @@ shape = SubResource( 2 )
 shape = SubResource( 3 )
 
 [node name="RangedAttack" type="Timer" parent="." index="11"]
+one_shot = true
 
 [node name="ShootPoint" type="Node2D" parent="." index="12"]
-position = Vector2( 0, -45 )
+position = Vector2( -125, -150 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
+autoplay = "Move"
+anims/Attack = ExtResource( 5 )
+anims/Move = ExtResource( 6 )
+anims/RESET = SubResource( 4 )
+anims/RangedAttack = SubResource( 5 )
 
 [connection signal="area_entered" from="Range2" to="." method="_on_Range2_area_entered"]
 [connection signal="area_exited" from="Range2" to="." method="_on_Range2_area_exited"]

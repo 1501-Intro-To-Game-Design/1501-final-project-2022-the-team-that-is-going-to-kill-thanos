@@ -19,7 +19,7 @@ extents = Vector2( 156, 124 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Idle"
-length = 3.5
+length = 4.5
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:position")
@@ -28,7 +28,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1, 1.4, 1.5, 1.6, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 3.5 ),
+"times": PoolRealArray( 1.5, 1.9, 2, 2.1, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 4.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( -80, -560 ), Vector2( -300, -1120 ), Vector2( 180, -1080 ), Vector2( 480, -680 ), Vector2( 140, 580 ), Vector2( 140, 580 ), Vector2( 0, 240 ), Vector2( -200, -60 ), Vector2( -440, -300 ), Vector2( -580, -640 ), Vector2( -500, -720 ), Vector2( -80, -560 ), Vector2( -80, -560 ) ]
@@ -40,7 +40,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1, 1.1, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 3.5 ),
+"times": PoolRealArray( 0, 1.5, 1.6, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9, 3, 4.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.0, -15.0, 20.0, 75.0, 125.0, 155.0, 180.0, 180.0, 200.0, 220.0, 240.0, 280.0, 310.0, 360.0, 360.0 ]
