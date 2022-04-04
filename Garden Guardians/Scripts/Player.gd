@@ -117,9 +117,9 @@ func green_glow():
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
-	$Sprite.self_modulate = Color(0, 1, 0, 1)
+	$AnimatedSprite.self_modulate = Color(0, 1, 0, 1)
 	yield(t, "timeout")
-	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	$AnimatedSprite.self_modulate = Color(1, 1, 1, 1)
 	t.queue_free()
 
 func yellow_glow():
@@ -128,9 +128,9 @@ func yellow_glow():
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
-	$Sprite.self_modulate = Color(1, .63, .06, 1)
+	$AnimatedSprite.self_modulate = Color(1, .63, .06, 1)
 	yield(t, "timeout")
-	$Sprite.self_modulate = Color(1, 1, 1, 1)
+	$AnimatedSprite.self_modulate = Color(1, 1, 1, 1)
 	t.queue_free()
 
 func battle_action(dmg):
