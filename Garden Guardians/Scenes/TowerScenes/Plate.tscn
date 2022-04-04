@@ -3005,12 +3005,6 @@ position = Vector2( -40, 54 )
 position = Vector2( 81.5, 40.8333 )
 shape = SubResource( 6 )
 
-[node name="PlayerArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
-position = Vector2( 0, -8 )
-shape = SubResource( 8 )
-
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_input_event"]
 [connection signal="mouse_entered" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_mouse_entered"]
@@ -3137,5 +3131,3 @@ shape = SubResource( 8 )
 [connection signal="input_event" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_input_event"]
 [connection signal="mouse_entered" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_entered"]
 [connection signal="mouse_exited" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_exited"]
-[connection signal="body_entered" from="PlayerArea" to="." method="_on_PlayerArea_body_entered"]
-[connection signal="body_exited" from="PlayerArea" to="." method="_on_PlayerArea_body_exited"]

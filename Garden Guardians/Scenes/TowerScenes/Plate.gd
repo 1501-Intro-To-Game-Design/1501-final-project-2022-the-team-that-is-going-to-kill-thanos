@@ -743,28 +743,6 @@ func _on_VAreaDelete_mouse_entered():
 func _on_VAreaDelete_mouse_exited():
 	$Text/Delete.hide()
 
-func _on_PlayerArea_body_entered(body):
-	pass
-	#if(body.is_in_group("Player")):
-		#player_in_range = true
-		#current_menu.show()
-		#if not (tower == null):
-			#$Target.show()
-			#$Delete.show()
-			#tower.show_range(true)
-
-
-func _on_PlayerArea_body_exited(body):
-	pass
-	#if(body.is_in_group("Player")):
-		#player_in_range = false
-		#if current_menu != null:
-			#current_menu.hide()
-			#$Target.hide()
-			#$Delete.hide()
-			#if tower != null and !moveMode:
-				#tower.show_range(false)
-
 func _on_GArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:

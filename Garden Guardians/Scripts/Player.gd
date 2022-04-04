@@ -57,7 +57,7 @@ func _process(delta):
 			$AnimatedSprite.flip_h = true
 		
 		var distance = sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2))
-		if moving and distance < 2: #if you've arrived
+		if moving and distance < 2.5: #if you've arrived
 			moving = false
 		#MOVEMENT STUFF
 		if moving:  

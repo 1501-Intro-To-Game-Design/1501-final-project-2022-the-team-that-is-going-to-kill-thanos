@@ -79,7 +79,6 @@ func start_wave():
 				#value = rng.randi_range(0,enemyScene1.size())
 				#temp = enemyScene1[value].instance()
 		enemystoKill += 1
-	print(enemystoKill)
 	inProgres = true 
 	$EnemySpawn.start()
 

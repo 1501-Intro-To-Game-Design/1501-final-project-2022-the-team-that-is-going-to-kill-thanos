@@ -14,19 +14,12 @@ extents = Vector2( 66, 83 )
 scale = Vector2( 0.5, 0.5 )
 armored = true
 chefs_knife = true
-ranged_morsel = null
-spawner = null
-spawn_cooldown = null
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 50.0
 damage = 50.0
-spawned_num_wood = null
 spawned_num_metal = 4
 sounds = [ ExtResource( 3 ), ExtResource( 2 ) ]
-movingSounds = null
 max_speed = 20
-spawns_on_death = null
-num_spawn_on_death = null
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 1, 0, 0, 1 )

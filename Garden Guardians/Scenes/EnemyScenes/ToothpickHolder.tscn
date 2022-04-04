@@ -43,6 +43,7 @@ tracks/1/keys = {
 }
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
+scale = Vector2( 1.2, 1.2 )
 z_index = 1
 armored = true
 spawner = true

@@ -93,7 +93,7 @@ func _process(delta):
 	if (not inCombat) and (can_attack) and (ranged_morsel) and ranged_attacking:
 		ranged_attack() 
 	#MOVING STUFF
-	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2.2: #if youve arrived
+	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2.5: #if youve arrived
 		moving = false
 		print("arrived")
 		if(is_instance_valid($AnimationPlayer) and not inCombat and not ranged_attacking):
@@ -145,7 +145,7 @@ func ranged_attack():
 			if is_instance_valid(ranged_enemies[index]):
 				var projectile = proj_scene.instance()
 				get_parent().add_child(projectile)
-				projectile.damage = damage/5
+				projectile.damage = damage/2
 				rng.randomize()
 				$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 				$AudioStreamPlayer2D.play()
