@@ -36,6 +36,7 @@ var tower_morsels = []
 var targeted_enemies = []
 var slowed_enemies = []
 var posessedEnemy = null
+var currentSingleTarget = null
 
 export var attacking_tower = false
 export var morsel_tower = false
@@ -86,6 +87,7 @@ func getstuff():
 func _ready():
 	spawn_cooldown /= util.g_speed
 	attack_cooldown /= util.g_speed
+	damageRampUp = 1/damageRampUp
 	$AbilityCooldown.wait_time = ability_cooldown
 	$AbilityCooldown.one_shot = true
 	$AbilityCooldown.start()
@@ -184,6 +186,9 @@ func _process(_delta):
 			can_attack = false
 			$AttackCooldown.start(attack_cooldown)
 			for i in range(targeted_enemies.size()):
+				if not currentSingleTarget == targeted_enemies[i].get_parent():
+					incrementValue = 0
+				currentSingleTarget = targeted_enemies[i].get_parent()
 				attack(targeted_enemies[i])
 				if slowing_tower:
 					var checkSlowed = false
@@ -231,11 +236,16 @@ func attack(enemy):
 	projectile.stun_chance = stun_chance
 	projectile.stun_duration = stun_duration
 	if ramping_tower:
+		print("**********")
+		print("Increasing damage from: " + String(projectile.damage))
 		projectile.damage += incrementValue
+		print("By a total of: " + String(incrementValue))
 		if projectile.damage > projectile.damageCap:
 			projectile.damage = projectile.damageCap
 		if projectile.damage < projectile.damageCap:
 			incrementValue += damageRampUp
+		print("To a total of: " + String(projectile.damage))
+		print("***********")
 	rng.randomize()
 	$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 	$AudioStreamPlayer2D.play()
@@ -396,18 +406,20 @@ func _on_AbilityCooldown_timeout():
 	if posessing_tower:
 		var posessed = false
 		if (not is_instance_valid(posessedEnemy)) or posessedEnemy == null:
+			var DPcost = 0
 			for i in enemies:
 				if not posessed:
 					if is_instance_valid(i.get_parent()):
 						if (i.get_parent().spawned_num_wood + (i.get_parent().spawned_num_metal * 3)) <= posession_DP_limit:
-							i.get_parent().posess()
-							posessedEnemy = i.get_parent()
-							enemies.remove(enemies.find(i))
-							#do we need to do smth with number of enemies b4 round end
-							posessed = true
+							if (i.get_parent().spawned_num_wood) + (i.get_parent().spawned_num_metal * 3) > DPcost:
+								posessedEnemy = i.get_parent()
+								posessed = true
+								DPcost = (i.get_parent().spawned_num_wood) + (i.get_parent().spawned_num_metal * 3)
 			if not posessed:
 				$PosessCheck.start()
-
+			elif posessed:
+				posessedEnemy.get_parent().posess()
+				enemies.remove(enemies.find(posessedEnemy))
 
 func _on_PosessCheck_timeout():
 	var posessed = false

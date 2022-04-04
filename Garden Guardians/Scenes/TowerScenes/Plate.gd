@@ -34,6 +34,9 @@ var proM = [4, 3, 5, 2, 1, 4, 10]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_menu = $TowerMenu
+	target_index = 4
+	$Target/Text.text = "Target: Closest to End"
+	
 	#Sets
 	$Text/Turnip/NinePatchRect/WoodCost.text = String(vegW[0])
 	$Text/Turnip/NinePatchRect/MetalCost.text = String(vegM[0])

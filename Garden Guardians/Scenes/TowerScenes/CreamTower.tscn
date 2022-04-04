@@ -8,9 +8,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 170.0
 
-[node name="Tower" instance=ExtResource( 1 )]
+[node name="Tower2" instance=ExtResource( 1 )]
 attack_cooldown = 0.125
-damageRampUp = 0.013
+damageRampUp = 640.0
 attacking_tower = true
 ramping_tower = true
 projectileScene = ExtResource( 2 )
