@@ -1,6 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 1.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Player Sprites/Gravity Boy Stand.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Player Sprites/Gravity Boy Run 3.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Player Sprites/Gravestone (TEMP).png" type="Texture" id=5]
 [ext_resource path="res://Sounds/Burbs/Hit.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Burbs/Goofy/Player_Alive_Sound.wav" type="AudioStream" id=7]
@@ -9,20 +12,20 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "Running",
-"speed": 4.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Dead",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "Standing",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "Running",
+"speed": 4.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
