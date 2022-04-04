@@ -18,12 +18,10 @@ scale = Vector2( 0.2, 0.2 )
 z_index = 2
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 4.0
-damage = 3.0
-attackSpeed = 0.7
+damage = 4.0
 spawned_num_metal = 1
 sounds = [ ExtResource( 1 ), ExtResource( 2 ) ]
 movingSounds = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
-max_speed = 60
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 0, 1, 0.109804, 1 )

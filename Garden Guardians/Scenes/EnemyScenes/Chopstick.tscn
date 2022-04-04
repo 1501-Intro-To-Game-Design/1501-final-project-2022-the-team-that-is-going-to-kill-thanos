@@ -15,12 +15,12 @@ extents = Vector2( 48, 76 )
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 5 )]
 scale = Vector2( 0.25, 0.25 )
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 3.0
-damage = 1.5
-attackSpeed = 1.2
+max_health = 5.0
+damage = 2.5
+attackSpeed = 0.5
 spawned_num_wood = 3
 sounds = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ]
-max_speed = 60
+max_speed = 55
 spawns_on_death = true
 death_spawn_scene = ExtResource( 4 )
 num_spawn_on_death = 3
