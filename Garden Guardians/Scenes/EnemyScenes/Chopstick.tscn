@@ -23,7 +23,7 @@ sounds = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ]
 max_speed = 55
 spawns_on_death = true
 death_spawn_scene = ExtResource( 4 )
-num_spawn_on_death = 3
+num_spawn_on_death = 2
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 1, 0.701961, 0, 1 )

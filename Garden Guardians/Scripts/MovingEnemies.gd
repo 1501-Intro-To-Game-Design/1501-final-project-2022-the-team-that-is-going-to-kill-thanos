@@ -18,9 +18,13 @@ var dps = []
 var dP = 0
 var budget = 0
 var toPluck = 0 
-var bossFight = false
+var bossFight = true
 signal player_life_lost(livesLost)
 
+#wave stuff
+var thresh1 = 0.8
+var thresh2 = 0.65
+var thresh3 = 0.9
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"/root/ui".connect("nextRoundGo", self, "_on_nextRoundGo")
@@ -38,32 +42,47 @@ func _process(delta):
 				i.spawn_remainder()
 
 func start_wave():
-	dP = (wave*8) +5 #can revise this later
+	dP = (wave*7) -1 #can revise this later
 	budget = dP
 	$"/root/ui".updateRound(wave)
-	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist
-		rng.randomize()
-		var value
-		var temp
-		if wave > 4:
-			value = rng.randi_range(0, 2)
-			if value == 0:
-				bossFight = true
-			else:
-				bossFight = false
-		if budget *0.90 <= dP and wave >= 4 and bossFight:
+	rng.randomize()
+	var value
+	var temp
+	if wave > 8:
+		value = rng.randi_range(0, 2)
+		if value == 0:
+			bossFight = true
+		else:
+			bossFight = false
+	#Threshhold movers
+	
+	if wave == 5:
+		thresh1 -= 0.1
+	elif wave == 10:
+		thresh1 -= 0.1
+		thresh2 -= 0.1
+	elif wave == 15:
+		thresh1 -= 0.15
+		thresh2 -= 0.1
+		thresh3 -= 0.1
+	elif wave == 20:
+		thresh1 -= 0.15
+	elif wave == 25:
+		thresh1 -= 0.1
+	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist	
+		if budget *thresh3 <= dP and wave >= 8 and bossFight:
 			value = rng.randi_range(0,enemyScene4.size()-1)
 			temp = enemyScene4[value].instance()
 			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
 			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
 			enemys.append(enemyScene4[value])
-		elif budget *0.65 <= dP and wave >= 3:
+		elif budget *thresh2 <= dP and wave >= 4:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
 			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
 			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
 			enemys.append(enemyScene3[value])
-		elif budget *0.3 <= dP and wave >= 2:	
+		elif budget *thresh1 <= dP and wave >= 2:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
 			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
