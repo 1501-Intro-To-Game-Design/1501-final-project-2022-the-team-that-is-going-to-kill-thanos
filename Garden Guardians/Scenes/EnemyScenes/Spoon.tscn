@@ -45,10 +45,11 @@ scale = Vector2( 0.2, 0.198473 )
 z_index = 2
 armored = true
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
+damage = 1.5
 attackSpeed = 1.4
 spawned_num_metal = 1
 sounds = [ ExtResource( 3 ), ExtResource( 2 ) ]
-max_speed = 40
+max_speed = 35
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 4 )

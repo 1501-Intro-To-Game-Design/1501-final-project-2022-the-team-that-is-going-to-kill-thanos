@@ -87,7 +87,8 @@ func getstuff():
 func _ready():
 	spawn_cooldown /= util.g_speed
 	attack_cooldown /= util.g_speed
-	damageRampUp = 1/damageRampUp
+	if damageRampUp != 0 and damageRampUp != -1:
+		damageRampUp = 1/damageRampUp
 	$AbilityCooldown.wait_time = ability_cooldown
 	$AbilityCooldown.one_shot = true
 	$AbilityCooldown.start()
@@ -186,20 +187,21 @@ func _process(_delta):
 			can_attack = false
 			$AttackCooldown.start(attack_cooldown)
 			for i in range(targeted_enemies.size()):
-				if not currentSingleTarget == targeted_enemies[i].get_parent():
-					incrementValue = 0
-				currentSingleTarget = targeted_enemies[i].get_parent()
-				attack(targeted_enemies[i])
-				if slowing_tower:
-					var checkSlowed = false
-					for j in slowed_enemies:
-						if is_instance_valid(j[0]):
-							if targeted_enemies[i].get_parent() == j[0]:
-								checkSlowed = true
-					if not checkSlowed:
-						slowed_enemies.append([targeted_enemies[i].get_parent(), targeted_enemies[i].get_parent().current_speed * towerSlowEffect, true])
-						targeted_enemies[i].get_parent().max_speed -= targeted_enemies[i].get_parent().current_speed * towerSlowEffect
-						targeted_enemies[i].get_parent().current_speed -= targeted_enemies[i].get_parent().current_speed * towerSlowEffect
+				if is_instance_valid(targeted_enemies[i].get_parent()):
+					if not currentSingleTarget == targeted_enemies[i].get_parent():
+						incrementValue = 0
+					currentSingleTarget = targeted_enemies[i].get_parent()
+					attack(targeted_enemies[i])
+					if slowing_tower:
+						var checkSlowed = false
+						for j in slowed_enemies:
+							if is_instance_valid(j[0]):
+								if targeted_enemies[i].get_parent() == j[0]:
+									checkSlowed = true
+						if not checkSlowed:
+							slowed_enemies.append([targeted_enemies[i].get_parent(), targeted_enemies[i].get_parent().current_speed * towerSlowEffect, true])
+							targeted_enemies[i].get_parent().max_speed -= targeted_enemies[i].get_parent().current_speed * towerSlowEffect
+							targeted_enemies[i].get_parent().current_speed -= targeted_enemies[i].get_parent().current_speed * towerSlowEffect
 			if slowing_tower:
 				for i in slowed_enemies:
 					if is_instance_valid(i[0]):

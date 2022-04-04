@@ -49,7 +49,7 @@ max_health = 1.5
 damage = 1.0
 spawned_num_wood = 1
 sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
-max_speed = 70
+max_speed = 60
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 33, -20 )

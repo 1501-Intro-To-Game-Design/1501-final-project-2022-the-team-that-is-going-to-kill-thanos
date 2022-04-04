@@ -48,12 +48,11 @@ tracks/1/keys = {
 [node name="Unit2" groups=["Morsels"] instance=ExtResource( 1 )]
 scale = Vector2( 0.05, 0.05 )
 groups_to_check = [ "Enemies" ]
-max_health = 60.0
+max_health = 45.0
 damage = 1.4
 attackSpeed = 1.2
 sounds = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ) ]
 movingSounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ) ]
-max_speed = 45
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 6, 6 )
