@@ -9,7 +9,7 @@ radius = 200.0
 [node name="Tower" instance=ExtResource( 1 )]
 attack_cooldown = 0.125
 ability_cooldown = 10.0
-damageRampUp = 560.0
+damageRampUp = 280.0
 attacking_tower = true
 ramping_tower = true
 posessing_tower = true
