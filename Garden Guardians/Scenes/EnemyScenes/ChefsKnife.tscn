@@ -12,20 +12,19 @@ extents = Vector2( 66, 83 )
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 1 )]
 scale = Vector2( 0.5, 0.5 )
-armored = null
+armored = true
 chefs_knife = true
 ranged_morsel = null
 spawner = null
 spawn_cooldown = null
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 16.0
-damage = 4.0
-attackSpeed = 0.7
+max_health = 50.0
+damage = 50.0
 spawned_num_wood = null
 spawned_num_metal = 4
 sounds = [ ExtResource( 3 ), ExtResource( 2 ) ]
 movingSounds = null
-max_speed = 40
+max_speed = 20
 spawns_on_death = null
 num_spawn_on_death = null
 

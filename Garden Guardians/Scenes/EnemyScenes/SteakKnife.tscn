@@ -12,12 +12,14 @@ extents = Vector2( 36.6667, 156.667 )
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 1 )]
 scale = Vector2( 0.3, 0.3 )
+armored = true
 groups_to_check = [ "Morsels", "Traps", "Player", "Resources", "Traitor" ]
-damage = 3.0
-attackSpeed = 0.5
+max_health = 15.0
+damage = 9.5
+attackSpeed = 1.5
 spawned_num_metal = 3
 sounds = [ ExtResource( 3 ), ExtResource( 2 ) ]
-max_speed = 40
+max_speed = 35
 
 [node name="Sprite" parent="." index="0"]
 self_modulate = Color( 0.415686, 0.168627, 0.909804, 1 )
