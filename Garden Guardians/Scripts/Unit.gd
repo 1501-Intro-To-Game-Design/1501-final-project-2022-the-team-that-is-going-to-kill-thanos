@@ -11,6 +11,7 @@ export var spawn_cooldown = 1.0
 var original_mod
 var ranged_attacking = false
 var followPath
+var resource_kill_time = 1
 
 var inactive_targets = []
 
@@ -67,6 +68,7 @@ func _ready():
 	max_speed *= util.g_speed
 	spawn_cooldown /= util.g_speed
 	attackSpeed /= util.g_speed
+	resource_kill_time /= util.g_speed
 	rng.randomize()
 	current_health = max_health
 	current_speed = max_speed;
@@ -85,6 +87,7 @@ func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 	destination = loc
 	direction = destination - position
 	rng.randomize()
+	$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 	$AudioStreamPlayer2D.stream = movingSounds[rng.randf_range(0,movingSounds.size())] #picks radom sound and plays it
 	$AudioStreamPlayer2D.play()
 	moving = true
@@ -150,6 +153,7 @@ func ranged_attack():
 				projectile.damage = damage/2
 				rng.randomize()
 				$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+				$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 				$AudioStreamPlayer2D.play()
 				projectile.position = $ShootPoint.get_global_position()
 				projectile.target = ranged_enemies[index]
@@ -207,7 +211,8 @@ func setResourceTarget(body):
 	if not inCombat:
 		inCombat = true
 		target = body
-		$ResourceKillTimer.start()
+		$ResourceKillTimer.start(resource_kill_time)
+		$AnimationPlayer.play("ResourceKill")
 		$Regen.stop()
 		$RegenWait.stop()
 
@@ -261,6 +266,7 @@ func _on_Attack_timeout():
 	if is_instance_valid(target):
 		rng.randomize()
 		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 		$AudioStreamPlayer2D.play()
 		if not chefs_knife or target.is_in_group("Player"):
 			target.battle_action(damage)

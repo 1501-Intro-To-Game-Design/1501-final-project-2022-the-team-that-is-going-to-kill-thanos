@@ -226,6 +226,7 @@ func _on_Attack_timeout():
 	if is_instance_valid(target):
 		rng.randomize()
 		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0, sounds.size())]
+		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 		$AudioStreamPlayer2D.play()
 		target.battle_action(damage)
 
@@ -249,9 +250,9 @@ func _on_CombatRange_body_exited(body):
 		
 func _load_n_play(sound, vol):
 	if vol != -1:
-		$AudioStreamPlayer2D.volume_db = vol
+		$AudioStreamPlayer2D.volume_db = vol + util.g_sound
 	else:
-		$AudioStreamPlayer2D.volume_db = 24
+		$AudioStreamPlayer2D.volume_db = 24 + util.g_sound
 	$AudioStreamPlayer2D.stream = sound
 	$AudioStreamPlayer2D.play()
 

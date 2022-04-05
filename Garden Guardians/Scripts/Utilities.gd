@@ -1,7 +1,7 @@
 extends Node
 
 var g_speed = 1.25
-
+var g_sound = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

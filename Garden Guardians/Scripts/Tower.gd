@@ -252,6 +252,7 @@ func attack(enemy, proj_num):
 		print("***********")
 	rng.randomize()
 	$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+	$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 	$AudioStreamPlayer2D.play()
 	if proj_num == 1:
 		projectile.position = $ShootPoint.get_global_position()

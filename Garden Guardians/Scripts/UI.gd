@@ -30,11 +30,13 @@ func _ready():
 
 func add_wood():
 	wood += 1
+	$ResourcePlayer.volume_db = 20 + util.g_sound
 	$ResourcePlayer.play()
 	update()
 	
 func add_metal():
 	metal += 1
+	$ResourcePlayer.volume_db = 20 + util.g_sound
 	$ResourcePlayer.play()
 	update()
 
@@ -113,13 +115,14 @@ func _on_Restart_input_event(viewport, event, shape_idx):
 
 func _load_n_play(sound, vol):
 	if vol != -1:
-		$AudioStreamPlayer.volume_db = vol - 1
-	else:
-		$AudioStreamPlayer.volume_db = 24 - 1
+		$AudioStreamPlayer.volume_db = vol - 1 + util.g_sound
+	else: 
+		$AudioStreamPlayer.volume_db = 24 - 1 + util.g_sound
 	$AudioStreamPlayer.stream = sound
 	$AudioStreamPlayer.play()
 
 func playBackgroundTrack():
+	$BackgroundTrack.volume_db = -8 + util.g_sound
 	$BackgroundTrack.play()
 	
 
