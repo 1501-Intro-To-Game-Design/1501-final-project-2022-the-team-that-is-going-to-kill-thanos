@@ -45,8 +45,8 @@ tracks/1/keys = {
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 5 )]
 scale = Vector2( 0.25, 0.25 )
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 5.0
-damage = 2.5
+max_health = 4.0
+damage = 1.5
 attackSpeed = 0.5
 spawned_num_wood = 3
 sounds = [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ]

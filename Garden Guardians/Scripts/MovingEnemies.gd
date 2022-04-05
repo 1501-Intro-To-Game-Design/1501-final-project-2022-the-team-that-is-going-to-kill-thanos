@@ -25,6 +25,7 @@ signal player_life_lost(livesLost)
 var thresh1 = 0.8
 var thresh2 = 0.65
 var thresh3 = 0.9
+var deincroment = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"/root/ui".connect("nextRoundGo", self, "_on_nextRoundGo")
@@ -98,6 +99,8 @@ func start_wave():
 				#value = rng.randi_range(0,enemyScene1.size())
 				#temp = enemyScene1[value].instance()
 		enemystoKill += 1
+	if wave <= 16:
+		deincroment += 1
 	inProgres = true 
 	$EnemySpawn.start()
 
@@ -140,12 +143,13 @@ func _on_EnemySpawn_timeout():
 		toPluck = rng.randi_range(0,enemys.size()-1)
 		addEnemyPath()
 		var temp = dps.pop_at(toPluck)
-		if temp == 1:#if its toothpick
-			$EnemySpawn.start(0.4) 
-		elif temp <= 3: #if its soilder
-			$EnemySpawn.start(1) 
+		print(temp)
+		if temp <= 1:#if its toothpick
+			$EnemySpawn.start(2 - (deincroment * 0.09375)) #0.5
+		elif temp <= 4: #if its soilder
+			$EnemySpawn.start(4 - (deincroment * 0.1875)) #1
 		else: #if its a big boy
-			$EnemySpawn.start(2.2) 
+			$EnemySpawn.start(7 - (deincroment * 0.25))#3
 
 		
 
