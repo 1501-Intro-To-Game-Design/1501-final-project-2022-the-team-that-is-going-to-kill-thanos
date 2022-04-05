@@ -22,3 +22,6 @@ texture = ExtResource( 3 )
 
 [node name="ShootPoint" parent="." index="4"]
 position = Vector2( 0, 0 )
+
+[connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]

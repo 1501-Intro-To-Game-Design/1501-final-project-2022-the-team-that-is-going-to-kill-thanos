@@ -38,35 +38,25 @@ func _process(delta):
 	else:
 		queue_free()
 
-func _on_AOE2D_area_exited(area):
-	if(area.get_parent().is_in_group("Enemies")):
-		enemies.remove(enemies.find(area))
-
-
-func _on_AOE2D_area_entered(area):
-	if(area.get_parent().is_in_group("Enemies")):
-		enemies.append(area)
-
-
 func _on_Area2D_body_entered(body):
 	if is_instance_valid(target):
-		if(body == target.get_parent()):
+		if(body == target):
 			if piercing:
-				target.get_parent().change_health(-1 * damage, false, true)
+				target.change_health(-1 * damage, false, true)
 			else:
-				target.get_parent().change_health(-1 * damage)
+				target.change_health(-1 * damage)
 			var pullBack
-			for i in target.get_parent().pullingBack:
+			for i in target.pullingBack:
 				if i[1] == true:
 					pullBack = true
 			if stun and not pullBack:
 				var my_random_number = rng.randf_range(0.00, 1.00)
 				if my_random_number <= stun_chance:
-					target.get_parent().start_stun(stun_duration)
+					target.start_stun(stun_duration)
 			if explosive:
 				for enemy in enemies:
 					if not (enemy == target):
-						enemy.get_parent().change_health(-1 * (damage * AOE_percent))
+						enemy.change_health(-1 * (damage * AOE_percent))
 			if field:
 				var initField = effectField.instance()
 				initField.position = position
@@ -88,3 +78,13 @@ func initFieldStats(initField):
 	initField.allyBuff = allyBuff
 	initField.pullBackChance = pullBackChance
 	initField.damage = DOTDamage
+
+
+func _on_AOE2D_body_entered(body):
+	if(body.is_in_group("Enemies")):
+		enemies.append(body)
+
+
+func _on_AOE2D_body_exited(body):
+	if(body.is_in_group("Enemies")):
+		enemies.remove(enemies.find(body))
