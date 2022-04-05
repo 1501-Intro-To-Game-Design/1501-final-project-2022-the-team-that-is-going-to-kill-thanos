@@ -59,6 +59,8 @@ export var num_spawn_on_death = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if ranged_morsel and "Enemies" in get_groups():
+		get_parent().get_parent().get_node("Player").connect("died", self, "_on_player_died")
 	original_mod = $Sprite.get_self_modulate()
 	if(is_instance_valid($AnimationPlayer)):
 		$AnimationPlayer.playback_speed = util.g_speed
@@ -506,7 +508,12 @@ func _on_RangeArea_body_exited(body):
 
 
 func _on_Range2_body_entered(body):
-	if(body.is_in_group("Morsels") or body.is_in_group("Player")):
+	if(body.is_in_group("Morsels")):
+		ranged_enemies.append(body)
+		if not inCombat:
+			ranged_attacking = true
+			current_speed = 0
+	if(body.is_in_group("Player") and body.alive):
 		ranged_enemies.append(body)
 		if not inCombat:
 			ranged_attacking = true
@@ -523,3 +530,11 @@ func _on_Range2_body_exited(body):
 				$AnimationPlayer.play("RESET")
 				$AnimationPlayer.stop()
 				$AnimationPlayer.play("Move")
+
+func _on_player_died():
+	for i in ranged_enemies:
+		if "Player" in i.get_groups():
+			ranged_enemies.remove(ranged_enemies.find(i))
+			ranged_attacking = false
+			on_combat_end()
+	print(ranged_enemies)
