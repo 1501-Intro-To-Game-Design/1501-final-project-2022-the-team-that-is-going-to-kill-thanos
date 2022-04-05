@@ -9,7 +9,7 @@
 [ext_resource path="res://Animations/Toothpick/Attack.tres" type="Animation" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 43.3333, 166.667 )
+extents = Vector2( 80, 176.667 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 43.3333, 166.667 )
@@ -56,7 +56,7 @@ position = Vector2( 33, -20 )
 texture = ExtResource( 1 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -3.33333, -53.3333 )
+position = Vector2( -1.58946e-06, -50 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]

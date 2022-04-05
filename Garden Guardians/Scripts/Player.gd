@@ -19,6 +19,8 @@ var inCombat = false
 var hasBeenHit = true
 var pullingBack = []
 
+signal died
+
 #Resources
 var items = []
 
@@ -158,6 +160,7 @@ func change_health(change):
 		current_health = max_health
 
 func die():
+	emit_signal("died")
 	alive = false
 	on_combat_end()
 	_load_n_play(dieSound, -1)
@@ -165,7 +168,9 @@ func die():
 	ui.metal = round(ui.metal * 0.9)
 	ui.update()
 	$PickUp.monitorable = false
+	$PickUp.monitoring = false
 	$CombatRange.monitorable = false
+	$CombatRange.monitoring = false
 	current_health = 0
 	$Health.value = current_health
 	$Health.visible = false
@@ -178,7 +183,9 @@ func _on_Respawn_timeout():
 	$Health.value = current_health
 	$Health.visible = true
 	$PickUp.monitorable = true
+	$PickUp.monitoring = true
 	$CombatRange.monitorable = true
+	$CombatRange.monitoring = true
 	for enemy in inactive_targets:
 		checkType(enemy)
 		enemy.checkType(self)

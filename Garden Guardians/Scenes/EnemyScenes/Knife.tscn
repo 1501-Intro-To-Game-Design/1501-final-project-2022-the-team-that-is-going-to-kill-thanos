@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/KnifeHit1.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/KnifeHit2.wav" type="AudioStream" id=2]
@@ -6,12 +6,42 @@
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation1.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=5]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sprites/Enemy Sprites/Knife/knife.png" type="Texture" id=7]
+[ext_resource path="res://Animations/Knife/Move.tres" type="Animation" id=8]
+[ext_resource path="res://Animations/Knife/Attack.tres" type="Animation" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 85 )
+extents = Vector2( 85, 230 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 30, 85 )
+extents = Vector2( 22.5, 217.5 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
 scale = Vector2( 0.2, 0.2 )
@@ -24,20 +54,28 @@ sounds = [ ExtResource( 1 ), ExtResource( 2 ) ]
 movingSounds = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Sprite" parent="." index="0"]
-self_modulate = Color( 0, 1, 0.109804, 1 )
-position = Vector2( 0, -7.62939e-06 )
-scale = Vector2( 0.914063, 2.63281 )
+scale = Vector2( 0.82, 0.82 )
+texture = ExtResource( 7 )
+offset = Vector2( 0, -60 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -3.57628e-06, -9.53674e-06 )
+position = Vector2( 0, 35 )
+scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
-margin_left = -95.0
-margin_top = -135.0
-margin_right = 95.0
-margin_bottom = -100.0
+margin_left = -85.0
+margin_top = -240.0
+margin_right = 85.0
+margin_bottom = -210.0
 
 [node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
-position = Vector2( -3.57628e-06, -9.53674e-06 )
+position = Vector2( 2.5, 32.5 )
+scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+autoplay = "Move"
+anims/Attack = ExtResource( 9 )
+anims/Move = ExtResource( 8 )
+anims/RESET = SubResource( 4 )

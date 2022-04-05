@@ -1,14 +1,45 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/KnifeHit2.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Burbs/Foley/KnifeHit1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sprites/Enemy Sprites/SteakKnife/steakknife.png" type="Texture" id=4]
+[ext_resource path="res://Animations/SteakKnife/Move.tres" type="Animation" id=5]
+[ext_resource path="res://Animations/SteakKnife/Attack.tres" type="Animation" id=6]
+[ext_resource path="res://Animations/SteakKnife/ResourceKill.tres" type="Animation" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 98.3333, 198.333 )
+extents = Vector2( 115, 235 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 36.6667, 156.667 )
+extents = Vector2( 26.6667, 208.333 )
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 1 )]
 scale = Vector2( 0.3, 0.3 )
@@ -17,20 +48,21 @@ groups_to_check = [ "Morsels", "Traps", "Player", "Resources", "Traitor" ]
 max_health = 15.0
 damage = 9.5
 attackSpeed = 1.5
+spawned_num_wood = 2
 spawned_num_metal = 3
 sounds = [ ExtResource( 3 ), ExtResource( 2 ) ]
 max_speed = 35
 
 [node name="Sprite" parent="." index="0"]
-self_modulate = Color( 0.415686, 0.168627, 0.909804, 1 )
-scale = Vector2( 1.125, 4.92708 )
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 4 )
 
 [node name="Area2D" parent="." index="3"]
 collision_layer = 32769
 collision_mask = 32769
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 1.66667, 4.99999 )
+position = Vector2( -5, 41.6668 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
@@ -40,10 +72,18 @@ margin_right = 96.6667
 margin_bottom = -181.667
 
 [node name="CollisionShape2D" parent="." index="5"]
+position = Vector2( 1.19209e-06, 38.3333 )
 shape = SubResource( 2 )
 
 [node name="ResourceKillTimer" type="Timer" parent="." index="10"]
 one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="11"]
+autoplay = "Move"
+anims/Attack = ExtResource( 6 )
+anims/Move = ExtResource( 5 )
+anims/RESET = SubResource( 3 )
+anims/ResourceKill = ExtResource( 7 )
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="ResourceKillTimer" to="." method="_on_ResourceKillTimer_timeout"]
