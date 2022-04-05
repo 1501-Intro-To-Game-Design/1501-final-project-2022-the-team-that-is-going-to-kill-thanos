@@ -11,6 +11,7 @@ export var spawn_cooldown = 1.0
 var original_mod
 var ranged_attacking = false
 var followPath
+var resource_kill_time = 1
 
 var inactive_targets = []
 
@@ -65,6 +66,7 @@ func _ready():
 	max_speed *= util.g_speed
 	spawn_cooldown /= util.g_speed
 	attackSpeed /= util.g_speed
+	resource_kill_time /= util.g_speed
 	rng.randomize()
 	current_health = max_health
 	current_speed = max_speed;
@@ -207,7 +209,8 @@ func setResourceTarget(body):
 	if not inCombat:
 		inCombat = true
 		target = body
-		$ResourceKillTimer.start()
+		$ResourceKillTimer.start(resource_kill_time)
+		$AnimationPlayer.play("ResourceKill")
 		$Regen.stop()
 		$RegenWait.stop()
 

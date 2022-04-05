@@ -1,16 +1,46 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack1_Sound.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack3_Sound.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack2_Sound.wav" type="AudioStream" id=3]
 [ext_resource path="res://Scenes/EnemyScenes/Toothpick.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Animations/Chopsticks/Attack.tres" type="Animation" id=6]
+[ext_resource path="res://Sprites/Enemy Sprites/Chopsticks/chopsticks.png" type="Texture" id=7]
+[ext_resource path="res://Animations/Chopsticks/Move.tres" type="Animation" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 104, 116 )
+extents = Vector2( 72, 154 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 48, 76 )
+extents = Vector2( 54, 144 )
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -20, 12 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 5 )]
 scale = Vector2( 0.25, 0.25 )
@@ -26,18 +56,27 @@ death_spawn_scene = ExtResource( 4 )
 num_spawn_on_death = 2
 
 [node name="Sprite" parent="." index="0"]
-self_modulate = Color( 1, 0.701961, 0, 1 )
-scale = Vector2( 1.5625, 2.4375 )
+position = Vector2( -20, 12 )
+scale = Vector2( 0.55, 0.55 )
+texture = ExtResource( 7 )
+offset = Vector2( -35.5556, 35.5556 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 0, 8 )
+position = Vector2( -4, 6 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
-margin_left = -92.0
-margin_top = -136.0
-margin_right = 98.0
-margin_bottom = -101.0
+margin_left = -80.0
+margin_top = -184.0
+margin_right = 84.0
+margin_bottom = -161.0
 
 [node name="CollisionShape2D" parent="." index="5"]
+position = Vector2( 2, 8 )
 shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+autoplay = "Move"
+anims/Attack = ExtResource( 6 )
+anims/Move = ExtResource( 8 )
+anims/RESET = SubResource( 4 )
