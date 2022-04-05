@@ -49,8 +49,8 @@ color = Color( 0.929412, 0.635294, 0.486275, 1 )
 [node name="AbilityCooldown" type="Timer" parent="."]
 autostart = true
 
-[connection signal="area_entered" from="Range" to="." method="_on_Range_area_entered"]
-[connection signal="area_exited" from="Range" to="." method="_on_Range_area_exited"]
+[connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]
 [connection signal="mouse_entered" from="Range" to="." method="_on_Range_mouse_entered"]
 [connection signal="mouse_exited" from="Range" to="." method="_on_Range_mouse_exited"]
 [connection signal="timeout" from="SpawnCooldown" to="." method="_on_SpawnCooldown_timeout"]

@@ -27,5 +27,5 @@ shape = SubResource( 2 )
 [node name="AOEShape" type="CollisionShape2D" parent="AOE2D" index="0"]
 shape = SubResource( 1 )
 
-[connection signal="area_entered" from="AOE2D" to="." method="_on_AOE2D_area_entered"]
-[connection signal="area_exited" from="AOE2D" to="." method="_on_AOE2D_area_exited"]
+[connection signal="body_entered" from="AOE2D" to="." method="_on_AOE2D_body_entered"]
+[connection signal="body_exited" from="AOE2D" to="." method="_on_AOE2D_body_exited"]

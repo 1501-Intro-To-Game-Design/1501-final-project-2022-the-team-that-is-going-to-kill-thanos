@@ -20,7 +20,7 @@ extents = Vector2( 648, 660 )
 extents = Vector2( 368, 395 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 4720.17
+radius = 3720.48
 
 [sub_resource type="Animation" id=6]
 resource_name = "Attack"
@@ -131,5 +131,5 @@ anims/RESET = SubResource( 5 )
 anims/RangedAttack = ExtResource( 11 )
 
 [connection signal="timeout" from="RangedAttack" to="." method="_on_RangedAttack_timeout"]
-[connection signal="area_entered" from="RangeArea" to="." method="_on_RangeArea_area_entered"]
-[connection signal="area_exited" from="RangeArea" to="." method="_on_RangeArea_area_exited"]
+[connection signal="body_entered" from="RangeArea" to="." method="_on_RangeArea_body_entered"]
+[connection signal="body_exited" from="RangeArea" to="." method="_on_RangeArea_body_exited"]

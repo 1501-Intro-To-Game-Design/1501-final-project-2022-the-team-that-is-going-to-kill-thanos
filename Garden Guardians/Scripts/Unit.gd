@@ -414,57 +414,12 @@ func _on_RangedAttack_timeout():
 	can_attack = true
 
 
-func _on_RangeArea_area_entered(area):
-	if(area.get_parent().is_in_group("Enemies")):
-		ranged_enemies.append(area)
-		if not inCombat:
-			ranged_attacking = true
-			current_speed = 0
-
-
-func _on_RangeArea_area_exited(area):
-	if(area.get_parent().is_in_group("Enemies")):
-		ranged_enemies.remove(ranged_enemies.find(area))
-		if ranged_enemies.size() == 0:
-			ranged_attacking = false
-			current_speed = max_speed
-			if not inCombat:
-				if moving:
-					$AnimationPlayer.play("RESET")
-					$AnimationPlayer.stop()
-					$AnimationPlayer.play("Move")
-				else:
-					$AnimationPlayer.play("RESET")
-					$AnimationPlayer.stop()
-					$AnimationPlayer.play("Idle")
-
-
 func _on_RegenWait_timeout():
 	$Regen.start()
 
 
 func _on_Regen_timeout():
 	change_health(max_health*0.15)
-
-
-func _on_Range2_area_entered(area):
-	if(area.get_parent().is_in_group("Morsels") or area.get_parent().is_in_group("Player")):
-		ranged_enemies.append(area)
-		if not inCombat:
-			ranged_attacking = true
-			current_speed = 0
-
-
-func _on_Range2_area_exited(area):
-	if(area.get_parent().is_in_group("Morsels") or area.get_parent().is_in_group("Player")):
-		ranged_enemies.remove(ranged_enemies.find(area))
-		if ranged_enemies.size() == 0:
-			ranged_attacking = false
-			current_speed = max_speed
-			if not inCombat:
-				$AnimationPlayer.play("RESET")
-				$AnimationPlayer.stop()
-				$AnimationPlayer.play("Move")
 
 
 func _on_ResourceKillTimer_timeout():
@@ -526,3 +481,48 @@ func posess():
 
 func _on_Area2D_body_entered(body):
 	checkType(body)
+
+
+func _on_RangeArea_body_entered(body):
+	if(body.is_in_group("Enemies")):
+		ranged_enemies.append(body)
+		if not inCombat:
+			ranged_attacking = true
+			current_speed = 0
+
+
+func _on_RangeArea_body_exited(body):
+	if(body.is_in_group("Enemies")):
+		ranged_enemies.remove(ranged_enemies.find(body))
+		if ranged_enemies.size() == 0:
+			ranged_attacking = false
+			current_speed = max_speed
+			if not inCombat:
+				if moving:
+					$AnimationPlayer.play("RESET")
+					$AnimationPlayer.stop()
+					$AnimationPlayer.play("Move")
+				else:
+					$AnimationPlayer.play("RESET")
+					$AnimationPlayer.stop()
+					$AnimationPlayer.play("Idle")
+
+
+func _on_Range2_body_entered(body):
+	if(body.is_in_group("Morsels") or body.is_in_group("Player")):
+		ranged_enemies.append(body)
+		if not inCombat:
+			ranged_attacking = true
+			current_speed = 0
+
+
+func _on_Range2_body_exited(body):
+	if(body.is_in_group("Morsels") or body.is_in_group("Player")):
+		ranged_enemies.remove(ranged_enemies.find(body))
+		if ranged_enemies.size() == 0:
+			ranged_attacking = false
+			current_speed = max_speed
+			if not inCombat:
+				$AnimationPlayer.play("RESET")
+				$AnimationPlayer.stop()
+				$AnimationPlayer.play("Move")

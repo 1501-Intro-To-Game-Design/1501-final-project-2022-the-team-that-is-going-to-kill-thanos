@@ -144,8 +144,8 @@ func _process(_delta):
 					var index = -1
 					var lowest = 1000
 					for i in range(0, enemies.size()):
-						if(enemies[i].get_parent().get_percent_health() < lowest and not (enemies[i] in targeted_enemies)):
-							lowest = enemies[i].get_parent().get_percent_health()
+						if(enemies[i].get_percent_health() < lowest and not (enemies[i] in targeted_enemies)):
+							lowest = enemies[i].get_percent_health()
 							index = i
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])
@@ -155,8 +155,8 @@ func _process(_delta):
 					var index = -1
 					var highest = 0
 					for i in range(0, enemies.size()):
-						if(enemies[i].get_parent().get_percent_health() > highest and not (enemies[i] in targeted_enemies)):
-							highest = enemies[i].get_parent().get_percent_health()
+						if(enemies[i].get_percent_health() > highest and not (enemies[i] in targeted_enemies)):
+							highest = enemies[i].get_percent_health()
 							index = i
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])
@@ -166,8 +166,8 @@ func _process(_delta):
 					var index = -1
 					var highest = 0
 					for i in range(0, enemies.size()):
-						if(enemies[i].get_parent().get_offset() > highest and not (enemies[i] in targeted_enemies)):
-							highest = enemies[i].get_parent().get_offset()
+						if(enemies[i].get_offset() > highest and not (enemies[i] in targeted_enemies)):
+							highest = enemies[i].get_offset()
 							index = i
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])
@@ -177,8 +177,8 @@ func _process(_delta):
 					var index = -1
 					var lowest = 10000
 					for i in range(0, enemies.size()):
-						if(enemies[i].get_parent().get_offset() < lowest and not (enemies[i] in targeted_enemies)):
-							lowest = enemies[i].get_parent().get_offset()
+						if(enemies[i].get_offset() < lowest and not (enemies[i] in targeted_enemies)):
+							lowest = enemies[i].get_offset()
 							index = i
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])
@@ -189,28 +189,28 @@ func _process(_delta):
 			var num_shots = 0
 			for i in range(targeted_enemies.size()):
 				if is_instance_valid(targeted_enemies[i]):
-					if not currentSingleTarget == targeted_enemies[i].get_parent():
+					if not currentSingleTarget == targeted_enemies[i]:
 						incrementValue = 0
-					currentSingleTarget = targeted_enemies[i].get_parent()
+					currentSingleTarget = targeted_enemies[i]
 					num_shots += 1
 					attack(targeted_enemies[i], num_shots)
 					if slowing_tower:
 						var checkSlowed = false
 						for j in slowed_enemies:
 							if is_instance_valid(j[0]):
-								if targeted_enemies[i].get_parent() == j[0]:
+								if targeted_enemies[i] == j[0]:
 									checkSlowed = true
 						if not checkSlowed:
-							slowed_enemies.append([targeted_enemies[i].get_parent(), targeted_enemies[i].get_parent().current_speed * towerSlowEffect, true])
-							targeted_enemies[i].get_parent().max_speed -= targeted_enemies[i].get_parent().current_speed * towerSlowEffect
-							targeted_enemies[i].get_parent().current_speed -= targeted_enemies[i].get_parent().current_speed * towerSlowEffect
+							slowed_enemies.append([targeted_enemies[i], targeted_enemies[i].current_speed * towerSlowEffect, true])
+							targeted_enemies[i].max_speed -= targeted_enemies[i].current_speed * towerSlowEffect
+							targeted_enemies[i].current_speed -= targeted_enemies[i].current_speed * towerSlowEffect
 			if slowing_tower:
 				for i in slowed_enemies:
 					if is_instance_valid(i[0]):
 						var targeted = false
 						for j in targeted_enemies:
 							if is_instance_valid(j):
-								if i[0] == j.get_parent():
+								if i[0] == j:
 									targeted = true
 						if not targeted:
 							if i[2] == true:
@@ -338,28 +338,9 @@ func buff_morsels():
 		i.attackSpeed -= attack_speed_buff
 		i.damage += damage_buff
 
-func _on_Range_area_entered(area):
-	if(area.get_parent().is_in_group("Enemies")):
-		enemies.append(area)
-
 
 func _on_Cooldown_timeout(): #for attack timer
 	can_attack = true
-
-
-func _on_Range_area_exited(area):
-	if(area.get_parent().is_in_group("Enemies")):
-		enemies.remove(enemies.find(area))
-	if slowing_tower:
-		for i in slowed_enemies:
-			if is_instance_valid(i[0]):
-				if area.get_parent() == i[0]:
-					if i[2] == true:
-						i[0].max_speed += i[1]
-						i[0].current_speed += i[1]
-					slowed_enemies.remove(slowed_enemies.find(i))
-			else:
-				slowed_enemies.remove(slowed_enemies.find(i))
 
 
 func _on_SpawnCooldown_timeout():
@@ -419,26 +400,46 @@ func _on_AbilityCooldown_timeout():
 			var DPcost = 0
 			for i in enemies:
 				if not posessed:
-					if is_instance_valid(i.get_parent()):
-						if (i.get_parent().spawned_num_wood + (i.get_parent().spawned_num_metal * 3)) <= posession_DP_limit:
-							if (i.get_parent().spawned_num_wood) + (i.get_parent().spawned_num_metal * 3) > DPcost:
-								posessedEnemy = i.get_parent()
+					if is_instance_valid(i):
+						if (i.spawned_num_wood + (i.spawned_num_metal * 3)) <= posession_DP_limit:
+							if (i.spawned_num_wood) + (i.spawned_num_metal * 3) > DPcost:
+								posessedEnemy = i
 								posessed = true
-								DPcost = (i.get_parent().spawned_num_wood) + (i.get_parent().spawned_num_metal * 3)
+								DPcost = (i.spawned_num_wood) + (i.spawned_num_metal * 3)
 			if not posessed:
 				$PosessCheck.start()
 			elif posessed:
-				posessedEnemy.get_parent().posess()
+				posessedEnemy.posess()
 				enemies.remove(enemies.find(posessedEnemy))
 
 func _on_PosessCheck_timeout():
 	var posessed = false
 	for i in enemies:
 		if not posessed:
-			if is_instance_valid(i.get_parent()):
-				if (i.get_parent().spawned_num_wood + (i.get_parent().spawned_num_metal * 3)) <= posession_DP_limit:
-					i.get_parent().posess()
-					posessedEnemy = i.get_parent()
+			if is_instance_valid(i):
+				if (i.spawned_num_wood + (i.spawned_num_metal * 3)) <= posession_DP_limit:
+					i.posess()
+					posessedEnemy = i
 					enemies.remove(enemies.find(i))
 					posessed = true
 					$PosessCheck.stop()
+
+
+func _on_Range_body_entered(body):
+	if(body.is_in_group("Enemies")):
+		enemies.append(body)
+
+
+func _on_Range_body_exited(body):
+	if(body.is_in_group("Enemies")):
+		enemies.remove(enemies.find(body))
+	if slowing_tower:
+		for i in slowed_enemies:
+			if is_instance_valid(i[0]):
+				if body == i[0]:
+					if i[2] == true:
+						i[0].max_speed += i[1]
+						i[0].current_speed += i[1]
+					slowed_enemies.remove(slowed_enemies.find(i))
+			else:
+				slowed_enemies.remove(slowed_enemies.find(i))
