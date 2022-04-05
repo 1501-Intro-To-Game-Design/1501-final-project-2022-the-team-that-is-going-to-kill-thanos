@@ -83,6 +83,7 @@ func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 	destination = loc
 	direction = destination - position
 	rng.randomize()
+	$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 	$AudioStreamPlayer2D.stream = movingSounds[rng.randf_range(0,movingSounds.size())] #picks radom sound and plays it
 	$AudioStreamPlayer2D.play()
 	moving = true
@@ -148,6 +149,7 @@ func ranged_attack():
 				projectile.damage = damage/2
 				rng.randomize()
 				$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+				$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 				$AudioStreamPlayer2D.play()
 				projectile.position = $ShootPoint.get_global_position()
 				projectile.target = ranged_enemies[index]
@@ -259,6 +261,7 @@ func _on_Attack_timeout():
 	if is_instance_valid(target):
 		rng.randomize()
 		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 		$AudioStreamPlayer2D.play()
 		if not chefs_knife or target.is_in_group("Player"):
 			target.battle_action(damage)
