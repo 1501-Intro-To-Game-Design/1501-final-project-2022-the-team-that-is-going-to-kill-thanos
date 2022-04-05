@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/NakedChicken.png-2d8ff76e9122b4747c9c6e42a584213d.stex"
+path="res://.import/Fruit BG.png-fc983dcf9ad96295edbad3ca26feaa0f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Morsal Sprites/NakedChicken.png"
-dest_files=[ "res://.import/NakedChicken.png-2d8ff76e9122b4747c9c6e42a584213d.stex" ]
+source_file="res://Sprites/UI Sprites/Fruit BG.png"
+dest_files=[ "res://.import/Fruit BG.png-fc983dcf9ad96295edbad3ca26feaa0f.stex" ]
 
 [params]
 
