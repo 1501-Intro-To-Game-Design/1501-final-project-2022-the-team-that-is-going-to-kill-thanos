@@ -14,6 +14,8 @@ var enemies = []
 var babies = 0
 export var max_babies = 3
 var AOE_percent = 0.0
+var refundW = 0
+var refundM = 0
 
 var can_attack = false
 var can_spawn = false
@@ -43,6 +45,9 @@ export var morsel_tower = false
 export var ramping_tower = false
 export var slowing_tower = false
 export var posessing_tower = false
+export var volley_tower = false
+export var volley_cap = 0
+var volley = 0
 
 var incrementValue = 0
 
@@ -185,7 +190,15 @@ func _process(_delta):
 					else:
 						targeted_enemies.append(null)
 			can_attack = false
-			$AttackCooldown.start(attack_cooldown)
+			if volley_tower:
+				if volley_cap <= volley:
+					$AttackCooldown.start(4)
+					volley = 0
+				else:
+					volley += 1
+					$AttackCooldown.start(attack_cooldown)
+			else:
+				$AttackCooldown.start(attack_cooldown)
 			var num_shots = 0
 			for i in range(targeted_enemies.size()):
 				if is_instance_valid(targeted_enemies[i]):

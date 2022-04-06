@@ -143,6 +143,8 @@ func make_tower(tower_type):
 		ui.metal -= vegM[0]
 		ui.update()
 		tower = vegetable_scene.instance()
+		tower.refundW = 0.4*(vegW[0])
+		tower.refundM = 0.4*(vegM[0])
 		get_parent().add_child(tower)
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
@@ -153,6 +155,8 @@ func make_tower(tower_type):
 		ui.metal -= fruitM[0]
 		ui.update()
 		tower = fruit_scene.instance()
+		tower.refundW = 0.4*(fruitW[0])
+		tower.refundM = 0.4*(fruitM[0])
 		get_parent().add_child(tower)
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
@@ -163,6 +167,8 @@ func make_tower(tower_type):
 		ui.metal -= grainM[0]
 		ui.update()
 		tower = grain_scene.instance()
+		tower.refundW = 0.4*(grainW[0])
+		tower.refundM = 0.4*(grainM[0])
 		get_parent().add_child(tower)
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
@@ -173,6 +179,8 @@ func make_tower(tower_type):
 		ui.metal -= dairyM[0]
 		ui.update()
 		tower = dairy_scene.instance()
+		tower.refundW = 0.4*(dairyW[0])
+		tower.refundM = 0.4*(dairyM[0])
 		get_parent().add_child(tower)
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
@@ -183,6 +191,8 @@ func make_tower(tower_type):
 		ui.metal -= proM[0]
 		ui.update()
 		tower = protein_scene.instance()
+		tower.refundW = 0.4*(proW[0])
+		tower.refundM = 0.4*(proM[0])
 		get_parent().add_child(tower)
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
@@ -196,8 +206,12 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost): #simpler than abov
 		ui.wood -= wood_cost
 		ui.metal -= metal_cost
 		ui.update()
+		var tempW = tower.refundW
+		var tempM = tower.refundM
 		tower.queue_free()
 		tower = tower_to_make.instance()
+		tower.refundW = tempW + (0.4 * wood_cost)
+		tower.refundM = tempM + (0.4 * metal_cost)
 		get_parent().add_child(tower)
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
@@ -732,11 +746,15 @@ func _on_VAreaDelete_input_event(viewport, event, shape_idx):
 				$Target.hide()
 				$Delete.hide()
 				tower.show_range(false)
+				ui.wood += floor(tower.refundW)
+				ui.metal += floor(tower.refundM)
+				ui.update()
 				tower.queue_free()
 				reset()
 
 
 func _on_VAreaDelete_mouse_entered():
+	$Text/Delete/RichTextLabel.text = "Sell this tower for " + String(floor(tower.refundW)) + " wood and " + String(floor(tower.refundM)) + " metal."
 	$Text/Delete.show()
 
 
