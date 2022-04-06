@@ -22,7 +22,6 @@ var slowEffect
 var allyBuff
 var pullBackChance
 var DOTDamage
-var has_next_target = false
 var hit_enemies = []
 export(PackedScene) var effectField
 # Called when the node enters the scene tree for the first time.
@@ -43,9 +42,10 @@ func _process(delta):
 
 func _on_Area2D_body_entered(body):
 	if is_instance_valid(target):
-		var targeted_enemy = null
 		if(body == target):
+			var targeted_enemy = null
 			if(ratatouille):
+				hit_enemies.append(target)
 				if(current_enemies_in_range.size() > 0):
 					for i in range(current_enemies_in_range.size()):
 						var lowest = 1000
@@ -59,13 +59,10 @@ func _on_Area2D_body_entered(body):
 						else:
 							targeted_enemy = null
 				else:
-					has_next_target = false
 					targeted_enemy = null
-			if targeted_enemy != null:
-				has_next_target = true
-				hit_enemies.append(targeted_enemy)
-			else:
-				has_next_target = false
+				if targeted_enemy != null:
+					hit_enemies.append(targeted_enemy)
+					
 			if piercing:
 				target.change_health(-1 * damage, false, true)
 			else:
@@ -89,9 +86,12 @@ func _on_Area2D_body_entered(body):
 				get_parent().add_child(initField)
 				if is_instance_valid(towerFrom):
 					towerFrom.centreOfField.append([target.get_offset(), initField])
-			if has_next_target:
-				damage += 0.2
-				target = targeted_enemy
+			if ratatouille:
+				if targeted_enemy != null:
+					damage += 0.2
+					target = targeted_enemy
+				else:
+					queue_free()
 			else:
 				queue_free()
 	else:

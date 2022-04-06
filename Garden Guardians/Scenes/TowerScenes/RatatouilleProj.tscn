@@ -6,7 +6,7 @@
 extents = Vector2( 7, 7.5 )
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 222.036
+radius = 175.0
 
 [node name="Projectile" instance=ExtResource( 1 )]
 speed = 300

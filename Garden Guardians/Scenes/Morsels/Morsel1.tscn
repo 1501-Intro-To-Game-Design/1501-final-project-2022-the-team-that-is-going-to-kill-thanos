@@ -12,7 +12,7 @@
 [ext_resource path="res://Animations/Meatcube/Attack.tres" type="Animation" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 423.5, 334 )
+extents = Vector2( 256, 160 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 156, 124 )
@@ -89,7 +89,7 @@ scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 8.5, -31 )
+position = Vector2( 40, 20 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 

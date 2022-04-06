@@ -934,7 +934,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Build a Turnip tower."
+text = "Build a Turnip tower that has high attack range, high damage, but low fire rate."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -990,7 +990,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to an Onion tower. Increased damage."
+text = "Upgrade to an Onion tower that has increased damage."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1046,7 +1046,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Combinable Potato tower. Greatly increased damage, slower fire rate."
+text = "Upgrade to a Combinable Potato tower that has greatly increased damage, but a slower fire rate."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1102,7 +1102,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Carrot tower. Increased damage, projectiles now have a 15% chance to stun on hit."
+text = "Upgrade to a Carrot tower that has increased damage, and gives projectiles a 15% chance to stun enemies on hit. Advanced upgrades available."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1158,7 +1158,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "20% Increased projectile stun chance."
+text = "Upgrade this tower to have a 20% increase in projectile stun chance."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1214,7 +1214,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increased projectile stun duration."
+text = "Upgrade this tower to have an increase in projectile stun duration."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1270,7 +1270,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increased fire rate."
+text = "Upgrade this tower to have a faster fire rate."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1326,7 +1326,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Build a Blueberry tower."
+text = "Build a Blueberry tower that has average attack range, low damage, but a high fire rate."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1382,7 +1382,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Plum tower. Increased damage, faster fire rate."
+text = "Upgrade to a Plum tower that has increased damage and a faster fire rate."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1438,7 +1438,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 7 )
-text = "Upgrade to a Combinable Tomato tower. Greatly faster fire rate."
+text = "Upgrade to a Combinable Tomato tower that has a greatly faster fire rate."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1494,7 +1494,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Cherry tower. Increased damage, slower fire rate. Shoots at 2 different enemies."
+text = "Upgrade to a Cherry tower that has increased damage, a slower fire rate, but that shoots 2 different enemies per shot. Advanced upgrades available."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1550,7 +1550,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Now shoots at 3 different enemies."
+text = "Upgrade this tower to now shoots at 3 different enemies per shot."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1606,7 +1606,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increased attack range."
+text = "Upgrade this tower to have an increased attack range."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1662,7 +1662,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "10% Increased AOE damage."
+text = "Upgrade this tower to have 10% increased area of effect damage on every projectile."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1718,7 +1718,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Build a Meatcube morsel tower."
+text = "Build a Meatcube morsel tower, that spawns up to 3 weak Meatcubes."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1774,7 +1774,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Sausage morsel tower. Increased health and damage."
+text = "Upgrade to a Sausage morsel tower, that spawns up to 3 Sausages that have increased health and damage."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1830,7 +1830,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Combinable Backribs morsel tower. Higher health and damage, less movespeed."
+text = "Upgrade to a Combinable Ribs morsel tower that spawns up to 3 Ribs that have increased health and damage, but decreased movespeed."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1886,7 +1886,7 @@ margin_top = 3.0
 margin_right = 128.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Naked Chicken morsel tower. Higher damage, less movespeed. Can now use ranged attacks.."
+text = "Upgrade to a Naked Chicken morsel tower that spawns up to 2 Naked Chickens that have ranged attacks,  increased damage, but decreased movespeed. Advanced upgrades available."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1942,7 +1942,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increased attack speed."
+text = "Upgrade your Naked Chickens to have increased attack speed."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1998,7 +1998,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increased damage."
+text = "Upgrade your Naked Chickens to have increased damage."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2054,7 +2054,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Can now spawn 3 Naked Chickens."
+text = "Upgrade this tower to now be able to spawn 3 Naked Chickens."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2110,7 +2110,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Move this tower's morsels."
+text = "Move this tower's morsels to a new location."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2158,7 +2158,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Build a rice grain tower"
+text = "Build a Rice tower that lays out slowing ricefields onto the path. These ricefields also buff any morsels within them."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2214,7 +2214,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a corn tower, with improved speed reduction and ally boost"
+text = "Upgrade to a Corn tower with improved slow and morsel buffing effects."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2270,7 +2270,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Combinable grain tower. More slow effect, ally boost, attack speed"
+text = "Upgrade to a Combinable Spaghetti tower that offers greater slow and morsel boosting effects, and that has an increased fire rate."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2326,7 +2326,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a pretzel tower. Deals damage, lowers other stats. Advanced upgrades available"
+text = "Upgrade to a Pretzel tower who's fields deal damage over time, but lowers the slow and morsel buffing effects. Advanced upgrades available."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2382,7 +2382,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increased trap duration"
+text = "Upgrades this tower to have an increased field duration."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2438,7 +2438,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increases damage"
+text = "Upgrade this tower's fields to have increased damage over time."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2494,7 +2494,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increases chance that enemies will get pulled back to the start of the trap upon exiting"
+text = "Upgrade this tower to have an increased chance to pull enemies back to the start of its' fields upon exiting them. "
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2550,7 +2550,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Build a Carton of Milk Dairy tower"
+text = "Build a Carton of Milk tower that deals more and more damage, up to a cap, if it is attacking the same target."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2606,7 +2606,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Cream tower, with an increased damage cap"
+text = "Upgrade to a Cream tower that has an increased damage cap."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2662,7 +2662,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a combinable Nacho Parmesan Cheese tower, with increased damage cap"
+text = "Upgrade to a combinable Cheddar Cheese tower with an increased damage cap."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2718,7 +2718,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Upgrade to a Butter tower, which has faster growing damage and can posess enemies"
+text = "Upgrade to a Butter tower which has faster increasing damage and can posess enemies, making them attack other enemies. Advanced upgrades available."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2774,7 +2774,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Can posess stronger enemies"
+text = "Upgrade this tower to be able to posess stronger enemies (soldiers)."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2830,7 +2830,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Decreases posession cooldown"
+text = "Upgrade this tower, decreasing the cooldown on posessing enemies."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2886,7 +2886,7 @@ margin_top = 3.0
 margin_right = 127.0
 margin_bottom = 64.0
 custom_fonts/normal_font = SubResource( 4 )
-text = "Increases slowing effect"
+text = "Upgrade this tower to have increased slowing effects when hitting enemies."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false

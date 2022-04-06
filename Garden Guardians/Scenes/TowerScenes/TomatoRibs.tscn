@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/TowerScenes/TomatoProjectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/TowerScenes/CherryTower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites/Tower Sprites/T_Tree.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Morsels/TomatoBackribs.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 200.0
+
+[node name="Tower" groups=["Tomato"] instance=ExtResource( 2 )]
+attack_cooldown = 0.375
+spawn_cooldown = 7.0
+attacking_tower = true
+morsel_tower = true
+projectileScene = ExtResource( 1 )
+morsalScene = ExtResource( 5 )
+offshoot_upgrade = ExtResource( 3 )
+
+[node name="RangeShape" parent="Range" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0, -10 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 4 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( 6, -28 )

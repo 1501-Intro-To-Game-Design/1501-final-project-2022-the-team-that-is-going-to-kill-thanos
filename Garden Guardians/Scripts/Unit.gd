@@ -1,4 +1,5 @@
 extends RigidBody2D
+export var piercing = false
 export var armored = false
 export var chefs_knife = false
 export var ranged_morsel = false
@@ -99,7 +100,6 @@ func _process(delta):
 	#MOVING STUFF
 	if moving and sqrt(pow((destination.x - self.global_position.x), 2) + pow((destination.y - self.global_position.y), 2)) < 2.5: #if youve arrived
 		moving = false
-		print("arrived")
 		if(is_instance_valid($AnimationPlayer) and not inCombat and not ranged_attacking):
 			$AnimationPlayer.stop()
 			$AnimationPlayer.play("Idle")
@@ -268,9 +268,9 @@ func _on_Attack_timeout():
 		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 		$AudioStreamPlayer2D.play()
 		if not chefs_knife or target.is_in_group("Player"):
-			target.battle_action(damage)
+			target.change_health(-1 * damage, false, piercing)
 		else:
-			target.battle_action(target.max_health)
+			target.change_health(-1 * target.max_health, false, piercing)
 		if target != null:
 			if(is_instance_valid($AnimationPlayer)):
 				$AnimationPlayer.play("RESET")
@@ -545,4 +545,3 @@ func _on_player_died():
 			ranged_enemies.remove(ranged_enemies.find(i))
 			ranged_attacking = false
 			on_combat_end()
-	print(ranged_enemies)

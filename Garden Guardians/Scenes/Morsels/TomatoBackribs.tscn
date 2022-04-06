@@ -4,7 +4,6 @@
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation1.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit1.wav" type="AudioStream" id=4]
-[ext_resource path="res://Animations/Backrib/TomatoAttack.tres" type="Animation" id=5]
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit3.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit2.wav" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=8]
@@ -13,32 +12,36 @@
 [ext_resource path="res://Animations/Backrib/Idle.tres" type="Animation" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 288, 330 )
+extents = Vector2( 312, 368 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 212, 308 )
 
 [sub_resource type="Animation" id=3]
-length = 0.001
+resource_name = "Attack"
+length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:position")
+tracks/0/path = NodePath("Sprite:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ 0.0, 0.0, -130.0, 0.0 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:rotation_degrees")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -49,8 +52,8 @@ tracks/1/keys = {
 scale = Vector2( 0.05, 0.05 )
 groups_to_check = [ "Enemies" ]
 max_health = 45.0
-damage = 1.4
-attackSpeed = 1.2
+damage = 0.9
+attackSpeed = 0.6
 sounds = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ) ]
 movingSounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ) ]
 
@@ -60,7 +63,7 @@ texture = ExtResource( 9 )
 offset = Vector2( -106.667, -90 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 80, -30 )
+position = Vector2( 60, -120 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
@@ -76,8 +79,7 @@ scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
-autoplay = "Idle"
-anims/Attack = ExtResource( 5 )
+anims/Attack = SubResource( 3 )
 anims/Idle = ExtResource( 11 )
 anims/Move = ExtResource( 10 )
-anims/RESET = SubResource( 3 )
+anims/RESET = SubResource( 4 )

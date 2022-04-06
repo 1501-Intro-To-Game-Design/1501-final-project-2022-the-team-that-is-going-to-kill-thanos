@@ -596,6 +596,9 @@ func _on_BigArea_mouse_exited():
 			if tower != null and !moveMode:
 				tower.show_range(false)
 
+func make_rib_plate():
+	$PUpgradeMenu.show()
+	current_menu = $PUpgradeMenu/Backribs
 
 func _on_Text_mouse_entered():
 	in_area = true

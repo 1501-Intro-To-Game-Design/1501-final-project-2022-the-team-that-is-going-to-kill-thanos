@@ -47,6 +47,7 @@ tracks/1/keys = {
 
 [node name="Unit2" groups=["Morsels"] instance=ExtResource( 1 )]
 scale = Vector2( 0.05, 0.05 )
+piercing = true
 groups_to_check = [ "Enemies" ]
 max_health = 45.0
 damage = 1.4

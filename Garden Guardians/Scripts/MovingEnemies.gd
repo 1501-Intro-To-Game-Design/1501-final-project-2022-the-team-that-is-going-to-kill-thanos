@@ -8,7 +8,7 @@ export(Array, PackedScene) var enemyScene3
 export(Array, PackedScene) var enemyScene4
 var enemyPathManager = []
 
-var wave = 10
+var wave = 0
 var inProgres = false
 var rng = RandomNumberGenerator.new()
 var enemys = []
@@ -143,7 +143,6 @@ func _on_EnemySpawn_timeout():
 		toPluck = rng.randi_range(0,enemys.size()-1)
 		addEnemyPath()
 		var temp = dps.pop_at(toPluck)
-		print(temp)
 		if temp <= 1:#if its toothpick
 			$EnemySpawn.start(2 - (deincroment * 0.09375)) #0.5
 		elif temp <= 4: #if its soilder

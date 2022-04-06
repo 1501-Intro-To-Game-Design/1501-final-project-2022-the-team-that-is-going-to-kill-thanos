@@ -194,8 +194,9 @@ func _on_CombatRange_body_entered(body):
 	checkType(body)
 
 func checkType(body):
-	if ("Enemies" in body.get_groups()):
-		setTarget(body)
+	if(is_instance_valid(body)):
+		if ("Enemies" in body.get_groups()):
+			setTarget(body)
 
 func setTarget(body):
 	if alive:

@@ -13,7 +13,7 @@
 [ext_resource path="res://Animations/Sausage/Idle.tres" type="Animation" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 420, 330 )
+extents = Vector2( 236, 300 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 96, 244 )
@@ -62,14 +62,14 @@ texture = ExtResource( 10 )
 offset = Vector2( -3.03588, -67.8688 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 20, -30 )
+position = Vector2( 9.99996, -50 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
-margin_left = -200.0
+margin_left = -220.0
 margin_top = -860.0
-margin_right = 320.0
+margin_right = 300.0
 margin_bottom = -780.0
 
 [node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
