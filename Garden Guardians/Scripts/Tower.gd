@@ -18,6 +18,8 @@ var AOE_percent = 0.0
 var can_attack = false
 var can_spawn = false
 export var attack_cooldown = 1.0
+export var has_alt_attack = false
+export var alt_attack_cooldown = 1.0
 export var ability_cooldown = 1.0
 export var spawn_cooldown = 1.0
 export var damageRampUp = 0.0
@@ -37,6 +39,7 @@ var targeted_enemies = []
 var slowed_enemies = []
 var posessedEnemy = null
 var currentSingleTarget = null
+var altAttackTargets = []
 
 export var attacking_tower = false
 export var morsel_tower = false
@@ -49,6 +52,7 @@ var incrementValue = 0
 var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 
 export(PackedScene) var projectileScene
+export(PackedScene) var altProjectileScene
 export(PackedScene) var morsalScene
 var combination_scene = load("res://Scenes/CombinationNode.tscn")
 export(PackedScene) var upgrade
@@ -219,6 +223,8 @@ func _process(_delta):
 								i[2] = false
 					else:
 						slowed_enemies.remove(slowed_enemies.find(i))
+			if has_alt_attack:
+				$AltAttackCooldown.start(alt_attack_cooldown)
 			targeted_enemies.clear()
 		else:
 			incrementValue = 0
@@ -443,3 +449,27 @@ func _on_Range_body_exited(body):
 					slowed_enemies.remove(slowed_enemies.find(i))
 			else:
 				slowed_enemies.remove(slowed_enemies.find(i))
+
+
+func _on_AltAttackCooldown_timeout():
+	if $StrafeDelay.is_stopped():
+		for i in enemies:
+			if is_instance_valid(i):
+				altAttackTargets.append(i)
+		$StrafeDelay.start()
+
+func _on_StrafeDelay_timeout():
+	if altAttackTargets.size() > 0:
+		var altProjectile = altProjectileScene.instance()
+		altProjectile.towerFrom = self
+		get_parent().add_child(altProjectile)
+		rng.randomize()
+		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
+		$AudioStreamPlayer2D.play()
+		altProjectile.position = $ShootPoint.get_global_position()
+		altProjectile.target = altAttackTargets[0]
+		altAttackTargets.remove(0)
+	else:
+		$StrafeDelay.stop()
+		
