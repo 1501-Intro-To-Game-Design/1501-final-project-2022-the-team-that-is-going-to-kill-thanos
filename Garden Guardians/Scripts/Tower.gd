@@ -9,7 +9,7 @@ var attack_speed_buff = 0.0
 var damage_buff = 0.0
 
 var num_projectiles = 1
-
+var original_mod
 var enemies = []
 var babies = 0
 export var max_babies = 3
@@ -413,7 +413,16 @@ func set_blue_range():
 	$RangeCircle.set_polygon(rangePoints)
 	$RangeCircle.set_color(Color(0.25, 0.5, 1, 0.5))
 	$RangeCircle.visible = true
+	
+	if(tower_morsels.size() > 0):
+		original_mod = tower_morsels[0].get_node("Sprite").get_self_modulate()
+		for morsel in tower_morsels:
+			morsel.get_node("Sprite").self_modulate = Color(0.25, 0.5, 1, 0.8)
 
+func reset_morsel_color():
+	if(tower_morsels.size() > 0):
+		for morsel in tower_morsels:
+			morsel.get_node("Sprite").self_modulate = original_mod
 
 func _on_AbilityCooldown_timeout():
 	if posessing_tower:

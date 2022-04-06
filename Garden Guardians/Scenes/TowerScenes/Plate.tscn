@@ -1,8 +1,8 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Tower Sprites/Carrot.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Tower Sprites/Turnip Projectile.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/TowerScenes/VegetableTower1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/TowerScenes/MorselTower1.tscn" type="PackedScene" id=6]
@@ -13,57 +13,32 @@
 [ext_resource path="res://Sounds/Burbs/Foley/Build_and_Upgrade_Sound.wav" type="AudioStream" id=11]
 [ext_resource path="res://Scenes/TowerScenes/RiceTower.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/TowerScenes/MilkTower.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Sprites/Tower Sprites/Tomato.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Tower Sprites/milkprojectile.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/Tower Sprites/Potato.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/Tower Sprites/Peach.png" type="Texture" id=17]
+[ext_resource path="res://Sprites/Tower Sprites/Cherry_1.png" type="Texture" id=18]
+[ext_resource path="res://Sprites/Morsal Sprites/NakedChicken.png" type="Texture" id=19]
+[ext_resource path="res://Sprites/Morsal Sprites/Sausage.png" type="Texture" id=20]
+[ext_resource path="res://Sprites/Tower Sprites/Onion.png" type="Texture" id=21]
+[ext_resource path="res://Sprites/Tower Sprites/Bberry.png" type="Texture" id=22]
+[ext_resource path="res://Sprites/Tower Sprites/Meat_Cube.png" type="Texture" id=23]
+[ext_resource path="res://Sprites/Morsal Sprites/Rib.png" type="Texture" id=24]
+[ext_resource path="res://Sprites/UI Sprites/Meat BG.png" type="Texture" id=25]
+[ext_resource path="res://Sprites/UI Sprites/Grain BG.png" type="Texture" id=26]
+[ext_resource path="res://Sprites/UI Sprites/RefundTower.png" type="Texture" id=27]
+[ext_resource path="res://Sprites/UI Sprites/MorselMove.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/UI Sprites/Veg BG.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Tower Sprites/Cherry_2.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/UI Sprites/Fruit BG.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/UI Sprites/Milk BG.png" type="Texture" id=32]
+[ext_resource path="res://Scenes/UpgradeFailed.tscn" type="PackedScene" id=33]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 68.5, 20 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14, 14.5 )
-
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 15.3333, 15 )
-
-[sub_resource type="RectangleShape2D" id=15]
-extents = Vector2( 15.6667, 15.6667 )
-
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 26, 10.4375 )
-
-[sub_resource type="RectangleShape2D" id=9]
-extents = Vector2( 21.5, 21.5 )
-
-[sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 22.5, 22.5 )
-
-[sub_resource type="RectangleShape2D" id=11]
-extents = Vector2( 23, 22.5 )
-
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 22, 23 )
-
-[sub_resource type="RectangleShape2D" id=13]
-extents = Vector2( 22, 22.5 )
-
-[sub_resource type="RectangleShape2D" id=14]
-extents = Vector2( 21.5, 22.5 )
-
-[sub_resource type="RectangleShape2D" id=16]
-extents = Vector2( 21.5, 21.5 )
-
-[sub_resource type="RectangleShape2D" id=17]
-extents = Vector2( 22.5, 22.5 )
-
-[sub_resource type="RectangleShape2D" id=18]
-extents = Vector2( 23, 22.5 )
-
-[sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 22, 23 )
-
-[sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 22, 22.5 )
-
-[sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 21.5, 22.5 )
+[sub_resource type="CircleShape2D" id=8]
+radius = 17.5
 
 [sub_resource type="DynamicFont" id=4]
 size = 10
@@ -73,13 +48,11 @@ font_data = ExtResource( 10 )
 [sub_resource type="DynamicFont" id=7]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 95.3333, 68.8333 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 11.5, 8.16667 )
+extents = Vector2( 130, 100 )
 
 [node name="Plate" type="Node2D"]
 script = ExtResource( 2 )
+x_scene = ExtResource( 33 )
 vegetable_scene = ExtResource( 5 )
 fruit_scene = ExtResource( 7 )
 protein_scene = ExtResource( 6 )
@@ -109,12 +82,11 @@ __meta__ = {
 
 [node name="TowerMenu" type="Node2D" parent="."]
 visible = false
-position = Vector2( 0, -16 )
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 2, 2 )
 z_index = 20
 
 [node name="Vegetable" type="Node2D" parent="TowerMenu"]
-position = Vector2( -1, 37 )
+position = Vector2( 50, 20 )
 
 [node name="VSprite" type="Sprite" parent="TowerMenu/Vegetable"]
 position = Vector2( 0, -9 )
@@ -130,21 +102,22 @@ __meta__ = {
 }
 
 [node name="VShape" type="CollisionShape2D" parent="TowerMenu/Vegetable/VArea"]
-shape = SubResource( 2 )
+position = Vector2( 0, -0.333366 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VBackground" type="Sprite" parent="TowerMenu/Vegetable"]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.14, 0.14 )
 z_index = -1
-texture = ExtResource( 3 )
+texture = ExtResource( 29 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Protein" type="Node2D" parent="TowerMenu"]
-position = Vector2( 33, 37 )
+position = Vector2( 0, 30 )
 
 [node name="PArea" type="Area2D" parent="TowerMenu/Protein"]
 __meta__ = {
@@ -152,40 +125,31 @@ __meta__ = {
 }
 
 [node name="PShape" type="CollisionShape2D" parent="TowerMenu/Protein/PArea"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="PBackground" type="Sprite" parent="TowerMenu/Protein"]
-modulate = Color( 0.933333, 0.0117647, 0.0117647, 1 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.14, 0.14 )
 z_index = -1
-texture = ExtResource( 3 )
+texture = ExtResource( 25 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="PSprite" type="Sprite" parent="TowerMenu/Protein"]
-self_modulate = Color( 0.992157, 0, 0.533333, 1 )
-position = Vector2( 0, -9 )
-scale = Vector2( 0.05, 0.05 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2( -3.33333, -15.3333 )
+scale = Vector2( 0.15, 0.15 )
+texture = ExtResource( 23 )
 
 [node name="Fruit" type="Node2D" parent="TowerMenu"]
-position = Vector2( -37, 37 )
+position = Vector2( -50, 20 )
 
 [node name="FSprite" type="Sprite" parent="TowerMenu/Fruit"]
-self_modulate = Color( 0, 1, 0.0862745, 1 )
-position = Vector2( 0, -9 )
-scale = Vector2( 0.05, 0.05 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2( 10.6667, 21.3333 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 22 )
 
 [node name="FArea" type="Area2D" parent="TowerMenu/Fruit"]
 __meta__ = {
@@ -193,20 +157,21 @@ __meta__ = {
 }
 
 [node name="FShape" type="CollisionShape2D" parent="TowerMenu/Fruit/FArea"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="FBackground" type="Sprite" parent="TowerMenu/Fruit"]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.14, 0.14 )
 z_index = -1
-texture = ExtResource( 3 )
+texture = ExtResource( 31 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Grain" type="Node2D" parent="TowerMenu"]
+position = Vector2( -2, -59 )
 
 [node name="GSprite" type="Sprite" parent="TowerMenu/Grain"]
 self_modulate = Color( 0.941176, 0.737255, 0.121569, 1 )
@@ -220,161 +185,168 @@ __meta__ = {
 [node name="GArea" type="Area2D" parent="TowerMenu/Grain"]
 
 [node name="GShape" type="CollisionShape2D" parent="TowerMenu/Grain/GArea"]
-position = Vector2( 70, 37 )
+position = Vector2( 69.6667, 36.6667 )
 shape = SubResource( 8 )
 
 [node name="GBackground" type="Sprite" parent="TowerMenu/Grain"]
 position = Vector2( 70, 37 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.14, 0.14 )
 z_index = -1
-texture = ExtResource( 3 )
+texture = ExtResource( 26 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Dairy" type="Node2D" parent="TowerMenu"]
+position = Vector2( 7, -59 )
 
 [node name="DSprite" type="Sprite" parent="TowerMenu/Dairy"]
-self_modulate = Color( 0.317647, 0.937255, 0.984314, 1 )
-position = Vector2( -73, 28 )
-scale = Vector2( 0.05, 0.05 )
-texture = ExtResource( 4 )
-__meta__ = {
-"_edit_lock_": true
-}
+position = Vector2( -69.6667, 59 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 15 )
 
 [node name="DArea" type="Area2D" parent="TowerMenu/Dairy"]
 
 [node name="DShape" type="CollisionShape2D" parent="TowerMenu/Dairy/DArea"]
 position = Vector2( -73, 37 )
-shape = SubResource( 15 )
+shape = SubResource( 8 )
 
 [node name="DBackground" type="Sprite" parent="TowerMenu/Dairy"]
 position = Vector2( -73, 37 )
-scale = Vector2( 0.489583, 0.489583 )
+scale = Vector2( 0.14, 0.14 )
 z_index = -1
-texture = ExtResource( 3 )
+texture = ExtResource( 32 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VUpgradeMenu" type="Node2D" parent="."]
 visible = false
-position = Vector2( 0, -11 )
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 2, 2 )
 z_index = 20
 
 [node name="V1" type="Node2D" parent="VUpgradeMenu"]
 visible = false
-position = Vector2( -1, 37 )
 
 [node name="Option1" type="Sprite" parent="VUpgradeMenu/V1"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 29 )
 
 [node name="VArea1" type="Area2D" parent="VUpgradeMenu/V1"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShape1" type="CollisionShape2D" parent="VUpgradeMenu/V1/VArea1"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="Sprite" type="Sprite" parent="VUpgradeMenu/V1"]
+position = Vector2( 0, 22 )
+scale = Vector2( 0.12, 0.12 )
+texture = ExtResource( 21 )
+
 [node name="V2" type="Node2D" parent="VUpgradeMenu"]
 visible = false
-position = Vector2( -1, 37 )
 
 [node name="OptionPotato" type="Sprite" parent="VUpgradeMenu/V2"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 29 )
+
+[node name="Sprite" type="Sprite" parent="VUpgradeMenu/V2/OptionPotato"]
+position = Vector2( -4.76191, -57.1429 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 16 )
 
 [node name="VAreaPotato" type="Area2D" parent="VUpgradeMenu/V2"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapePotato" type="CollisionShape2D" parent="VUpgradeMenu/V2/VAreaPotato"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionCarrot" type="Sprite" parent="VUpgradeMenu/V2"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 29 )
+
+[node name="Sprite" type="Sprite" parent="VUpgradeMenu/V2/OptionCarrot"]
+position = Vector2( 0, -52.381 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
 
 [node name="VAreaCarrot" type="Area2D" parent="VUpgradeMenu/V2"]
-position = Vector2( 35, 0 )
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeCarrot" type="CollisionShape2D" parent="VUpgradeMenu/V2/VAreaCarrot"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Carrot" type="Node2D" parent="VUpgradeMenu"]
 visible = false
-position = Vector2( -1, 37 )
 
 [node name="OptionSC" type="Sprite" parent="VUpgradeMenu/Carrot"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( -50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 29 )
 
 [node name="VAreaSC" type="Area2D" parent="VUpgradeMenu/Carrot"]
+position = Vector2( -50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeSC" type="CollisionShape2D" parent="VUpgradeMenu/Carrot/VAreaSC"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionSD" type="Sprite" parent="VUpgradeMenu/Carrot"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 29 )
 
 [node name="VAreaSD" type="Area2D" parent="VUpgradeMenu/Carrot"]
-position = Vector2( 35, 0 )
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeSD" type="CollisionShape2D" parent="VUpgradeMenu/Carrot/VAreaSD"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionACD" type="Sprite" parent="VUpgradeMenu/Carrot"]
-modulate = Color( 0.243137, 1, 0, 1 )
-position = Vector2( -69.6875, 0 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 29 )
 
 [node name="VAreaACD" type="Area2D" parent="VUpgradeMenu/Carrot"]
-position = Vector2( -34.6875, 0 )
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeACD" type="CollisionShape2D" parent="VUpgradeMenu/Carrot/VAreaACD"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -385,309 +357,317 @@ position = Vector2( -1, 37 )
 
 [node name="PUpgradeMenu" type="Node2D" parent="."]
 visible = false
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 2, 2 )
 z_index = 20
 
 [node name="P1" type="Node2D" parent="PUpgradeMenu"]
 visible = false
-position = Vector2( -1, 26 )
 
 [node name="OptionP1" type="Sprite" parent="PUpgradeMenu/P1"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 25 )
+
+[node name="Sprite" type="Sprite" parent="PUpgradeMenu/P1/OptionP1"]
+position = Vector2( -5, -66.667 )
+texture = ExtResource( 20 )
 
 [node name="VAreaP1" type="Area2D" parent="PUpgradeMenu/P1"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeP1" type="CollisionShape2D" parent="PUpgradeMenu/P1/VAreaP1"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Move" type="Node2D" parent="PUpgradeMenu/P1"]
-position = Vector2( -23, -26 )
+position = Vector2( -65, 65 )
 
 [node name="MoveSprite" type="Sprite" parent="PUpgradeMenu/P1/Move"]
-modulate = Color( 0.243137, 1, 0, 1 )
-position = Vector2( -1.5, 76.6667 )
-scale = Vector2( 0.828125, 0.270833 )
-texture = ExtResource( 3 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 28 )
 
 [node name="VAreaMove" type="Area2D" parent="PUpgradeMenu/P1/Move"]
-position = Vector2( -40, 54 )
 
 [node name="VShapeMove" type="CollisionShape2D" parent="PUpgradeMenu/P1/Move/VAreaMove"]
-position = Vector2( 38, 20.8958 )
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [node name="P2" type="Node2D" parent="PUpgradeMenu"]
 visible = false
-position = Vector2( -1, 26 )
 
 [node name="OptionBackribs" type="Sprite" parent="PUpgradeMenu/P2"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 25 )
+
+[node name="Sprite" type="Sprite" parent="PUpgradeMenu/P2/OptionBackribs"]
+position = Vector2( -66.6666, -42.8571 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 24 )
 
 [node name="VAreaBackribs" type="Area2D" parent="PUpgradeMenu/P2"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeBackribs" type="CollisionShape2D" parent="PUpgradeMenu/P2/VAreaBackribs"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionNakedChicken" type="Sprite" parent="PUpgradeMenu/P2"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 25 )
+
+[node name="Sprite" type="Sprite" parent="PUpgradeMenu/P2/OptionNakedChicken"]
+position = Vector2( -9.5238, -33.3333 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 19 )
 
 [node name="VAreaNakedChicken" type="Area2D" parent="PUpgradeMenu/P2"]
-position = Vector2( 35, 0 )
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeNakedChicken" type="CollisionShape2D" parent="PUpgradeMenu/P2/VAreaNakedChicken"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Move" type="Node2D" parent="PUpgradeMenu/P2"]
-position = Vector2( -23, -26 )
+position = Vector2( -65, 65 )
 
 [node name="MoveSprite" type="Sprite" parent="PUpgradeMenu/P2/Move"]
-modulate = Color( 0.243137, 1, 0, 1 )
-position = Vector2( -1.5, 75 )
-scale = Vector2( 0.828125, 0.21875 )
-texture = ExtResource( 3 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 28 )
 
 [node name="VAreaMove" type="Area2D" parent="PUpgradeMenu/P2/Move"]
-position = Vector2( -40, 54 )
 
 [node name="VShapeMove" type="CollisionShape2D" parent="PUpgradeMenu/P2/Move/VAreaMove"]
-position = Vector2( 38, 18.75 )
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [node name="NakedChicken" type="Node2D" parent="PUpgradeMenu"]
 visible = false
-position = Vector2( -1, 26 )
 
 [node name="OptionAS" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( -50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 25 )
 
 [node name="VAreaAS" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
+position = Vector2( -50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeAS" type="CollisionShape2D" parent="PUpgradeMenu/NakedChicken/VAreaAS"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionAD" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 25 )
 
 [node name="VAreaAD" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
-position = Vector2( 35, 0 )
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeAD" type="CollisionShape2D" parent="PUpgradeMenu/NakedChicken/VAreaAD"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionUnit" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
-modulate = Color( 0.243137, 1, 0, 1 )
-position = Vector2( -69.6875, 0 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 25 )
 
 [node name="VAreaUnit" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
-position = Vector2( -34.6875, 0 )
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeUnit" type="CollisionShape2D" parent="PUpgradeMenu/NakedChicken/VAreaUnit"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Move" type="Node2D" parent="PUpgradeMenu/NakedChicken"]
-position = Vector2( -23, -26 )
+position = Vector2( -65, 65 )
 
 [node name="MoveSprite" type="Sprite" parent="PUpgradeMenu/NakedChicken/Move"]
-modulate = Color( 0.243137, 1, 0, 1 )
-position = Vector2( -1.5, 74.6667 )
-scale = Vector2( 0.828125, 0.208333 )
-texture = ExtResource( 3 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 28 )
 
 [node name="VAreaMove" type="Area2D" parent="PUpgradeMenu/NakedChicken/Move"]
-position = Vector2( -40, 54 )
 
 [node name="VShapeMove" type="CollisionShape2D" parent="PUpgradeMenu/NakedChicken/Move/VAreaMove"]
-position = Vector2( 38, 18.75 )
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [node name="Backribs" type="Node2D" parent="PUpgradeMenu"]
 visible = false
-position = Vector2( -1, 37 )
 
 [node name="Move" type="Node2D" parent="PUpgradeMenu/Backribs"]
-position = Vector2( -23, -37 )
+position = Vector2( -65, 65 )
 
 [node name="MoveSprite" type="Sprite" parent="PUpgradeMenu/Backribs/Move"]
-modulate = Color( 0.243137, 1, 0, 1 )
-position = Vector2( -1.5, 76.6667 )
-scale = Vector2( 0.828125, 0.270833 )
-texture = ExtResource( 3 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 28 )
 
 [node name="VAreaMove" type="Area2D" parent="PUpgradeMenu/Backribs/Move"]
-position = Vector2( -40, 54 )
 
 [node name="VShapeMove" type="CollisionShape2D" parent="PUpgradeMenu/Backribs/Move/VAreaMove"]
-position = Vector2( 38, 23.0417 )
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [node name="FUpgradeMenu" type="Node2D" parent="."]
 visible = false
-position = Vector2( 0, -11 )
-scale = Vector2( 1.5, 1.5 )
+scale = Vector2( 2, 2 )
 z_index = 20
 
 [node name="F1" type="Node2D" parent="FUpgradeMenu"]
 visible = false
-position = Vector2( -1, 37 )
 
 [node name="OptionF1" type="Sprite" parent="FUpgradeMenu/F1"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 31 )
+
+[node name="Sprite" type="Sprite" parent="FUpgradeMenu/F1/OptionF1"]
+position = Vector2( 33.3333, 9.5238 )
+scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 17 )
 
 [node name="VAreaF1" type="Area2D" parent="FUpgradeMenu/F1"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeF1" type="CollisionShape2D" parent="FUpgradeMenu/F1/VAreaF1"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="F2" type="Node2D" parent="FUpgradeMenu"]
 visible = false
-position = Vector2( -1, 37 )
 
 [node name="OptionTomato" type="Sprite" parent="FUpgradeMenu/F2"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 31 )
+
+[node name="Sprite" type="Sprite" parent="FUpgradeMenu/F2/OptionTomato"]
+position = Vector2( -4.7619, 42.8571 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 14 )
 
 [node name="VAreaTomato" type="Area2D" parent="FUpgradeMenu/F2"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeTomato" type="CollisionShape2D" parent="FUpgradeMenu/F2/VAreaTomato"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionCherry" type="Sprite" parent="FUpgradeMenu/F2"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 31 )
+
+[node name="Sprite" type="Sprite" parent="FUpgradeMenu/F2/OptionCherry"]
+position = Vector2( 33.3333, 38.0952 )
+scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 18 )
+
+[node name="Sprite2" type="Sprite" parent="FUpgradeMenu/F2/OptionCherry"]
+position = Vector2( 23.8095, 71.4286 )
+scale = Vector2( 1.2, 1.2 )
+texture = ExtResource( 30 )
 
 [node name="VAreaCherry" type="Area2D" parent="FUpgradeMenu/F2"]
-position = Vector2( 35, 0 )
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeCherry" type="CollisionShape2D" parent="FUpgradeMenu/F2/VAreaCherry"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="Cherry" type="Node2D" parent="FUpgradeMenu"]
 visible = false
-position = Vector2( -1, 37 )
 
 [node name="OptionEC" type="Sprite" parent="FUpgradeMenu/Cherry"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 31 )
 
 [node name="VAreaEC" type="Area2D" parent="FUpgradeMenu/Cherry"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeEC" type="CollisionShape2D" parent="FUpgradeMenu/Cherry/VAreaEC"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionAR" type="Sprite" parent="FUpgradeMenu/Cherry"]
-modulate = Color( 0.243137, 1, 0, 1 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 31 )
 
 [node name="VAreaAR" type="Area2D" parent="FUpgradeMenu/Cherry"]
-position = Vector2( 35, 0 )
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeAR" type="CollisionShape2D" parent="FUpgradeMenu/Cherry/VAreaAR"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionAOE" type="Sprite" parent="FUpgradeMenu/Cherry"]
-modulate = Color( 0.243137, 1, 0, 1 )
-position = Vector2( -69.6875, 0 )
-scale = Vector2( 0.46875, 0.46875 )
-texture = ExtResource( 3 )
-offset = Vector2( 74, 0 )
+position = Vector2( -50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 31 )
 
 [node name="VAreaAOE" type="Area2D" parent="FUpgradeMenu/Cherry"]
-position = Vector2( -34.6875, 0 )
+position = Vector2( -50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeAOE" type="CollisionShape2D" parent="FUpgradeMenu/Cherry/VAreaAOE"]
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -698,24 +678,24 @@ position = Vector2( -1, 37 )
 
 [node name="GUpgradeMenu" type="Node2D" parent="."]
 visible = false
+scale = Vector2( 2, 2 )
 
 [node name="G1" type="Node2D" parent="GUpgradeMenu"]
 visible = false
 
 [node name="OptionG1" type="Sprite" parent="GUpgradeMenu/G1"]
-self_modulate = Color( 0.168627, 0.956863, 0.235294, 1 )
-position = Vector2( -1.5, 44.5 )
-scale = Vector2( 0.671875, 0.671875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 26 )
 
 [node name="VAreaG1" type="Area2D" parent="GUpgradeMenu/G1"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeG1" type="CollisionShape2D" parent="GUpgradeMenu/G1/VAreaG1"]
-position = Vector2( -1.5, 44.5 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -724,37 +704,35 @@ __meta__ = {
 visible = false
 
 [node name="OptionSpaghetti" type="Sprite" parent="GUpgradeMenu/G2"]
-modulate = Color( 0.176471, 0.87451, 0.137255, 1 )
-position = Vector2( -1.5, 44.5 )
-scale = Vector2( 0.703125, 0.703125 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 26 )
 
 [node name="VAreaSpaghetti" type="Area2D" parent="GUpgradeMenu/G2"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeSpaghetti" type="CollisionShape2D" parent="GUpgradeMenu/G2/VAreaSpaghetti"]
-position = Vector2( -1.5, 44.5 )
-shape = SubResource( 10 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionPretzel" type="Sprite" parent="GUpgradeMenu/G2"]
-modulate = Color( 0.133333, 0.909804, 0.14902, 1 )
-position = Vector2( 51, 44.5 )
-scale = Vector2( 0.71875, 0.703125 )
-texture = ExtResource( 3 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 26 )
 
 [node name="VAreaPretzel" type="Area2D" parent="GUpgradeMenu/G2"]
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GUpgradeMenu/G2/VAreaPretzel"]
-position = Vector2( 51, 44.5 )
-shape = SubResource( 11 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -763,55 +741,52 @@ __meta__ = {
 visible = false
 
 [node name="OptionTD" type="Sprite" parent="GUpgradeMenu/Pretzel"]
-modulate = Color( 0.121569, 0.815686, 0.278431, 1 )
-position = Vector2( -54, 44 )
-scale = Vector2( 0.6875, 0.71875 )
-texture = ExtResource( 3 )
+position = Vector2( -50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 26 )
 
 [node name="VAreaTD" type="Area2D" parent="GUpgradeMenu/Pretzel"]
+position = Vector2( -50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeTD" type="CollisionShape2D" parent="GUpgradeMenu/Pretzel/VAreaTD"]
-position = Vector2( -54, 44 )
-shape = SubResource( 12 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionDOT" type="Sprite" parent="GUpgradeMenu/Pretzel"]
-modulate = Color( 0.333333, 0.882353, 0.215686, 1 )
-position = Vector2( -2, 43.5 )
-scale = Vector2( 0.6875, 0.703125 )
-texture = ExtResource( 3 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 26 )
 
 [node name="VAreaDOT" type="Area2D" parent="GUpgradeMenu/Pretzel"]
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeDOT" type="CollisionShape2D" parent="GUpgradeMenu/Pretzel/VAreaDOT"]
-position = Vector2( -2, 43.5 )
-shape = SubResource( 13 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionPB" type="Sprite" parent="GUpgradeMenu/Pretzel"]
-modulate = Color( 0.321569, 0.901961, 0.2, 1 )
-position = Vector2( 50.5, 43.5 )
-scale = Vector2( 0.671875, 0.703125 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 26 )
 
 [node name="VAreaPB" type="Area2D" parent="GUpgradeMenu/Pretzel"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapePB" type="CollisionShape2D" parent="GUpgradeMenu/Pretzel/VAreaPB"]
-position = Vector2( 50.5, 43.5 )
-shape = SubResource( 14 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -821,24 +796,24 @@ visible = false
 
 [node name="DUpgradeMenu" type="Node2D" parent="."]
 visible = false
+scale = Vector2( 2, 2 )
 
 [node name="D1" type="Node2D" parent="DUpgradeMenu"]
 visible = false
 
 [node name="OptionD1" type="Sprite" parent="DUpgradeMenu/D1"]
-self_modulate = Color( 0.156863, 0.929412, 0.14902, 1 )
-position = Vector2( -1.5, 44 )
-scale = Vector2( 0.671875, 0.6875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 32 )
 
 [node name="VAreaD1" type="Area2D" parent="DUpgradeMenu/D1"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeD1" type="CollisionShape2D" parent="DUpgradeMenu/D1/VAreaD1"]
-position = Vector2( -1.5, 44.5 )
-shape = SubResource( 16 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -847,37 +822,35 @@ __meta__ = {
 visible = false
 
 [node name="OpitionParmesan" type="Sprite" parent="DUpgradeMenu/D2"]
-self_modulate = Color( 0.192157, 0.92549, 0.188235, 1 )
-position = Vector2( -1.5, 44.5 )
-scale = Vector2( 0.703125, 0.703125 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 32 )
 
 [node name="VAreaParmesan" type="Area2D" parent="DUpgradeMenu/D2"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeParmesan" type="CollisionShape2D" parent="DUpgradeMenu/D2/VAreaParmesan"]
-position = Vector2( -1.5, 44.5 )
-shape = SubResource( 17 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionButter" type="Sprite" parent="DUpgradeMenu/D2"]
-self_modulate = Color( 0.247059, 0.870588, 0.211765, 1 )
-position = Vector2( 51, 44.5 )
-scale = Vector2( 0.71875, 0.703125 )
-texture = ExtResource( 3 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 32 )
 
 [node name="VAreaButter" type="Area2D" parent="DUpgradeMenu/D2"]
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeButter" type="CollisionShape2D" parent="DUpgradeMenu/D2/VAreaButter"]
-position = Vector2( 51, 44.5 )
-shape = SubResource( 18 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -886,55 +859,52 @@ __meta__ = {
 visible = false
 
 [node name="OptionPDP" type="Sprite" parent="DUpgradeMenu/Butter"]
-self_modulate = Color( 0.211765, 0.917647, 0.254902, 1 )
-position = Vector2( -54, 44 )
-scale = Vector2( 0.6875, 0.71875 )
-texture = ExtResource( 3 )
+position = Vector2( 0, 30 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 32 )
 
 [node name="VAreaPDP" type="Area2D" parent="DUpgradeMenu/Butter"]
+position = Vector2( 0, 30 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapePDP" type="CollisionShape2D" parent="DUpgradeMenu/Butter/VAreaPDP"]
-position = Vector2( -54, 44 )
-shape = SubResource( 19 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionPC" type="Sprite" parent="DUpgradeMenu/Butter"]
-self_modulate = Color( 0.384314, 0.937255, 0.286275, 1 )
-position = Vector2( -2, 43.5 )
-scale = Vector2( 0.6875, 0.703125 )
-texture = ExtResource( 3 )
+position = Vector2( 50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 32 )
 
 [node name="VAreaPC" type="Area2D" parent="DUpgradeMenu/Butter"]
+position = Vector2( 50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapePC" type="CollisionShape2D" parent="DUpgradeMenu/Butter/VAreaPC"]
-position = Vector2( -2, 43.5 )
-shape = SubResource( 20 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="OptionSE" type="Sprite" parent="DUpgradeMenu/Butter"]
-self_modulate = Color( 0.443137, 0.952941, 0.278431, 1 )
-position = Vector2( 50.5, 43.5 )
-scale = Vector2( 0.671875, 0.703125 )
-texture = ExtResource( 3 )
+position = Vector2( -50, 20 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 32 )
 
 [node name="VAreaSE" type="Area2D" parent="DUpgradeMenu/Butter"]
+position = Vector2( -50, 20 )
 __meta__ = {
 "_edit_lock_": true
 }
 
 [node name="VShapeSE" type="CollisionShape2D" parent="DUpgradeMenu/Butter/VAreaSE"]
-position = Vector2( 50.5, 43.5 )
-shape = SubResource( 21 )
+shape = SubResource( 8 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -2956,22 +2926,23 @@ __meta__ = {
 
 [node name="Target" type="Node2D" parent="."]
 visible = false
-position = Vector2( -1, -10 )
+position = Vector2( 0, 22 )
 scale = Vector2( 1.5, 1.5 )
 z_index = 20
 
 [node name="TargetSprite" type="Sprite" parent="Target"]
 position = Vector2( -0.5, 65 )
-scale = Vector2( 0.336667, 0.11 )
+scale = Vector2( 0.3, 0.11 )
 texture = ExtResource( 8 )
 
 [node name="Text" type="RichTextLabel" parent="Target"]
-margin_left = -49.0
-margin_top = 53.0
+margin_left = -44.0
+margin_top = 54.0
 margin_right = 48.0
-margin_bottom = 75.0
+margin_bottom = 76.0
+rect_scale = Vector2( 0.95, 0.95 )
 custom_fonts/normal_font = SubResource( 4 )
-text = "Target: Closest to Tower"
+text = "Closest to Tower"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2981,29 +2952,25 @@ __meta__ = {
 scale = Vector2( 1.5, 1.5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BigArea"]
-position = Vector2( -0.666667, 18 )
+position = Vector2( -0.666667, 19.9167 )
 shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="Delete" type="Node2D" parent="."]
 visible = false
-position = Vector2( -6, -26 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 130, 130 )
+scale = Vector2( 2, 2 )
 z_index = 20
 
 [node name="DeleteSprite" type="Sprite" parent="Delete"]
-modulate = Color( 1, 0, 0.4, 1 )
-position = Vector2( 42, 94.9583 )
-scale = Vector2( 0.359375, 0.259114 )
-texture = ExtResource( 3 )
+scale = Vector2( 0.14, 0.14 )
+texture = ExtResource( 27 )
 
 [node name="VAreaDelete" type="Area2D" parent="Delete"]
-position = Vector2( -40, 54 )
 
 [node name="VShapeDelete" type="CollisionShape2D" parent="Delete/VAreaDelete"]
-position = Vector2( 81.5, 40.8333 )
-shape = SubResource( 6 )
+shape = SubResource( 8 )
 
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
 [connection signal="input_event" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_input_event"]

@@ -5,12 +5,14 @@ var player_in_range = false
 var target_types = ["closest", "farthest", "lowest", "highest", "closest_end", "closest_start"]
 var target_index = 4
 var in_area = false
-
+export (PackedScene) var x_scene
 export (PackedScene) var vegetable_scene
 export (PackedScene) var fruit_scene
 export (PackedScene) var protein_scene
 export (PackedScene) var dairy_scene
 export (PackedScene) var grain_scene
+
+var spawned_x = []
 
 export (Resource) var upgradeSound
 
@@ -119,7 +121,7 @@ func _ready():
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			current_menu.show()
 			if not (tower == null):
 				$Target.show()
@@ -129,12 +131,14 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 
 func _on_VArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = make_tower("vegetable")
 			if worked:
 				current_menu.hide()
 				$VUpgradeMenu.show()
 				current_menu = $VUpgradeMenu/V1
+			else:
+				x_animation($TowerMenu/Vegetable/VArea)
 
 func make_tower(tower_type):
 	upgrade()
@@ -240,17 +244,35 @@ func upgrade():
 
 func _on_PArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = make_tower("protein")
 			if worked:
 				current_menu.hide()
 				$PUpgradeMenu.show()
 				current_menu = $PUpgradeMenu/P1
+			else:
+				x_animation($TowerMenu/Protein/PArea)
 
+func x_animation(obj):
+	var new_x = x_scene.instance()
+	get_parent().add_child(new_x)
+	spawned_x.append(new_x)
+	new_x.global_position = obj.global_position
+	new_x.get_node("AnimationPlayer").play("Failed")
+	var t = Timer.new()
+	t.set_wait_time(1.3)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	if(is_instance_valid(new_x)):
+		spawned_x.remove(spawned_x.find(new_x))
+		new_x.queue_free()
 
 func _on_VArea1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, vegW[1], vegM[1]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -258,11 +280,13 @@ func _on_VArea1_input_event(viewport, event, shape_idx):
 				$Delete.hide()
 				tower.show_range(false)
 				current_menu = $VUpgradeMenu/V2
+			else:
+				x_animation($VUpgradeMenu/V1/VArea1)
 
 
 func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.offshoot_upgrade, vegW[3], vegM[3]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -270,11 +294,13 @@ func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 				$Delete.hide()
 				tower.show_range(false)
 				current_menu = $VUpgradeMenu/Carrot
+			else:
+				x_animation($VUpgradeMenu/V2/VAreaCarrot)
 
 
 func _on_VAreaPotato_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, vegW[2], vegM[2]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -282,11 +308,13 @@ func _on_VAreaPotato_input_event(viewport, event, shape_idx):
 				$Delete.hide()
 				tower.show_range(false)
 				current_menu = $VUpgradeMenu/Potato
+			else:
+				x_animation($VUpgradeMenu/V2/VAreaPotato)
 
 
 func _on_VAreaSC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(vegW[4], vegM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -297,11 +325,14 @@ func _on_VAreaSC_input_event(viewport, event, shape_idx):
 				if tower.stun_chance > .70:
 					$VUpgradeMenu/Carrot/VAreaSC.hide()
 					$VUpgradeMenu/Carrot/OptionSC.hide() #could also change this to change sprite
+			else:
+				x_animation($VUpgradeMenu/Carrot/VAreaSC)
+				
 
 
 func _on_VAreaSD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(vegW[5], vegM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -312,11 +343,13 @@ func _on_VAreaSD_input_event(viewport, event, shape_idx):
 				if tower.stun_duration > 1.40:
 					$VUpgradeMenu/Carrot/VAreaSD.hide()
 					$VUpgradeMenu/Carrot/OptionSD.hide() #could also change this to change sprite
+			else:
+				x_animation($VUpgradeMenu/Carrot/VAreaSD)
 
 
 func _on_VAreaACD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(vegW[6], vegM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -327,11 +360,13 @@ func _on_VAreaACD_input_event(viewport, event, shape_idx):
 				if tower.attack_cooldown < 3.1:
 					$VUpgradeMenu/Carrot/VAreaACD.hide()
 					$VUpgradeMenu/Carrot/OptionACD.hide() #could also change this to change sprite
+			else:
+				x_animation($VUpgradeMenu/Carrot/VAreaACD)
 
 
 func _on_VAreaF1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, fruitW[1], fruitM[1]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -339,11 +374,13 @@ func _on_VAreaF1_input_event(viewport, event, shape_idx):
 				$Delete.hide()
 				tower.show_range(false)
 				current_menu = $FUpgradeMenu/F2
+			else:
+				x_animation($FUpgradeMenu/F1/VAreaF1)
 
 
 func _on_VAreaTomato_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, fruitW[2], fruitM[2]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -351,11 +388,13 @@ func _on_VAreaTomato_input_event(viewport, event, shape_idx):
 				$Delete.hide()
 				tower.show_range(false)
 				current_menu = $FUpgradeMenu/Tomato
+			else:
+				x_animation($FUpgradeMenu/F2/VAreaTomato)
 
 
 func _on_VAreaCherry_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.offshoot_upgrade, fruitW[3], fruitM[3]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -364,11 +403,13 @@ func _on_VAreaCherry_input_event(viewport, event, shape_idx):
 				tower.show_range(false)
 				tower.num_projectiles += 1
 				current_menu = $FUpgradeMenu/Cherry
+			else:
+				x_animation($FUpgradeMenu/F2/VAreaCherry)
 
 
 func _on_VAreaEC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(fruitW[4], fruitM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -379,11 +420,13 @@ func _on_VAreaEC_input_event(viewport, event, shape_idx):
 				if tower.num_projectiles > 2:
 					$FUpgradeMenu/Cherry/VAreaEC.hide()
 					$FUpgradeMenu/Cherry/OptionEC.hide() #could also change this to change sprite
+			else:
+				x_animation($FUpgradeMenu/Cherry/VAreaEC)
 
 
 func _on_VAreaAR_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(fruitW[5], fruitM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -395,11 +438,13 @@ func _on_VAreaAR_input_event(viewport, event, shape_idx):
 				if tower.get_range() > 275:
 					$FUpgradeMenu/Cherry/VAreaAR.hide()
 					$FUpgradeMenu/Cherry/OptionAR.hide() #could also change this to change sprite
+			else:
+				x_animation($FUpgradeMenu/Cherry/VAreaAR)
 
 
 func _on_VAreaAOE_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(fruitW[6], fruitM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -411,16 +456,20 @@ func _on_VAreaAOE_input_event(viewport, event, shape_idx):
 				if tower.AOE_percent > 0.25:
 					$FUpgradeMenu/Cherry/VAreaAOE.hide()
 					$FUpgradeMenu/Cherry/OptionAOE.hide() #could also change this to change sprite
+			else:
+				x_animation($FUpgradeMenu/Cherry/VAreaAOE)
 
 
 func _on_FArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = make_tower("fruit")
 			if worked:
 				current_menu.hide()
 				$FUpgradeMenu.show()
 				current_menu = $FUpgradeMenu/F1
+			else:
+				x_animation($TowerMenu/Fruit/FArea)
 
 
 func _on_VArea_mouse_entered():
@@ -536,6 +585,10 @@ func _on_VAreaAOE_mouse_exited():
 
 func _on_BigArea_mouse_exited():
 	if not(in_area):
+		if spawned_x.size() > 0:
+			for x in spawned_x:
+				x.queue_free()
+			spawned_x.clear()
 		if current_menu != null:
 			current_menu.hide()
 			$Target.hide()
@@ -554,29 +607,29 @@ func _on_Text_mouse_exited():
 
 func _on_Text_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			if event.pressed:
 				target_index += 1
 				if target_index >= target_types.size():
 					target_index = 0
 				if target_types[target_index] == "closest":
-					$Target/Text.text = "Target: Closest to Tower"
+					$Target/Text.text = "Closest to Tower"
 				if target_types[target_index] == "farthest":
-					$Target/Text.text = "Target: Farthest to Tower"
+					$Target/Text.text = "Farthest to Tower"
 				if target_types[target_index] == "lowest":
-					$Target/Text.text = "Target: Lowest % Health"
+					$Target/Text.text = "Lowest % Health"
 				if target_types[target_index] == "highest":
-					$Target/Text.text = "Target: Highest % Health"
+					$Target/Text.text = "Highest % Health"
 				if target_types[target_index] == "closest_end":
-					$Target/Text.text = "Target: Closest to End"
+					$Target/Text.text = "Closest to End"
 				if target_types[target_index] == "closest_start":
-					$Target/Text.text = "Target: Closest to Start"
+					$Target/Text.text = "Closest to Start"
 				tower.set_target_type(target_types[target_index])
 
 
 func _on_VAreaP1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, proW[1], proM[1]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -584,11 +637,13 @@ func _on_VAreaP1_input_event(viewport, event, shape_idx):
 				$Delete.hide()
 				tower.show_range(false)
 				current_menu = $PUpgradeMenu/P2
+			else:
+				x_animation($PUpgradeMenu/P1/VAreaP1)
 
 
 func _on_VAreaBackribs_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, proW[2], proM[2]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -596,11 +651,13 @@ func _on_VAreaBackribs_input_event(viewport, event, shape_idx):
 				$Delete.hide()
 				tower.show_range(false)
 				current_menu = $PUpgradeMenu/Backribs
+			else:
+				x_animation($PUpgradeMenu/P2/VAreaBackribs)
 
 
 func _on_VAreaNakedChicken_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.offshoot_upgrade, proW[3], proM[3]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -608,11 +665,13 @@ func _on_VAreaNakedChicken_input_event(viewport, event, shape_idx):
 				$Delete.hide()
 				tower.show_range(false)
 				current_menu = $PUpgradeMenu/NakedChicken
+			else:
+				x_animation($PUpgradeMenu/P2/VAreaNakedChicken)
 
 
 func _on_VAreaAS_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(proW[4], proM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -624,11 +683,13 @@ func _on_VAreaAS_input_event(viewport, event, shape_idx):
 				if tower.attack_speed_buff > 0.3:
 					$PUpgradeMenu/NakedChicken/VAreaAS.hide()
 					$PUpgradeMenu/NakedChicken/OptionAS.hide() #could also change this to change sprite
+			else:
+				x_animation($PUpgradeMenu/NakedChicken/VAreaAS)
 
 
 func _on_VAreaAD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(proW[5], proM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -640,11 +701,13 @@ func _on_VAreaAD_input_event(viewport, event, shape_idx):
 				if tower.damage_buff > 0.3:
 					$PUpgradeMenu/NakedChicken/VAreaAD.hide()
 					$PUpgradeMenu/NakedChicken/OptionAD.hide() #could also change this to change sprite
+			else:
+				x_animation($PUpgradeMenu/NakedChicken/VAreaAD)
 
 
 func _on_VAreaUnit_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(proW[6], proM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -654,6 +717,8 @@ func _on_VAreaUnit_input_event(viewport, event, shape_idx):
 				tower.max_babies += 1
 				$PUpgradeMenu/NakedChicken/VAreaUnit.hide()
 				$PUpgradeMenu/NakedChicken/OptionUnit.hide() #could also change this to change sprite
+			else:
+				x_animation($PUpgradeMenu/NakedChicken/VAreaUnit)
 
 
 func _on_VAreaP1_mouse_entered():
@@ -729,6 +794,7 @@ func _unhandled_input(event):
 					counter += 1
 			moveMode = false
 			tower.initializeRangePolygon()
+			tower.reset_morsel_color()
 
 func _on_VAreaMove_mouse_entered():
 	$Text/MorselMove.show()
@@ -740,7 +806,7 @@ func _on_VAreaMove_mouse_exited():
 
 func _on_VAreaDelete_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			if not (tower == null):
 				current_menu.hide()
 				$Target.hide()
@@ -763,49 +829,57 @@ func _on_VAreaDelete_mouse_exited():
 
 func _on_GArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = make_tower("grain")
 			if worked:
 				current_menu.hide()
 				$GUpgradeMenu.show()
 				current_menu = $GUpgradeMenu/G1
+			else:
+				x_animation($TowerMenu/Grain/GArea/GShape)
 
 
 func _on_VAreaG1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, grainW[1], grainM[1]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
 				current_menu = $GUpgradeMenu/G2
+			else:
+				x_animation($GUpgradeMenu/G1/VAreaG1)
 
 
 func _on_VAreaSpaghetti_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, grainW[2], grainM[2]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
 				current_menu = $GUpgradeMenu/Spaghetti
+			else:
+				x_animation($GUpgradeMenu/G2/VAreaSpaghetti)
 
 func _on_VAreaPretzel_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.offshoot_upgrade, grainW[3], grainM[3]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
 				current_menu = $GUpgradeMenu/Pretzel
+			else:
+				x_animation($GUpgradeMenu/G2/VAreaPretzel)
 
 
 func _on_VAreaTD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(grainW[4], grainM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -815,11 +889,13 @@ func _on_VAreaTD_input_event(viewport, event, shape_idx):
 				if tower.duration >= 14:
 					$GUpgradeMenu/Pretzel/VAreaTD.hide()
 					$GUpgradeMenu/Pretzel/OptionTD.hide() #could also change this to change sprite
+			else:
+				x_animation($GUpgradeMenu/Pretzel/VAreaTD)
 
 
 func _on_VAreaDOT_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(grainW[5], grainM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -829,11 +905,13 @@ func _on_VAreaDOT_input_event(viewport, event, shape_idx):
 				if tower.DOTDamage >= 0.125:
 					$GUpgradeMenu/Pretzel/VAreaDOT.hide()
 					$GUpgradeMenu/Pretzel/OptionDOT.hide() #could also change this to change sprite
+			else:
+				x_animation($GUpgradeMenu/Pretzel/VAreaDOT)
 
 
 func _on_VAreaPB_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(grainW[6], grainM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -843,6 +921,8 @@ func _on_VAreaPB_input_event(viewport, event, shape_idx):
 				if tower.pullBackChance >= 0.2:
 					$GUpgradeMenu/Pretzel/VAreaPB.hide()
 					$GUpgradeMenu/Pretzel/OptionPB.hide() #could also change this to change sprite
+			else:
+				x_animation($GUpgradeMenu/Pretzel/VAreaPB)
 
 
 func _on_GArea_mouse_entered():
@@ -903,50 +983,58 @@ func _on_VAreaPB_mouse_exited():
 
 func _on_DArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = make_tower("dairy")
 			if worked:
 				current_menu.hide()
 				$DUpgradeMenu.show()
 				current_menu = $DUpgradeMenu/D1
+			else:
+				x_animation($TowerMenu/Dairy/DArea/DShape)
 
 
 func _on_VAreaD1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, dairyW[1], dairyM[1]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
 				current_menu = $DUpgradeMenu/D2
+			else:
+				x_animation($DUpgradeMenu/D1/VAreaD1)
 
 
 func _on_VAreaParmesan_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.upgrade, dairyW[2], dairyM[2]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
 				current_menu = $DUpgradeMenu/Parmesan
+			else:
+				x_animation($DUpgradeMenu/D2/VAreaParmesan)
 
 
 func _on_VAreaButter_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = simple_make_tower(tower.offshoot_upgrade, dairyW[3], dairyM[3]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
 				$Target.hide()
 				$Delete.hide()
 				current_menu = $DUpgradeMenu/Butter
+			else:
+				x_animation($DUpgradeMenu/D2/VAreaButter)
 
 
 func _on_VAreaPDP_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(dairyW[4], dairyM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -955,11 +1043,13 @@ func _on_VAreaPDP_input_event(viewport, event, shape_idx):
 				tower.posession_DP_limit += 2
 				$DUpgradeMenu/Butter/VAreaPDP.hide()
 				$DUpgradeMenu/Butter/OptionPDP.hide() #could also change this to change sprite
+			else:
+				x_animation($DUpgradeMenu/Butter/VAreaPDP)
 
 
 func _on_VAreaPC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(dairyW[5], dairyM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -969,11 +1059,13 @@ func _on_VAreaPC_input_event(viewport, event, shape_idx):
 				if tower.ability_cooldown <= 5.5:
 					$DUpgradeMenu/Butter/VAreaPC.hide()
 					$DUpgradeMenu/Butter/OptionPC.hide() #could also change this to change sprite
+			else:
+				x_animation($DUpgradeMenu/Butter/VAreaPC)
 
 
 func _on_VAreaSE_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		if event.button_index == BUTTON_LEFT and event.pressed:
 			var worked = buy_something(dairyW[6], dairyM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -984,6 +1076,8 @@ func _on_VAreaSE_input_event(viewport, event, shape_idx):
 				if tower.towerSlowEffect >= 0.2:
 					$DUpgradeMenu/Butter/VAreaSE.hide()
 					$DUpgradeMenu/Butter/OptionSE.hide() #could also change this to change sprite
+			else:
+				x_animation($DUpgradeMenu/Butter/VAreaSE)
 
 func _on_DArea_mouse_entered():
 	$Text/Milk.show()
