@@ -62,6 +62,8 @@ func _on_Area2D_body_entered(body):
 				initField.position = position
 				initFieldStats(initField)
 				get_parent().add_child(initField)
+				if is_instance_valid(towerFrom):
+					towerFrom.centreOfField.append([target.get_offset(), initField])
 			queue_free()
 	else:
 		queue_free()
@@ -73,6 +75,8 @@ func initTowerStats():
 	pullBackChance = towerFrom.pullBackChance
 	DOTDamage = towerFrom.DOTDamage
 func initFieldStats(initField):
+	if is_instance_valid(towerFrom):
+		initField.towerFrom = towerFrom
 	initField.duration = duration
 	initField.slowEffect = slowEffect
 	initField.allyBuff = allyBuff

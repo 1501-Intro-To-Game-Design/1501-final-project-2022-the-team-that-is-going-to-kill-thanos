@@ -25,4 +25,5 @@ func get_unit_offset():
 func getPathLocation():
 	return $Pathway.position
 
-
+func setOffset(offset):
+	$Pathway.set_offset(offset)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/CombinationNode.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/TowerScenes/FriesAndKetchupTower.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/TowerScenes/MarinaraTower.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/TowerScenes/GnocchiTower.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.083
@@ -11,6 +12,7 @@ radius = 12.083
 script = ExtResource( 1 )
 fries_and_ketchup = ExtResource( 2 )
 marinara_spaghetti = ExtResource( 3 )
+gnocchi = ExtResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

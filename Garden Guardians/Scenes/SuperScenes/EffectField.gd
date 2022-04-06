@@ -6,6 +6,7 @@ var allyBuff = 0.0
 var pullBackChance = 0.0
 var dealsDamage = false
 var damage = 0.0
+var towerFrom = null
 
 var rng = RandomNumberGenerator.new()
 
@@ -31,6 +32,11 @@ func _ready():
 
 
 func _on_LifeTime_timeout():
+	if is_instance_valid(towerFrom):
+		for i in towerFrom.centreOfField:
+			if is_instance_valid(i[1]):
+				if i[1] == self:
+					towerFrom.centreOfField.remove(towerFrom.centreOfField.find(i))
 	queue_free()
 
 func _on_Area2D_body_entered(body):

@@ -5,6 +5,7 @@ var tower_to_combine = null
 
 export (PackedScene) var fries_and_ketchup
 export (PackedScene) var marinara_spaghetti
+export (PackedScene) var gnocchi
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -51,6 +52,11 @@ func on_drag_end():
 					towers[0].plate.simple_make_tower(new_tower, 0, 0)
 					towers[0].queue_free()
 					return true
+				elif towers[0].is_in_group("Spaghetti"):
+					new_tower = gnocchi
+					towers[0].plate.simple_make_tower(new_tower, 0, 0)
+					towers[0].queue_free()
+					return true
 			elif tower_to_combine.is_in_group("Backribs"):
 				if towers[0].is_in_group("Tomato"):
 					new_tower = fries_and_ketchup
@@ -65,6 +71,11 @@ func on_drag_end():
 			elif tower_to_combine.is_in_group("Spaghetti"):
 				if towers[0].is_in_group("Tomato"):
 					new_tower = marinara_spaghetti
+					towers[0].plate.simple_make_tower(new_tower, 0, 0)
+					towers[0].queue_free()
+					return true
+				elif towers[0].is_in_group("Potato"):
+					new_tower = gnocchi
 					towers[0].plate.simple_make_tower(new_tower, 0, 0)
 					towers[0].queue_free()
 					return true

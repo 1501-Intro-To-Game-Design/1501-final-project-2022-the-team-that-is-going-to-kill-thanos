@@ -171,7 +171,13 @@ func get_offset(enemy_node):
 	for i in enemyPathManager:
 		if i[0] == enemy_node:
 			return i[1].get_offset()
-	
+
+func set_offset(enemy_node, offset):
+	for i in enemyPathManager:
+		if i[0] == enemy_node:
+			i[1].setOffset(offset)
+			i[0].position = i[1].getPathLocation()
+
 func _on_nextRoundGo():
 	$"/root/ui".waveInProgress()
 	wave += 1

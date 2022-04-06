@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/SuperScenes/Projectile.tscn" type="PackedScene" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 20.0
+
+[node name="Projectile" instance=ExtResource( 1 )]
+speed = 300
+damage = 7.5
+explosive = true
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource( 1 )
+
+[node name="AOE2D" type="Area2D" parent="." index="2"]
+
+[node name="AOEShape" type="CollisionShape2D" parent="AOE2D" index="0"]
+shape = SubResource( 2 )
+
+[connection signal="body_entered" from="AOE2D" to="." method="_on_AOE2D_body_entered"]
+[connection signal="body_exited" from="AOE2D" to="." method="_on_AOE2D_body_exited"]

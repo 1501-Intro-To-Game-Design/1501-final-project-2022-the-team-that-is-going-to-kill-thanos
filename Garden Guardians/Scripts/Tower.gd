@@ -42,6 +42,7 @@ var slowed_enemies = []
 var posessedEnemy = null
 var currentSingleTarget = null
 var altAttackTargets = []
+var centreOfField = []
 
 export var attacking_tower = false
 export var morsel_tower = false
@@ -101,6 +102,8 @@ func _ready():
 	$AbilityCooldown.wait_time = ability_cooldown
 	$AbilityCooldown.one_shot = true
 	$AbilityCooldown.start()
+	if "Gnocchi" in get_groups():
+		$AltAttackCooldown.start()
 	rng.randomize()
 	if morsel_tower:
 		yield(get_tree().create_timer(0.1), "timeout")
@@ -236,7 +239,7 @@ func _process(_delta):
 								i[2] = false
 					else:
 						slowed_enemies.remove(slowed_enemies.find(i))
-			if has_alt_attack:
+			if has_alt_attack and "Marinara" in get_groups():
 				$AltAttackCooldown.start(alt_attack_cooldown)
 			targeted_enemies.clear()
 		else:
@@ -465,11 +468,32 @@ func _on_Range_body_exited(body):
 
 
 func _on_AltAttackCooldown_timeout():
-	if $StrafeDelay.is_stopped():
-		for i in enemies:
-			if is_instance_valid(i):
-				altAttackTargets.append(i)
-		$StrafeDelay.start()
+	if "Marinara" in self.get_groups():
+		if $StrafeDelay.is_stopped():
+			for i in enemies:
+				if is_instance_valid(i):
+					altAttackTargets.append(i)
+			$StrafeDelay.start()
+	elif "Gnocchi" in self.get_groups():
+		if centreOfField.size() > 0:
+			for i in enemies:
+				if is_instance_valid(i):
+					i.set_offset(centreOfField[centreOfField.size()-1][0])
+					if altAttackTargets.size() == 0:
+						altAttackTargets.append(i)
+			if altAttackTargets.size() != 0:
+				var altProjectile = altProjectileScene.instance()
+				altProjectile.towerFrom = self
+				get_parent().add_child(altProjectile)
+				altProjectile.explosive = true
+				altProjectile.AOE_percent = 1
+				rng.randomize()
+				$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+				$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
+				$AudioStreamPlayer2D.play()
+				altProjectile.position = $ShootPoint.get_global_position()
+				altProjectile.target = altAttackTargets[0]
+				altAttackTargets.clear()
 
 func _on_StrafeDelay_timeout():
 	if altAttackTargets.size() > 0:

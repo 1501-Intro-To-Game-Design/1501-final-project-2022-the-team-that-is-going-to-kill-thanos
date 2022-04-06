@@ -365,6 +365,9 @@ func get_percent_health():
 func get_offset():
 	return (get_parent().get_offset(self))
 
+func set_offset(offset):
+	get_parent().set_offset(self, offset)
+
 func destroy(dropResources = true):
 	var r
 	if self.is_in_group("Morsels"): #decrease number of active morsels
