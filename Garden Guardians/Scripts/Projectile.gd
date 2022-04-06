@@ -10,17 +10,20 @@ export var stun = false
 export var explosive = false
 export var field = false
 export var piercing = false
+var ratatouille = false
 var stun_chance = 0.15
 var stun_duration = 0.75
 var enemies = []
 var towerFrom
+var current_enemies_in_range = []
 #EffectField Variables
 var duration
 var slowEffect
 var allyBuff
 var pullBackChance
 var DOTDamage
-
+var has_next_target = false
+var hit_enemies = []
 export(PackedScene) var effectField
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,7 +43,29 @@ func _process(delta):
 
 func _on_Area2D_body_entered(body):
 	if is_instance_valid(target):
+		var targeted_enemy = null
 		if(body == target):
+			if(ratatouille):
+				if(current_enemies_in_range.size() > 0):
+					for i in range(current_enemies_in_range.size()):
+						var lowest = 1000
+						var index = -1
+						var distance = sqrt(pow((current_enemies_in_range[i].get_global_position().x - self.get_global_position().x), 2) + pow((current_enemies_in_range[i].get_global_position().y - self.get_global_position().y), 2))
+						if(distance < lowest and not current_enemies_in_range[i] in hit_enemies):
+							lowest = distance
+							index = i
+						if not (index == -1):
+							targeted_enemy = current_enemies_in_range[i]
+						else:
+							targeted_enemy = null
+				else:
+					has_next_target = false
+					targeted_enemy = null
+			if targeted_enemy != null:
+				has_next_target = true
+				hit_enemies.append(targeted_enemy)
+			else:
+				has_next_target = false
 			if piercing:
 				target.change_health(-1 * damage, false, true)
 			else:
@@ -64,7 +89,11 @@ func _on_Area2D_body_entered(body):
 				get_parent().add_child(initField)
 				if is_instance_valid(towerFrom):
 					towerFrom.centreOfField.append([target.get_offset(), initField])
-			queue_free()
+			if has_next_target:
+				damage += 0.2
+				target = targeted_enemy
+			else:
+				queue_free()
 	else:
 		queue_free()
 
@@ -92,3 +121,13 @@ func _on_AOE2D_body_entered(body):
 func _on_AOE2D_body_exited(body):
 	if(body.is_in_group("Enemies")):
 		enemies.remove(enemies.find(body))
+
+
+func _on_RatRange_body_entered(body):
+	if body.is_in_group("Enemies"):
+		current_enemies_in_range.append(body)
+
+
+func _on_RatRange_body_exited(body):
+	if body.is_in_group("Enemies"):
+		current_enemies_in_range.remove(current_enemies_in_range.find(body))

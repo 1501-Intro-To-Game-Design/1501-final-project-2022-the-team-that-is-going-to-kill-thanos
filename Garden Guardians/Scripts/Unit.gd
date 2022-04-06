@@ -12,7 +12,6 @@ var original_mod
 var ranged_attacking = false
 var followPath
 var resource_kill_time = 1
-
 var inactive_targets = []
 
 var enemies = []

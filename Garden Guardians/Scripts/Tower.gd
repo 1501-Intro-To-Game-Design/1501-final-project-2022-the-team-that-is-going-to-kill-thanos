@@ -50,6 +50,7 @@ export var ramping_tower = false
 export var slowing_tower = false
 export var posessing_tower = false
 export var volley_tower = false
+export var ratatouille_tower = false
 export var volley_cap = 0
 var volley = 0
 
@@ -261,6 +262,8 @@ func attack(enemy, proj_num):
 	projectile.AOE_percent = AOE_percent
 	projectile.stun_chance = stun_chance
 	projectile.stun_duration = stun_duration
+	if ratatouille_tower:
+		projectile.ratatouille = true
 	if ramping_tower:
 		print("**********")
 		print("Increasing damage from: " + String(projectile.damage))

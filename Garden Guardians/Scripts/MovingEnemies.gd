@@ -8,7 +8,7 @@ export(Array, PackedScene) var enemyScene3
 export(Array, PackedScene) var enemyScene4
 var enemyPathManager = []
 
-var wave = 0
+var wave = 10
 var inProgres = false
 var rng = RandomNumberGenerator.new()
 var enemys = []
