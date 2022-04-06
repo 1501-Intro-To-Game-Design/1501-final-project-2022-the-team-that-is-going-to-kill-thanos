@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 225.0
 
-[node name="Tower" instance=ExtResource( 1 )]
+[node name="Tower" groups=["Spaghetti"] instance=ExtResource( 1 )]
 attack_cooldown = 10.0
 duration = 10
 slowEffect = 0.5

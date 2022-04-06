@@ -49,6 +49,10 @@ color = Color( 0.929412, 0.635294, 0.486275, 1 )
 [node name="AbilityCooldown" type="Timer" parent="."]
 autostart = true
 
+[node name="AltAttackCooldown" type="Timer" parent="."]
+
+[node name="StrafeDelay" type="Timer" parent="."]
+
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]
 [connection signal="mouse_entered" from="Range" to="." method="_on_Range_mouse_entered"]
