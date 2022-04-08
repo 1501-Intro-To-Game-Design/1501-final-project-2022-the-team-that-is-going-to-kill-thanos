@@ -914,7 +914,6 @@ scale = Vector2( 1.5, 1.5 )
 z_index = 20
 
 [node name="Turnip" type="NinePatchRect" parent="Text"]
-visible = false
 margin_left = -64.0
 margin_top = -119.0
 margin_right = 66.0
