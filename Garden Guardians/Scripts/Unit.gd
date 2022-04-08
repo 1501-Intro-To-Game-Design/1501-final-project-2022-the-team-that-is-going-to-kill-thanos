@@ -233,6 +233,7 @@ func setTarget(body):
 			if body.target == self or body.is_in_group("Player"): #if target's target is me
 				inCombat = true
 				target = body
+				body.setTarget(self)
 				ranged_attacking = false
 				if(is_instance_valid($AnimationPlayer)):
 					$AnimationPlayer.play("RESET")
