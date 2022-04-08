@@ -213,6 +213,9 @@ func setResourceTarget(body):
 		target = body
 		$ResourceKillTimer.start(resource_kill_time)
 		$AnimationPlayer.play("ResourceKill")
+		$AudioStreamPlayer2D.stream = sounds[0] 
+		$AudioStreamPlayer2D.volume_db = 4 + util.g_sound
+		$AudioStreamPlayer2D.play()
 		$Regen.stop()
 		$RegenWait.stop()
 
