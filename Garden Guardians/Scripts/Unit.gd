@@ -418,6 +418,7 @@ func _on_Spawn_timeout():
 	#can add a new timer to stop movement for .5 secs or something
 	#.9
 	var enemy_instance = to_spawn.instance()
+	get_parent().add_child(enemy_instance)
 	enemy_instance.spawned_num_wood = 0
 	enemy_instance.spawned_num_metal = 0
 	enemy_instance.get_node("Sprite").self_modulate = Color(.4, .3, .29)
