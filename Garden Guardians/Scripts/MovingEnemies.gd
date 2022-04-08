@@ -43,7 +43,7 @@ func _process(delta):
 				i.spawn_remainder()
 
 func start_wave():
-	dP = (wave*7) -1 #can revise this later
+	dP = (wave*7) -1 # = (wave*7) -1
 	budget = dP
 	$"/root/ui".updateRound(wave)
 	rng.randomize()

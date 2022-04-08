@@ -211,13 +211,21 @@ func setResourceTarget(body):
 	if not inCombat:
 		inCombat = true
 		target = body
-		$ResourceKillTimer.start(resource_kill_time)
 		$AnimationPlayer.play("ResourceKill")
+		$ResourceKillTimer.start(resource_kill_time)
+		var t = Timer.new()
+		t.set_wait_time(0.5)
+		t.set_one_shot(true)
+		self.add_child(t)
+		t.start()
+		$Regen.stop()
+		$RegenWait.stop()
+		yield(t, "timeout")
+		t.queue_free()
 		$AudioStreamPlayer2D.stream = sounds[0] 
 		$AudioStreamPlayer2D.volume_db = 4 + util.g_sound
 		$AudioStreamPlayer2D.play()
-		$Regen.stop()
-		$RegenWait.stop()
+		
 
 func setTarget(body):
 	if not inCombat:
