@@ -142,7 +142,6 @@ func _on_VArea_input_event(viewport, event, shape_idx):
 				x_animation($TowerMenu/Vegetable/VArea)
 
 func make_tower(tower_type):
-	upgrade()
 	if tower_type == "vegetable" and vegW[0] <= ui.wood and vegM[0] <= ui.metal:
 		ui.wood -= vegW[0]
 		ui.metal -= vegM[0]
@@ -154,6 +153,7 @@ func make_tower(tower_type):
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
+		upgrade()
 		return true
 	elif tower_type == "fruit" and fruitW[0] <= ui.wood and fruitM[0] <= ui.metal:
 		ui.wood -= fruitW[0]
@@ -166,6 +166,7 @@ func make_tower(tower_type):
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
+		upgrade()
 		return true
 	elif tower_type == "grain" and grainW[0] <= ui.wood and grainM[0] <= ui.metal:
 		ui.wood -= grainW[0]
@@ -178,6 +179,7 @@ func make_tower(tower_type):
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
+		upgrade()
 		return true
 	elif tower_type == "dairy" and dairyW[0] <= ui.wood and dairyM[0] <= ui.metal:
 		ui.wood -= dairyW[0]
@@ -190,6 +192,7 @@ func make_tower(tower_type):
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
+		upgrade()
 		return true
 	elif tower_type == "protein" and proW[0] <= ui.wood and proM[0] <= ui.metal:
 		ui.wood -= proW[0]
@@ -202,6 +205,7 @@ func make_tower(tower_type):
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_offset)
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
+		upgrade()
 		return true
 	else:
 		ui.failedAction()
