@@ -13,10 +13,10 @@
 [ext_resource path="res://Animations/Backrib/Idle.tres" type="Animation" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 288, 330 )
+extents = Vector2( 272, 363 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 212, 308 )
+extents = Vector2( 216, 332 )
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -61,7 +61,7 @@ texture = ExtResource( 9 )
 offset = Vector2( -106.667, -90 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 80, -30 )
+position = Vector2( 100, -112.5 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
@@ -72,7 +72,7 @@ margin_right = 540.0
 margin_bottom = -1065.0
 
 [node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
-position = Vector2( 110, -50.0001 )
+position = Vector2( 120, -110 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )
 

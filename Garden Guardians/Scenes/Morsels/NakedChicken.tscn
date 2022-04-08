@@ -13,7 +13,7 @@
 [ext_resource path="res://Animations/NakedChicken/Idle.tres" type="Animation" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 580, 512 )
+extents = Vector2( 428, 452 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 368, 395 )
@@ -95,7 +95,7 @@ texture = ExtResource( 2 )
 offset = Vector2( -23.3333, -36.6667 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -9.99986, 20 )
+position = Vector2( -10, 170 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 

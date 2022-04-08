@@ -12,10 +12,10 @@
 [ext_resource path="res://Animations/Backrib/Idle.tres" type="Animation" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 288, 330 )
+extents = Vector2( 272, 363 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 212, 308 )
+extents = Vector2( 216, 332 )
 
 [sub_resource type="Animation" id=3]
 resource_name = "Attack"

@@ -271,8 +271,10 @@ func _on_Attack_timeout():
 		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 		$AudioStreamPlayer2D.play()
-		if not chefs_knife or target.is_in_group("Player"):
+		if not chefs_knife and not target.is_in_group("Player"):
 			target.change_health(-1 * damage, false, piercing)
+		elif target.is_in_group("Player"):
+			target.change_health(-1 * damage)
 		else:
 			target.change_health(-1 * target.max_health, false, piercing)
 		if target != null:
