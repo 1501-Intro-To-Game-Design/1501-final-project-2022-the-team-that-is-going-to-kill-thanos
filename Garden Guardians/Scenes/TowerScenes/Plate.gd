@@ -796,6 +796,9 @@ func _on_VAreaMove_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and !moveMode and event.is_action_released("Mouse"):
 			moveMode = true
+			current_menu.hide()
+			$Target.hide()
+			$Delete.hide()
 			tower.set_blue_range()
 	
 func _unhandled_input(event):

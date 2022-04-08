@@ -15,7 +15,7 @@
 [node name="MovingEnemies" type="Node2D"]
 script = ExtResource( 1 )
 importPathScene = ExtResource( 2 )
-enemyScene1 = [ ExtResource( 4 ) ]
+enemyScene1 = [ ExtResource( 4 ), ExtResource( 10 ) ]
 enemyScene2 = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 9 ) ]
 enemyScene3 = [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 11 ) ]
 enemyScene4 = [ ExtResource( 10 ) ]
