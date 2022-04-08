@@ -23,7 +23,7 @@ signal player_life_lost(livesLost)
 
 #wave stuff
 var thresh1 = 0.8
-var thresh2 = 0.65
+var thresh2 = 0.8
 var thresh3 = 0.9
 var deincroment = -1
 # Called when the node enters the scene tree for the first time.
@@ -56,9 +56,10 @@ func start_wave():
 		else:
 			bossFight = false
 	#Threshhold movers
-	
-	if wave == 5:
+	if wave == 4:
 		thresh1 -= 0.1
+	elif wave == 7:
+		thresh1 -= 0.15
 	elif wave == 10:
 		thresh1 -= 0.1
 		thresh2 -= 0.1
@@ -68,8 +69,11 @@ func start_wave():
 		thresh3 -= 0.1
 	elif wave == 20:
 		thresh1 -= 0.15
+		thresh2 -= 0.1
 	elif wave == 25:
 		thresh1 -= 0.1
+		thresh2 -= 0.15
+		thresh3 -= 0.1
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist	
 		if budget *thresh3 <= dP and wave >= 8 and bossFight:
 			value = rng.randi_range(0,enemyScene4.size()-1)
@@ -160,8 +164,12 @@ func updateEnemyLocation(delta):
 			i[0].position = i[1].getPathLocation()
 			if i[1].get_unit_offset() >= 1:
 				i[0].destroy(false)
-				if i[0].spawned_num_wood + i[0].spawned_num_metal*3 > 0:
-					emit_signal("player_life_lost", i[0].spawned_num_wood + (i[0].spawned_num_metal*3))
+				if i[0].spawned_num_wood + i[0].spawned_num_metal*3 >= 20:
+					emit_signal("player_life_lost", 5)
+				elif i[0].spawned_num_wood + i[0].spawned_num_metal*3 >= 5:
+					emit_signal("player_life_lost", 3)
+				elif i[0].spawned_num_wood + i[0].spawned_num_metal*3 >= 3:
+					emit_signal("player_life_lost", 2)
 				else:
 					emit_signal("player_life_lost", 1)
 

@@ -54,7 +54,7 @@ groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 30.0
 damage = 0.5
 spawned_num_wood = 6
-spawned_num_metal = 2
+spawned_num_metal = 1
 sounds = [ ExtResource( 9 ), ExtResource( 2 ), ExtResource( 1 ) ]
 max_speed = 25
 

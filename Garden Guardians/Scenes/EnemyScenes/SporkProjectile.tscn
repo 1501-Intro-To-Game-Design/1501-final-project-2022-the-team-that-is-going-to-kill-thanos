@@ -6,7 +6,7 @@
 extents = Vector2( 6, 6.5 )
 
 [node name="Projectile" instance=ExtResource( 1 )]
-speed = 115
+speed = 250
 damage = 4.0
 
 [node name="Sprite" parent="." index="0"]

@@ -49,7 +49,7 @@ max_health = 15.0
 damage = 9.5
 attackSpeed = 1.5
 spawned_num_wood = 2
-spawned_num_metal = 3
+spawned_num_metal = 2
 sounds = [ ExtResource( 2 ), ExtResource( 3 ) ]
 max_speed = 35
 

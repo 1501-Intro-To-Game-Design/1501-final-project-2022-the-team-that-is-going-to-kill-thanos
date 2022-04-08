@@ -15,7 +15,7 @@ extents = Vector2( 112.5, 207.5 )
 extents = Vector2( 45.0001, 192.5 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 550.0
+radius = 750.0
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -61,14 +61,14 @@ tracks/0/keys = {
 }
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 2 )]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.3, 0.3 )
 armored = true
 ranged_morsel = true
 proj_scene = ExtResource( 4 )
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 20.0
 damage = 3.0
-spawned_num_metal = 2
+spawned_num_metal = 3
 sounds = [ ExtResource( 3 ), ExtResource( 1 ) ]
 max_speed = 40
 
