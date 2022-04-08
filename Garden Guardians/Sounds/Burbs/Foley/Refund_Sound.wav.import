@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Refund_Sound.wav-ab920b1a7d89c9493061c178bd0cea95.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Foley/Refund_Sound.wav"
+dest_files=[ "res://.import/Refund_Sound.wav-ab920b1a7d89c9493061c178bd0cea95.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

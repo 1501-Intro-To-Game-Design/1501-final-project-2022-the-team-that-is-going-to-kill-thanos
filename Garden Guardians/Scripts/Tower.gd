@@ -318,6 +318,7 @@ func _input(event):
 					comb_node.queue_free()
 					if worked:
 						plate.reset()
+						plate.combines()
 						queue_free()
 				dragging = false
 				mouse_pos = null

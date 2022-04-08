@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sounds/Burbs/Foley/KnifeHit2.wav" type="AudioStream" id=2]
-[ext_resource path="res://Sounds/Burbs/Foley/KnifeHit1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Burbs/Foley/ChefsKnifeAttack_Sound.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sprites/Enemy Sprites/ChefsKnife/chefsknife.png" type="Texture" id=4]
 [ext_resource path="res://Animations/ChefsKnife/Attack.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/ChefsKnife/Move.tres" type="Animation" id=6]
@@ -48,7 +47,7 @@ groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 50.0
 damage = 50.0
 spawned_num_metal = 4
-sounds = [ ExtResource( 3 ), ExtResource( 2 ) ]
+sounds = [ ExtResource( 2 ) ]
 max_speed = 20
 
 [node name="Sprite" parent="." index="0"]

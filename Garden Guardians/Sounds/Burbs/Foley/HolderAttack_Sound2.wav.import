@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/HolderAttack_Sound2.wav-7e8230b910f2666640df3e603a406c6d.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Foley/HolderAttack_Sound2.wav"
+dest_files=[ "res://.import/HolderAttack_Sound2.wav-7e8230b910f2666640df3e603a406c6d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

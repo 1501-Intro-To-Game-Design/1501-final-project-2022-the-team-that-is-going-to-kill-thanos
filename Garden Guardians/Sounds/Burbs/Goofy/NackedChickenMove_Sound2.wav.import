@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/NackedChickenMove_Sound2.wav-2ef0fa988b8e57b0a0c54546c2a18072.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Goofy/NackedChickenMove_Sound2.wav"
+dest_files=[ "res://.import/NackedChickenMove_Sound2.wav-2ef0fa988b8e57b0a0c54546c2a18072.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

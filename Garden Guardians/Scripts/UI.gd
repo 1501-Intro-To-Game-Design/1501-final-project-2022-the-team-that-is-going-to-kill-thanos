@@ -9,6 +9,7 @@ export (Resource) var defultButton
 export (Resource) var pickUp
 export (Resource) var lostLife
 export (Resource) var backgroundTrack
+export (Resource) var actionFailed
 
 var wood = -1
 var metal = -1
@@ -21,8 +22,8 @@ signal nextRoundGo
 
 func _ready():
 	get_parent().get_node("Level/MovingEnemies").connect("player_life_lost", self, "_on_player_life_lost")
-	wood = 16 #16
-	metal = 6 #6
+	wood = 999 #16
+	metal = 999 #6
 	update()
 	$Lives.text = "Lives: " + String(playerLives)
 	$RestartButton.visible = false
@@ -70,6 +71,8 @@ func waveEnd():
 func updateRound(roundNum):
 	$Round.text = "Wave: " + String(roundNum)	
 
+func failedAction():
+	_load_n_play(actionFailed, 7)
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:

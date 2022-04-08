@@ -15,7 +15,8 @@ export (PackedScene) var grain_scene
 var spawned_x = []
 
 export (Resource) var upgradeSound
-
+export (Resource) var refundSound
+export (Resource) var combinationSound
 var y_spawn_offset = -23
 
 var current_menu
@@ -202,6 +203,8 @@ func make_tower(tower_type):
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
 		return true
+	else:
+		ui.failedAction()
 	return false
 	
 func simple_make_tower(tower_to_make, wood_cost, metal_cost): #simpler than above?
@@ -221,6 +224,8 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost): #simpler than abov
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
 		return true
+	else:
+		ui.failedAction()
 	return false
 	
 func buy_something(wood_cost, metal_cost):
@@ -230,12 +235,19 @@ func buy_something(wood_cost, metal_cost):
 		ui.metal -= metal_cost
 		ui.update()
 		return true
+	else:
+		ui.failedAction()
 	return false
 		
 
-func reset():
+func reset(): #only gets
 	current_menu = $TowerMenu
 	tower = null
+
+func combines():
+	$AudioStreamPlayer.volume_db = 3 + util.g_sound
+	$AudioStreamPlayer.stream = combinationSound
+	$AudioStreamPlayer.play()
 
 func upgrade():
 	$AudioStreamPlayer.stream = upgradeSound
@@ -795,6 +807,8 @@ func _unhandled_input(event):
 				for m in tower.tower_morsels:
 					m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
 					counter += 1
+			else:
+				ui.failedAction()
 			moveMode = false
 			tower.initializeRangePolygon()
 			tower.reset_morsel_color()
@@ -817,6 +831,8 @@ func _on_VAreaDelete_input_event(viewport, event, shape_idx):
 				tower.show_range(false)
 				ui.wood += floor(tower.refundW)
 				ui.metal += floor(tower.refundM)
+				$AudioStreamPlayer.stream = refundSound
+				$AudioStreamPlayer.play()
 				ui.update()
 				tower.queue_free()
 				reset()

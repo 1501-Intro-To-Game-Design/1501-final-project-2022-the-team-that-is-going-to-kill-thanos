@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sounds/Burbs/Foley/KnifeHit2.wav" type="AudioStream" id=2]
-[ext_resource path="res://Sounds/Burbs/Foley/KnifeHit1.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Burbs/Foley/SteakKnifeAttack_Sound1.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/Burbs/Foley/SteakKnifeAttack_Sound2.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sprites/Enemy Sprites/SteakKnife/steakknife.png" type="Texture" id=4]
 [ext_resource path="res://Animations/SteakKnife/Move.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/SteakKnife/Attack.tres" type="Animation" id=6]
@@ -50,7 +50,7 @@ damage = 9.5
 attackSpeed = 1.5
 spawned_num_wood = 2
 spawned_num_metal = 3
-sounds = [ ExtResource( 3 ), ExtResource( 2 ) ]
+sounds = [ ExtResource( 2 ), ExtResource( 3 ) ]
 max_speed = 35
 
 [node name="Sprite" parent="." index="0"]

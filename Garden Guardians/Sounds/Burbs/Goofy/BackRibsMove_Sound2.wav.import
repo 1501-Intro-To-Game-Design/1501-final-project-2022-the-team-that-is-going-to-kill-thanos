@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/BackRibsMove_Sound2.wav-bb33da35521a3ab26dcf53433c5a3910.sample"
+
+[deps]
+
+source_file="res://Sounds/Burbs/Goofy/BackRibsMove_Sound2.wav"
+dest_files=[ "res://.import/BackRibsMove_Sound2.wav-bb33da35521a3ab26dcf53433c5a3910.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
