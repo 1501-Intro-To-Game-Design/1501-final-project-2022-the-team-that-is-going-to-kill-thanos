@@ -88,4 +88,8 @@ anims/Spawn = ExtResource( 6 )
 
 [node name="StartSpawnAnim" type="Timer" parent="." index="11"]
 
+[node name="Shield" parent="." index="12"]
+visible = true
+position = Vector2( -1.19209e-07, -77.5 )
+
 [connection signal="timeout" from="Spawn" to="." method="_on_Spawn_timeout"]

@@ -60,6 +60,8 @@ export var num_spawn_on_death = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	if armored:
+		$Shield.show()
 	if ranged_morsel and "Enemies" in get_groups():
 		get_parent().get_parent().get_node("Player").connect("died", self, "_on_player_died")
 	original_mod = $Sprite.get_self_modulate()
@@ -201,11 +203,17 @@ func checkType(body):
 			body.applyEffects($Enemy)
 		if (group == "Morsels" and "Morsels" in groups_to_check) or (group == "Enemies" and "Enemies" in groups_to_check):
 			setTarget(body)
+			check_if_stacking()
 		if (group == "Player" and "Player" in groups_to_check):
 			if body.alive:
 				setTarget(body)
+				check_if_stacking()
 		if (group == "Traitor" and "Traitor" in groups_to_check):
 			setTarget(body)
+			check_if_stacking()
+
+func check_if_stacking():
+	get_parent().check_stacking(self)
 
 func setResourceTarget(body):
 	if not inCombat:
@@ -230,7 +238,20 @@ func setResourceTarget(body):
 func setTarget(body):
 	if not inCombat:
 		if body.inCombat: #if target is in combat
-			if body.target == self or body.is_in_group("Player"): #if target's target is me
+			if not body.is_in_group("Player"):
+				if body.target == self: #if target's target is me
+					inCombat = true
+					target = body
+					body.setTarget(self)
+					ranged_attacking = false
+					if(is_instance_valid($AnimationPlayer)):
+						$AnimationPlayer.play("RESET")
+						$AnimationPlayer.stop()
+						$AnimationPlayer.play("Attack")
+					$Attack.start()
+					$Regen.stop()
+					$RegenWait.stop()
+			elif body.is_in_group("Player"):
 				inCombat = true
 				target = body
 				body.setTarget(self)
@@ -273,6 +294,18 @@ func prepareSpawnTimer():
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Spawn")
 	t.queue_free()	
+
+func dot_dmg_start():
+	for i in range(10):
+		var t = Timer.new()
+		t.set_wait_time(.25)
+		t.set_one_shot(true)
+		self.add_child(t)
+		t.start()
+		#particle fx here
+		yield(t, "timeout")
+		change_health(-.2, false, true)
+		t.queue_free()	
 
 func _on_Attack_timeout():
 	if is_instance_valid(target):

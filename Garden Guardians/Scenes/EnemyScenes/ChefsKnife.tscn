@@ -73,3 +73,8 @@ autoplay = "Move"
 anims/Attack = ExtResource( 5 )
 anims/Move = ExtResource( 6 )
 anims/RESET = SubResource( 4 )
+
+[node name="Shield" parent="." index="11"]
+visible = true
+position = Vector2( 0, -274 )
+scale = Vector2( 1, 1 )

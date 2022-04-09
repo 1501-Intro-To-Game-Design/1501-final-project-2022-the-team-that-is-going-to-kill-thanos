@@ -10,6 +10,7 @@ export var stun = false
 export var explosive = false
 export var field = false
 export var piercing = false
+export var dot_dmg = false
 var ratatouille = false
 var stun_chance = 0.15
 var stun_duration = 0.75
@@ -63,6 +64,8 @@ func _on_Area2D_body_entered(body):
 				if targeted_enemy != null:
 					hit_enemies.append(targeted_enemy)
 					
+			if dot_dmg:
+				body.dot_dmg_start()
 			if piercing:
 				target.change_health(-1 * damage, false, true)
 			else:

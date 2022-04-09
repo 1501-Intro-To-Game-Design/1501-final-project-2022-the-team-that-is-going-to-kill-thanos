@@ -56,7 +56,6 @@ texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( -2.49999, 7.5577 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="Health" parent="." index="4"]
@@ -74,3 +73,8 @@ autoplay = "Move"
 anims/Attack = ExtResource( 6 )
 anims/Move = ExtResource( 5 )
 anims/RESET = SubResource( 4 )
+
+[node name="Shield" parent="." index="11"]
+visible = true
+position = Vector2( 0, -322.462 )
+scale = Vector2( 1, 1 )

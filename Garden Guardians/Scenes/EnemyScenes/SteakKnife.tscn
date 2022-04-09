@@ -85,5 +85,10 @@ anims/Move = ExtResource( 5 )
 anims/RESET = SubResource( 3 )
 anims/ResourceKill = ExtResource( 7 )
 
+[node name="Shield" parent="." index="12"]
+visible = true
+position = Vector2( 0, -260 )
+scale = Vector2( 1, 1 )
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="ResourceKillTimer" to="." method="_on_ResourceKillTimer_timeout"]

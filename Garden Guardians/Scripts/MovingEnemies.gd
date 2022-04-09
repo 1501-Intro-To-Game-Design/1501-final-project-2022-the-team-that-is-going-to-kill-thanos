@@ -20,6 +20,7 @@ var budget = 0
 var toPluck = 0 
 var bossFight = true
 signal player_life_lost(livesLost)
+var moved_enemies = []
 
 #wave stuff
 var thresh1 = 0.8
@@ -41,6 +42,21 @@ func _process(delta):
 		for i in get_tree().get_nodes_in_group("Towers"):
 			if i.morsel_tower:
 				i.spawn_remainder()
+
+func check_stacking(unit_to_check):
+	var index = -1
+	var got_an_enemy = false
+	for i in range (0, enemyPathManager.size()):
+		if enemyPathManager[i][0] == unit_to_check:
+			index = i
+	if index != -1:
+		for i in range (0, enemyPathManager.size()):
+			if enemyPathManager[i][1].get_offset() - 14 < enemyPathManager[index][1].get_offset() and enemyPathManager[i][1].get_offset() + 14 > enemyPathManager[index][1].get_offset() and index != i and not enemyPathManager[i][0] in moved_enemies:
+				moved_enemies.append(enemyPathManager[i][0])
+				add_to_offset(enemyPathManager[i][0], 15)
+				got_an_enemy = true
+	if not got_an_enemy:
+		moved_enemies.clear()
 
 func start_wave():
 	dP = (wave*7) -1 # = (wave*7) -1
@@ -139,6 +155,7 @@ func add_to_offset(enemy_node, amount):
 		if i[0] == enemy_node:
 			i[1].addToOffset(amount)
 			i[0].position = i[1].getPathLocation()
+			check_stacking(enemy_node)
 
 #Adds a new enemy and path when the timer timeouts
 func _on_EnemySpawn_timeout():
@@ -172,6 +189,15 @@ func updateEnemyLocation(delta):
 					emit_signal("player_life_lost", 2)
 				else:
 					emit_signal("player_life_lost", 1)
+				get_parent().get_node("RedScreen/ColorRect").show()
+				var t = Timer.new()
+				t.set_wait_time(0.2)
+				t.set_one_shot(true)
+				self.add_child(t)
+				t.start()
+				yield(t, "timeout")
+				get_parent().get_node("RedScreen/ColorRect").hide()
+				t.queue_free()
 
 
 func get_offset(enemy_node):

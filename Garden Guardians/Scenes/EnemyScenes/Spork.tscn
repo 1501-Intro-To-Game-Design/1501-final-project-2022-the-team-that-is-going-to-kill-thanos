@@ -110,6 +110,11 @@ anims/Move = ExtResource( 6 )
 anims/RESET = SubResource( 4 )
 anims/RangedAttack = SubResource( 5 )
 
+[node name="Shield" parent="." index="14"]
+visible = true
+position = Vector2( 0, -293.333 )
+scale = Vector2( 1, 1 )
+
 [connection signal="body_entered" from="Range2" to="." method="_on_Range2_body_entered"]
 [connection signal="body_exited" from="Range2" to="." method="_on_Range2_body_exited"]
 [connection signal="timeout" from="RangedAttack" to="." method="_on_RangedAttack_timeout"]

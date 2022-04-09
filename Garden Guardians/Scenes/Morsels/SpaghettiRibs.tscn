@@ -82,3 +82,8 @@ anims/Attack = ExtResource( 5 )
 anims/Idle = ExtResource( 11 )
 anims/Move = ExtResource( 10 )
 anims/RESET = SubResource( 3 )
+
+[node name="Shield" parent="." index="11"]
+visible = true
+position = Vector2( 140, -1380 )
+scale = Vector2( 5, 5 )

@@ -48,6 +48,11 @@ __meta__ = {
 wait_time = 5.0
 one_shot = true
 
+[node name="Shield" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 1 )
+
 [connection signal="timeout" from="Attack" to="." method="_on_Attack_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Enemy_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

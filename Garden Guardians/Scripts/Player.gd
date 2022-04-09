@@ -9,8 +9,7 @@ var current_health = 1
 export var attackSpeed = 2
 export var damage = 0
 
-var target
-var inactive_targets = []
+var targets = []
 
 var moving = false;
 var clicked = false;
@@ -99,7 +98,11 @@ func _on_PickUp_area_entered(area:Area2D): #Resources
 
 func checkInCombat():
 	if inCombat:
-		if not is_instance_valid(target):
+		var flag = false
+		for target in targets:
+			if is_instance_valid(target):
+				flag = true
+		if not flag:
 			on_combat_end()
 
 func red_glow():
@@ -146,6 +149,7 @@ func change_health(change):
 	if(change < 0):
 		red_glow()
 		hasBeenHit = true
+		speed = 20 * util.g_speed
 		if(not inCombat and current_health > 0):
 			$RegenWait.start()
 	elif(change > 0):
@@ -164,8 +168,8 @@ func die():
 	alive = false
 	on_combat_end()
 	_load_n_play(dieSound, -1)
-	ui.wood  = round(ui.wood * 0.8)
-	ui.metal = round(ui.metal * 0.9)
+	ui.wood  = round(ui.wood * 0.75)
+	ui.metal = round(ui.metal * 0.88)
 	ui.update()
 	$PickUp.monitorable = false
 	$PickUp.monitoring = false
@@ -178,6 +182,7 @@ func die():
 
 func _on_Respawn_timeout():
 	alive = true
+	speed = 20 * util.g_speed
 	_load_n_play(aliveSound, 15)
 	current_health = max_health
 	$Health.value = current_health
@@ -186,9 +191,6 @@ func _on_Respawn_timeout():
 	$PickUp.monitoring = true
 	$CombatRange.monitorable = true
 	$CombatRange.monitoring = true
-	for enemy in inactive_targets:
-		checkType(enemy)
-		enemy.checkType(self)
 
 func _on_CombatRange_body_entered(body):
 	checkType(body)
@@ -197,55 +199,49 @@ func checkType(body):
 	if(is_instance_valid(body)):
 		if ("Enemies" in body.get_groups()):
 			setTarget(body)
+			speed = 0
+			destination = Vector2.ZERO
+			direction = Vector2.ZERO
 
 func setTarget(body):
 	if alive:
-		if not inCombat:
-			if body.inCombat:
-				if body.target == self:
-					inCombat = true
-					target = body
-					hasBeenHit = false
-					$RegenTimer.stop()
-					$RegenWait.stop()
-					#$Attack.start()
-			else:
+		if body.inCombat:
+			if body.target == self:
 				inCombat = true
-				target = body
-				hasBeenHit = false
+				if not body in targets:
+					targets.append(body)
+				if targets.size() == 1:
+					hasBeenHit = false
 				$RegenTimer.stop()
 				$RegenWait.stop()
 				#$Attack.start()
 		else:
-			if not (body in inactive_targets):		
-				inactive_targets.append(body)
-	else:
-		if not (body in inactive_targets):
-			inactive_targets.append(body)
-
-func _on_Attack_timeout():
-	if is_instance_valid(target):
-		rng.randomize()
-		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0, sounds.size())]
-		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
-		$AudioStreamPlayer2D.play()
-		target.battle_action(damage)
+			body.target = self
+			inCombat = true
+			targets.append(body)
+			if targets.size() == 1:
+				hasBeenHit = false
+			$RegenTimer.stop()
+			$RegenWait.stop()
+			#$Attack.start()
 
 func on_combat_end():
 	hasBeenHit = true
 	inCombat = false
+	speed = 20 * util.g_speed
 	$Attack.stop()
+	for target in targets:
+		if self in target.inactive_targets:
+			target.inactive_targets.remove(target.inactive_targets.find(self))
+		target.on_combat_end()
 	if alive:
 		if(self.is_in_group("Player")):
 			$RegenWait.start()
-		for enemy in inactive_targets:
-			checkType(enemy)
-			enemy.checkType(self)
 
 func _on_CombatRange_body_exited(body):
-	if body in inactive_targets:
-		inactive_targets.remove(inactive_targets.find(body))
-	if body == target:
+	if body in targets:
+		targets.remove(targets.find(body))
+	if targets.size() == 0:
 		on_combat_end()
 
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,25 @@
 [ext_resource path="res://Sprites/BG.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/TowerScenes/Plate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/EnemyScenes/MovingEnemies.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+uniform float multiplier = 0.2;
+uniform float softness = 3.0;
+
+void fragment()
+{
+	float value = distance(UV, vec2(0.5));
+	COLOR = vec4(color.rgb, smoothstep(multiplier, softness, value));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 1, 0, 0, 1 )
+shader_param/multiplier = -0.4
+shader_param/softness = 2.3
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -51,6 +70,17 @@ z_index = -5
 margin_right = 1920.0
 margin_bottom = 1080.0
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RedScreen" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="RedScreen"]
+visible = false
+material = SubResource( 2 )
+margin_right = 1920.0
+margin_bottom = 1078.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
