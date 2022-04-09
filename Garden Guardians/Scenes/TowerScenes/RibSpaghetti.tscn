@@ -9,7 +9,7 @@ radius = 225.0
 
 [node name="Tower" groups=["Spaghetti"] instance=ExtResource( 1 )]
 attack_cooldown = 10.0
-spawn_cooldown = 7.0
+spawn_cooldown = 8.0
 duration = 10
 slowEffect = 0.5
 allyBuff = 0.1

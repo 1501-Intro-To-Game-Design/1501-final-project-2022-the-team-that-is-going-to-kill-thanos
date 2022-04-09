@@ -210,8 +210,8 @@ func setTarget(body):
 				inCombat = true
 				if not body in targets:
 					targets.append(body)
-				if targets.size() == 1:
-					hasBeenHit = false
+					if targets.size() == 1:
+						hasBeenHit = false
 				$RegenTimer.stop()
 				$RegenWait.stop()
 				#$Attack.start()

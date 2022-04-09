@@ -17,7 +17,7 @@ extents = Vector2( 51.5, 23.5 )
 
 [node name="Tower" instance=ExtResource( 1 )]
 position = Vector2( 0, -24 )
-spawn_cooldown = 7.0
+spawn_cooldown = 10.0
 morsel_tower = true
 morsalScene = ExtResource( 7 )
 upgrade = ExtResource( 6 )

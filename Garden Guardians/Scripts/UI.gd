@@ -108,7 +108,6 @@ func _on_Restart_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				print("Restart Pressed")
 				get_tree().reload_current_scene()
 				get_tree().paused = false
 				$RestartButton.visible = false

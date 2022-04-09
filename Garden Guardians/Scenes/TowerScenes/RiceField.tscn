@@ -1,11 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/EffectField.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Tower Sprites/WheatField.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 50.0
 
 [node name="Area2D" instance=ExtResource( 1 )]
+z_index = -1
 
 [node name="CollisionShape2D" parent="EffectArea" index="0"]
 shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="." index="4"]
+position = Vector2( 6, -9 )
+rotation = 0.261799
+scale = Vector2( 0.230609, 0.292982 )
+texture = ExtResource( 2 )

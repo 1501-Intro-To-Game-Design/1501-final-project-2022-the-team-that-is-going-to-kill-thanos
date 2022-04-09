@@ -10,7 +10,7 @@ radius = 300.0
 
 [node name="Tower" groups=["Potato"] instance=ExtResource( 2 )]
 attack_cooldown = 5.0
-spawn_cooldown = 7.0
+spawn_cooldown = 8.0
 attacking_tower = true
 morsel_tower = true
 projectileScene = ExtResource( 1 )

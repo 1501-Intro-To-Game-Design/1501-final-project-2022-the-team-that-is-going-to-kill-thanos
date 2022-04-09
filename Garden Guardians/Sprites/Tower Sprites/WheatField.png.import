@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boulderforwilliam.png-5f32d3675b5b8d6c0fa61eb490d7598b.stex"
+path="res://.import/WheatField.png-a0c5b46272238418fa3286ebae946d9d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/boulderforwilliam.png"
-dest_files=[ "res://.import/boulderforwilliam.png-5f32d3675b5b8d6c0fa61eb490d7598b.stex" ]
+source_file="res://Sprites/Tower Sprites/WheatField.png"
+dest_files=[ "res://.import/WheatField.png-a0c5b46272238418fa3286ebae946d9d.stex" ]
 
 [params]
 

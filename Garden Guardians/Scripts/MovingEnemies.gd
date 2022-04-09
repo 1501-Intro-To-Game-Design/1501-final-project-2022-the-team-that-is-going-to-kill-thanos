@@ -20,7 +20,6 @@ var budget = 0
 var toPluck = 0 
 var bossFight = true
 signal player_life_lost(livesLost)
-var moved_enemies = []
 
 #wave stuff
 var thresh1 = 0.8
@@ -45,18 +44,13 @@ func _process(delta):
 
 func check_stacking(unit_to_check):
 	var index = -1
-	var got_an_enemy = false
 	for i in range (0, enemyPathManager.size()):
 		if enemyPathManager[i][0] == unit_to_check:
 			index = i
 	if index != -1:
 		for i in range (0, enemyPathManager.size()):
-			if enemyPathManager[i][1].get_offset() - 14 < enemyPathManager[index][1].get_offset() and enemyPathManager[i][1].get_offset() + 14 > enemyPathManager[index][1].get_offset() and index != i and not enemyPathManager[i][0] in moved_enemies:
-				moved_enemies.append(enemyPathManager[i][0])
-				add_to_offset(enemyPathManager[i][0], 15)
-				got_an_enemy = true
-	if not got_an_enemy:
-		moved_enemies.clear()
+			if enemyPathManager[i][1].get_offset() - 14 < enemyPathManager[index][1].get_offset() and enemyPathManager[i][1].get_offset() + 14 > enemyPathManager[index][1].get_offset() and index != i:
+				add_to_offset(enemyPathManager[index][0], 15)
 
 func start_wave():
 	dP = (wave*7) -1 # = (wave*7) -1

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/boulderforwilliam.png-5f32d3675b5b8d6c0fa61eb490d7598b.stex"
+path="res://.import/NoodleField.png-c53951b96fa07a90b6763861e76b752f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/boulderforwilliam.png"
-dest_files=[ "res://.import/boulderforwilliam.png-5f32d3675b5b8d6c0fa61eb490d7598b.stex" ]
+source_file="res://Sprites/Tower Sprites/NoodleField.png"
+dest_files=[ "res://.import/NoodleField.png-c53951b96fa07a90b6763861e76b752f.stex" ]
 
 [params]
 

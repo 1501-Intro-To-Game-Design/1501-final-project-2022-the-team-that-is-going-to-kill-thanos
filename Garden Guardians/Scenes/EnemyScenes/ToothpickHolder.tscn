@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/HolderAttack_Sound3.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/HolderAttack_Sound2.wav" type="AudioStream" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://Animations/ToothpickHolder/Move.tres" type="Animation" id=7]
 [ext_resource path="res://Animations/ToothpickHolder/Attack.tres" type="Animation" id=8]
 [ext_resource path="res://Sounds/Burbs/Foley/HolderAttack_Sound1.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack2_Sound.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack1_Sound.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack3_Sound.wav" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 57.5, 48.3333 )
@@ -55,7 +58,8 @@ max_health = 30.0
 damage = 0.5
 spawned_num_wood = 6
 spawned_num_metal = 1
-sounds = [ ExtResource( 9 ), ExtResource( 2 ), ExtResource( 1 ) ]
+sounds = [ ExtResource( 11 ), ExtResource( 10 ), ExtResource( 12 ) ]
+movingSounds = [ ExtResource( 9 ), ExtResource( 2 ), ExtResource( 1 ) ]
 max_speed = 25
 
 [node name="Sprite" parent="." index="0"]
@@ -87,6 +91,7 @@ anims/RESET = SubResource( 3 )
 anims/Spawn = ExtResource( 6 )
 
 [node name="StartSpawnAnim" type="Timer" parent="." index="11"]
+wait_time = 0.6
 
 [node name="Shield" parent="." index="12"]
 visible = true

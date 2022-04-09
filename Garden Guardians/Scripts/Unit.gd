@@ -203,13 +203,12 @@ func checkType(body):
 			body.applyEffects($Enemy)
 		if (group == "Morsels" and "Morsels" in groups_to_check) or (group == "Enemies" and "Enemies" in groups_to_check):
 			setTarget(body)
-			check_if_stacking()
 		if (group == "Player" and "Player" in groups_to_check):
 			if body.alive:
 				setTarget(body)
-				check_if_stacking()
 		if (group == "Traitor" and "Traitor" in groups_to_check):
 			setTarget(body)
+		if is_in_group("Enemies") and not is_in_group("Traitor"):
 			check_if_stacking()
 
 func check_if_stacking():
@@ -222,7 +221,7 @@ func setResourceTarget(body):
 		$AnimationPlayer.play("ResourceKill")
 		$ResourceKillTimer.start(resource_kill_time)
 		var t = Timer.new()
-		t.set_wait_time(0.5)
+		t.set_wait_time(resource_kill_time / util.g_speed)
 		t.set_one_shot(true)
 		self.add_child(t)
 		t.start()
@@ -285,7 +284,7 @@ func prepareAttackTimer():
 func prepareSpawnTimer():
 	$Spawn.start(spawn_cooldown)
 	var t = Timer.new()
-	t.set_wait_time(3.1 / util.g_speed)
+	t.set_wait_time(3.5 / util.g_speed)
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
@@ -293,7 +292,16 @@ func prepareSpawnTimer():
 	$AnimationPlayer.play("RESET")
 	$AnimationPlayer.stop()
 	$AnimationPlayer.play("Spawn")
-	t.queue_free()	
+	
+	var s = Timer.new()
+	s.set_wait_time(.3)
+	s.set_one_shot(true)
+	self.add_child(t)
+	s.start()
+	$AudioStreamPlayer2D.stream = movingSounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+	$AudioStreamPlayer2D.volume_db = 4 + util.g_sound
+	$AudioStreamPlayer2D.play()
+	s.queue_free()	
 
 func dot_dmg_start():
 	for i in range(10):

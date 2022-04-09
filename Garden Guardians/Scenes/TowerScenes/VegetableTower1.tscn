@@ -23,7 +23,7 @@ shape = SubResource( 2 )
 
 [node name="Sprite" parent="." index="1"]
 position = Vector2( 0, -38 )
-scale = Vector2( 0.175, 0.175 )
+scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 3 )
 
 [node name="ShootPoint" parent="." index="4"]
