@@ -214,9 +214,10 @@ func make_tower(tower_type, y_spawn_offset):
 		ui.failedAction()
 	return false
 	
-func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off): #simpler than above?
+func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off = 0, upgrade_sound = true): #simpler than above?
 	if(ui.wood >= wood_cost and ui.metal >= metal_cost and not (tower_to_make == null)):
-		upgrade()
+		if upgrade_sound:
+			upgrade()
 		ui.wood -= wood_cost
 		ui.metal -= metal_cost
 		ui.update()
