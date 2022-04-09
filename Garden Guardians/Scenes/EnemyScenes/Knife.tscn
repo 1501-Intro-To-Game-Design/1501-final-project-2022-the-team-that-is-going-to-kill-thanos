@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/KnifeHit1.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/KnifeHit2.wav" type="AudioStream" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Sprites/Enemy Sprites/Knife/knife.png" type="Texture" id=7]
 [ext_resource path="res://Animations/Knife/Move.tres" type="Animation" id=8]
 [ext_resource path="res://Animations/Knife/Attack.tres" type="Animation" id=9]
+[ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 85, 230 )
@@ -46,6 +47,8 @@ tracks/1/keys = {
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
 scale = Vector2( 0.2, 0.2 )
 z_index = 2
+hit_pfx = ExtResource( 10 )
+pfx_amount = 12
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 4.0
 damage = 5.0

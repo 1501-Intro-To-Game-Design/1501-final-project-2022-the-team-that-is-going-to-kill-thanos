@@ -1,5 +1,6 @@
 extends Node2D
-
+export (PackedScene) var hit_pfx
+export var pfx_amount = 11
 
 var destination = Vector2.ZERO
 var direction = Vector2.ZERO
@@ -148,6 +149,7 @@ func change_health(change):
 	$Health.value = current_health
 	if(change < 0):
 		red_glow()
+		hit_effect()
 		hasBeenHit = true
 		speed = 20 * util.g_speed
 		if(not inCombat and current_health > 0):
@@ -162,6 +164,21 @@ func change_health(change):
 	if(current_health > max_health):
 		$RegenTimer.stop()
 		current_health = max_health
+
+func hit_effect():
+	var pfx = hit_pfx.instance()
+	get_parent().add_child(pfx)
+	pfx.global_position = global_position
+	pfx.get_node("Particles2D").amount = pfx_amount
+	pfx.get_node("Particles2D").emitting = true
+	var t = Timer.new()
+	t.set_wait_time(3)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	pfx.queue_free()
 
 func die():
 	emit_signal("died")

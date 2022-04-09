@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/SpoonHit2.wav" type="AudioStream" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/Enemy Sprites/Spoon/spoon.png" type="Texture" id=4]
 [ext_resource path="res://Animations/Spoon/Move.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Spoon/Attack.tres" type="Animation" id=6]
+[ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 97.5, 249.404 )
@@ -43,6 +44,8 @@ tracks/1/keys = {
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 1 )]
 scale = Vector2( 0.2, 0.198473 )
 z_index = 2
+hit_pfx = ExtResource( 7 )
+pfx_amount = 15
 armored = true
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 damage = 1.5

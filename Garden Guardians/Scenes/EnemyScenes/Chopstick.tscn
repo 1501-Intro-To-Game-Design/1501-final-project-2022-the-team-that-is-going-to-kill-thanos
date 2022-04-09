@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/ChopStickAttack_sound2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/ChopStickAttack_sound1.wav" type="AudioStream" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Animations/Chopsticks/Attack.tres" type="Animation" id=6]
 [ext_resource path="res://Sprites/Enemy Sprites/Chopsticks/chopsticks.png" type="Texture" id=7]
 [ext_resource path="res://Animations/Chopsticks/Move.tres" type="Animation" id=8]
+[ext_resource path="res://Scenes/PFX/WoodChips.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 72, 154 )
@@ -44,6 +45,8 @@ tracks/1/keys = {
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 5 )]
 scale = Vector2( 0.25, 0.25 )
+hit_pfx = ExtResource( 9 )
+pfx_amount = 12
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 4.0
 damage = 1.5

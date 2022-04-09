@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/SporkAttack_Sound2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/EnemyScenes/SporkProjectile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Animations/Spork/Attack.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Spork/Move.tres" type="Animation" id=6]
+[ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Sprites/Enemy Sprites/Spork/spork.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -62,6 +63,8 @@ tracks/0/keys = {
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.3, 0.3 )
+hit_pfx = ExtResource( 7 )
+pfx_amount = 20
 armored = true
 ranged_morsel = true
 proj_scene = ExtResource( 4 )

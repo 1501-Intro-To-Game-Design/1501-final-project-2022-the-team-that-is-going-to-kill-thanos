@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/Enemy Sprites/Fork/fork.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sounds/Burbs/Foley/ForkHit1.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/Burbs/Foley/ForkHit2.wav" type="AudioStream" id=4]
 [ext_resource path="res://Animations/Fork/Move.tres" type="Animation" id=5]
+[ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 80, 242.5 )
@@ -70,6 +71,8 @@ tracks/1/keys = {
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.2, 0.2 )
 z_index = 2
+hit_pfx = ExtResource( 6 )
+pfx_amount = 12
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
 max_health = 6.0
 attackSpeed = 1.2

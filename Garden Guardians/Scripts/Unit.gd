@@ -1,4 +1,8 @@
 extends RigidBody2D
+export (PackedScene) var hit_pfx
+export (PackedScene) var alt_pfx
+export var use_alt_pfx = false
+export var pfx_amount = 11
 export var piercing = false
 export var armored = false
 export var chefs_knife = false
@@ -384,6 +388,7 @@ func change_health(change, direct = false, pierce = false):
 			change = (0.7 * change)
 	if(change < 0):
 		red_glow()
+		hit_effect()
 	elif(change > 0):
 		green_glow()
 	else:
@@ -422,6 +427,30 @@ func get_offset():
 
 func set_offset(offset):
 	get_parent().set_offset(self, offset)
+
+func hit_effect():
+	var pfx = hit_pfx.instance()
+	var alt_pfx_ins = null
+	get_parent().add_child(pfx)
+	pfx.global_position = global_position
+	pfx.get_node("Particles2D").amount = pfx_amount
+	pfx.get_node("Particles2D").emitting = true
+	if use_alt_pfx:
+		alt_pfx_ins = alt_pfx.instance()
+		get_parent().add_child(alt_pfx_ins)
+		alt_pfx_ins.global_position = global_position
+		alt_pfx_ins.get_node("Particles2D").amount = pfx_amount/2
+		alt_pfx_ins.get_node("Particles2D").emitting = true
+	var t = Timer.new()
+	t.set_wait_time(3)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	pfx.queue_free()
+	if use_alt_pfx:
+		alt_pfx_ins.queue_free()
 
 func destroy(dropResources = true):
 	var r

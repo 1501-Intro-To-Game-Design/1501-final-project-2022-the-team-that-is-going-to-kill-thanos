@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Morsal Sprites/NakedChicken.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Sounds/Burbs/Goofy/NackedChickenMove_Sound3.wav" type="AudioStream" id=5]
 [ext_resource path="res://Sounds/Burbs/Foley/NakedChickenAttack_Sound1.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Burbs/Foley/NakedChickenAttack_Sound2.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/PFX/Blood.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Morsels/NakedChickenProjectile.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Animations/NakedChicken/Move.tres" type="Animation" id=10]
 [ext_resource path="res://Animations/NakedChicken/RangedAttack.tres" type="Animation" id=11]
@@ -78,6 +79,8 @@ tracks/1/keys = {
 
 [node name="Unit" groups=["Morsels"] instance=ExtResource( 1 )]
 scale = Vector2( 0.05, 0.05 )
+hit_pfx = ExtResource( 8 )
+pfx_amount = 19
 ranged_morsel = true
 proj_scene = ExtResource( 9 )
 groups_to_check = [ "Enemies" ]

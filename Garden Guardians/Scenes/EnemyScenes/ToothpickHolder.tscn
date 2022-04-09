@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/HolderAttack_Sound3.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/HolderAttack_Sound2.wav" type="AudioStream" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack2_Sound.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack1_Sound.wav" type="AudioStream" id=11]
 [ext_resource path="res://Sounds/Burbs/Foley/ToothPick_Attack3_Sound.wav" type="AudioStream" id=12]
+[ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scenes/PFX/WoodChips.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 57.5, 48.3333 )
@@ -49,6 +51,10 @@ tracks/1/keys = {
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
 scale = Vector2( 1.2, 1.2 )
 z_index = 1
+hit_pfx = ExtResource( 14 )
+alt_pfx = ExtResource( 13 )
+use_alt_pfx = true
+pfx_amount = 18
 armored = true
 spawner = true
 to_spawn = ExtResource( 4 )

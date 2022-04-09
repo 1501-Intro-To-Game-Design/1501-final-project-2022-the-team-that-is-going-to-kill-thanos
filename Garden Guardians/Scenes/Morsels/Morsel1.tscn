@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Tower Sprites/Meat_Cube.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=8]
 [ext_resource path="res://Animations/Meatcube/Move.tres" type="Animation" id=9]
 [ext_resource path="res://Animations/Meatcube/Attack.tres" type="Animation" id=10]
+[ext_resource path="res://Scenes/PFX/Blood.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 256, 160 )
@@ -77,6 +78,8 @@ tracks/1/keys = {
 scale = Vector2( 0.05, 0.05 )
 mass = 0.00102041
 gravity_scale = 0.0
+hit_pfx = ExtResource( 11 )
+pfx_amount = 8
 groups_to_check = [ "Enemies" ]
 damage = 0.3
 attackSpeed = 1.2
