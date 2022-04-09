@@ -101,7 +101,7 @@ shape = SubResource( 3 )
 one_shot = true
 
 [node name="ShootPoint" type="Node2D" parent="." index="12"]
-position = Vector2( -125, -150 )
+position = Vector2( 0, -196.667 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="13"]
 autoplay = "Move"
@@ -112,8 +112,8 @@ anims/RangedAttack = SubResource( 5 )
 
 [node name="Shield" parent="." index="14"]
 visible = true
-position = Vector2( 0, -293.333 )
-scale = Vector2( 1, 1 )
+position = Vector2( 0, -300 )
+scale = Vector2( 0.5, 0.5 )
 
 [connection signal="body_entered" from="Range2" to="." method="_on_Range2_body_entered"]
 [connection signal="body_exited" from="Range2" to="." method="_on_Range2_body_exited"]

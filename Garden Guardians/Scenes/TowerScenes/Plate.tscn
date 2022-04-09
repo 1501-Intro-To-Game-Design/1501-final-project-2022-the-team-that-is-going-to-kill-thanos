@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
@@ -35,6 +35,23 @@
 [ext_resource path="res://Scenes/UpgradeFailed.tscn" type="PackedScene" id=33]
 [ext_resource path="res://Sounds/Burbs/Foley/Refund_Sound.wav" type="AudioStream" id=34]
 [ext_resource path="res://Sounds/Burbs/Foley/Conbination_Sound.wav" type="AudioStream" id=35]
+[ext_resource path="res://Sprites/UI Sprites/VAttack.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/UI Sprites/AOECherry.png" type="Texture" id=37]
+[ext_resource path="res://Sprites/Tower Sprites/DSPD.png" type="Texture" id=38]
+[ext_resource path="res://Sprites/Tower Sprites/DDP.png" type="Texture" id=39]
+[ext_resource path="res://Sprites/UI Sprites/PEXTRA.png" type="Texture" id=40]
+[ext_resource path="res://Sprites/UI Sprites/VSD.png" type="Texture" id=41]
+[ext_resource path="res://Sprites/UI Sprites/ExtraCherry.png" type="Texture" id=42]
+[ext_resource path="res://Sprites/UI Sprites/VSC.png" type="Texture" id=43]
+[ext_resource path="res://Sprites/UI Sprites/CherryRange.png" type="Texture" id=44]
+[ext_resource path="res://Sprites/UI Sprites/PSPD.png" type="Texture" id=45]
+[ext_resource path="res://Sprites/Tower Sprites/DCD.png" type="Texture" id=46]
+[ext_resource path="res://Sprites/UI Sprites/VSPD.png" type="Texture" id=47]
+[ext_resource path="res://Sprites/Tower Sprites/C_Tree.png" type="Texture" id=48]
+[ext_resource path="res://Sprites/Tower Sprites/HoveredPlate.png" type="Texture" id=49]
+[ext_resource path="res://Sprites/Tower Sprites/YogurtTower.png" type="Texture" id=50]
+[ext_resource path="res://Sprites/Tower Sprites/CheeseTower.png" type="Texture" id=51]
+[ext_resource path="res://Sprites/Tower Sprites/ButterTower.png" type="Texture" id=52]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 68.5, 20 )
@@ -53,6 +70,9 @@ fruit_scene = ExtResource( 7 )
 protein_scene = ExtResource( 6 )
 dairy_scene = ExtResource( 13 )
 grain_scene = ExtResource( 12 )
+new_cherry = ExtResource( 48 )
+normal_plate = ExtResource( 1 )
+hover_plate = ExtResource( 49 )
 upgradeSound = ExtResource( 11 )
 refundSound = ExtResource( 34 )
 combinationSound = ExtResource( 35 )
@@ -300,7 +320,7 @@ visible = false
 [node name="OptionSC" type="Sprite" parent="VUpgradeMenu/Carrot"]
 position = Vector2( -50, 20 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 29 )
+texture = ExtResource( 43 )
 
 [node name="VAreaSC" type="Area2D" parent="VUpgradeMenu/Carrot"]
 position = Vector2( -50, 20 )
@@ -317,7 +337,7 @@ __meta__ = {
 [node name="OptionSD" type="Sprite" parent="VUpgradeMenu/Carrot"]
 position = Vector2( 50, 20 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 29 )
+texture = ExtResource( 41 )
 
 [node name="VAreaSD" type="Area2D" parent="VUpgradeMenu/Carrot"]
 position = Vector2( 50, 20 )
@@ -334,7 +354,7 @@ __meta__ = {
 [node name="OptionACD" type="Sprite" parent="VUpgradeMenu/Carrot"]
 position = Vector2( 0, 30 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 29 )
+texture = ExtResource( 47 )
 
 [node name="VAreaACD" type="Area2D" parent="VUpgradeMenu/Carrot"]
 position = Vector2( 0, 30 )
@@ -458,7 +478,7 @@ visible = false
 [node name="OptionAS" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
 position = Vector2( -50, 20 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 25 )
+texture = ExtResource( 45 )
 
 [node name="VAreaAS" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
 position = Vector2( -50, 20 )
@@ -475,7 +495,7 @@ __meta__ = {
 [node name="OptionAD" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
 position = Vector2( 50, 20 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 25 )
+texture = ExtResource( 36 )
 
 [node name="VAreaAD" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
 position = Vector2( 50, 20 )
@@ -492,7 +512,7 @@ __meta__ = {
 [node name="OptionUnit" type="Sprite" parent="PUpgradeMenu/NakedChicken"]
 position = Vector2( 0, 30 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 25 )
+texture = ExtResource( 40 )
 
 [node name="VAreaUnit" type="Area2D" parent="PUpgradeMenu/NakedChicken"]
 position = Vector2( 0, 30 )
@@ -621,7 +641,7 @@ visible = false
 [node name="OptionEC" type="Sprite" parent="FUpgradeMenu/Cherry"]
 position = Vector2( 0, 30 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 31 )
+texture = ExtResource( 42 )
 
 [node name="VAreaEC" type="Area2D" parent="FUpgradeMenu/Cherry"]
 position = Vector2( 0, 30 )
@@ -638,7 +658,7 @@ __meta__ = {
 [node name="OptionAR" type="Sprite" parent="FUpgradeMenu/Cherry"]
 position = Vector2( 50, 20 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 31 )
+texture = ExtResource( 44 )
 
 [node name="VAreaAR" type="Area2D" parent="FUpgradeMenu/Cherry"]
 position = Vector2( 50, 20 )
@@ -655,7 +675,7 @@ __meta__ = {
 [node name="OptionAOE" type="Sprite" parent="FUpgradeMenu/Cherry"]
 position = Vector2( -50, 20 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 31 )
+texture = ExtResource( 37 )
 
 [node name="VAreaAOE" type="Area2D" parent="FUpgradeMenu/Cherry"]
 position = Vector2( -50, 20 )
@@ -803,6 +823,11 @@ position = Vector2( 0, 30 )
 scale = Vector2( 0.14, 0.14 )
 texture = ExtResource( 32 )
 
+[node name="Sprite" type="Sprite" parent="DUpgradeMenu/D1/OptionD1"]
+position = Vector2( 0, -17.8571 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 50 )
+
 [node name="VAreaD1" type="Area2D" parent="DUpgradeMenu/D1"]
 position = Vector2( 0, 30 )
 __meta__ = {
@@ -823,6 +848,11 @@ position = Vector2( 0, 30 )
 scale = Vector2( 0.14, 0.14 )
 texture = ExtResource( 32 )
 
+[node name="Sprite" type="Sprite" parent="DUpgradeMenu/D2/OpitionParmesan"]
+position = Vector2( -10.7143, -17.8571 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 51 )
+
 [node name="VAreaParmesan" type="Area2D" parent="DUpgradeMenu/D2"]
 position = Vector2( 0, 30 )
 __meta__ = {
@@ -839,6 +869,11 @@ __meta__ = {
 position = Vector2( 50, 20 )
 scale = Vector2( 0.14, 0.14 )
 texture = ExtResource( 32 )
+
+[node name="Sprite" type="Sprite" parent="DUpgradeMenu/D2/OptionButter"]
+position = Vector2( -10.7143, -50 )
+scale = Vector2( 0.55, 0.55 )
+texture = ExtResource( 52 )
 
 [node name="VAreaButter" type="Area2D" parent="DUpgradeMenu/D2"]
 position = Vector2( 50, 20 )
@@ -858,7 +893,7 @@ visible = false
 [node name="OptionPDP" type="Sprite" parent="DUpgradeMenu/Butter"]
 position = Vector2( 0, 30 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 32 )
+texture = ExtResource( 39 )
 
 [node name="VAreaPDP" type="Area2D" parent="DUpgradeMenu/Butter"]
 position = Vector2( 0, 30 )
@@ -875,7 +910,7 @@ __meta__ = {
 [node name="OptionPC" type="Sprite" parent="DUpgradeMenu/Butter"]
 position = Vector2( 50, 20 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 32 )
+texture = ExtResource( 46 )
 
 [node name="VAreaPC" type="Area2D" parent="DUpgradeMenu/Butter"]
 position = Vector2( 50, 20 )
@@ -892,7 +927,7 @@ __meta__ = {
 [node name="OptionSE" type="Sprite" parent="DUpgradeMenu/Butter"]
 position = Vector2( -50, 20 )
 scale = Vector2( 0.14, 0.14 )
-texture = ExtResource( 32 )
+texture = ExtResource( 38 )
 
 [node name="VAreaSE" type="Area2D" parent="DUpgradeMenu/Butter"]
 position = Vector2( -50, 20 )
@@ -1207,7 +1242,7 @@ custom_fonts/bold_italics_font = ExtResource( 10 )
 custom_fonts/italics_font = ExtResource( 10 )
 custom_fonts/bold_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade this tower to have a 20% increase in projectile stun chance."
+text = "Upgrade this tower to have increased projectile stun chance."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2419,7 +2454,7 @@ custom_fonts/bold_italics_font = ExtResource( 10 )
 custom_fonts/italics_font = ExtResource( 10 )
 custom_fonts/bold_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
-text = "Build a Rice tower that lays out slowing ricefields onto the path.  Also buffs morsels."
+text = "Build a Wheat tower that lays out slowing wheat fields onto the path.  Also buffs morsels."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2487,7 +2522,7 @@ custom_fonts/bold_italics_font = ExtResource( 10 )
 custom_fonts/italics_font = ExtResource( 10 )
 custom_fonts/bold_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Corn tower with improved slow and morsel buffing effects."
+text = "Upgrade to a Flour tower with a bigger effect field, and improved slow and morsel buffing effects."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2555,7 +2590,7 @@ custom_fonts/bold_italics_font = ExtResource( 10 )
 custom_fonts/italics_font = ExtResource( 10 )
 custom_fonts/bold_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Combinable Spaghetti tower that offers greater slow and morsel boosting effects, and that has an increased fire rate."
+text = "Upgrade to a Combinable Noodle tower that offers a bigger effect field, greater slow and morsel boosting effects, and an increased fire rate."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2963,7 +2998,7 @@ custom_fonts/bold_italics_font = ExtResource( 10 )
 custom_fonts/italics_font = ExtResource( 10 )
 custom_fonts/bold_font = ExtResource( 10 )
 custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Cream tower that has an increased damage cap."
+text = "Upgrade to a Yogurt tower that has an increased damage cap."
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -3402,6 +3437,8 @@ texture = ExtResource( 27 )
 shape = SubResource( 8 )
 
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
+[connection signal="mouse_entered" from="PlateArea" to="." method="_on_PlateArea_mouse_entered"]
+[connection signal="mouse_exited" from="PlateArea" to="." method="_on_PlateArea_mouse_exited"]
 [connection signal="input_event" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_input_event"]
 [connection signal="mouse_entered" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_mouse_entered"]
 [connection signal="mouse_exited" from="TowerMenu/Vegetable/VArea" to="." method="_on_VArea_mouse_exited"]

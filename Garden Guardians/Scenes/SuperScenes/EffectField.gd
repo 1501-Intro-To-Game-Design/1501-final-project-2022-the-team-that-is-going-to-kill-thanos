@@ -21,7 +21,7 @@ var rangePoints = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	initTestPolygon()
+	#initTestPolygon()
 	$LifeTime.wait_time = duration
 	$LifeTime.start()
 

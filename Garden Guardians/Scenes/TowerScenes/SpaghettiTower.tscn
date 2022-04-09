@@ -1,12 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/TowerScenes/SpaghettiProjectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Tower Sprites/SpaghettiTower.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 225.0
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 71, 21 )
+
 [node name="Tower" groups=["Spaghetti"] instance=ExtResource( 1 )]
+position = Vector2( 0, -19 )
 attack_cooldown = 10.0
 duration = 10
 slowEffect = 0.5
@@ -19,4 +24,13 @@ combinable = true
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-self_modulate = Color( 0.6, 0.580392, 0.0235294, 1 )
+position = Vector2( 0, -36 )
+scale = Vector2( 0.375, 0.375 )
+texture = ExtResource( 3 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( 1, -7 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( -1, 0 )
+shape = SubResource( 2 )

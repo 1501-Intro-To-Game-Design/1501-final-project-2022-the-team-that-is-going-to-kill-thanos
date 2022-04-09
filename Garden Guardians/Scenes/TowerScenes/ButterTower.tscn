@@ -1,12 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/TowerScenes/ButterProjectile.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Tower Sprites/ButterTower.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 200.0
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 26.7563
+height = 87.4863
+
 [node name="Tower" instance=ExtResource( 1 )]
+position = Vector2( 0, -24 )
 attack_cooldown = 0.125
 ability_cooldown = 10.0
 damageRampUp = 280.0
@@ -17,6 +23,18 @@ projectileScene = ExtResource( 2 )
 
 [node name="RangeShape" parent="Range" index="0"]
 shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( -9, -47 )
+texture = ExtResource( 3 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( -48, 15 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( -2, -2 )
+rotation = 1.39626
+shape = SubResource( 2 )
 
 [node name="PosessCheck" type="Timer" parent="." index="8"]
 wait_time = 0.5

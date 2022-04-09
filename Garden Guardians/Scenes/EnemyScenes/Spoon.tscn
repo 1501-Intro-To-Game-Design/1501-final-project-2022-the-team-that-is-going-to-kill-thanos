@@ -76,5 +76,5 @@ anims/RESET = SubResource( 4 )
 
 [node name="Shield" parent="." index="11"]
 visible = true
-position = Vector2( 0, -322.462 )
-scale = Vector2( 1, 1 )
+position = Vector2( 0, -317.424 )
+scale = Vector2( 0.45, 0.45 )

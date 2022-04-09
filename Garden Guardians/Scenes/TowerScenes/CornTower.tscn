@@ -1,15 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/TowerScenes/CornProjectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/TowerScenes/SpaghettiTower.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/TowerScenes/PretzelTower.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Tower Sprites/FlourTower.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 225.0
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 42, 46 )
+
 [node name="Tower" instance=ExtResource( 1 )]
 self_modulate = Color( 0.921569, 0.74902, 0.121569, 1 )
+position = Vector2( 0, -44 )
 attack_cooldown = 12.0
 duration = 10
 slowEffect = 0.35
@@ -21,3 +26,15 @@ offshoot_upgrade = ExtResource( 4 )
 
 [node name="RangeShape" parent="Range" index="0"]
 shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 0, -11 )
+scale = Vector2( 0.375, 0.375 )
+texture = ExtResource( 5 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( 3, 22 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( -1, 1 )
+shape = SubResource( 2 )

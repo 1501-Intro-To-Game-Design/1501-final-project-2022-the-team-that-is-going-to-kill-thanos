@@ -4,7 +4,7 @@ var explosive = false
 var stun_chance = 0.15
 var stun_duration = 0.75
 var target_type = "closest_end"
-
+export var blueb_or_peach = false
 var attack_speed_buff = 0.0
 var damage_buff = 0.0
 
@@ -279,6 +279,10 @@ func attack(enemy, proj_num):
 	$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 	$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 	$AudioStreamPlayer2D.play()
+	if(blueb_or_peach):
+		var rand_n = rng.randi_range(0, 1)
+		if(rand_n == 0):
+			proj_num = 2
 	if proj_num == 1:
 		projectile.position = $ShootPoint.get_global_position()
 	elif proj_num == 2:
