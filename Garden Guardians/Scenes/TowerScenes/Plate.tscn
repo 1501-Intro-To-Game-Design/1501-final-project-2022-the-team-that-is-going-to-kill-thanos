@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://Sprites/Tower Sprites/Plate.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/TowerScenes/Plate.gd" type="Script" id=2]
@@ -59,12 +59,17 @@
 [ext_resource path="res://Sprites/Tower Sprites/NoodleField.png" type="Texture" id=57]
 [ext_resource path="res://Sprites/Tower Sprites/WheatField.png" type="Texture" id=58]
 [ext_resource path="res://Sprites/Tower Sprites/PretzelField.png" type="Texture" id=59]
+[ext_resource path="res://Sprites/TargetSprite.png" type="Texture" id=60]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 68.5, 20 )
 
 [sub_resource type="CircleShape2D" id=8]
 radius = 17.5
+
+[sub_resource type="CapsuleShape2D" id=9]
+radius = 27.6667
+height = 63.3334
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 130, 100 )
@@ -967,2469 +972,1802 @@ visible = false
 scale = Vector2( 1.5, 1.5 )
 z_index = 20
 
-[node name="Turnip" type="NinePatchRect" parent="Text"]
+[node name="Turnip" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Turnip"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Build a Turnip tower that has high attack range, high damage, but low fire rate."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Turnip"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/Turnip"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Turnip/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Turnip/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Onion" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Turnip"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Onion"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="RichTextLabel" type="Label" parent="Text/Turnip"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Build a Turnip tower that has high range, high damage, but low fire rate."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/Turnip"]
+
+[node name="MetalCost" type="Label" parent="Text/Turnip/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Turnip/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Onion" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/Onion"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Onion"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Onion"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade to an Onion tower that has increased damage."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Onion"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/Onion"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Onion/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/Onion/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/Onion/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/Onion/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Potato" type="NinePatchRect" parent="Text"]
+[node name="Potato" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Potato"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite2" type="Sprite" parent="Text/Potato"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Potato"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Potato"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade to a Combinable Potato tower that has greatly increased damage, but a slower fire rate."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Potato"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/Potato"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Potato/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/Potato/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/Potato/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/Potato/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Carrot" type="NinePatchRect" parent="Text"]
+[node name="Carrot" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Carrot"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Carrot tower that has increased damage, and gives projectiles a 15% chance to stun enemies on hit. Advanced upgrades available."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Carrot"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/Carrot"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Carrot/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Carrot/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CarrotSC" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Carrot"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/CarrotSC"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="RichTextLabel" type="Label" parent="Text/Carrot"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a Carrot tower that has increased damage and gives projectiles a chance to stun enemies."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/Carrot"]
+
+[node name="MetalCost" type="Label" parent="Text/Carrot/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Carrot/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="CarrotSC" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/CarrotSC"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/CarrotSC"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/CarrotSC"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade this tower to have increased projectile stun chance."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/CarrotSC"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/CarrotSC"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/CarrotSC/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/CarrotSC/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/CarrotSC/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/CarrotSC/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="CarrotSD" type="NinePatchRect" parent="Text"]
+[node name="CarrotSD" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/CarrotSD"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite2" type="Sprite" parent="Text/CarrotSD"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/CarrotSD"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/CarrotSD"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade this tower to have an increase in projectile stun duration."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/CarrotSD"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/CarrotSD"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/CarrotSD/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/CarrotSD/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/CarrotSD/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/CarrotSD/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="CarrotACD" type="NinePatchRect" parent="Text"]
+[node name="CarrotACD" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/CarrotACD"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite2" type="Sprite" parent="Text/CarrotACD"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/CarrotACD"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/CarrotACD"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade this tower to have a faster fire rate."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/CarrotACD"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/CarrotACD"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/CarrotACD/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/CarrotACD/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/CarrotACD/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/CarrotACD/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Seed" type="NinePatchRect" parent="Text"]
+[node name="Seed" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Seed"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Build a Blueberry tower that has average attack range, low damage, but a high fire rate."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Seed"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/Seed"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Seed/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Seed/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Plum" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Seed"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Plum"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="RichTextLabel" type="Label" parent="Text/Seed"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Build a Blueberry tower that has average range, low damage, but a high fire rate."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/Seed"]
+
+[node name="MetalCost" type="Label" parent="Text/Seed/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Seed/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Plum" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/Plum"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Plum"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Plum"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade to a Plum tower that has increased damage and a faster fire rate."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Plum"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/Plum"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Plum/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/Plum/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/Plum/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/Plum/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Tomato" type="NinePatchRect" parent="Text"]
+[node name="Tomato" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Tomato"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite2" type="Sprite" parent="Text/Tomato"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Tomato"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Tomato"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade to a Combinable Tomato tower that has a greatly faster fire rate."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Tomato"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/Tomato"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Tomato/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/Tomato/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/Tomato/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/Tomato/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Cherry" type="NinePatchRect" parent="Text"]
+[node name="Cherry" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Cherry"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Cherry tower that has increased damage, a slower fire rate, but that shoots 2 different enemies per shot. Advanced upgrades available."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Cherry"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/Cherry"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Cherry/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Cherry/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CherryEC" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Cherry"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/CherryEC"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade this tower to now shoots at 3 different enemies per shot."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/Cherry"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a Cherry tower that has increased damage, slower fire rate, and shoots 2 enemies per shot."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/CherryEC"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/Cherry"]
+
+[node name="MetalCost" type="Label" parent="Text/Cherry/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Cherry/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="CherryEC" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/CherryEC"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/CherryEC/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/CherryEC/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CherryAR" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/CherryEC"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/CherryAR"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade this tower to have an increased attack range."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/CherryEC"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade this tower to now shoot at 3 enemies per shot."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/CherryAR"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/CherryEC"]
+
+[node name="MetalCost" type="Label" parent="Text/CherryEC/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/CherryEC/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="CherryAR" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/CherryAR"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/CherryAR/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/CherryAR/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CherryAOE" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/CherryAR"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/CherryAOE"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="RichTextLabel" type="Label" parent="Text/CherryAR"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade this tower to have increased range."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/CherryAR"]
+
+[node name="MetalCost" type="Label" parent="Text/CherryAR/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/CherryAR/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="CherryAOE" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/CherryAOE"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/CherryAOE"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/CherryAOE"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade this tower to have 10% increased area of effect damage on every projectile."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/CherryAOE"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/CherryAOE"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/CherryAOE/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/CherryAOE/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/CherryAOE/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/CherryAOE/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="MeatCube" type="NinePatchRect" parent="Text"]
+[node name="MeatCube" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/MeatCube"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Build a Meatcube morsel tower, that spawns up to 3 weak Meatcubes."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/MeatCube"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/MeatCube"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/MeatCube/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/MeatCube/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sausage" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/MeatCube"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Sausage"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Sausage morsel tower, that spawns up to 3 Sausages that have increased health and damage."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/MeatCube"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Build a Meatcube tower that spawns 3 weak Meatcubes."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Sausage"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/MeatCube"]
+
+[node name="MetalCost" type="Label" parent="Text/MeatCube/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/MeatCube/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Sausage" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/Sausage"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Sausage/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Sausage/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Backribs" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Sausage"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Backribs"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Combinable Ribs morsel tower that spawns up to 3 Ribs that have increased health and damage, but decreased movespeed."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/Sausage"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a Sausage tower that spawns 3 Sausages that have increased health and damage."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Backribs"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/Sausage"]
+
+[node name="MetalCost" type="Label" parent="Text/Sausage/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Sausage/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Backribs" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/Backribs"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Backribs/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Backribs/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NakedChicken" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Backribs"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/NakedChicken"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 128.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Naked Chicken morsel tower that spawns up to 2 Naked Chickens that have ranged attacks,  increased damage, but decreased movespeed. Advanced upgrades available."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/Backribs"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a Combinable Ribs tower that spawns 3 Ribs that are slower, with increased health and damage."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/NakedChicken"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/Backribs"]
+
+[node name="MetalCost" type="Label" parent="Text/Backribs/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Backribs/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NakedChicken" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/NakedChicken"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/NakedChicken/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/NakedChicken/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NakedChickenAS" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/NakedChicken"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/NakedChickenAS"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade your Naked Chickens to have increased attack speed."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/NakedChicken"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a Chicken tower that spawns 2 ranged attacking Chickens that are slower with increased damage."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/NakedChickenAS"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/NakedChicken"]
+
+[node name="MetalCost" type="Label" parent="Text/NakedChicken/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/NakedChicken/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NakedChickenAS" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/NakedChickenAS"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/NakedChickenAS/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/NakedChickenAS/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NakedChickenAD" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/NakedChickenAS"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/NakedChickenAD"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade your Naked Chickens to have increased damage."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/NakedChickenAS"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade your Chickens to have increased fire rate."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/NakedChickenAD"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/NakedChickenAS"]
+
+[node name="MetalCost" type="Label" parent="Text/NakedChickenAS/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/NakedChickenAS/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NakedChickenAD" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/NakedChickenAD"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/NakedChickenAD/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/NakedChickenAD/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NakedChickenUnit" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/NakedChickenAD"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/NakedChickenUnit"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 126.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade this tower to now be able to spawn 3 Naked Chickens."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/NakedChickenAD"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade your Chickens to have increased damage."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/NakedChickenUnit"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/NakedChickenAD"]
+
+[node name="MetalCost" type="Label" parent="Text/NakedChickenAD/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/NakedChickenAD/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NakedChickenUnit" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/NakedChickenUnit"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/NakedChickenUnit/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/NakedChickenUnit/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MorselMove" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/NakedChickenUnit"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
+
+[node name="RichTextLabel" type="Label" parent="Text/NakedChickenUnit"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade this tower to now be able to spawn 3 Chickens."
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/MorselMove"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="NinePatchRect" type="Node2D" parent="Text/NakedChickenUnit"]
+
+[node name="MetalCost" type="Label" parent="Text/NakedChickenUnit/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/NakedChickenUnit/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="MorselMove" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/MorselMove"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/MorselMove"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/MorselMove"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Move this tower's morsels to a new location."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Delete" type="NinePatchRect" parent="Text"]
+[node name="Delete" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Delete"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite2" type="Sprite" parent="Text/Delete"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Delete"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Delete"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Remove the tower from this plate."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Rice" type="NinePatchRect" parent="Text"]
+[node name="Rice" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Rice"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite2" type="Sprite" parent="Text/Rice"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Rice"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Rice"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Build a Wheat tower that lays out slowing wheat fields onto the path.  Also buffs morsels."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Rice"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/Rice"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Rice/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/Rice/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "5"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/Rice/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/Rice/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "4"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Corn" type="NinePatchRect" parent="Text"]
+[node name="Corn" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Corn"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite2" type="Sprite" parent="Text/Corn"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Corn"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Corn"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade to a Flour tower with a bigger effect field, and improved slow and morsel buffing effects."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Corn"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/Corn"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Corn/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/Corn/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "7"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/Corn/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/Corn/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "10"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Spaghetti" type="NinePatchRect" parent="Text"]
+[node name="Spaghetti" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Spaghetti"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Combinable Noodle tower that offers a bigger effect field, greater slow and morsel boosting effects, and an increased fire rate."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Spaghetti"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/Spaghetti"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Spaghetti/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite" type="Sprite" parent="Text/Spaghetti"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Spaghetti"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a Combinable Noodle tower that offers an overall increase in stats."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/Spaghetti"]
+
+[node name="MetalCost" type="Label" parent="Text/Spaghetti/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "11"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/Spaghetti/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/Spaghetti/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "13"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Pretzel" type="NinePatchRect" parent="Text"]
+[node name="Pretzel" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Pretzel"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Pretzel tower who's fields deal damage over time, but lowers the slow and morsel buffing effects. Advanced upgrades available."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Pretzel"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/Pretzel"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Pretzel/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "8"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Pretzel/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "10"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PretzelTD" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Pretzel"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/PretzelTD"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="RichTextLabel" type="Label" parent="Text/Pretzel"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a Pretzel tower with damaging but lowered slow and morsel buffing fields."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/Pretzel"]
+
+[node name="MetalCost" type="Label" parent="Text/Pretzel/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "8"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Pretzel/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "10"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="PretzelTD" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/PretzelTD"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/PretzelTD"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/PretzelTD"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrades this tower to have an increased field duration."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/PretzelTD"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/PretzelTD"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/PretzelTD/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/PretzelTD/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "3"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/PretzelTD/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/PretzelTD/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "4"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="PretzelDOT" type="NinePatchRect" parent="Text"]
+[node name="PretzelDOT" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/PretzelDOT"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite2" type="Sprite" parent="Text/PretzelDOT"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/PretzelDOT"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/PretzelDOT"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade this tower's fields to have increased damage over time."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/PretzelDOT"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/PretzelDOT"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/PretzelDOT/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/PretzelDOT/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "8"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/PretzelDOT/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/PretzelDOT/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "7"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="PretzelPB" type="NinePatchRect" parent="Text"]
+[node name="PretzelPB" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/PretzelPB"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade this tower to have an increased chance to pull enemies back to the start of its' fields upon exiting them. "
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/PretzelPB"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/PretzelPB"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/PretzelPB/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="Sprite" type="Sprite" parent="Text/PretzelPB"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/PretzelPB"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade this tower to have an increased chance to pull enemies back."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/PretzelPB"]
+
+[node name="MetalCost" type="Label" parent="Text/PretzelPB/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "10"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/PretzelPB/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/PretzelPB/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "13"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Milk" type="NinePatchRect" parent="Text"]
+[node name="Milk" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Milk"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Build a Carton of Milk tower that deals more and more damage, up to a cap, if it is attacking the same target."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Milk"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/Milk"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Milk/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Milk/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Cream" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Milk"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Cream"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="RichTextLabel" type="Label" parent="Text/Milk"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Build a Carton of Milk tower that deals increasingly more damage if it is attacking the same target, up to a cap."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/Milk"]
+
+[node name="MetalCost" type="Label" parent="Text/Milk/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Milk/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Cream" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/Cream"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Cream"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Cream"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade to a Yogurt tower that has an increased damage cap."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Cream"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/Cream"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Cream/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/Cream/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/Cream/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/Cream/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="Parmesan" type="NinePatchRect" parent="Text"]
+[node name="Parmesan" type="Node2D" parent="Text"]
 visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
-texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Parmesan"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a combinable Cheddar Cheese tower with an increased damage cap."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Parmesan"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="Sprite2" type="Sprite" parent="Text/Parmesan"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Parmesan/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Parmesan/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Butter" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Parmesan"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/Butter"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade to a Butter tower which has faster increasing damage and can posess enemies, making them attack other enemies. Advanced upgrades available."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/Parmesan"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a combinable Cheese tower with an increased damage cap."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/Butter"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/Parmesan"]
+
+[node name="MetalCost" type="Label" parent="Text/Parmesan/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/Parmesan/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Butter" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/Butter"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/Butter/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/Butter/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ButterPDP" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/Butter"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
+
+[node name="RichTextLabel" type="Label" parent="Text/Butter"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade to a Butter tower that ramps up damage faster and possesses enemies, making them attack each other."
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/ButterPDP"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade this tower to be able to posess stronger enemies (soldiers)."
-scroll_active = false
+[node name="NinePatchRect" type="Node2D" parent="Text/Butter"]
+
+[node name="MetalCost" type="Label" parent="Text/Butter/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "333"
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/ButterPDP"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="WoodCost" type="Label" parent="Text/Butter/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "333"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButterPDP" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/ButterPDP"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/ButterPDP/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/ButterPDP/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ButterPC" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/ButterPDP"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/ButterPC"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "Upgrade this tower, decreasing the cooldown on posessing enemies."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="RichTextLabel" type="Label" parent="Text/ButterPDP"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade this tower to be able to possess stronger enemies."
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/ButterPC"]
-margin_top = -27.0
-margin_right = 130.0
+[node name="NinePatchRect" type="Node2D" parent="Text/ButterPDP"]
+
+[node name="MetalCost" type="Label" parent="Text/ButterPDP/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/ButterPDP/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ButterPC" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/ButterPC"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/ButterPC/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="WoodCost" type="RichTextLabel" parent="Text/ButterPC/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
-text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ButterSE" type="NinePatchRect" parent="Text"]
-visible = false
-margin_left = -64.0
-margin_top = -119.0
-margin_right = 66.0
-margin_bottom = -52.0
+[node name="Sprite" type="Sprite" parent="Text/ButterPC"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
 texture = ExtResource( 8 )
-patch_margin_right = 12
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Text/ButterSE"]
-margin_left = 4.0
-margin_top = 3.0
-margin_right = 127.0
-margin_bottom = 64.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="RichTextLabel" type="Label" parent="Text/ButterPC"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Upgrade this tower, decreasing the cooldown on possessing enemies."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="NinePatchRect" type="Node2D" parent="Text/ButterPC"]
+
+[node name="MetalCost" type="Label" parent="Text/ButterPC/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "123"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="WoodCost" type="Label" parent="Text/ButterPC/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
+text = "185"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ButterSE" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/ButterSE"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/ButterSE"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/ButterSE"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
 text = "Upgrade this tower to have increased slowing effects when hitting enemies."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Text/ButterSE"]
-margin_top = -27.0
-margin_right = 130.0
-texture = ExtResource( 9 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="NinePatchRect" type="Node2D" parent="Text/ButterSE"]
 
-[node name="MetalCost" type="RichTextLabel" parent="Text/ButterSE/NinePatchRect"]
-margin_left = 35.0
-margin_top = 7.0
-margin_right = 63.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="MetalCost" type="Label" parent="Text/ButterSE/NinePatchRect"]
+margin_left = 116.0
+margin_top = -98.0
+margin_right = 144.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "123"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
 
-[node name="WoodCost" type="RichTextLabel" parent="Text/ButterSE/NinePatchRect"]
-margin_left = 69.0
-margin_top = 7.0
-margin_right = 97.0
-margin_bottom = 41.0
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+[node name="WoodCost" type="Label" parent="Text/ButterSE/NinePatchRect"]
+margin_left = -145.0
+margin_top = -90.0
+margin_right = -113.0
+margin_bottom = -63.0
+custom_fonts/font = ExtResource( 10 )
 text = "185"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Target" type="Node2D" parent="Text"]
+visible = false
+
+[node name="Sprite2" type="Sprite" parent="Text/Target"]
+position = Vector2( 1.19209e-07, -92.6667 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Text/Target"]
+position = Vector2( 0, -100.833 )
+scale = Vector2( 0.6, 0.51237 )
+texture = ExtResource( 8 )
+
+[node name="RichTextLabel" type="Label" parent="Text/Target"]
+margin_left = -91.0
+margin_top = -143.0
+margin_right = 91.0
+margin_bottom = -50.0
+custom_fonts/font = ExtResource( 10 )
+text = "Change this tower's target mode."
+align = 1
+valign = 1
+autowrap = true
 
 [node name="Target" type="Node2D" parent="."]
 visible = false
-position = Vector2( 0, 22 )
-scale = Vector2( 1.5, 1.5 )
 z_index = 20
 
 [node name="TargetSprite" type="Sprite" parent="Target"]
-position = Vector2( -0.5, 65 )
-scale = Vector2( 0.3, 0.11 )
-texture = ExtResource( 8 )
+position = Vector2( 0, 130 )
+scale = Vector2( 0.55, 0.25 )
+texture = ExtResource( 60 )
 
-[node name="Text" type="RichTextLabel" parent="Target"]
-margin_left = -44.0
-margin_top = 54.0
-margin_right = 48.0
-margin_bottom = 76.0
+[node name="Text" type="Label" parent="Target"]
+margin_left = -51.0
+margin_top = 114.0
+margin_right = 56.0
+margin_bottom = 153.0
 rect_scale = Vector2( 0.95, 0.95 )
-custom_fonts/mono_font = ExtResource( 10 )
-custom_fonts/bold_italics_font = ExtResource( 10 )
-custom_fonts/italics_font = ExtResource( 10 )
-custom_fonts/bold_font = ExtResource( 10 )
-custom_fonts/normal_font = ExtResource( 10 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = ExtResource( 10 )
 text = "Closest to Tower"
-scroll_active = false
+align = 1
+valign = 1
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Area2D" type="Area2D" parent="Target"]
+position = Vector2( -0.666667, 131 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Target/Area2D"]
+position = Vector2( 0.333328, -1.00001 )
+rotation = 1.5708
+shape = SubResource( 9 )
 
 [node name="BigArea" type="Area2D" parent="."]
 scale = Vector2( 1.5, 1.5 )
@@ -3578,6 +2916,9 @@ shape = SubResource( 8 )
 [connection signal="gui_input" from="Target/Text" to="." method="_on_Text_gui_input"]
 [connection signal="mouse_entered" from="Target/Text" to="." method="_on_Text_mouse_entered"]
 [connection signal="mouse_exited" from="Target/Text" to="." method="_on_Text_mouse_exited"]
+[connection signal="input_event" from="Target/Area2D" to="." method="_on_Target_input_event"]
+[connection signal="mouse_entered" from="Target/Area2D" to="." method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Target/Area2D" to="." method="_on_Area2D_mouse_exited"]
 [connection signal="input_event" from="BigArea" to="." method="_on_BigArea_input_event"]
 [connection signal="mouse_exited" from="BigArea" to="." method="_on_BigArea_mouse_exited"]
 [connection signal="input_event" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_input_event"]

@@ -40,7 +40,7 @@ var proM = [4, 7, 10, 6, 1, 3, 10]
 func _ready():
 	current_menu = $TowerMenu
 	target_index = 4
-	$Target/Text.text = "Target: Closest to End"
+	$Target/Text.text = "Closest to End"
 	
 	#Sets
 	$Text/Turnip/NinePatchRect/WoodCost.text = String(vegW[0])
@@ -1210,3 +1210,33 @@ func _on_PlateArea_mouse_entered():
 func _on_PlateArea_mouse_exited():
 	if not current_menu.is_visible():
 		$Sprite.texture = normal_plate
+
+
+func _on_Area2D_mouse_entered():
+	$Text/Target.show()
+
+
+func _on_Area2D_mouse_exited():
+	$Text/Target.hide()
+
+
+func _on_Target_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == BUTTON_LEFT and event.pressed:
+			if event.pressed:
+				target_index += 1
+				if target_index >= target_types.size():
+					target_index = 0
+				if target_types[target_index] == "closest":
+					$Target/Text.text = "Closest to Tower"
+				if target_types[target_index] == "farthest":
+					$Target/Text.text = "Farthest to Tower"
+				if target_types[target_index] == "lowest":
+					$Target/Text.text = "Lowest % Health"
+				if target_types[target_index] == "highest":
+					$Target/Text.text = "Highest % Health"
+				if target_types[target_index] == "closest_end":
+					$Target/Text.text = "Closest to End"
+				if target_types[target_index] == "closest_start":
+					$Target/Text.text = "Closest to Start"
+				tower.set_target_type(target_types[target_index])
