@@ -41,16 +41,16 @@ position = Vector2( 1421, 790 )
 position = Vector2( 607, 430 )
 
 [node name="Plate4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 295, 319 )
+position = Vector2( 311, 205 )
 
 [node name="Plate5" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1070, 680 )
 
 [node name="Plate6" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1596, 525 )
+position = Vector2( 1599, 531 )
 
 [node name="Plate7" parent="." instance=ExtResource( 5 )]
-position = Vector2( 738, 586 )
+position = Vector2( 738, 647 )
 
 [node name="Plate2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 804, 227 )
@@ -59,18 +59,22 @@ position = Vector2( 804, 227 )
 position = Vector2( 991, 402 )
 
 [node name="Plate9" parent="." instance=ExtResource( 5 )]
-position = Vector2( 1724, 212 )
+position = Vector2( 1646, 289 )
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 6 )]
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = -5
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Node2D"]
 margin_right = 1920.0
 margin_bottom = 1080.0
 texture = ExtResource( 4 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -84,3 +88,9 @@ margin_bottom = 1078.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Plate10" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1286, 485 )
+
+[node name="Plate11" parent="." instance=ExtResource( 5 )]
+position = Vector2( 292, 408 )
