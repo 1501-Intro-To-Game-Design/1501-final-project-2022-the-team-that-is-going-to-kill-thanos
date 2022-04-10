@@ -432,13 +432,19 @@ func hit_effect():
 	var pfx = hit_pfx.instance()
 	var alt_pfx_ins = null
 	get_parent().add_child(pfx)
-	pfx.global_position = global_position
+	if chefs_knife:
+		pfx.global_position = global_position + Vector2(0, 50)
+	else:
+		pfx.global_position = global_position
 	pfx.get_node("Particles2D").amount = pfx_amount
 	pfx.get_node("Particles2D").emitting = true
 	if use_alt_pfx:
 		alt_pfx_ins = alt_pfx.instance()
 		get_parent().add_child(alt_pfx_ins)
-		alt_pfx_ins.global_position = global_position
+		if chefs_knife:
+			alt_pfx_ins.global_position = global_position + Vector2(0, 50)
+		else:
+			alt_pfx_ins.global_position = global_position
 		alt_pfx_ins.get_node("Particles2D").amount = pfx_amount/2
 		alt_pfx_ins.get_node("Particles2D").emitting = true
 	var t = Timer.new()
@@ -493,6 +499,7 @@ func _on_Spawn_timeout():
 	enemy_instance.spawned_num_wood = 0
 	enemy_instance.spawned_num_metal = 0
 	enemy_instance.get_node("Sprite").self_modulate = Color(.4, .3, .29)
+	enemy_instance.original_mod = enemy_instance.get_node("Sprite").get_self_modulate()
 	enemy_instance.connect("dead", home, "_enemy_killed")
 	get_parent().add_enemy_to_path(self, enemy_instance)
 	emit_signal("alive")
@@ -567,7 +574,8 @@ func posess():
 	tempMaxSpeed *= -1
 	tempSpeed *= -1
 	min_speed *= -1
-	$Sprite.set_modulate(Color(0.368627, 0.058824, 0.556863))
+	$Sprite.set_self_modulate(Color(0.368627, 0.058824, 0.556863))
+	original_mod = $Sprite.get_self_modulate()
 	$Area2D.monitoring = false
 	$Area2D.monitoring = true
 

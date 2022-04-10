@@ -233,11 +233,11 @@ func setTarget(body):
 				$RegenWait.stop()
 				#$Attack.start()
 		else:
-			body.target = self
 			inCombat = true
 			targets.append(body)
 			if targets.size() == 1:
 				hasBeenHit = false
+			body.setTarget(self)
 			$RegenTimer.stop()
 			$RegenWait.stop()
 			#$Attack.start()
@@ -248,9 +248,13 @@ func on_combat_end():
 	speed = 20 * util.g_speed
 	$Attack.stop()
 	for target in targets:
-		if self in target.inactive_targets:
-			target.inactive_targets.remove(target.inactive_targets.find(self))
-		target.on_combat_end()
+		if is_instance_valid(target):
+			if self in target.inactive_targets:
+				target.inactive_targets.remove(target.inactive_targets.find(self))
+			target.on_combat_end()
+	for body in targets:
+		if is_instance_valid(body):
+			targets.remove(targets.find(body))
 	if alive:
 		if(self.is_in_group("Player")):
 			$RegenWait.start()
