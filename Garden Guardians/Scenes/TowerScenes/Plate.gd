@@ -223,11 +223,17 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off = 0, up
 		ui.update()
 		var tempW = tower.refundW
 		var tempM = tower.refundM
+		var towerT = tower_to_make.instance()
+		var tempPos
+		if tower.morsel_tower:
+			tempPos = tower.tower_morsels[0].global_position - tower.morselOffsets[0] - tower.global_position
 		tower.queue_free()
-		tower = tower_to_make.instance()
+		tower = towerT
 		tower.refundW = tempW + (0.4 * wood_cost)
 		tower.refundM = tempM + (0.4 * metal_cost)
 		get_parent().add_child(tower)
+		if tower.morsel_tower:
+			tower.posOffset = tempPos
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_off)
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])

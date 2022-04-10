@@ -83,7 +83,7 @@ var comb_node = null
 
 var hovering = false
 
-var posOffset = Vector2.ZERO
+var posOffset = Vector2(0, 150)
 #this holds all info about the towers, format is [tower family (0-3 is fruits, 4-8 is morsals, etc )][INFO]
 #list false or 0 or null as aproperite when not relivent (itll get ignored anyways)
 #LEGEND: A-attacking M-morsel T-Tower P-Projectile
@@ -118,6 +118,8 @@ func set_target_type(new_target_type): #can be: closest, farthest, lowest, highe
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if babies == max_babies:
+		posOffset = Vector2.ZERO
 	#detect closest enemy, and call attack function on it
 	if dragging and is_instance_valid(comb_node) and not (mouse_pos == null):
 		drag()
