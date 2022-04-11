@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Sprites/PFX/Stars.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/PFX/PFX.gd" type="Script" id=2]
 
 [sub_resource type="ParticlesMaterial" id=1]
 lifetime_randomness = 0.3
@@ -20,6 +21,7 @@ scale = 0.25
 
 [node name="Stars" type="Node2D"]
 scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 amount = 3

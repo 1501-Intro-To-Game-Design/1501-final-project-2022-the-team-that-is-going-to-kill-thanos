@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Sprites/PFX/cherry_juice.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/PFX/PFX.gd" type="Script" id=2]
 
 [sub_resource type="ParticlesMaterial" id=3]
 lifetime_randomness = 0.3
@@ -20,6 +21,7 @@ linear_accel_random = 0.5
 scale = 0.25
 
 [node name="AOE" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 scale = Vector2( 0.7, 0.7 )

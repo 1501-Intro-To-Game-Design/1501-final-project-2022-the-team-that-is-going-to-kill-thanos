@@ -11,7 +11,6 @@ var rng = RandomNumberGenerator.new()
 var wave = 0
 var inProgres = false
 var enemys = []
-var enemyNum = 0
 var enemystoKill = 0
 var dps = []
 var dP = 0
@@ -35,7 +34,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateEnemyLocation(delta)
-	if enemyNum <= 0 and enemys.size() <= 0 and inProgres and enemystoKill == 0:
+	if enemys.size() <= 0 and inProgres and enemystoKill == 0:
 		dps.clear() #jsut in case theres 1 left
 		inProgres = false
 		$EnemySpawn.stop()
@@ -134,7 +133,6 @@ func addEnemyPath():
 	add_child(pathToFollow)
 	add_child(enemy)
 	enemyPathManager.append([enemy, pathToFollow, rand_num])
-	enemyNum += 1
 	
 func add_enemy_to_path(spawner, spawned):
 	var pathToFollow = null
@@ -151,6 +149,11 @@ func add_enemy_to_path(spawner, spawned):
 			spawned.connect("alive", self, "_enemy_created")
 			spawned.home = self
 			check_stacking(spawned)
+
+func remove_from_array(unit_to_remove):
+	for i in enemyPathManager:
+		if i[0] == unit_to_remove:
+			enemyPathManager.remove(enemyPathManager.find(i))
 
 func add_to_offset(enemy_node, amount):
 	for i in enemyPathManager:
@@ -219,9 +222,7 @@ func _on_nextRoundGo():
 	start_wave()
 
 func _enemy_killed():
-	enemyNum -= 1
 	enemystoKill -= 1
 
 func _enemy_created():
-	enemyNum += 1
 	enemystoKill += 1

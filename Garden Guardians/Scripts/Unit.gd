@@ -467,16 +467,9 @@ func hit_effect():
 			alt_pfx_ins.global_position = global_position
 		alt_pfx_ins.get_node("Particles2D").amount = pfx_amount/2
 		alt_pfx_ins.get_node("Particles2D").emitting = true
-	var t = Timer.new()
-	t.set_wait_time(3)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	yield(t, "timeout")
-	t.queue_free()
-	pfx.queue_free()
+	pfx.start_timer()
 	if use_alt_pfx:
-		alt_pfx_ins.queue_free()
+		alt_pfx_ins.start_timer()
 
 func play_pfx(pfx_to_use):
 	var pfx = pfx_to_use.instance()
@@ -500,6 +493,7 @@ func destroy(dropResources = true):
 			homeTower.morselPositions[morselNum] = false
 	if is_in_group("Enemies"):
 		emit_signal("dead")
+		get_parent().remove_from_array(self)
 		if dropResources:
 			for i in range(spawned_num_wood):
 				r = resource.instance() #spawn resources
@@ -509,6 +503,7 @@ func destroy(dropResources = true):
 				r = resource.instance() #spawn resources
 				r._spawn(false, global_position) # true = wood, false = metal
 				get_parent().add_child(r)
+	stun_pfx_ins.queue_free()
 	queue_free()
 
 
@@ -602,6 +597,7 @@ func posess():
 	groups_to_check = []
 	groups_to_check.append("Enemies")
 	emit_signal("dead")
+	get_parent().remove_from_array(self)
 	isTraitor = true
 	current_speed *= -1
 	max_speed *= -1

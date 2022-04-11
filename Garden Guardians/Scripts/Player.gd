@@ -63,7 +63,7 @@ func _process(delta):
 			moving = false
 		#MOVEMENT STUFF
 		if moving:  
-			position += direction.normalized() * speed * delta * 10
+			position += direction * speed * delta * 10
 	else:
 		$AnimatedSprite.animation = "Dead"
 		$AnimatedSprite.stop()
@@ -78,6 +78,7 @@ func _input(event):
 				if !clicked and hasBeenHit:
 					destination = event.position 
 					direction = destination - position
+					direction = direction.normalized()
 					clicked = true
 					moving = true;
 				else: 
