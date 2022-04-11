@@ -132,6 +132,7 @@ func addEnemyPath():
 	enemy.home = self
 	enemy.position = pathToFollow.getPathLocation()
 	enemy.followPath = pathToFollow
+	enemy.path = "Path " + String(rand_num)
 	add_child(pathToFollow)
 	add_child(enemy)
 	enemyPathManager.append([enemy, pathToFollow, rand_num])
@@ -150,6 +151,7 @@ func add_enemy_to_path(spawner, spawned):
 			spawned.connect("dead", self, "_enemy_killed")
 			spawned.connect("alive", self, "_enemy_created")
 			spawned.home = self
+			spawned.path = "Path" + String(i[2])
 			check_stacking(spawned)
 
 func remove_from_array(unit_to_remove):

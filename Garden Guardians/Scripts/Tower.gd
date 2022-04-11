@@ -519,9 +519,10 @@ func _on_AltAttackCooldown_timeout():
 		if centreOfField.size() > 0:
 			for i in enemies:
 				if is_instance_valid(i):
-					i.set_offset(centreOfField[centreOfField.size()-1][0])
-					if altAttackTargets.size() == 0:
-						altAttackTargets.append(i)
+					if i.path == centreOfField[centreOfField.size()-1][2]:
+						i.set_offset(centreOfField[centreOfField.size()-1][0])
+						if altAttackTargets.size() == 0:
+							altAttackTargets.append(i)
 			if altAttackTargets.size() != 0:
 				var altProjectile = altProjectileScene.instance()
 				altProjectile.towerFrom = self
