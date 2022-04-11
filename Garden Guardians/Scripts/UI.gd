@@ -11,6 +11,7 @@ export (Resource) var lostLife
 export (Resource) var backgroundTrack
 export (Resource) var actionFailed
 signal restart
+var map_name = ""
 var wood = -1
 var metal = -1
 var paused = false
@@ -21,6 +22,7 @@ var playerLives = 25
 signal nextRoundGo
 
 func _ready():
+	playerLives = 25
 	wood = 999 #16
 	metal = 999 #6
 	update()
@@ -30,6 +32,10 @@ func _ready():
 
 func connect_stuff(name_of_root):
 	get_parent().get_node(name_of_root + "/MovingEnemies").connect("player_life_lost", self, "_on_player_life_lost")
+	if name_of_root == "Tablecloth":
+		$NextButton.global_position = $TableclothNode.global_position
+	elif name_of_root == "Level":
+		$NextButton.global_position = $FarmNode.global_position
 
 func add_wood():
 	wood += 1

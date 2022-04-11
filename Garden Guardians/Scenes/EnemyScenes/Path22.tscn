@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Path.gd" type="Script" id=1]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 1920, 140, 0, 0, 0, 0, 1617, 148, 0, 0, 0, 0, 1545, 156, 0, 0, 0, 0, 1516, 202, 0, 0, 0, 0, 1548, 369, 0, 0, 0, 0, 1626, 642, 0, 0, 0, 0, 1635, 755, 0, 0, 0, 0, 1635, 828, 0, 0, 0, 0, 1572, 877, 0, 0, 0, 0, 1447, 892, 0, 0, 0, 0, 1281, 900, 0, 0, 0, 0, 1096, 915, 0, 0, 0, 0, 956, 905, 0, 0, 0, 0, 922, 812, 0, 0, 0, 0, 910, 561, 0, 0, 0, 0, 913, 284, 0, 0, 0, 0, 882, 184, 0, 0, 0, 0, 746, 171, 0, 0, 0, 0, 557, 172, 0, 0, 0, 0, 401, 263, 0, 0, 0, 0, 257, 375, 0, 0, 0, 0, 147, 463, 0, 0, 0, 0, 53, 478, 0, 0, 0, 0, -19, 484 )
+}
+
+[node name="Path" type="Path2D" groups=["Path"]]
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+
+[node name="Pathway" type="PathFollow2D" parent="."]
+position = Vector2( 1920, 140 )
+rotation = 3.1152
+loop = false
+__meta__ = {
+"_edit_lock_": true
+}
