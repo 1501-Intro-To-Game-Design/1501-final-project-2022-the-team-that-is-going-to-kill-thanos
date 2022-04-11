@@ -56,6 +56,8 @@ func check_stacking(unit_to_check):
 func start_wave():
 	dP = (wave * (wave + 1))/2 + 4 # = (wave*7) -1
 	#5, 7, 10, 14, 19, 25, 31, 38, 46, 55
+	if wave > 3:
+		dP += 3
 	budget = dP
 	$"/root/ui".updateRound(wave)
 	rng.randomize()
@@ -96,14 +98,14 @@ func start_wave():
 		elif budget *thresh2 <= dP and wave > 5:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
-			dps.append(10)
-			dP -= (10)
+			dps.append(9)
+			dP -= (9)
 			enemys.append(enemyScene3[value])
 		elif budget *thresh1 <= dP and wave > 2:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
-			dps.append(5)
-			dP -= (5)
+			dps.append(4)
+			dP -= (4)
 			enemys.append(enemyScene2[value])
 		else:
 			value = rng.randi_range(0,enemyScene1.size()-1)
