@@ -118,8 +118,6 @@ func set_target_type(new_target_type): #can be: closest, farthest, lowest, highe
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if babies == max_babies:
-		posOffset = Vector2.ZERO
 	#detect closest enemy, and call attack function on it
 	if dragging and is_instance_valid(comb_node) and not (mouse_pos == null):
 		drag()
