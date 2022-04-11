@@ -3,11 +3,14 @@ extends CanvasLayer
 
 # Declare member variables here. Examples:
 export (PackedScene) var levelOneScene
+var currentLevel
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"/root/ui".hide_UI()
+	$InGameMenu/Shade.set_color(Color(0.2, 0.2, 0.2, 0.2))
+	$InGameMenu/Shade2.set_color(Color(0.2, 0.2, 0.2, 0.2))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,17 +19,12 @@ func _ready():
 
 
 func _on_NewGame_pressed():
-	$NewGame.hide()
-	$Exit.hide()
-	$Level1.show()
-	$Back.show()
-
+	$Main.hide()
+	$Levels.show()
 
 func _on_Back_pressed():
-	$NewGame.show()
-	$Exit.show()
-	$Level1.hide()
-	$Back.hide()
+	$Main.show()
+	$Levels.hide()
 
 
 func _on_Exit_pressed():
@@ -38,11 +36,43 @@ func _on_Level1_pressed():
 	hide_menu()
 	var level = levelOneScene.instance()
 	get_parent().add_child(level)
+	currentLevel = "Level1"
 
 func hide_menu():
 	for i in get_children():
 		i.hide()
 
 func show_menu():
-	$NewGame.show()
-	$Exit.show()
+	$Main.show()
+
+
+func _on_Volume_value_changed(value):
+	util.g_sound = value/10
+	$"/root/ui".updateVolume()
+	$InGameMenu/InGameVolume.value = value
+
+
+func _on_InGameVolume_value_changed(value):
+	util.g_sound = value/10
+	$"/root/ui".updateVolume()
+	$Main/Volume.value = value
+
+func _on_InGameQuit_pressed():
+	get_tree().quit()
+
+
+func _on_InGameBack_pressed():
+	get_parent().get_node("Level").queue_free()
+	$"/root/ui".hide_UI()
+	show_menu()
+	hideInGameMenu()
+	if $"/root/ui".paused:
+		$"/root/ui".paused = false
+		get_tree().paused = false
+		$"/root/ui/PauseButton".texture = load("res://Sprites/UI Sprites/Pause.png")
+
+func showInGameMenu():
+	$InGameMenu.show()
+
+func hideInGameMenu():
+	$InGameMenu.hide()

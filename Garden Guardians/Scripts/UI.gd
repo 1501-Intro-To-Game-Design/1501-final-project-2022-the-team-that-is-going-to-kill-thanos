@@ -85,11 +85,13 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 					_load_n_play(play,-1)
 					get_tree().paused = false
 					$PauseButton.texture = load("res://Sprites/UI Sprites/Pause.png")
+					get_parent().get_node("MainMenu").hideInGameMenu()
 				else:
 					paused = true
 					get_tree().paused = true
 					$PauseButton.texture = load("res://Sprites/UI Sprites/Pause.png")
 					_load_n_play(pause,-1)
+					get_parent().get_node("MainMenu").showInGameMenu()
 
 func _on_player_life_lost(livesLost):
 	playerLives -= livesLost
@@ -131,7 +133,10 @@ func playBackgroundTrack():
 	$BackgroundTrack.volume_db = -8 + util.g_sound
 	$BackgroundTrack.play()
 	
-
+func updateVolume():
+	$AudioStreamPlayer.volume_db = 24 - 1 + util.g_sound
+	$ResourcePlayer.volume_db = 20 + util.g_sound
+	$BackgroundTrack.volume_db = -8 + util.g_sound
 
 func _on_BackgroundTrack_finished():
 	playBackgroundTrack()

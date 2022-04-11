@@ -1,14 +1,18 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
-[ext_resource path="res://Fonts/FontInUse.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/LevelScenes/Level.tscn" type="PackedScene" id=3]
 
 [node name="MainMenu" type="CanvasLayer"]
+pause_mode = 2
+layer = 2
 script = ExtResource( 1 )
 levelOneScene = ExtResource( 3 )
 
-[node name="NewGame" type="Button" parent="."]
+[node name="Main" type="Node2D" parent="."]
+
+[node name="NewGame" type="Button" parent="Main"]
 margin_left = 620.0
 margin_top = 566.0
 margin_right = 1240.0
@@ -19,7 +23,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Exit" type="Button" parent="."]
+[node name="Exit" type="Button" parent="Main"]
 margin_left = 749.0
 margin_top = 722.0
 margin_right = 1111.0
@@ -30,31 +34,122 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Level1" type="Button" parent="."]
+[node name="Volume" type="HSlider" parent="Main"]
+margin_left = 433.0
+margin_top = 911.0
+margin_right = 1433.0
+margin_bottom = 1111.0
+min_value = -100.0
+scrollable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Levels" type="Node2D" parent="."]
 visible = false
-margin_left = 687.0
-margin_top = 142.0
-margin_right = 1175.0
-margin_bottom = 220.0
+
+[node name="Level1" type="Button" parent="Levels"]
+margin_left = 719.0
+margin_top = 248.0
+margin_right = 1219.0
+margin_bottom = 348.0
 custom_fonts/font = ExtResource( 2 )
 text = "Level 1"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="."]
-visible = false
-margin_left = 766.0
-margin_top = 723.0
-margin_right = 1097.0
-margin_bottom = 795.0
+[node name="Level2" type="Button" parent="Levels"]
+margin_left = 716.0
+margin_top = 413.0
+margin_right = 1216.0
+margin_bottom = 513.0
+custom_fonts/font = ExtResource( 2 )
+text = "Level 2"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level3" type="Button" parent="Levels"]
+margin_left = 719.0
+margin_top = 582.0
+margin_right = 1219.0
+margin_bottom = 682.0
+custom_fonts/font = ExtResource( 2 )
+text = "Level 3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tutorial" type="Button" parent="Levels"]
+margin_left = 640.0
+margin_top = 798.0
+margin_right = 1290.0
+margin_bottom = 898.0
+custom_fonts/font = ExtResource( 2 )
+text = "Tutorial"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="Levels"]
+margin_left = 1487.0
+margin_top = 924.0
+margin_right = 1837.0
+margin_bottom = 1014.0
 custom_fonts/font = ExtResource( 2 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="NewGame" to="." method="_on_NewGame_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_Exit_pressed"]
-[connection signal="pressed" from="Level1" to="." method="_on_Level1_pressed"]
-[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
+[node name="InGameMenu" type="Node2D" parent="."]
+visible = false
+
+[node name="InGameVolume" type="HSlider" parent="InGameMenu"]
+margin_left = 433.0
+margin_top = 911.0
+margin_right = 1433.0
+margin_bottom = 1111.0
+min_value = -100.0
+scrollable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InGameBack" type="Button" parent="InGameMenu"]
+margin_left = 690.0
+margin_top = 426.0
+margin_right = 1090.0
+margin_bottom = 526.0
+custom_fonts/font = ExtResource( 2 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InGameQuit" type="Button" parent="InGameMenu"]
+margin_left = 721.0
+margin_top = 638.0
+margin_right = 1071.0
+margin_bottom = 728.0
+custom_fonts/font = ExtResource( 2 )
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shade" type="Polygon2D" parent="InGameMenu"]
+polygon = PoolVector2Array( -38, -48, 690, -52, 690, -2, 690, 527, 1078, 527, 1078, 639, 721, 639, 721, 1001, 429, 1001, 429, 1105, -43, 1100 )
+
+[node name="Shade2" type="Polygon2D" parent="InGameMenu"]
+polygon = PoolVector2Array( 429, 1100, 429, 1021, 1435, 1021, 1435, 1001, 721, 1001, 721, 727, 1071, 727, 1071, 639, 1078, 639, 1078, 527, 1090, 527, 1090, 426, 690, 426, 690, -48, 1967, -53, 1960, 1172, 421, 1172 )
+
+[connection signal="pressed" from="Main/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="Main/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="value_changed" from="Main/Volume" to="." method="_on_Volume_value_changed"]
+[connection signal="pressed" from="Levels/Level1" to="." method="_on_Level1_pressed"]
+[connection signal="pressed" from="Levels/Back" to="." method="_on_Back_pressed"]
+[connection signal="value_changed" from="InGameMenu/InGameVolume" to="." method="_on_InGameVolume_value_changed"]
+[connection signal="pressed" from="InGameMenu/InGameBack" to="." method="_on_InGameBack_pressed"]
+[connection signal="pressed" from="InGameMenu/InGameQuit" to="." method="_on_InGameQuit_pressed"]
