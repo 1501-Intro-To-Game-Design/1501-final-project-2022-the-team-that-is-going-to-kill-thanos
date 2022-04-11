@@ -43,8 +43,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if targets.size() == 0:
+	if targets.size() == 0 || (targets.size() == 1 && targets[0].target != self):
+		targets.clear()
 		speed = 20 * util.g_speed
+		hasBeenHit = true
 	if alive:
 		checkInCombat()
 		if moving:

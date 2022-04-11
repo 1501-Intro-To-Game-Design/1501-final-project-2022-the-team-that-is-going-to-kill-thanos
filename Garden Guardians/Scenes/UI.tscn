@@ -18,19 +18,19 @@
 [ext_resource path="res://Sounds/Burbs/Foley/ActionFailed_Sound.wav" type="AudioStream" id=16]
 
 [sub_resource type="DynamicFont" id=5]
-size = 56
+size = 60
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=6]
-size = 56
+size = 60
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 122.136
+radius = 108.505
 
 [sub_resource type="CapsuleShape2D" id=4]
 radius = 152.0
@@ -116,14 +116,14 @@ __meta__ = {
 }
 
 [node name="NextButton" type="Sprite" parent="."]
-position = Vector2( 1815, 370 )
-scale = Vector2( 0.664063, 0.640625 )
+position = Vector2( 1830, 389 )
+scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="NextButton"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NextButton/Area2D"]
-position = Vector2( 1.50586, -1.56094 )
+position = Vector2( 2.5, -10.0001 )
 shape = SubResource( 1 )
 
 [node name="PauseButton" type="Sprite" parent="."]
@@ -171,7 +171,7 @@ volume_db = -8.0
 position = Vector2( 1800, 160 )
 
 [node name="FarmNode" type="Node2D" parent="."]
-position = Vector2( 1793, 310 )
+position = Vector2( 1826, 294 )
 
 [node name="KitchenNode" type="Node2D" parent="."]
 

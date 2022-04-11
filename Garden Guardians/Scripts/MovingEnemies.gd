@@ -221,7 +221,8 @@ func updateEnemyLocation(delta):
 				elif i[0].spawned_num_wood + i[0].spawned_num_metal*3 >= 3:
 					emit_signal("player_life_lost", 2)
 				else:
-					emit_signal("player_life_lost", 1)
+					emit_signal("player_life_lost", 1) 
+
 				get_parent().get_node("ColorRect").show()
 				var t = Timer.new()
 				t.set_wait_time(0.2)

@@ -20,6 +20,7 @@ levelOneScene = ExtResource( 3 )
 levelTwoScene = ExtResource( 5 )
 
 [node name="Main" type="Node2D" parent="."]
+visible = false
 
 [node name="NewGame" type="Button" parent="Main"]
 margin_left = 760.0

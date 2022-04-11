@@ -12,12 +12,17 @@ func _ready():
 	$"/root/ui".hide_UI()
 	$InGameMenu/Shade.set_color(Color(0.2, 0.2, 0.2, 0.6))
 	$"/root/ui".connect("restart", self, "reset_state")
+	$Main.show()
 
 func reset_state():
-	$Main.hide()
+	_on_InGameBack_pressed()
+	
+	
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
-#	pass
+	#pass
+
 
 
 func _on_NewGame_pressed():
