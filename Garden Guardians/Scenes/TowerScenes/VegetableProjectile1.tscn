@@ -6,9 +6,10 @@
 [sub_resource type="CapsuleShape2D" id=1]
 
 [node name="Projectile" instance=ExtResource( 1 )]
+position = Vector2( 0, -41 )
 scale = Vector2( 1.75, 1.75 )
 speed = 150
-damage = 1.7
+damage = 1.45
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 1 )

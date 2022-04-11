@@ -11,10 +11,10 @@
 [ext_resource path="res://Scenes/PFX/WoodChips.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 115, 235 )
+extents = Vector2( 48.5714, 305.714 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 26.6667, 208.333 )
+extents = Vector2( 34.2857, 297.143 )
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -44,7 +44,7 @@ tracks/1/keys = {
 }
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 1 )]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.35, 0.35 )
 hit_pfx = ExtResource( 8 )
 alt_pfx = ExtResource( 9 )
 use_alt_pfx = true
@@ -60,7 +60,6 @@ sounds = [ ExtResource( 2 ), ExtResource( 3 ) ]
 max_speed = 35
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 4 )
 
 [node name="Area2D" parent="." index="3"]
@@ -68,18 +67,19 @@ collision_layer = 32769
 collision_mask = 32769
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -5, 41.6668 )
+position = Vector2( -2.72478e-06, 51.4285 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
-margin_left = -93.3333
-margin_top = -216.667
-margin_right = 96.6667
-margin_bottom = -181.667
-
-[node name="CollisionShape2D" parent="." index="5"]
-position = Vector2( 1.19209e-06, 38.3333 )
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2( -3.40598e-07, 51.4285 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
+
+[node name="Shield" parent="." index="9"]
+visible = true
+position = Vector2( -3.05176e-05, -342.133 )
+scale = Vector2( 0.4, 0.4 )
 
 [node name="ResourceKillTimer" type="Timer" parent="." index="10"]
 one_shot = true
@@ -91,10 +91,17 @@ anims/Move = ExtResource( 5 )
 anims/RESET = SubResource( 3 )
 anims/ResourceKill = ExtResource( 7 )
 
-[node name="Shield" parent="." index="12"]
-visible = true
-position = Vector2( 0, -260 )
-scale = Vector2( 0.4, 0.4 )
+[node name="Health" parent="." index="12"]
+margin_left = -114.0
+margin_top = -299.0
+margin_right = 116.0
+margin_bottom = -264.0
+
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -3.0
+margin_top = -4.0
+margin_right = 234.0
+margin_bottom = 40.0
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
 [connection signal="timeout" from="ResourceKillTimer" to="." method="_on_ResourceKillTimer_timeout"]

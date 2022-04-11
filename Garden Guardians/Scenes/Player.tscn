@@ -36,10 +36,10 @@ radius = 116.069
 radius = 116.0
 
 [sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.266667, 0.952941, 0.513726, 1 )
+bg_color = Color( 0.396078, 0.635294, 0.141176, 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
-bg_color = Color( 0.956863, 0.352941, 0.352941, 1 )
+bg_color = Color( 0.552941, 0, 0, 1 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
 scale = Vector2( 0.5, 0.5 )
@@ -86,12 +86,25 @@ shape = SubResource( 4 )
 
 [node name="Health" type="ProgressBar" parent="."]
 margin_left = -68.0
-margin_top = -140.0
+margin_top = -150.0
 margin_right = 64.0
-margin_bottom = -122.0
+margin_bottom = -132.0
 custom_styles/fg = SubResource( 5 )
 custom_styles/bg = SubResource( 6 )
 percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Node2D" type="Node2D" parent="Health"]
+z_index = -1
+
+[node name="ColorRect" type="ColorRect" parent="Health/Node2D"]
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 136.0
+margin_bottom = 22.0
+color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

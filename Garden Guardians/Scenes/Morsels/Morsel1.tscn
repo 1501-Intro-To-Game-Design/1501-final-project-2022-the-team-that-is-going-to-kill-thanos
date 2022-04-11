@@ -13,7 +13,7 @@
 [ext_resource path="res://Scenes/PFX/Blood.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 256, 160 )
+extents = Vector2( 172, 148 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 156, 124 )
@@ -92,17 +92,11 @@ scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 40, 20 )
+position = Vector2( 50, 9.99997 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
-margin_left = -240.0
-margin_top = -480.0
-margin_right = 260.0
-margin_bottom = -405.0
-
-[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
+[node name="CollisionShape2D" parent="." index="4" groups=["Hitbox"]]
 position = Vector2( 50, 10 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )
@@ -113,3 +107,15 @@ anims/Attack = ExtResource( 10 )
 anims/Idle = SubResource( 3 )
 anims/Move = ExtResource( 9 )
 anims/RESET = SubResource( 4 )
+
+[node name="Health" parent="." index="11"]
+margin_left = -240.0
+margin_top = -480.0
+margin_right = 260.0
+margin_bottom = -405.0
+
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 520.0
+margin_bottom = 100.0

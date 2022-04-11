@@ -2,6 +2,7 @@ extends RigidBody2D
 export (PackedScene) var hit_pfx
 export (PackedScene) var alt_pfx
 export var use_alt_pfx = false
+export (PackedScene) var stun_pfx
 export var pfx_amount = 11
 export var piercing = false
 export var armored = false
@@ -29,6 +30,8 @@ var inCombat = false
 var target
 export (PackedScene) var resource
 
+
+var original_health_color
 var stunned = false
 var pullingBack = []
 
@@ -53,7 +56,7 @@ var moving = false;
 var homeTower
 var morselNum
 var isTraitor = false
-
+var stun_pfx_ins
 signal dead
 signal alive
 var home
@@ -64,6 +67,9 @@ export var num_spawn_on_death = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	stun_pfx_ins = stun_pfx.instance()
+	get_parent().add_child(stun_pfx_ins)
+	original_health_color = $Health.get("custom_styles/fg").get_bg_color()
 	if armored:
 		$Shield.show()
 	if ranged_morsel and "Enemies" in get_groups():
@@ -101,6 +107,9 @@ func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if stunned:
+		var size = $Sprite.texture.get_size()
+		stun_pfx_ins.global_position = global_position + Vector2(0, -.5 * (size.y/2))
 	checkInCombat()
 	if (not inCombat) and (can_attack) and (ranged_morsel) and ranged_attacking:
 		ranged_attack() 
@@ -197,9 +206,11 @@ func _on_Enemy_body_entered(body):
 	
 
 func start_stun(duration):
-	stunned = true
-	current_speed = 0
-	$StunTimer.start(duration)
+	if not chefs_knife:
+		stunned = true
+		current_speed = 0
+		$StunTimer.start(duration)
+		stun_pfx_ins.get_node("Particles2D").emitting = true	
 
 func checkType(body):
 	for group in body.get_groups():
@@ -212,11 +223,10 @@ func checkType(body):
 				setTarget(body)
 		if (group == "Traitor" and "Traitor" in groups_to_check):
 			setTarget(body)
-		if is_in_group("Enemies") and not is_in_group("Traitor"):
-			check_if_stacking()
 
 func check_if_stacking():
-	get_parent().check_stacking(self)
+	if(is_in_group("Enemies")):
+		get_parent().check_stacking(self)
 
 func setResourceTarget(body):
 	if not inCombat:
@@ -244,6 +254,7 @@ func setTarget(body):
 			if not body.is_in_group("Player"):
 				if body.target == self: #if target's target is me
 					inCombat = true
+					check_if_stacking()
 					target = body
 					body.setTarget(self)
 					ranged_attacking = false
@@ -256,6 +267,7 @@ func setTarget(body):
 					$RegenWait.stop()
 			elif body.is_in_group("Player"):
 				inCombat = true
+				check_if_stacking()
 				target = body
 				body.setTarget(self)
 				ranged_attacking = false
@@ -268,6 +280,7 @@ func setTarget(body):
 				$RegenWait.stop()
 		else:
 			inCombat = true
+			check_if_stacking()
 			target = body
 			ranged_attacking = false
 			body.setTarget(self)
@@ -308,6 +321,7 @@ func prepareSpawnTimer():
 	s.queue_free()	
 
 func dot_dmg_start():
+	$Health.get("custom_styles/fg").set_bg_color(Color(.72, .62, .25, 1.00))
 	for i in range(10):
 		var t = Timer.new()
 		t.set_wait_time(.25)
@@ -318,6 +332,7 @@ func dot_dmg_start():
 		yield(t, "timeout")
 		change_health(-.2, false, true)
 		t.queue_free()	
+	$Health.get("custom_styles/fg").set_bg_color(original_health_color)
 
 func _on_Attack_timeout():
 	if is_instance_valid(target):
@@ -458,6 +473,20 @@ func hit_effect():
 	if use_alt_pfx:
 		alt_pfx_ins.queue_free()
 
+func play_pfx(pfx_to_use):
+	var pfx = pfx_to_use.instance()
+	get_parent().add_child(pfx)
+	pfx.global_position = global_position
+	pfx.get_node("Particles2D").emitting = true
+	var t = Timer.new()
+	t.set_wait_time(3)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	pfx.queue_free()
+
 func destroy(dropResources = true):
 	var r
 	if self.is_in_group("Morsels"): #decrease number of active morsels
@@ -487,6 +516,7 @@ func _on_Area2D_body_exited(body):
 
 func _on_StunTimer_timeout():
 	stunned = false
+	stun_pfx_ins.get_node("Particles2D").emitting = false
 	if not ranged_attacking:
 		current_speed = max_speed
 
@@ -639,3 +669,10 @@ func _on_player_died():
 			ranged_enemies.remove(ranged_enemies.find(i))
 			ranged_attacking = false
 			on_combat_end()
+
+
+func _on_RegenTimer_timeout():
+	current_health += .25
+	if(current_health > max_health):
+		current_health = max_health
+	$Health.value = current_health

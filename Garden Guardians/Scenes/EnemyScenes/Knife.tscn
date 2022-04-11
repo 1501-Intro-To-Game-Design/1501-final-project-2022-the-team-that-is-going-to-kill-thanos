@@ -12,10 +12,10 @@
 [ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 85, 230 )
+extents = Vector2( 52.7273, 284 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 22.5, 217.5 )
+extents = Vector2( 32, 266 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -45,7 +45,7 @@ tracks/1/keys = {
 }
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
-scale = Vector2( 0.2, 0.2 )
+scale = Vector2( 0.25, 0.25 )
 z_index = 2
 hit_pfx = ExtResource( 10 )
 pfx_amount = 12
@@ -57,23 +57,16 @@ sounds = [ ExtResource( 1 ), ExtResource( 2 ) ]
 movingSounds = [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ]
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 0.82, 0.82 )
 texture = ExtResource( 7 )
 offset = Vector2( 0, -60 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 0, 35 )
+position = Vector2( 1.81818, 44 )
 scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
-margin_left = -85.0
-margin_top = -240.0
-margin_right = 85.0
-margin_bottom = -210.0
-
-[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
-position = Vector2( 2.5, 32.5 )
+[node name="CollisionShape2D" parent="." index="4" groups=["Hitbox"]]
+position = Vector2( 1.43051e-06, 42 )
 scale = Vector2( 0.999999, 0.999999 )
 shape = SubResource( 2 )
 
@@ -82,3 +75,15 @@ autoplay = "Move"
 anims/Attack = ExtResource( 9 )
 anims/Move = ExtResource( 8 )
 anims/RESET = SubResource( 4 )
+
+[node name="Health" parent="." index="11"]
+margin_left = -85.0
+margin_top = -268.0
+margin_right = 85.0
+margin_bottom = -238.0
+
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 175.0
+margin_bottom = 35.0

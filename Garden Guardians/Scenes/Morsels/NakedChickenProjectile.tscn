@@ -7,6 +7,7 @@
 radius = 8.0
 
 [node name="Projectile" instance=ExtResource( 1 )]
+scale = Vector2( 1.5, 1.5 )
 speed = 250
 
 [node name="Sprite" parent="." index="0"]

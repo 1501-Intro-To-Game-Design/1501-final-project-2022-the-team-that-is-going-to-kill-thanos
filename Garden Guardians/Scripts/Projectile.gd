@@ -3,6 +3,7 @@ extends Node2D
 var AOE_percent = 0.0
 var rng = RandomNumberGenerator.new()
 var target = null
+export (PackedScene) var pfx
 export var speed = 20
 export var damage = 2.0
 export var damageCap = -1.000
@@ -79,6 +80,7 @@ func _on_Area2D_body_entered(body):
 				if my_random_number <= stun_chance:
 					target.start_stun(stun_duration)
 			if explosive:
+				body.play_pfx(pfx)
 				for enemy in enemies:
 					if not (enemy == target):
 						enemy.change_health(-1 * (damage * AOE_percent))

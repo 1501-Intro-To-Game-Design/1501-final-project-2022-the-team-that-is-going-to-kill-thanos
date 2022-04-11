@@ -68,6 +68,12 @@ margin_top = -273.0
 margin_right = 80.0
 margin_bottom = -240.0
 
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -7.0
+margin_top = -7.0
+margin_right = 167.0
+margin_bottom = 40.0
+
 [node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
 position = Vector2( -3.33333, -53.3333 )
 shape = SubResource( 2 )

@@ -14,7 +14,7 @@
 [ext_resource path="res://Scenes/PFX/Blood.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 236, 300 )
+extents = Vector2( 140, 276 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 96, 244 )
@@ -47,7 +47,7 @@ tracks/1/keys = {
 }
 
 [node name="Unit2" groups=["Morsels"] instance=ExtResource( 1 )]
-scale = Vector2( 0.05, 0.05 )
+scale = Vector2( 0.065, 0.065 )
 hit_pfx = ExtResource( 12 )
 groups_to_check = [ "Enemies" ]
 max_health = 25.0
@@ -64,17 +64,11 @@ texture = ExtResource( 10 )
 offset = Vector2( -3.03588, -67.8688 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 9.99996, -50 )
+position = Vector2( 9.99998, -30 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
-margin_left = -220.0
-margin_top = -860.0
-margin_right = 300.0
-margin_bottom = -780.0
-
-[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
+[node name="CollisionShape2D" parent="." index="4" groups=["Hitbox"]]
 position = Vector2( 20, -10 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )
@@ -85,3 +79,15 @@ anims/Attack = ExtResource( 5 )
 anims/Idle = ExtResource( 11 )
 anims/Move = ExtResource( 9 )
 anims/RESET = SubResource( 4 )
+
+[node name="Health" parent="." index="11"]
+margin_left = -220.0
+margin_top = -860.0
+margin_right = 300.0
+margin_bottom = -780.0
+
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 540.0
+margin_bottom = 100.0

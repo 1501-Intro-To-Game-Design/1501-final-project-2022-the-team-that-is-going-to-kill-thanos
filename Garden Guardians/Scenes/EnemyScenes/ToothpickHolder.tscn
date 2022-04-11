@@ -16,10 +16,10 @@
 [ext_resource path="res://Scenes/PFX/WoodChips.tscn" type="PackedScene" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 57.5, 48.3333 )
+extents = Vector2( 263.75, 253.75 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 46.5, 45 )
+extents = Vector2( 238.75, 232.5 )
 
 [sub_resource type="Animation" id=3]
 length = 0.001
@@ -49,7 +49,7 @@ tracks/1/keys = {
 }
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 3 )]
-scale = Vector2( 1.2, 1.2 )
+scale = Vector2( 0.35, 0.35 )
 z_index = 1
 hit_pfx = ExtResource( 14 )
 alt_pfx = ExtResource( 13 )
@@ -60,7 +60,7 @@ spawner = true
 to_spawn = ExtResource( 4 )
 spawn_cooldown = 4.0
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 30.0
+max_health = 35.0
 damage = 0.5
 spawned_num_wood = 6
 spawned_num_metal = 1
@@ -69,25 +69,23 @@ movingSounds = [ ExtResource( 9 ), ExtResource( 2 ), ExtResource( 1 ) ]
 max_speed = 25
 
 [node name="Sprite" parent="." index="0"]
-scale = Vector2( 0.18, 0.18 )
 texture = ExtResource( 5 )
 
 [node name="Spawn" parent="." index="2"]
 one_shot = true
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( 0.833334, -1.98682e-06 )
+position = Vector2( 6.24995, -3.75004 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
-margin_left = -28.0
-margin_top = -65.0
-margin_right = 29.0
-margin_bottom = -53.0
-
-[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
-position = Vector2( 2.5, 0 )
+[node name="CollisionShape2D" parent="." index="4" groups=["Hitbox"]]
+position = Vector2( 11.25, -5 )
 shape = SubResource( 2 )
+
+[node name="Shield" parent="." index="9"]
+visible = true
+position = Vector2( 0, -427.5 )
+scale = Vector2( 0.7, 0.7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
 autoplay = "Move"
@@ -99,9 +97,16 @@ anims/Spawn = ExtResource( 6 )
 [node name="StartSpawnAnim" type="Timer" parent="." index="11"]
 wait_time = 0.6
 
-[node name="Shield" parent="." index="12"]
-visible = true
-position = Vector2( 0, -80 )
-scale = Vector2( 0.15, 0.15 )
+[node name="Health" parent="." index="12"]
+margin_left = -240.0
+margin_top = -347.0
+margin_right = 242.0
+margin_bottom = -290.0
+
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 487.0
+margin_bottom = 63.0
 
 [connection signal="timeout" from="Spawn" to="." method="_on_Spawn_timeout"]

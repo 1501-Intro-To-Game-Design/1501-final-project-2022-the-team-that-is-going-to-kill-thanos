@@ -49,8 +49,8 @@ func check_stacking(unit_to_check):
 			index = i
 	if index != -1:
 		for i in range (0, enemyPathManager.size()):
-			if enemyPathManager[i][1].get_offset() - 14 < enemyPathManager[index][1].get_offset() and enemyPathManager[i][1].get_offset() + 14 > enemyPathManager[index][1].get_offset() and index != i:
-				add_to_offset(enemyPathManager[index][0], 15)
+			if enemyPathManager[i][1].get_offset() - 4 < enemyPathManager[index][1].get_offset() and enemyPathManager[i][1].get_offset() + 4 > enemyPathManager[index][1].get_offset() and index != i:
+				add_to_offset(enemyPathManager[index][0], 5)
 
 func start_wave():
 	dP = (wave*7) -1 # = (wave*7) -1

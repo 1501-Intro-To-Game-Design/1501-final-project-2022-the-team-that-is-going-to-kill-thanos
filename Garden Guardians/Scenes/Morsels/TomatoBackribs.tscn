@@ -50,7 +50,7 @@ tracks/0/keys = {
 }
 
 [node name="Unit2" groups=["Morsels"] instance=ExtResource( 1 )]
-scale = Vector2( 0.05, 0.05 )
+scale = Vector2( 0.065, 0.065 )
 hit_pfx = ExtResource( 8 )
 pfx_amount = 15
 groups_to_check = [ "Enemies" ]
@@ -70,13 +70,7 @@ position = Vector2( 60, -120 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
-margin_left = -260.0
-margin_top = -1160.0
-margin_right = 540.0
-margin_bottom = -1065.0
-
-[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
+[node name="CollisionShape2D" parent="." index="4" groups=["Hitbox"]]
 position = Vector2( 110, -50.0001 )
 scale = Vector2( 2.5, 2.5 )
 shape = SubResource( 2 )
@@ -86,3 +80,15 @@ anims/Attack = SubResource( 3 )
 anims/Idle = ExtResource( 11 )
 anims/Move = ExtResource( 10 )
 anims/RESET = SubResource( 4 )
+
+[node name="Health" parent="." index="11"]
+margin_left = -260.0
+margin_top = -1160.0
+margin_right = 540.0
+margin_bottom = -1065.0
+
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 820.0
+margin_bottom = 120.0

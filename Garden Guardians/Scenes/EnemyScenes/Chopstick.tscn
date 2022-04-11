@@ -11,10 +11,10 @@
 [ext_resource path="res://Scenes/PFX/WoodChips.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 72, 154 )
+extents = Vector2( 114, 280 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 54, 144 )
+extents = Vector2( 80, 266 )
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -60,22 +60,15 @@ num_spawn_on_death = 2
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( -20, 12 )
-scale = Vector2( 0.55, 0.55 )
 texture = ExtResource( 7 )
 offset = Vector2( -35.5556, 35.5556 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -4, 6 )
+position = Vector2( -22, 28 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
-margin_left = -80.0
-margin_top = -184.0
-margin_right = 84.0
-margin_bottom = -161.0
-
-[node name="CollisionShape2D" parent="." index="5"]
-position = Vector2( 2, 8 )
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2( -4, 26 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
@@ -83,3 +76,15 @@ autoplay = "Move"
 anims/Attack = ExtResource( 6 )
 anims/Move = ExtResource( 8 )
 anims/RESET = SubResource( 4 )
+
+[node name="Health" parent="." index="11"]
+margin_left = -96.0
+margin_top = -316.0
+margin_right = 100.0
+margin_bottom = -293.0
+
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -3.0
+margin_top = -3.0
+margin_right = 200.0
+margin_bottom = 27.0

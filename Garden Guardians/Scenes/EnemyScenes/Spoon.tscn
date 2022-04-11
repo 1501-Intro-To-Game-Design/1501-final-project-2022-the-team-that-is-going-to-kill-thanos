@@ -9,7 +9,7 @@
 [ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 97.5, 249.404 )
+extents = Vector2( 86, 249.404 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 65, 237.5 )
@@ -42,7 +42,7 @@ tracks/1/keys = {
 }
 
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 1 )]
-scale = Vector2( 0.2, 0.198473 )
+scale = Vector2( 0.25, 0.25 )
 z_index = 2
 hit_pfx = ExtResource( 7 )
 pfx_amount = 15
@@ -58,18 +58,17 @@ max_speed = 35
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2( -2.49999, 7.5577 )
+position = Vector2( -2, 7.5577 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
-margin_left = -95.0
-margin_top = -275.0
-margin_right = 95.0
-margin_bottom = -240.0
-
-[node name="CollisionShape2D" parent="." index="5" groups=["Enemies", "Hitbox"]]
+[node name="CollisionShape2D" parent="." index="4" groups=["Enemies", "Hitbox"]]
 position = Vector2( -7.15256e-06, 2.49998 )
 shape = SubResource( 2 )
+
+[node name="Shield" parent="." index="9"]
+visible = true
+position = Vector2( 0, -327.5 )
+scale = Vector2( 0.45, 0.45 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
 autoplay = "Move"
@@ -77,7 +76,14 @@ anims/Attack = ExtResource( 6 )
 anims/Move = ExtResource( 5 )
 anims/RESET = SubResource( 4 )
 
-[node name="Shield" parent="." index="11"]
-visible = true
-position = Vector2( 0, -317.424 )
-scale = Vector2( 0.45, 0.45 )
+[node name="Health" parent="." index="11"]
+margin_left = -95.0
+margin_top = -282.154
+margin_right = 95.0
+margin_bottom = -247.154
+
+[node name="ColorRect" parent="Health/Node2D" index="0"]
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 195.0
+margin_bottom = 40.0
