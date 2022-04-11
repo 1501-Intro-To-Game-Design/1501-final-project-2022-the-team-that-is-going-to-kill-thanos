@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/CombinationNode.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/TowerScenes/FriesAndKetchupTower.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/TowerScenes/RibSpaghetti.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/TowerScenes/CheeseGlazedRibs.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/TowerScenes/LoadedPotatoTower.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/TowerScenes/MacNCheeseTower.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 12.083
@@ -25,6 +26,7 @@ ribtato_tower = ExtResource( 7 )
 rib_spaghetti = ExtResource( 8 )
 cheese_ribs = ExtResource( 9 )
 loaded_potato = ExtResource( 10 )
+mac_n_cheese = ExtResource( 11 )
 
 [node name="Area2D" type="Area2D" parent="."]
 

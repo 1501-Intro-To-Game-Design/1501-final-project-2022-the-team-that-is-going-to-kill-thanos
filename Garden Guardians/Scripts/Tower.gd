@@ -34,6 +34,10 @@ export var DOTDamage = 0.0
 
 export var posession_DP_limit = 1
 
+export var slowAura = false
+export (float) var slowAuraCap = 0
+export (float) var slowAuraRampSpeed = 0
+
 var tower_morsels = []
 
 var targeted_enemies = []
@@ -111,6 +115,15 @@ func _ready():
 	$SpawnCooldown.start(spawn_cooldown)
 	#Testing
 	initializeRangePolygon()
+	if(slowAura):
+		var aura = altProjectileScene.instance()
+		aura.position = position
+		aura.rampEffects = true
+		aura.slowingCap = slowAuraCap
+		aura.rampSpeed = slowAuraRampSpeed
+		aura.slowEffect = slowEffect
+		aura.auraRange = $Range/RangeShape.shape.radius
+		add_child(aura)
 
 func set_target_type(new_target_type): #can be: closest, farthest, lowest, highest, closest_end, closest_start
 	target_type = new_target_type

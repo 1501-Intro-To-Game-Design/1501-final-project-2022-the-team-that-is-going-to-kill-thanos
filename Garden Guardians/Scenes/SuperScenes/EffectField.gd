@@ -7,6 +7,10 @@ var pullBackChance = 0.0
 var dealsDamage = false
 var damage = 0.0
 var towerFrom = null
+var rampEffects = false
+var slowingCap = 0
+var rampSpeed = 0
+var auraRange = 0
 
 var rng = RandomNumberGenerator.new()
 
@@ -22,8 +26,11 @@ var rangePoints = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#initTestPolygon()
-	$LifeTime.wait_time = duration
-	$LifeTime.start()
+	if not rampEffects:
+		$LifeTime.wait_time = duration
+		$LifeTime.start()
+	else:
+		$"EffectArea/CollisionShape2D".shape.radius = auraRange
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,7 +70,7 @@ func _on_Area2D_body_entered(body):
 					if not apply.stunned:
 						apply.current_speed = apply.min_speed
 				if not registered:
-					affectedEnemies.append([apply, speedDecrease, true])
+					affectedEnemies.append([apply, speedDecrease, true, apply.max_speed + speedDecrease, 0])
 					apply.pullingBack.append([self, false])
 				else:
 					for i in affectedEnemies:
@@ -105,7 +112,12 @@ func _on_Area2D_body_exited(body):
 			if "Enemies" in apply.get_groups():
 				for i in affectedEnemies:
 					if i[0] == apply:
+						#print("*******")
+						#print("slowed speed: " + String(apply.max_speed))
 						apply.max_speed += i[1]
+						#print("Buffed speed: " + String(apply.max_speed))
+						#print("Old speed: " + String(i[3]))
+						#print("********")
 						if not apply.stunned:
 							apply.current_speed += i[1]
 				var pullRoll = rng.randf_range(0.01, 1.00)
@@ -160,3 +172,19 @@ func initTestPolygon():
 		rangePoints[i].y *= $"EffectArea/CollisionShape2D".shape.radius
 	$Polygon2D.set_polygon(rangePoints)
 	$Polygon2D.set_color(Color(1, 0.65, 0, 0.25))
+
+
+func _on_RampTimer_timeout():
+	for i in affectedEnemies:
+		if is_instance_valid(i[0]):
+			if i[4] < slowingCap:
+				i[0].max_speed -= i[3] * rampSpeed
+				if not i[0].stunned:
+					i[0].current_speed -= i[3] * rampSpeed
+				i[1] += i[3] * rampSpeed
+				if i[0].max_speed < i[0].min_speed:
+					i[1] -= i[0].min_speed - i[0].max_speed
+					i[0].max_speed = i[0].min_speed
+					if not i[0].stunned:
+						i[0].current_speed = i[0].min_speed
+				i[4] += rampSpeed
