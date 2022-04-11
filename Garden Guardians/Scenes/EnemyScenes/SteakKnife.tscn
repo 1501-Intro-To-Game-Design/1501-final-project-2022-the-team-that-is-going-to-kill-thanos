@@ -51,7 +51,7 @@ use_alt_pfx = true
 pfx_amount = 15
 armored = true
 groups_to_check = [ "Morsels", "Traps", "Player", "Resources", "Traitor" ]
-max_health = 15.0
+max_health = 20.0
 damage = 9.5
 attackSpeed = 1.5
 spawned_num_wood = 2
@@ -68,12 +68,10 @@ collision_mask = 32769
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( -2.72478e-06, 51.4285 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="." index="4"]
 position = Vector2( -3.40598e-07, 51.4285 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )
 
 [node name="Shield" parent="." index="9"]

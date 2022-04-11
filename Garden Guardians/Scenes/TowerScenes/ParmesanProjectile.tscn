@@ -8,7 +8,7 @@ extents = Vector2( 12.5, 13.5 )
 
 [node name="Projectile" instance=ExtResource( 1 )]
 speed = 700
-damage = 0.013
+damage = 0.006
 damageCap = 0.25
 piercing = true
 

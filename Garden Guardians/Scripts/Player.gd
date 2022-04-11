@@ -210,6 +210,8 @@ func _on_Respawn_timeout():
 	$CombatRange.monitoring = true
 
 func _on_CombatRange_body_entered(body):
+	if(body.is_in_group("Resources")):
+		body.add_resource()
 	checkType(body)
 
 func checkType(body):

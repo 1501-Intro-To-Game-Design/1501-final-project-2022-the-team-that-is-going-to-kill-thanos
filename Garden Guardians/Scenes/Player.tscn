@@ -15,15 +15,15 @@ animations = [ {
 "name": "Standing",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "Running",
-"speed": 4.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "Dead",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Running",
+"speed": 4.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -42,8 +42,10 @@ bg_color = Color( 0.396078, 0.635294, 0.141176, 1 )
 bg_color = Color( 0.552941, 0, 0, 1 )
 
 [node name="Player" type="KinematicBody2D" groups=["Player"]]
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.6, 0.6 )
 z_index = 3
+collision_layer = 32769
+collision_mask = 32769
 script = ExtResource( 1 )
 hit_pfx = ExtResource( 2 )
 pfx_amount = 15
@@ -76,6 +78,8 @@ wait_time = 5.0
 one_shot = true
 
 [node name="CombatRange" type="Area2D" parent="."]
+collision_layer = 32769
+collision_mask = 32769
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatRange"]
 shape = SubResource( 4 )

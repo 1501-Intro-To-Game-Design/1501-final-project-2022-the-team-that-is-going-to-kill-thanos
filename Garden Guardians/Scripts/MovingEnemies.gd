@@ -51,28 +51,29 @@ func check_stacking(unit_to_check):
 			index = i
 	if index != -1:
 		for i in range (0, enemyPathManager.size()):
-			if enemyPathManager[i][1].get_offset() - 4 < enemyPathManager[index][1].get_offset() and enemyPathManager[i][1].get_offset() + 4 > enemyPathManager[index][1].get_offset() and index != i:
-				add_to_offset(enemyPathManager[index][0], 5)
+			if enemyPathManager[i][2] == enemyPathManager[index][2] and enemyPathManager[index][1].get_unit_offset() - 0.002 < enemyPathManager[i][1].get_unit_offset() and enemyPathManager[index][1].get_unit_offset() + 0.002 > enemyPathManager[i][1].get_unit_offset() and index != i:
+				add_to_offset(enemyPathManager[index][0], .003)
 
 func start_wave():
-	dP = (wave*7) -1 # = (wave*7) -1
+	dP = (wave * (wave + 1))/2 + 4 # = (wave*7) -1
+	#5, 7, 10, 14, 19, 25, 31, 38, 46, 55
 	budget = dP
 	$"/root/ui".updateRound(wave)
 	rng.randomize()
 	var value
 	var temp
-	if wave > 8:
+	if wave > 9:
 		value = rng.randi_range(0, 2)
 		if value == 0:
 			bossFight = true
 		else:
 			bossFight = false
 	#Threshhold movers
-	if wave == 4:
+	if wave == 5:
 		thresh1 -= 0.1
-	elif wave == 7:
+	elif wave == 8:
 		thresh1 -= 0.15
-	elif wave == 10:
+	elif wave == 11:
 		thresh1 -= 0.1
 		thresh2 -= 0.1
 	elif wave == 15:
@@ -87,29 +88,29 @@ func start_wave():
 		thresh2 -= 0.15
 		thresh3 -= 0.1
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist	
-		if budget *thresh3 <= dP and wave >= 8 and bossFight:
+		if budget *thresh3 <= dP and wave >= 10 and bossFight:
 			value = rng.randi_range(0,enemyScene4.size()-1)
 			temp = enemyScene4[value].instance()
-			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
-			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			dps.append(36)
+			dP -= (36)
 			enemys.append(enemyScene4[value])
-		elif budget *thresh2 <= dP and wave >= 4:
+		elif budget *thresh2 <= dP and wave > 5:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
-			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
-			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			dps.append(10)
+			dP -= (10)
 			enemys.append(enemyScene3[value])
-		elif budget *thresh1 <= dP and wave >= 2:	
+		elif budget *thresh1 <= dP and wave > 2:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
-			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
-			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			dps.append(5)
+			dP -= (5)
 			enemys.append(enemyScene2[value])
 		else:
 			value = rng.randi_range(0,enemyScene1.size()-1)
 			temp = enemyScene1[value].instance()
-			dps.append(temp.spawned_num_wood + (temp.spawned_num_metal*3))
-			dP -= (temp.spawned_num_wood + (temp.spawned_num_metal*3))
+			dps.append(1)
+			dP -= 1
 			enemys.append(enemyScene1[value])
 			#while (temp.spawned_num_wood + (temp.spawned_num_metal*3)) > dP:
 				#value = rng.randi_range(0,enemyScene1.size())
@@ -144,13 +145,17 @@ func add_enemy_to_path(spawner, spawned):
 			add_child(pathToFollow)
 			add_child(spawned)
 			enemyPathManager.append([spawned, pathToFollow, i[2]])
-			enemyPathManager[enemyPathManager.size()-1][1].addToOffset(i[1].get_offset() + 20)
+			enemyPathManager[enemyPathManager.size()-1][1].addToUnitOffset(i[1].get_unit_offset() + 0.003)
 			enemyPathManager[enemyPathManager.size()-1][0].position = enemyPathManager[enemyPathManager.size()-1][1].getPathLocation()
+			spawned.connect("dead", self, "_enemy_killed")
+			spawned.connect("alive", self, "_enemy_created")
+			spawned.home = self
+			check_stacking(spawned)
 
 func add_to_offset(enemy_node, amount):
 	for i in enemyPathManager:
 		if i[0] == enemy_node:
-			i[1].addToOffset(amount)
+			i[1].addToUnitOffset(amount)
 			i[0].position = i[1].getPathLocation()
 			check_stacking(enemy_node)
 

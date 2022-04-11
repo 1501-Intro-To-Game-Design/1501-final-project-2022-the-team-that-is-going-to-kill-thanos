@@ -9,9 +9,9 @@
 radius = 170.0
 
 [node name="Tower2" groups=["Parmesan"] instance=ExtResource( 1 )]
-attack_cooldown = 0.063
+attack_cooldown = 0.07
 spawn_cooldown = 8.0
-damageRampUp = 160.0
+damageRampUp = 700.0
 attacking_tower = true
 morsel_tower = true
 ramping_tower = true

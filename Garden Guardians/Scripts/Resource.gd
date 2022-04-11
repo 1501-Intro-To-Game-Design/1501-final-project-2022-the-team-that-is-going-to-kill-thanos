@@ -30,15 +30,14 @@ func _process(delta):
 func seek_player(delta):
 	var direction = player.global_position - global_position
 	var distance = sqrt(pow((player.get_global_position().x - global_position.x), 2) + pow((player.get_global_position().y - global_position.y), 2))
-	if abs(distance) > 10:
-		position += direction.normalized() * delta * speed
-	else:
-		if is_Wood:
-			ui.add_wood()
-		else:
-			ui.add_metal()
-		queue_free()
+	position += direction.normalized() * delta * speed
 
+func add_resource():
+	if is_Wood:
+		ui.add_wood()
+	else:
+		ui.add_metal()
+	queue_free()
 
 func _on_Area2D_area_entered(area):
 	if area.get_parent().is_in_group("Player"):

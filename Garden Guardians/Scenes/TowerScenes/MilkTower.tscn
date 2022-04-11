@@ -14,8 +14,8 @@ extents = Vector2( 45.5, 48.5 )
 
 [node name="Tower2" instance=ExtResource( 1 )]
 position = Vector2( 0, -47 )
-attack_cooldown = 0.063
-damageRampUp = 160.0
+attack_cooldown = 0.07
+damageRampUp = 700.0
 attacking_tower = true
 ramping_tower = true
 projectileScene = ExtResource( 2 )

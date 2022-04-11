@@ -166,7 +166,10 @@ func ranged_attack():
 			if is_instance_valid(ranged_enemies[index]):
 				var projectile = proj_scene.instance()
 				get_parent().add_child(projectile)
-				projectile.damage = damage/2
+				if self.is_in_group("Enemies"):
+					projectile.damage = damage
+				else:
+					projectile.damage = damage/2
 				rng.randomize()
 				$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
 				$AudioStreamPlayer2D.volume_db = 4 + util.g_sound
@@ -403,6 +406,8 @@ func change_health(change, direct = false, pierce = false):
 			change = change - 0.2
 			change = (0.7 * change)
 	if(change < 0):
+		$Regen.stop()
+		$RegenWait.stop()
 		red_glow()
 		hit_effect()
 	elif(change > 0):
@@ -423,9 +428,8 @@ func change_health(change, direct = false, pierce = false):
 				enemy_instance.spawned_num_wood = 0
 				enemy_instance.spawned_num_metal = 0
 				enemy_instance.get_node("Sprite").self_modulate = Color(.4, .3, .29)
-				enemy_instance.connect("dead", home, "_enemy_killed")
 				get_parent().add_enemy_to_path(self, enemy_instance)
-				get_parent().add_to_offset(enemy_instance, -15 + (i*20))
+				#get_parent().add_to_offset(enemy_instance, -15 + (i*20))
 				emit_signal("alive")
 		destroy()
 	if(current_health > max_health):
@@ -531,7 +535,6 @@ func _on_Spawn_timeout():
 	enemy_instance.spawned_num_metal = 0
 	enemy_instance.get_node("Sprite").self_modulate = Color(.4, .3, .29)
 	enemy_instance.original_mod = enemy_instance.get_node("Sprite").get_self_modulate()
-	enemy_instance.connect("dead", home, "_enemy_killed")
 	get_parent().add_enemy_to_path(self, enemy_instance)
 	emit_signal("alive")
 	if not inCombat:

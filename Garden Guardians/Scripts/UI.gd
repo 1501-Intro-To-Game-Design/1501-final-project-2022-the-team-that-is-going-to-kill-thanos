@@ -24,7 +24,7 @@ func _ready():
 	wood = 16 #16
 	metal = 6 #6
 	update()
-	$Lives.text = "Lives: " + String(playerLives)
+	$Lives.text = String(playerLives)
 	$RestartButton.visible = false
 	playBackgroundTrack()
 
@@ -45,7 +45,7 @@ func add_metal():
 
 func update():
 	$WLabel.text = str(wood)
-	$MLabel.text = str(metal)
+	$WLabel/MLabel.text = str(metal)
 
 
 func _on_Area2D_mouse_entered():
@@ -71,7 +71,7 @@ func waveEnd():
 	_load_n_play(roundWin,10)
 
 func updateRound(roundNum):
-	$Round.text = "Wave: " + String(roundNum)	
+	$Round.text = String(roundNum)	
 
 func failedAction():
 	_load_n_play(actionFailed, 7)
@@ -96,7 +96,7 @@ func _on_player_life_lost(livesLost):
 	_load_n_play(lostLife, 15)
 	if playerLives < 0:
 		playerLives = 0
-	$Lives.text = "Lives: " + String(playerLives)
+	$Lives.text = String(playerLives)
 	if playerLives == 0:
 		$PauseButton.visible = false
 		$RestartButton.visible = true
@@ -109,9 +109,7 @@ func _on_player_life_lost(livesLost):
 func _on_Restart_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
-			print("half works")
 			if event.pressed:
-				print("ok")
 				get_tree().reload_current_scene()
 				get_tree().paused = false
 				$RestartButton.visible = false

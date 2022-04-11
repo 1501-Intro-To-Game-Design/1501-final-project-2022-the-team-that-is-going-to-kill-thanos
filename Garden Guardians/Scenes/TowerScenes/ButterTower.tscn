@@ -14,9 +14,9 @@ height = 87.4863
 
 [node name="Tower" instance=ExtResource( 1 )]
 position = Vector2( 0, -24 )
-attack_cooldown = 0.063
+attack_cooldown = 0.07
 ability_cooldown = 10.0
-damageRampUp = 140.0
+damageRampUp = 600.0
 attacking_tower = true
 ramping_tower = true
 posessing_tower = true

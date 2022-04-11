@@ -7,7 +7,6 @@ var target_type = "closest_end"
 export var blueb_or_peach = false
 var attack_speed_buff = 0.0
 var damage_buff = 0.0
-
 var num_projectiles = 1
 var original_mod
 var enemies = []
@@ -16,7 +15,7 @@ export var max_babies = 3
 var AOE_percent = 0.0
 var refundW = 0
 var refundM = 0
-
+var proj_count = 0
 var can_attack = false
 var can_spawn = false
 export var attack_cooldown = 1.0
@@ -212,6 +211,7 @@ func _process(_delta):
 				if is_instance_valid(targeted_enemies[i]):
 					if not currentSingleTarget == targeted_enemies[i]:
 						incrementValue = 0
+						proj_count = 0
 					currentSingleTarget = targeted_enemies[i]
 					num_shots += 1
 					attack(targeted_enemies[i], num_shots)
@@ -245,7 +245,9 @@ func _process(_delta):
 			targeted_enemies.clear()
 		else:
 			incrementValue = 0
+			proj_count = 0
 			$AudioStreamPlayer2D.stop()
+			yield(get_tree().create_timer(1), "timeout")
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
 			make_Baby()
@@ -266,20 +268,22 @@ func attack(enemy, proj_num):
 	if ratatouille_tower:
 		projectile.ratatouille = true
 	if ramping_tower:
-		print("**********")
-		print("Increasing damage from: " + String(projectile.damage))
-		projectile.damage += incrementValue
-		print("By a total of: " + String(incrementValue))
+		proj_count += 1
+		if proj_count > 35:
+			proj_count = 35
+		var temp_val = proj_count / 35
+		projectile.damage += (incrementValue * temp_val)
 		if projectile.damage > projectile.damageCap:
 			projectile.damage = projectile.damageCap
 		if projectile.damage < projectile.damageCap:
 			incrementValue += damageRampUp
-		print("To a total of: " + String(projectile.damage))
-		print("***********")
 	rng.randomize()
 	if not ramping_tower:
 		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
-		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
+		if slowEffect > 0.001:
+			$AudioStreamPlayer2D.volume_db = 20 + util.g_sound
+		else:
+			$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
 		$AudioStreamPlayer2D.play()
 	else:
 		if not $AudioStreamPlayer2D.playing:

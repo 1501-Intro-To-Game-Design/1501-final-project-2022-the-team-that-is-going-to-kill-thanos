@@ -74,7 +74,6 @@ z_index = 2
 hit_pfx = ExtResource( 6 )
 pfx_amount = 12
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 6.0
 attackSpeed = 1.2
 spawned_num_metal = 1
 sounds = [ ExtResource( 3 ), ExtResource( 4 ) ]
