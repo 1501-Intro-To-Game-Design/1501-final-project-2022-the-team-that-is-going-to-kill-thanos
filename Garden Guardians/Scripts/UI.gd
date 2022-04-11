@@ -80,13 +80,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
-				if paused:
-					paused = false
-					_load_n_play(play,-1)
-					get_tree().paused = false
-					$PauseButton.texture = load("res://Sprites/UI Sprites/Pause.png")
-					get_parent().get_node("MainMenu").hideInGameMenu()
-				else:
+				if not paused:
 					paused = true
 					get_tree().paused = true
 					$PauseButton.texture = load("res://Sprites/UI Sprites/Pause.png")

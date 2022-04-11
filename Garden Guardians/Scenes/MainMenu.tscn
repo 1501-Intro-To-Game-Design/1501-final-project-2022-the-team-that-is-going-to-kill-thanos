@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/LevelScenes/Level.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Fonts/Strawberry Muffins Demo.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 4 )
 
 [node name="MainMenu" type="CanvasLayer"]
 pause_mode = 2
@@ -13,10 +20,10 @@ levelOneScene = ExtResource( 3 )
 [node name="Main" type="Node2D" parent="."]
 
 [node name="NewGame" type="Button" parent="Main"]
-margin_left = 620.0
-margin_top = 566.0
-margin_right = 1240.0
-margin_bottom = 642.0
+margin_left = 760.0
+margin_top = 490.0
+margin_right = 1160.0
+margin_bottom = 590.0
 custom_fonts/font = ExtResource( 2 )
 text = "New Game"
 __meta__ = {
@@ -24,23 +31,37 @@ __meta__ = {
 }
 
 [node name="Exit" type="Button" parent="Main"]
-margin_left = 749.0
-margin_top = 722.0
-margin_right = 1111.0
-margin_bottom = 800.0
+margin_left = 760.0
+margin_top = 690.0
+margin_right = 1160.0
+margin_bottom = 790.0
 custom_fonts/font = ExtResource( 2 )
-text = "Exit"
+text = "Exit Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Volume" type="HSlider" parent="Main"]
-margin_left = 433.0
-margin_top = 911.0
-margin_right = 1433.0
-margin_bottom = 1111.0
-min_value = -100.0
+margin_left = 460.0
+margin_top = 760.0
+margin_right = 1460.0
+margin_bottom = 960.0
+min_value = -300.0
+max_value = 300.0
 scrollable = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Main"]
+margin_left = 760.0
+margin_top = 860.0
+margin_right = 1160.0
+margin_bottom = 960.0
+custom_fonts/font = SubResource( 1 )
+text = "VOLUME"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -48,44 +69,57 @@ __meta__ = {
 [node name="Levels" type="Node2D" parent="."]
 visible = false
 
+[node name="Label" type="Label" parent="Levels"]
+margin_left = 760.0
+margin_top = 100.0
+margin_right = 1161.0
+margin_bottom = 200.0
+custom_fonts/font = SubResource( 1 )
+text = "LEVEL SELECT"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Level1" type="Button" parent="Levels"]
-margin_left = 719.0
-margin_top = 248.0
-margin_right = 1219.0
-margin_bottom = 348.0
+margin_left = 710.0
+margin_top = 300.0
+margin_right = 1210.0
+margin_bottom = 400.0
 custom_fonts/font = ExtResource( 2 )
-text = "Level 1"
+text = "Farm"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Level2" type="Button" parent="Levels"]
-margin_left = 716.0
-margin_top = 413.0
-margin_right = 1216.0
-margin_bottom = 513.0
+margin_left = 710.0
+margin_top = 450.0
+margin_right = 1210.0
+margin_bottom = 550.0
 custom_fonts/font = ExtResource( 2 )
-text = "Level 2"
+text = "Picnic"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Level3" type="Button" parent="Levels"]
-margin_left = 719.0
-margin_top = 582.0
-margin_right = 1219.0
-margin_bottom = 682.0
+margin_left = 710.0
+margin_top = 600.0
+margin_right = 1210.0
+margin_bottom = 700.0
 custom_fonts/font = ExtResource( 2 )
-text = "Level 3"
+text = "Kitchen"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Tutorial" type="Button" parent="Levels"]
-margin_left = 640.0
-margin_top = 798.0
-margin_right = 1290.0
-margin_bottom = 898.0
+margin_left = 660.0
+margin_top = 800.0
+margin_right = 1260.0
+margin_bottom = 900.0
 custom_fonts/font = ExtResource( 2 )
 text = "Tutorial"
 __meta__ = {
@@ -93,10 +127,10 @@ __meta__ = {
 }
 
 [node name="Back" type="Button" parent="Levels"]
-margin_left = 1487.0
-margin_top = 924.0
-margin_right = 1837.0
-margin_bottom = 1014.0
+margin_left = 1420.0
+margin_top = 920.0
+margin_right = 1770.0
+margin_bottom = 1010.0
 custom_fonts/font = ExtResource( 2 )
 text = "Back"
 __meta__ = {
@@ -106,44 +140,70 @@ __meta__ = {
 [node name="InGameMenu" type="Node2D" parent="."]
 visible = false
 
+[node name="Shade2" type="Polygon2D" parent="InGameMenu"]
+visible = false
+polygon = PoolVector2Array( 428, 1021, 1435, 1021, 1434, 1000, 751, 999, 750, 774, 1105, 774, 1105, 681, 750, 680, 750, 572, 1050, 572, 1124, 572, 1124, 468, 720, 468, 720, 403, 1124, 403, 1124, 299, 720, 298, 720, 572, 750, 572, 751, 999, 428, 999, 428, 1174, -235, 1174, -230, 131, -232, -57, 720, -51, 1967, -53, 1960, 1172, 428, 1174 )
+
+[node name="Shade" type="Polygon2D" parent="InGameMenu"]
+polygon = PoolVector2Array( -50, -85, 2058, -82, 2019, 1128, -130, 1143 )
+
 [node name="InGameVolume" type="HSlider" parent="InGameMenu"]
-margin_left = 433.0
-margin_top = 911.0
-margin_right = 1433.0
-margin_bottom = 1111.0
-min_value = -100.0
+margin_left = 460.0
+margin_top = 760.0
+margin_right = 1460.0
+margin_bottom = 960.0
+min_value = -300.0
+max_value = 300.0
 scrollable = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InGameBack" type="Button" parent="InGameMenu"]
-margin_left = 690.0
-margin_top = 426.0
-margin_right = 1090.0
-margin_bottom = 526.0
+[node name="InGameResume" type="Button" parent="InGameMenu"]
+margin_left = 760.0
+margin_top = 290.0
+margin_right = 1160.0
+margin_bottom = 390.0
 custom_fonts/font = ExtResource( 2 )
-text = "Back"
+text = "Resume"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InGameBack" type="Button" parent="InGameMenu"]
+margin_left = 760.0
+margin_top = 490.0
+margin_right = 1160.0
+margin_bottom = 590.0
+custom_fonts/font = ExtResource( 2 )
+text = "Main Menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="InGameQuit" type="Button" parent="InGameMenu"]
-margin_left = 721.0
-margin_top = 638.0
-margin_right = 1071.0
-margin_bottom = 728.0
+margin_left = 760.0
+margin_top = 690.0
+margin_right = 1160.0
+margin_bottom = 790.0
 custom_fonts/font = ExtResource( 2 )
-text = "Quit"
+text = "Exit Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shade" type="Polygon2D" parent="InGameMenu"]
-polygon = PoolVector2Array( -38, -48, 690, -52, 690, -2, 690, 527, 1078, 527, 1078, 639, 721, 639, 721, 1001, 429, 1001, 429, 1105, -43, 1100 )
-
-[node name="Shade2" type="Polygon2D" parent="InGameMenu"]
-polygon = PoolVector2Array( 429, 1100, 429, 1021, 1435, 1021, 1435, 1001, 721, 1001, 721, 727, 1071, 727, 1071, 639, 1078, 639, 1078, 527, 1090, 527, 1090, 426, 690, 426, 690, -48, 1967, -53, 1960, 1172, 421, 1172 )
+[node name="Label" type="Label" parent="InGameMenu"]
+margin_left = 760.0
+margin_top = 860.0
+margin_right = 1160.0
+margin_bottom = 960.0
+custom_fonts/font = SubResource( 1 )
+text = "VOLUME"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="Main/NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="Main/Exit" to="." method="_on_Exit_pressed"]
@@ -151,5 +211,6 @@ polygon = PoolVector2Array( 429, 1100, 429, 1021, 1435, 1021, 1435, 1001, 721, 1
 [connection signal="pressed" from="Levels/Level1" to="." method="_on_Level1_pressed"]
 [connection signal="pressed" from="Levels/Back" to="." method="_on_Back_pressed"]
 [connection signal="value_changed" from="InGameMenu/InGameVolume" to="." method="_on_InGameVolume_value_changed"]
+[connection signal="pressed" from="InGameMenu/InGameResume" to="." method="_on_InGameResume_pressed"]
 [connection signal="pressed" from="InGameMenu/InGameBack" to="." method="_on_InGameBack_pressed"]
 [connection signal="pressed" from="InGameMenu/InGameQuit" to="." method="_on_InGameQuit_pressed"]

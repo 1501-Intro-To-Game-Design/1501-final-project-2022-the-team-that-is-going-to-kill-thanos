@@ -9,8 +9,7 @@ var currentLevel
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$"/root/ui".hide_UI()
-	$InGameMenu/Shade.set_color(Color(0.2, 0.2, 0.2, 0.2))
-	$InGameMenu/Shade2.set_color(Color(0.2, 0.2, 0.2, 0.2))
+	$InGameMenu/Shade.set_color(Color(0.2, 0.2, 0.2, 0.6))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -62,17 +61,24 @@ func _on_InGameQuit_pressed():
 
 
 func _on_InGameBack_pressed():
-	get_parent().get_node("Level").queue_free()
+	if currentLevel == "Level1":
+		get_parent().get_node("Level").queue_free()
 	$"/root/ui".hide_UI()
 	show_menu()
 	hideInGameMenu()
 	if $"/root/ui".paused:
 		$"/root/ui".paused = false
 		get_tree().paused = false
-		$"/root/ui/PauseButton".texture = load("res://Sprites/UI Sprites/Pause.png")
 
 func showInGameMenu():
 	$InGameMenu.show()
 
 func hideInGameMenu():
 	$InGameMenu.hide()
+
+
+func _on_InGameResume_pressed():
+	ui.paused = false
+	ui._load_n_play(ui.play,-1)
+	get_tree().paused = false
+	hideInGameMenu()
