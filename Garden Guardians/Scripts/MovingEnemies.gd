@@ -7,6 +7,7 @@ export(Array, PackedScene) var enemyScene2
 export(Array, PackedScene) var enemyScene3
 export(Array, PackedScene) var enemyScene4
 var enemyPathManager = []
+export var difficulty_multiplier = 1.0
 var rng = RandomNumberGenerator.new()
 var wave = 0
 var inProgres = false
@@ -93,7 +94,7 @@ func start_wave():
 		thresh3 -= 0.1
 	
 	enemystoKill = 0
-	dP = int(stepify(((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4, 1.0)) # = (wave*7) -1
+	dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * difficulty_multiplier, 1.0)) # = (wave*7) -1
 	#5, 7, 10, 14, 19, 25, 31, 38, 46, 55
 	print(dP)
 	if wave > 3:

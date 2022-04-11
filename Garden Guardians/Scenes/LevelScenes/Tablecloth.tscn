@@ -95,3 +95,4 @@ __meta__ = {
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 4 )]
 importPathSceneArray = [ ExtResource( 3 ), ExtResource( 5 ) ]
+difficulty_multiplier = 1.2
