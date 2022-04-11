@@ -62,7 +62,17 @@ texture = ExtResource( 1 )
 position = Vector2( -1.58946e-06, -50 )
 shape = SubResource( 1 )
 
-[node name="Health" parent="." index="4"]
+[node name="CollisionShape2D" parent="." index="4" groups=["Hitbox"]]
+position = Vector2( -3.33333, -53.3333 )
+shape = SubResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+autoplay = "Move"
+anims/Attack = ExtResource( 7 )
+anims/Move = ExtResource( 6 )
+anims/RESET = SubResource( 3 )
+
+[node name="Health" parent="." index="11"]
 margin_left = -80.0
 margin_top = -273.0
 margin_right = 80.0
@@ -73,15 +83,5 @@ margin_left = -7.0
 margin_top = -7.0
 margin_right = 167.0
 margin_bottom = 40.0
-
-[node name="CollisionShape2D" parent="." index="5" groups=["Hitbox"]]
-position = Vector2( -3.33333, -53.3333 )
-shape = SubResource( 2 )
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
-autoplay = "Move"
-anims/Attack = ExtResource( 7 )
-anims/Move = ExtResource( 6 )
-anims/RESET = SubResource( 3 )
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

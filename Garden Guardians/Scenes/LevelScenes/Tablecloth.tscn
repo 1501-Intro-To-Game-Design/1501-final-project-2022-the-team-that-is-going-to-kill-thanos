@@ -81,9 +81,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RedScreen" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="RedScreen"]
+[node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 material = SubResource( 2 )
 margin_right = 1920.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/TowerScenes/Plate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/EnemyScenes/MovingEnemies.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/EnemyScenes/Path.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/UI Sprites/RedScreen.png" type="Texture" id=8]
 
 [sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
@@ -80,16 +81,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RedScreen" type="CanvasLayer" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="RedScreen"]
+[node name="ColorRect" type="Sprite" parent="."]
 visible = false
 material = SubResource( 2 )
-margin_right = 1920.0
-margin_bottom = 1078.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+position = Vector2( 960, 540 )
+texture = ExtResource( 8 )
 
 [node name="Plate10" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1286, 485 )

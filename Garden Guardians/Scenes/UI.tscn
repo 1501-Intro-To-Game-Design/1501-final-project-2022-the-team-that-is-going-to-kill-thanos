@@ -28,6 +28,7 @@ height = 56.0
 extents = Vector2( 130.584, 67.5804 )
 
 [node name="UI" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 2 )
 roundWin = ExtResource( 13 )
 roundLoss = ExtResource( 8 )
@@ -103,8 +104,10 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="PauseButton"]
+pause_mode = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PauseButton/Area2D"]
+pause_mode = 2
 position = Vector2( 51.9996, 30.6667 )
 rotation = 1.5708
 shape = SubResource( 4 )
@@ -123,12 +126,15 @@ __meta__ = {
 pause_mode = 2
 position = Vector2( 894, 525 )
 scale = Vector2( 3.28906, 2.23438 )
+z_index = 10
 texture = ExtResource( 7 )
 
 [node name="Restart" type="Area2D" parent="RestartButton"]
+pause_mode = 2
 position = Vector2( 0, 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RestartButton/Restart"]
+pause_mode = 2
 position = Vector2( 17.7862, -28.8531 )
 shape = SubResource( 3 )
 

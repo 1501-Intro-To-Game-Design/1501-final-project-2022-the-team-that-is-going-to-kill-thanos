@@ -27,6 +27,8 @@ var thresh3 = 0.9
 var deincroment = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	wave = 0
+	$"/root/ui".updateRound(wave)
 	rng.randomize()
 	$"/root/ui".connect("nextRoundGo", self, "_on_nextRoundGo")
 
@@ -184,14 +186,14 @@ func updateEnemyLocation(delta):
 					emit_signal("player_life_lost", 2)
 				else:
 					emit_signal("player_life_lost", 1)
-				get_parent().get_node("RedScreen/ColorRect").show()
+				get_parent().get_node("ColorRect").show()
 				var t = Timer.new()
 				t.set_wait_time(0.2)
 				t.set_one_shot(true)
 				self.add_child(t)
 				t.start()
 				yield(t, "timeout")
-				get_parent().get_node("RedScreen/ColorRect").hide()
+				get_parent().get_node("ColorRect").hide()
 				t.queue_free()
 
 

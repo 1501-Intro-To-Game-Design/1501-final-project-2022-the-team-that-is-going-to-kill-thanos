@@ -21,8 +21,8 @@ var playerLives = 25
 signal nextRoundGo
 
 func _ready():
-	wood = 999 #16
-	metal = 999 #6
+	wood = 16 #16
+	metal = 6 #6
 	update()
 	$Lives.text = "Lives: " + String(playerLives)
 	$RestartButton.visible = false
@@ -109,13 +109,17 @@ func _on_player_life_lost(livesLost):
 func _on_Restart_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
+			print("half works")
 			if event.pressed:
+				print("ok")
 				get_tree().reload_current_scene()
 				get_tree().paused = false
 				$RestartButton.visible = false
 				$NextButton.visible = true
 				$PauseButton.visible = true
 				playerLives = 25
+				_ready()
+				
 
 func _load_n_play(sound, vol):
 	if vol != -1:
