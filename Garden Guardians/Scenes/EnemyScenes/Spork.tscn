@@ -69,9 +69,9 @@ armored = true
 ranged_morsel = true
 proj_scene = ExtResource( 4 )
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 30.0
+max_health = 40.0
 damage = 5.0
-spawned_num_metal = 3
+spawned_num_metal = 6
 sounds = [ ExtResource( 3 ), ExtResource( 1 ) ]
 max_speed = 40
 

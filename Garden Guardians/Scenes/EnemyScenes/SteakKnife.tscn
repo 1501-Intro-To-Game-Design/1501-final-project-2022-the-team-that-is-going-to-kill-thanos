@@ -51,11 +51,11 @@ use_alt_pfx = true
 pfx_amount = 15
 armored = true
 groups_to_check = [ "Morsels", "Traps", "Player", "Resources", "Traitor" ]
-max_health = 20.0
+max_health = 27.0
 damage = 9.5
 attackSpeed = 1.5
-spawned_num_wood = 2
-spawned_num_metal = 2
+spawned_num_wood = 3
+spawned_num_metal = 4
 sounds = [ ExtResource( 2 ), ExtResource( 3 ) ]
 max_speed = 35
 

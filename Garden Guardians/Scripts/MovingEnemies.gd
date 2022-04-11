@@ -18,6 +18,7 @@ var budget = 0
 var toPluck = 0 
 var bossFight = true
 signal player_life_lost(livesLost)
+var wave_hardness_multiplier = 1
 
 #wave stuff
 var thresh1 = 0.8
@@ -26,10 +27,26 @@ var thresh3 = 0.9
 var deincroment = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	wave = 0
+	reset_state()
 	$"/root/ui".updateRound(wave)
 	rng.randomize()
 	$"/root/ui".connect("nextRoundGo", self, "_on_nextRoundGo")
+	$"/root/ui".connect("restart", self, "reset_state")
+
+func reset_state():
+	print("yo")
+	enemys.clear()
+	enemystoKill = 0
+	dps.clear()
+	dP = 0
+	budget = 0
+	toPluck = 0 
+	deincroment = 0
+	thresh1 = 0.8
+	thresh2 = 0.8
+	thresh3 = 0.9
+	wave = 0
+	wave_hardness_multiplier = 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -54,8 +71,31 @@ func check_stacking(unit_to_check):
 				add_to_offset(enemyPathManager[index][0], .003)
 
 func start_wave():
-	dP = (wave * (wave + 1))/2 + 4 # = (wave*7) -1
+	#Threshhold movers
+	if wave == 5:
+		thresh1 -= 0.1
+	elif wave == 8:
+		thresh1 -= 0.15
+	elif wave == 11:
+		thresh1 -= 0.1
+		thresh2 -= 0.1
+	elif wave == 15:
+		 #dp = 160 || .02 = .3
+		thresh1 -= 0.15
+		thresh2 -= 0.1
+		thresh3 -= 0.1
+	elif wave == 20:
+		thresh1 -= 0.15
+		thresh2 -= 0.1
+	elif wave == 25:
+		thresh1 -= 0.1
+		thresh2 -= 0.15
+		thresh3 -= 0.1
+	
+	enemystoKill = 0
+	dP = int(stepify(((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4, 1.0)) # = (wave*7) -1
 	#5, 7, 10, 14, 19, 25, 31, 38, 46, 55
+	print(dP)
 	if wave > 3:
 		dP += 3
 	budget = dP
@@ -69,25 +109,6 @@ func start_wave():
 			bossFight = true
 		else:
 			bossFight = false
-	#Threshhold movers
-	if wave == 5:
-		thresh1 -= 0.1
-	elif wave == 8:
-		thresh1 -= 0.15
-	elif wave == 11:
-		thresh1 -= 0.1
-		thresh2 -= 0.1
-	elif wave == 15:
-		thresh1 -= 0.15
-		thresh2 -= 0.1
-		thresh3 -= 0.1
-	elif wave == 20:
-		thresh1 -= 0.15
-		thresh2 -= 0.1
-	elif wave == 25:
-		thresh1 -= 0.1
-		thresh2 -= 0.15
-		thresh3 -= 0.1
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist	
 		if budget *thresh3 <= dP and wave >= 10 and bossFight:
 			value = rng.randi_range(0,enemyScene4.size()-1)
@@ -95,11 +116,13 @@ func start_wave():
 			dps.append(36)
 			dP -= (36)
 			enemys.append(enemyScene4[value])
+			enemystoKill += 1
 		elif budget *thresh2 <= dP and wave > 5:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
 			dps.append(9)
 			dP -= (9)
+			enemystoKill += 1
 			enemys.append(enemyScene3[value])
 		elif budget *thresh1 <= dP and wave > 2:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
@@ -107,17 +130,18 @@ func start_wave():
 			dps.append(4)
 			dP -= (4)
 			enemys.append(enemyScene2[value])
+			enemystoKill += 1
 		else:
 			value = rng.randi_range(0,enemyScene1.size()-1)
 			temp = enemyScene1[value].instance()
 			dps.append(1)
 			dP -= 1
 			enemys.append(enemyScene1[value])
+			enemystoKill += 1
 			#while (temp.spawned_num_wood + (temp.spawned_num_metal*3)) > dP:
 				#value = rng.randi_range(0,enemyScene1.size())
 				#temp = enemyScene1[value].instance()
-		enemystoKill += 1
-	if wave <= 16:
+	if wave < 20:
 		deincroment += 1
 	inProgres = true 
 	$EnemySpawn.start()
@@ -172,11 +196,11 @@ func _on_EnemySpawn_timeout():
 		addEnemyPath()
 		var temp = dps.pop_at(toPluck)
 		if temp <= 1:#if its toothpick
-			$EnemySpawn.start(2 - (deincroment * 0.09375)) #0.5
+			$EnemySpawn.start(2 - (deincroment * 0.09375)) #0.5, 
 		elif temp <= 4: #if its soilder
-			$EnemySpawn.start(4 - (deincroment * 0.1875)) #1
+			$EnemySpawn.start(5 - (deincroment * 0.1875)) #2
 		else: #if its a big boy
-			$EnemySpawn.start(7 - (deincroment * 0.25))#3
+			$EnemySpawn.start(8 - (deincroment * 0.25))#4
 
 		
 
@@ -195,7 +219,7 @@ func updateEnemyLocation(delta):
 				elif i[0].spawned_num_wood + i[0].spawned_num_metal*3 >= 3:
 					emit_signal("player_life_lost", 2)
 				else:
-					emit_signal("player_life_lost", 1)
+					emit_signal("player_life_lost", 10)
 				get_parent().get_node("ColorRect").show()
 				var t = Timer.new()
 				t.set_wait_time(0.2)
@@ -221,6 +245,9 @@ func set_offset(enemy_node, offset):
 func _on_nextRoundGo():
 	$"/root/ui".waveInProgress()
 	wave += 1
+	wave_hardness_multiplier += 0.02
+	if wave > 20:
+		wave_hardness_multiplier += 0.01
 	start_wave()
 
 func _enemy_killed():

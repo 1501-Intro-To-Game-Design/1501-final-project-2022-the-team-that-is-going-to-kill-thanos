@@ -10,8 +10,10 @@ var currentLevel
 func _ready():
 	$"/root/ui".hide_UI()
 	$InGameMenu/Shade.set_color(Color(0.2, 0.2, 0.2, 0.6))
+	$"/root/ui".connect("restart", self, "reset_state")
 
-
+func reset_state():
+	$Main.hide()
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

@@ -430,7 +430,7 @@ func change_health(change, direct = false, pierce = false):
 				enemy_instance.get_node("Sprite").self_modulate = Color(.4, .3, .29)
 				get_parent().add_enemy_to_path(self, enemy_instance)
 				#get_parent().add_to_offset(enemy_instance, -15 + (i*20))
-				emit_signal("alive")
+				get_parent().enemystoKill += 1
 		destroy()
 	if(current_health > max_health):
 		current_health = max_health
@@ -492,7 +492,7 @@ func destroy(dropResources = true):
 			homeTower.babies -= 1
 			homeTower.morselPositions[morselNum] = false
 	if is_in_group("Enemies"):
-		emit_signal("dead")
+		get_parent().enemystoKill -= 1
 		get_parent().remove_from_array(self)
 		if dropResources:
 			for i in range(spawned_num_wood):
@@ -531,7 +531,7 @@ func _on_Spawn_timeout():
 	enemy_instance.get_node("Sprite").self_modulate = Color(.4, .3, .29)
 	enemy_instance.original_mod = enemy_instance.get_node("Sprite").get_self_modulate()
 	get_parent().add_enemy_to_path(self, enemy_instance)
-	emit_signal("alive")
+	get_parent().enemystoKill += 1
 	if not inCombat:
 		$AnimationPlayer.play("Move")
 	else:
@@ -596,7 +596,7 @@ func posess():
 	add_to_group("Traitor")
 	groups_to_check = []
 	groups_to_check.append("Enemies")
-	emit_signal("dead")
+	get_parent().enemystoKill -= 1
 	get_parent().remove_from_array(self)
 	isTraitor = true
 	current_speed *= -1

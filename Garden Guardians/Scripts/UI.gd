@@ -10,7 +10,7 @@ export (Resource) var pickUp
 export (Resource) var lostLife
 export (Resource) var backgroundTrack
 export (Resource) var actionFailed
-
+signal restart
 var wood = -1
 var metal = -1
 var paused = false
@@ -60,7 +60,7 @@ func _input(event):
 		if event.button_index == BUTTON_LEFT:
 			if event.pressed:
 				if hovering:
-					_load_n_play(roundStart,5)
+					_load_n_play(roundStart,4)
 					emit_signal("nextRoundGo")
 
 func waveInProgress():
@@ -112,6 +112,7 @@ func _on_Restart_input_event(viewport, event, shape_idx):
 				$NextButton.visible = true
 				$PauseButton.visible = true
 				playerLives = 25
+				emit_signal("restart")
 				_ready()
 				
 
