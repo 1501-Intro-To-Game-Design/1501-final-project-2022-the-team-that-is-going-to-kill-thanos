@@ -21,13 +21,15 @@ var playerLives = 25
 signal nextRoundGo
 
 func _ready():
-	get_parent().get_node("Level/MovingEnemies").connect("player_life_lost", self, "_on_player_life_lost")
 	wood = 999 #16
 	metal = 999 #6
 	update()
 	$Lives.text = "Lives: " + String(playerLives)
 	$RestartButton.visible = false
 	playBackgroundTrack()
+
+func connect_stuff(name_of_root):
+	get_parent().get_node(name_of_root + "/MovingEnemies").connect("player_life_lost", self, "_on_player_life_lost")
 
 func add_wood():
 	wood += 1
@@ -82,11 +84,11 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 					paused = false
 					_load_n_play(play,-1)
 					get_tree().paused = false
-					$PauseButton.texture = load("res://Sprites/Pause.png")
+					$PauseButton.texture = load("res://Sprites/UI Sprites/Pause.png")
 				else:
 					paused = true
 					get_tree().paused = true
-					$PauseButton.texture = load("res://Sprites/Play.png")
+					$PauseButton.texture = load("res://Sprites/UI Sprites/Pause.png")
 					_load_n_play(pause,-1)
 
 func _on_player_life_lost(livesLost):

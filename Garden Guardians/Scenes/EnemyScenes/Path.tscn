@@ -15,7 +15,7 @@ script = ExtResource( 1 )
 
 [node name="Pathway" type="PathFollow2D" parent="."]
 position = Vector2( 1918.25, 213.689 )
-rotation = 2.49999
+rotation = 2.50004
 loop = false
 __meta__ = {
 "_edit_lock_": true

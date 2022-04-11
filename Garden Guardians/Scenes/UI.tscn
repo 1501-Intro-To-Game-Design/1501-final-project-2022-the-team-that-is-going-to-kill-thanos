@@ -5,7 +5,7 @@
 [ext_resource path="res://Sprites/Metal.png" type="Texture" id=3]
 [ext_resource path="res://Sounds/Burbs/Foley/GenaricPickup.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sprites/NextRoundButton.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/Pause.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/UI Sprites/Pause.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/RestartButton.png" type="Texture" id=7]
 [ext_resource path="res://Sounds/Burbs/Foley/Loss_Sound.wav" type="AudioStream" id=8]
 [ext_resource path="res://Sounds/Burbs/Foley/Round_Start_Sound.wav" type="AudioStream" id=9]
@@ -20,8 +20,9 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 63.2471
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 97.7464, 98.3415 )
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 152.0
+height = 56.0
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 130.584, 67.5804 )
@@ -97,15 +98,16 @@ __meta__ = {
 
 [node name="PauseButton" type="Sprite" parent="."]
 pause_mode = 2
-position = Vector2( 1860, 1020 )
+position = Vector2( 1844, 1004 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 6 )
 
 [node name="Area2D" type="Area2D" parent="PauseButton"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PauseButton/Area2D"]
-position = Vector2( -1.60254, -1.56091 )
-shape = SubResource( 2 )
+position = Vector2( 51.9996, 30.6667 )
+rotation = 1.5708
+shape = SubResource( 4 )
 
 [node name="Lives" type="Label" parent="."]
 margin_left = 1618.0

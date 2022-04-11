@@ -68,6 +68,7 @@ export var num_spawn_on_death = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stun_pfx_ins = stun_pfx.instance()
+	stun_pfx_ins.get_node("Particles2D").emitting = false
 	get_parent().add_child(stun_pfx_ins)
 	original_health_color = $Health.get("custom_styles/fg").get_bg_color()
 	if armored:

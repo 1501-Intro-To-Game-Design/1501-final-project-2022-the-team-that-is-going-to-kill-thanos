@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/EnemyScenes/Path.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/EnemyScenes/Path2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/EnemyScenes/MovingEnemies.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/BG.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/LevelScenes/Tablecloth.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/TowerScenes/Plate.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+uniform float multiplier = 0.2;
+uniform float softness = 3.0;
+
+void fragment()
+{
+	float value = distance(UV, vec2(0.5));
+	COLOR = vec4(color.rgb, smoothstep(multiplier, softness, value));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 1, 0, 0, 1 )
+shader_param/multiplier = -0.4
+shader_param/softness = 2.3
+
+[node name="Tablecloth" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Plate" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1421, 790 )
+
+[node name="Plate3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 607, 430 )
+
+[node name="Plate4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 311, 205 )
+
+[node name="Plate5" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1070, 680 )
+
+[node name="Plate6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1599, 531 )
+
+[node name="Plate7" parent="." instance=ExtResource( 7 )]
+position = Vector2( 738, 647 )
+
+[node name="Plate2" parent="." instance=ExtResource( 7 )]
+position = Vector2( 804, 227 )
+
+[node name="Plate8" parent="." instance=ExtResource( 7 )]
+position = Vector2( 976, 419 )
+
+[node name="Plate9" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1646, 289 )
+
+[node name="Plate10" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1286, 485 )
+
+[node name="Plate11" parent="." instance=ExtResource( 7 )]
+position = Vector2( 292, 408 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1451, 225 )
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -5
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Node2D"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RedScreen" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="RedScreen"]
+visible = false
+material = SubResource( 2 )
+margin_right = 1920.0
+margin_bottom = 1078.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MovingEnemies" parent="." instance=ExtResource( 4 )]
+importPathSceneArray = [ ExtResource( 2 ), ExtResource( 3 ) ]

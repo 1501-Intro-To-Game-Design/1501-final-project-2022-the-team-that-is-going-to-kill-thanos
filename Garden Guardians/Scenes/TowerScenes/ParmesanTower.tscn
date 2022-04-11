@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/TowerScenes/ParmesanProjectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/Tower Sprites/CheeseTower.png" type="Texture" id=3]
+[ext_resource path="res://Sounds/Burbs/Goofy/DairyShot.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 170.0
@@ -12,11 +13,12 @@ extents = Vector2( 60.1854, 30.0357 )
 
 [node name="Tower2" groups=["Parmesan"] instance=ExtResource( 1 )]
 position = Vector2( 0, -29 )
-attack_cooldown = 0.125
-damageRampUp = 320.0
+attack_cooldown = 0.063
+damageRampUp = 160.0
 attacking_tower = true
 ramping_tower = true
 projectileScene = ExtResource( 2 )
+sounds = [ ExtResource( 4 ) ]
 combinable = true
 
 [node name="RangeShape" parent="Range" index="0"]
@@ -33,5 +35,4 @@ position = Vector2( -22, 6 )
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( -2.43969, -0.075882 )
 rotation = -0.0872665
-scale = Vector2( 1, 1 )
 shape = SubResource( 2 )

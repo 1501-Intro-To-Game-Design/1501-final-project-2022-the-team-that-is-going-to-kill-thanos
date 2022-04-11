@@ -247,6 +247,7 @@ func _process(_delta):
 			targeted_enemies.clear()
 		else:
 			incrementValue = 0
+			$AudioStreamPlayer2D.stop()
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
 			make_Baby()
@@ -278,9 +279,15 @@ func attack(enemy, proj_num):
 		print("To a total of: " + String(projectile.damage))
 		print("***********")
 	rng.randomize()
-	$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
-	$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
-	$AudioStreamPlayer2D.play()
+	if not ramping_tower:
+		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
+		$AudioStreamPlayer2D.play()
+	else:
+		if not $AudioStreamPlayer2D.playing:
+			$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())]
+			$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
+			$AudioStreamPlayer2D.play()
 	if(blueb_or_peach):
 		var rand_n = rng.randi_range(0, 1)
 		if(rand_n == 0):
@@ -529,3 +536,10 @@ func _on_StrafeDelay_timeout():
 	else:
 		$StrafeDelay.stop()
 		
+
+
+func _on_AudioStreamPlayer2D_finished():
+	if ramping_tower and enemies.size() > 0:
+		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it
+		$AudioStreamPlayer2D.volume_db = 0 + util.g_sound
+		$AudioStreamPlayer2D.play()

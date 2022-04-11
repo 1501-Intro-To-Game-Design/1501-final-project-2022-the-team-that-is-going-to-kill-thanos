@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://Sprites/BG.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/TowerScenes/Plate.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/EnemyScenes/MovingEnemies.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/EnemyScenes/Path.tscn" type="PackedScene" id=7]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=3]
 code = "shader_type canvas_item;
 
 uniform vec4 color: hint_color;
@@ -21,7 +22,7 @@ void fragment()
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = SubResource( 3 )
 shader_param/color = Color( 1, 0, 0, 1 )
 shader_param/multiplier = -0.4
 shader_param/softness = 2.3
@@ -62,6 +63,7 @@ position = Vector2( 976, 419 )
 position = Vector2( 1646, 289 )
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 6 )]
+importPathSceneArray = [ ExtResource( 7 ) ]
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = -5

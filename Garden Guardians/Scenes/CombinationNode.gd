@@ -36,7 +36,7 @@ func on_drag_end():
 			if tower_to_combine.is_in_group("Tomato"):
 				if towers[0].is_in_group("Potato"):
 					new_tower = fries_and_ketchup
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -19, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Backribs"):
@@ -58,7 +58,7 @@ func on_drag_end():
 			elif tower_to_combine.is_in_group("Potato"):
 				if towers[0].is_in_group("Tomato"):
 					new_tower = fries_and_ketchup
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -19, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Backribs"):

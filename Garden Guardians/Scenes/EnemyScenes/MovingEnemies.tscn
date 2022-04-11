@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scripts/MovingEnemies.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/EnemyScenes/Path.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/EnemyScenes/Toothpick.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/EnemyScenes/Fork.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/EnemyScenes/ToothpickHolder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/EnemyScenes/Spoon.tscn" type="PackedScene" id=6]
@@ -13,8 +13,7 @@
 
 [node name="MovingEnemies" type="Node2D"]
 script = ExtResource( 1 )
-importPathScene = ExtResource( 2 )
-enemyScene1 = [ ExtResource( 5 ) ]
+enemyScene1 = [ ExtResource( 2 ) ]
 enemyScene2 = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 9 ) ]
 enemyScene3 = [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 11 ) ]
 enemyScene4 = [ ExtResource( 10 ) ]

@@ -57,6 +57,7 @@ autostart = true
 [connection signal="timeout" from="AttackCooldown" to="." method="_on_Cooldown_timeout"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
 [connection signal="timeout" from="AbilityCooldown" to="." method="_on_AbilityCooldown_timeout"]
 [connection signal="timeout" from="AltAttackCooldown" to="." method="_on_AltAttackCooldown_timeout"]
 [connection signal="timeout" from="StrafeDelay" to="." method="_on_StrafeDelay_timeout"]

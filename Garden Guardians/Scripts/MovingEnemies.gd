@@ -1,16 +1,15 @@
 extends Node2D
 
 #Import the enemy and path scenes
-export(PackedScene) var importPathScene
+export var importPathSceneArray = []
 export(Array, PackedScene) var enemyScene1
 export(Array, PackedScene) var enemyScene2
 export(Array, PackedScene) var enemyScene3
 export(Array, PackedScene) var enemyScene4
 var enemyPathManager = []
-
+var rng = RandomNumberGenerator.new()
 var wave = 0
 var inProgres = false
-var rng = RandomNumberGenerator.new()
 var enemys = []
 var enemyNum = 0
 var enemystoKill = 0
@@ -28,6 +27,7 @@ var thresh3 = 0.9
 var deincroment = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	rng.randomize()
 	$"/root/ui".connect("nextRoundGo", self, "_on_nextRoundGo")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -120,7 +120,8 @@ func start_wave():
 
 #Adds an instance of enemy and path and stores them in enemyPathManager
 func addEnemyPath():
-	var pathToFollow = importPathScene.instance()
+	var rand_num = rng.randi_range(0, importPathSceneArray.size() - 1)
+	var pathToFollow = importPathSceneArray[rand_num].instance()
 	var enemy = enemys.pop_at(toPluck).instance()
 	enemy.connect("dead", self, "_enemy_killed")
 	enemy.connect("alive", self, "_enemy_created")
@@ -129,18 +130,18 @@ func addEnemyPath():
 	enemy.followPath = pathToFollow
 	add_child(pathToFollow)
 	add_child(enemy)
-	enemyPathManager.append([enemy, pathToFollow])
+	enemyPathManager.append([enemy, pathToFollow, rand_num])
 	enemyNum += 1
 	
 func add_enemy_to_path(spawner, spawned):
-	var pathToFollow = importPathScene.instance()
-	spawned.position = pathToFollow.getPathLocation()
-	add_child(pathToFollow)
-	add_child(spawned)
-	enemyPathManager.append([spawned, pathToFollow])
-	
+	var pathToFollow = null
 	for i in enemyPathManager:
 		if i[0] == spawner:
+			spawned.position = i[1].getPathLocation()
+			pathToFollow = importPathSceneArray[i[2]].instance()
+			add_child(pathToFollow)
+			add_child(spawned)
+			enemyPathManager.append([spawned, pathToFollow, i[2]])
 			enemyPathManager[enemyPathManager.size()-1][1].addToOffset(i[1].get_offset() + 20)
 			enemyPathManager[enemyPathManager.size()-1][0].position = enemyPathManager[enemyPathManager.size()-1][1].getPathLocation()
 
