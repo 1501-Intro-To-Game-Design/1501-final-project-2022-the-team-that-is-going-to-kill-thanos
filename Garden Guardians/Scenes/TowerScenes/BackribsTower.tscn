@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation1.wav" type="AudioStream" id=2]
+[ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation2.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=4]
+[ext_resource path="res://Scenes/Morsels/Backribs.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/Tower Sprites/RibTower.png" type="Texture" id=6]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 275.0
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 22.0
+height = 80.0
+
+[node name="Tower" groups=["Backribs"] instance=ExtResource( 1 )]
+position = Vector2( 0, -22 )
+spawn_cooldown = 8.0
+morsel_tower = true
+morsalScene = ExtResource( 5 )
+sounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]
+combinable = true
+
+[node name="RangeShape" parent="Range" index="0"]
+shape = SubResource( 1 )
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( -4, -21 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 6 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( 0, 0 )
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2( 4, 1 )
+rotation = 1.5708
+shape = SubResource( 2 )

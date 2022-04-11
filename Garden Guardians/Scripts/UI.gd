@@ -9,9 +9,15 @@ var hovering = false
 signal nextRoundGo
 
 func _ready():
+<<<<<<< Updated upstream
 	#FOR TESTING
 	wood = 100
 	metal = 100
+=======
+	playerLives = 25
+	wood = 16 #16
+	metal = 6 #6
+>>>>>>> Stashed changes
 	update()
 
 func add_wood():

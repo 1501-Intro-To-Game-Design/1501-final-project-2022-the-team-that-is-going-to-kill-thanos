@@ -35,6 +35,25 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+<<<<<<< Updated upstream
+=======
+	if targets.size() == 0:
+		targets.clear()
+		speed = 20 * util.g_speed
+		hasBeenHit = true
+		if $RegenWait.is_stopped():
+			print("1")
+			$RegenWait.start()
+	if targets.size() == 1: 
+		if is_instance_valid(targets[0]):
+			if targets[0].target != self:
+				targets.clear()
+				speed = 20 * util.g_speed
+				hasBeenHit = true
+				if $RegenWait.is_stopped():
+					print("2")
+					$RegenWait.start()
+>>>>>>> Stashed changes
 	if alive:
 		checkInCombat()
 		
