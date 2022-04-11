@@ -141,7 +141,7 @@ position = Vector2( 51.9996, 30.6667 )
 rotation = 1.5708
 shape = SubResource( 4 )
 
-[node name="RestartButton" type="Sprite" parent="."]
+[node name="RestartButton" type="Sprite" parent="." groups=["Delay Show"]]
 pause_mode = 2
 position = Vector2( 894, 525 )
 scale = Vector2( 3.28906, 2.23438 )

@@ -21,8 +21,8 @@ var playerLives = 25
 signal nextRoundGo
 
 func _ready():
-	wood = 999 #16
-	metal = 999 #6
+	wood = 16 #16
+	metal = 6 #6
 	update()
 	$Lives.text = String(playerLives)
 	$RestartButton.visible = false
@@ -135,3 +135,13 @@ func playBackgroundTrack():
 
 func _on_BackgroundTrack_finished():
 	playBackgroundTrack()
+
+func hide_UI():
+	for i in get_children():
+		if not i.get_class() == "AudioStreamPlayer":
+			i.hide()
+
+func show_UI():
+	for i in get_children():
+		if not i.get_class() == "AudioStreamPlayer" and not "Delay Show" in i.get_groups():
+			i.show()
