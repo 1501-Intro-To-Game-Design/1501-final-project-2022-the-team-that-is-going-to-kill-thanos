@@ -90,7 +90,7 @@ func _on_Area2D_body_entered(body):
 				initFieldStats(initField)
 				get_parent().add_child(initField)
 				if is_instance_valid(towerFrom):
-					towerFrom.centreOfField.append([target.get_offset(), initField])
+					towerFrom.centreOfField.append([target.get_offset(), initField, target.path])
 			if ratatouille:
 				if targeted_enemy != null:
 					damage += 0.2

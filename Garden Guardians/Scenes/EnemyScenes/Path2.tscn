@@ -12,9 +12,8 @@ curve = SubResource( 1 )
 script = ExtResource( 1 )
 
 [node name="Pathway" type="PathFollow2D" parent="."]
-position = Vector2( 908.003, 640.594 )
-rotation = -2.23444
-offset = 1215.26
+position = Vector2( 1916, 939 )
+rotation = -2.66774
 loop = false
 __meta__ = {
 "_edit_lock_": true

@@ -65,6 +65,8 @@ export var spawns_on_death = false
 export (PackedScene) var death_spawn_scene
 export var num_spawn_on_death = 0
 
+var path
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	stun_pfx_ins = stun_pfx.instance()
