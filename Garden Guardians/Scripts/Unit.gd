@@ -11,6 +11,7 @@ export var chefs_knife = false
 export var ranged_morsel = false
 var ranged_enemies = []
 var can_attack = false
+var is_getting_destroyed = false
 export var spawner = false
 export (PackedScene) var to_spawn
 export (PackedScene) var proj_scene
@@ -423,7 +424,8 @@ func change_health(change, direct = false, pierce = false):
 		change = lowest_dmg
 	current_health += change
 	$Health.value = current_health
-	if(current_health <= 0):
+	if(current_health <= 0 and not is_getting_destroyed):
+		is_getting_destroyed = true
 		if self.is_in_group("Morsels"): #decrease number of active morsels
 			if is_instance_valid(homeTower):
 				homeTower.morsel_death(self)

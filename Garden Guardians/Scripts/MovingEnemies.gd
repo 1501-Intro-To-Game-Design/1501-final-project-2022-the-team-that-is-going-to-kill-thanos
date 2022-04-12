@@ -56,7 +56,7 @@ func reset_state():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateEnemyLocation(delta)
-	if enemys.size() <= 0 and inProgres and enemystoKill <= 3:
+	if enemys.size() <= 0 and inProgres and enemystoKill <= 0:
 		dps.clear() #jsut in case theres 1 left
 		inProgres = false
 		$EnemySpawn.stop()
@@ -276,7 +276,7 @@ func _on_nextRoundGo():
 	wave += 1
 	wave_hardness_multiplier += 0.02
 	if wave > 20:
-		wave_hardness_multiplier += 0.01
+		wave_hardness_multiplier += 0.03
 	start_wave()
 
 func _enemy_killed():

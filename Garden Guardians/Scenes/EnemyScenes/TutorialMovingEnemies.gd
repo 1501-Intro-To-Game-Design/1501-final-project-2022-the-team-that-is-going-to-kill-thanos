@@ -140,6 +140,10 @@ func addEnemyPath():
 	enemy.position = pathToFollow.getPathLocation()
 	enemy.followPath = pathToFollow
 	enemy.path = "Path " + String(rand_num)
+	if enemy.get_class() == "Fork":
+		enemy.max_health -= 10
+	elif enemy.get_class() == "Tongs":
+		enemy.max_health -= 2
 	add_child(pathToFollow)
 	add_child(enemy)
 	enemyPathManager.append([enemy, pathToFollow, rand_num])

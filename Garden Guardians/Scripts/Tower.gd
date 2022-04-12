@@ -15,7 +15,7 @@ export var max_babies = 3
 var AOE_percent = 0.0
 var refundW = 0
 var refundM = 0
-var proj_count = 0
+#var proj_count = 0
 var can_attack = false
 var can_spawn = false
 export var attack_cooldown = 1.0
@@ -61,6 +61,8 @@ var incrementValue = 0
 
 var rank = 0; #1-3 normal, 4 offshoot, 5 super duper tower
 
+var damageBuff = 0
+
 export(PackedScene) var projectileScene
 export(PackedScene) var altProjectileScene
 export(PackedScene) var morsalScene
@@ -74,7 +76,7 @@ export (Array, Resource) var sounds
 var rng = RandomNumberGenerator.new()
 
 var morselPositions = [false, false, false]
-var morselOffsets = [Vector2(0, -60),  Vector2(-40, -20),  Vector2(40, -20), Vector2(0, 20)]
+var morselOffsets = [Vector2(0, -40),  Vector2(-40, 0),  Vector2(40, 0)]
 var inRange = false
 
 export var combinable = false
@@ -240,7 +242,7 @@ func _process(_delta):
 						attack(currentSingleTarget, 1)
 					elif not currentSingleTarget == targeted_enemies[i]:
 						incrementValue = 0
-						proj_count = 0
+						#proj_count = 0
 						currentSingleTarget = targeted_enemies[i]
 					num_shots += 1
 					attack(targeted_enemies[i], num_shots)
@@ -274,7 +276,7 @@ func _process(_delta):
 			targeted_enemies.clear()
 		else:
 			incrementValue = 0
-			proj_count = 0
+			#proj_count = 0
 			$AudioStreamPlayer2D.stop()
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
@@ -288,6 +290,7 @@ func attack(enemy, proj_num):
 	var projectile = projectileScene.instance()
 	projectile.towerFrom = self
 	get_parent().add_child(projectile)
+	projectile.damage += damageBuff
 	projectile.explosive = explosive
 	projectile.AOE_percent = AOE_percent
 	projectile.stun_chance = stun_chance
@@ -295,15 +298,15 @@ func attack(enemy, proj_num):
 	if ratatouille_tower:
 		projectile.ratatouille = true
 	if ramping_tower:
-		proj_count += 1
-		if proj_count > 35:
-			proj_count = 35
-		var temp_val = proj_count / 35
-		projectile.damage += (incrementValue * temp_val)
+		#proj_count += 1
+		#if proj_count > 150:
+			#proj_count = 150
+		#var temp_val = proj_count / 150
+		projectile.damage += incrementValue
 		if projectile.damage > projectile.damageCap:
 			projectile.damage = projectile.damageCap
 		if projectile.damage < projectile.damageCap:
-			incrementValue += damageRampUp
+			incrementValue += damageRampUp/10
 	rng.randomize()
 	if not ramping_tower:
 		$AudioStreamPlayer2D.stream = sounds[rng.randf_range(0,sounds.size())] #picks radom sound and plays it

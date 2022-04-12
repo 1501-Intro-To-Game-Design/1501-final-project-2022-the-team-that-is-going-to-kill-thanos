@@ -123,8 +123,19 @@ func _ready():
 	$Text/ButterSE/NinePatchRect/WoodCost.text = String(dairyW[6])
 	$Text/ButterSE/NinePatchRect/MetalCost.text = String(dairyM[6])
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	var mouse_pos = get_global_mouse_position()
+	if mouse_pos.x < $TopLeft.global_position.x or mouse_pos.x > $TopRight.global_position.x or mouse_pos.y > $BotLeft.global_position.y or mouse_pos.y < $TopLeft.global_position.y:
+		for x in spawned_x:
+			if is_instance_valid(x):
+				x.queue_free()
+		if current_menu != null:
+			current_menu.hide()
+			$Sprite.texture = normal_plate
+			$Target.hide()
+			$Delete.hide()
+			if tower != null and !moveMode:
+				tower.show_range(false)
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
@@ -206,6 +217,7 @@ func make_tower(tower_type, y_spawn_offset):
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
 		upgrade()
+		tower.damageBuff += 0.5
 		return true
 	elif tower_type == "fruit" and fruitW[0] <= ui.wood and fruitM[0] <= ui.metal:
 		ui.wood -= fruitW[0]
@@ -219,6 +231,7 @@ func make_tower(tower_type, y_spawn_offset):
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
 		upgrade()
+		tower.damageBuff += 0.1
 		return true
 	elif tower_type == "grain" and grainW[0] <= ui.wood and grainM[0] <= ui.metal:
 		ui.wood -= grainW[0]
@@ -245,6 +258,7 @@ func make_tower(tower_type, y_spawn_offset):
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
 		upgrade()
+		tower.damageBuff += 0.05
 		return true
 	elif tower_type == "protein" and proW[0] <= ui.wood and proM[0] <= ui.metal:
 		ui.wood -= proW[0]
@@ -286,6 +300,7 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off = 0, up
 		tower.position = self.get_global_position() + Vector2(0, y_spawn_off)
 		tower.plate = self
 		tower.set_target_type(target_types[target_index])
+		tower.damageBuff += 0.05
 		return true
 	else:
 		ui.failedAction()
@@ -707,18 +722,19 @@ func _on_VAreaAOE_mouse_exited():
 	$Text/CherryAOE.hide()
 
 func _on_BigArea_mouse_exited():
-	if not(in_area):
-		if spawned_x.size() > 0:
-			for x in spawned_x:
-				x.queue_free()
-			spawned_x.clear()
-		if current_menu != null:
-			current_menu.hide()
-			$Sprite.texture = normal_plate
-			$Target.hide()
-			$Delete.hide()
-			if tower != null and !moveMode:
-				tower.show_range(false)
+	pass
+	#if not(in_area):
+	#	if spawned_x.size() > 0:
+	#		for x in spawned_x:
+	#			x.queue_free()
+	#		spawned_x.clear()
+	#	if current_menu != null:
+	#		current_menu.hide()
+	#		$Sprite.texture = normal_plate
+	#		$Target.hide()
+	#		$Delete.hide()
+	#		if tower != null and !moveMode:
+	#			tower.show_range(false)
 
 func make_rib_plate():
 	$PUpgradeMenu.show()

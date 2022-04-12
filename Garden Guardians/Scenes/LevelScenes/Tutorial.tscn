@@ -10,7 +10,7 @@
 [ext_resource path="res://Scenes/EnemyScenes/Chopstick.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/EnemyScenes/Fork.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/EnemyScenes/ToothpickHolder.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Scenes/EnemyScenes/Spoon.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/EnemyScenes/Tongs.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/TowerScenes/TutorialPlate.gd" type="Script" id=12]
 [ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=13]
 
@@ -196,16 +196,18 @@ lets build a vegetable tower.
 It will deal a lot of damage,
 but it shoots slowly. Pick up
 some resources from the ground
-if you haven't yet to afford it"
+if you haven't yet to afford it.
+There are controls in
+the pause menu"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GrainTutorial" type="Label" parent="."]
 visible = false
-margin_left = 868.0
+margin_left = 763.0
 margin_top = 132.0
-margin_right = 1894.0
+margin_right = 1900.0
 margin_bottom = 330.0
 custom_fonts/font = ExtResource( 13 )
 text = "Next, build a grain tower.
@@ -217,10 +219,10 @@ __meta__ = {
 
 [node name="SecondWave" type="Label" parent="."]
 visible = false
-margin_left = 1382.0
-margin_top = 262.0
-margin_right = 1911.0
-margin_bottom = 326.0
+margin_left = 1376.0
+margin_top = 218.0
+margin_right = 1905.0
+margin_bottom = 282.0
 custom_fonts/font = ExtResource( 13 )
 text = "Try the next course!"
 __meta__ = {
