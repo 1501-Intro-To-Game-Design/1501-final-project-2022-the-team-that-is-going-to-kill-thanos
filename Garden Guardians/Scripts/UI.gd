@@ -30,8 +30,8 @@ signal nextRoundGo
 
 func _ready():
 	playerLives = 25
-	wood = 16 #16
-	metal = 6 #6
+	wood = 999 #16
+	metal = 999 #6
 	update()
 	$Lives.text = String(playerLives)
 	$RestartButton.visible = false
