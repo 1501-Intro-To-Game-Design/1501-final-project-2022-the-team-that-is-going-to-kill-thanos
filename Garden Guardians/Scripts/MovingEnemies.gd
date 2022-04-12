@@ -114,7 +114,6 @@ func start_wave():
 	enemystoKill = 0
 	dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * difficulty_multiplier, 1.0)) # = (wave*7) -1
 	#5, 7, 10, 14, 19, 25, 31, 38, 46, 55
-	print("DP: ", dP)
 	budget = dP
 	#5, 7, 10, 18
 	#6, 9, 12, 21

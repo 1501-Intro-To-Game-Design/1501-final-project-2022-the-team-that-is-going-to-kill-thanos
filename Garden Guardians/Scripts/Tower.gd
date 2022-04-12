@@ -203,7 +203,6 @@ func _process(_delta):
 									highest = enemies[i].get_offset()
 									index = i
 							else:
-								print(enemies[i])
 								enemies[i].get_node("Sprite").self_modulate = Color(0, 0, 0, 1)
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])
@@ -219,7 +218,6 @@ func _process(_delta):
 									lowest = enemies[i].get_offset()
 									index = i
 							else:
-								print(enemies[i])
 								enemies[i].get_node("Sprite").self_modulate = Color(0, 0, 0, 1)
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])

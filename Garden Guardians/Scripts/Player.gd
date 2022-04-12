@@ -90,7 +90,6 @@ func _process(delta):
 			targets.remove(targets.find(target))	
 		if targets.size() == 0:
 			targets.clear()
-			print("combat end")
 			on_combat_end()
 			inCombat = false
 			hasBeenHit = true
@@ -350,7 +349,6 @@ func _on_RegenWait_timeout():
 
 
 func _on_Bruh_timeout():
-	print("worked")
 	hasBeenHit = true
 	inCombat = false
 	speed = 20 * util.g_speed
