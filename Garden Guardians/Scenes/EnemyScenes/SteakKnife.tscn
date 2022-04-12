@@ -52,13 +52,13 @@ use_alt_pfx = true
 pfx_amount = 15
 armored = true
 groups_to_check = [ "Morsels", "Traps", "Player", "Resources", "Traitor" ]
-max_health = 30.0
+max_health = 40.0
 damage = 13.0
 attackSpeed = 1.5
 spawned_num_wood = 3
 spawned_num_metal = 4
 sounds = [ ExtResource( 2 ), ExtResource( 3 ) ]
-max_speed = 35
+max_speed = 55
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 4 )

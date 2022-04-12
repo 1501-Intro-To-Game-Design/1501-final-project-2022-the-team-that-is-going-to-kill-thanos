@@ -38,6 +38,7 @@ func _ready():
 	$"/root/ui".connect("restart", self, "reset_state")
 
 func reset_state():
+	inProgres = false
 	enemys.clear()
 	enemystoKill = 0
 	dps.clear()

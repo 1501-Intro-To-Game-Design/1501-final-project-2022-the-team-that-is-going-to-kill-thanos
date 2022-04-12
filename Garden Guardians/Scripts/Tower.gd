@@ -73,7 +73,7 @@ var tower = 0 #defult
 export (Array, Resource) var sounds
 var rng = RandomNumberGenerator.new()
 
-var morselPositions = [false, false, false, false]
+var morselPositions = [false, false, false]
 var morselOffsets = [Vector2(0, -60),  Vector2(-40, -20),  Vector2(40, -20), Vector2(0, 20)]
 var inRange = false
 
@@ -276,11 +276,9 @@ func _process(_delta):
 			incrementValue = 0
 			proj_count = 0
 			$AudioStreamPlayer2D.stop()
-			yield(get_tree().create_timer(1), "timeout")
 	if(morsel_tower):
 		if can_spawn and (babies < max_babies):
 			make_Baby()
-			babies += 1
 			$SpawnCooldown.start(spawn_cooldown)
 			can_spawn = false
 		#do morsel spawning stuff, if can_spawn is true, that is when the cooldown has passed (can spawn new morsels)
@@ -368,38 +366,34 @@ func _input(event):
 				mouse_pos = null
 
 func make_Baby():
-	var morsel = morsalScene.instance()
-	morsel.homeTower = self
-	morsel.attackSpeed -= attack_speed_buff
-	morsel.damage += damage_buff
-	get_parent().add_child(morsel)
-	tower_morsels.append(morsel)
-	
-	if(not morselPositions[0]): #Does this ever happen? // ya I think so
-		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
-		morsel.morselNum = 0
-		morsel._go_To(morsel.global_position + morselOffsets[0] + posOffset)
-		morselPositions[0] = true
-	elif(not morselPositions[1]):
-		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
-		morsel.morselNum = 1
-		morsel._go_To(morsel.global_position + morselOffsets[1] + posOffset)
-		morselPositions[1] = true
-	elif(not morselPositions[2]):
-		morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
-		morsel.morselNum = 2
-		morsel._go_To(morsel.global_position + morselOffsets[2] + posOffset)
-		morselPositions[2] = true
-	elif(not morselPositions[3]):
-		morsel.position = $ShootPoint.get_global_position() #in the future replace this with (go to the neerest point on the path)
-		morsel.morselNum = 3
-		morsel._go_To(morsel.global_position + morselOffsets[3] + posOffset)
-		morselPositions[3] = true
+	if(not morselPositions[0] or not morselPositions[1] or not morselPositions[2]):
+		babies += 1
+		var morsel = morsalScene.instance()
+		morsel.homeTower = self
+		morsel.attackSpeed -= attack_speed_buff
+		morsel.damage += damage_buff
+		get_parent().add_child(morsel)
+		tower_morsels.append(morsel)
+		if(not morselPositions[0]): #Does this ever happen? // ya I think so
+			morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
+			morsel.morselNum = 0
+			morsel._go_To(morsel.global_position + morselOffsets[0] + posOffset)
+			morselPositions[0] = true
+		elif(not morselPositions[1]):
+			morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
+			morsel.morselNum = 1
+			morsel._go_To(morsel.global_position + morselOffsets[1] + posOffset)
+			morselPositions[1] = true
+		elif(not morselPositions[2]):
+			morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
+			morsel.morselNum = 2
+			morsel._go_To(morsel.global_position + morselOffsets[2] + posOffset)
+			morselPositions[2] = true
 	
 func spawn_remainder():
 	for i in range(babies, max_babies):
 		make_Baby()
-		babies += 1
+
 func morsel_death(dead_morsel):
 	tower_morsels.remove(tower_morsels.find(dead_morsel))
 	
@@ -538,6 +532,7 @@ func _on_AltAttackCooldown_timeout():
 				if is_instance_valid(i):
 					if i.path == centreOfField[centreOfField.size()-1][2]:
 						i.set_offset(centreOfField[centreOfField.size()-1][0])
+						get_parent().get_node("MovingEnemies").check_stacking(i)
 						if altAttackTargets.size() == 0:
 							altAttackTargets.append(i)
 			if altAttackTargets.size() != 0:

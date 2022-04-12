@@ -125,6 +125,7 @@ func _on_Area2D_body_exited(body):
 						#print("********")
 						if not apply.stunned:
 							apply.current_speed += i[1]
+				rng.randomize()
 				var pullRoll = rng.randf_range(0.01, 1.00)
 				if(pullRoll <= pullBackChance):
 					for i in apply.pullingBack:
@@ -159,6 +160,7 @@ func _on_Area2D_body_exited(body):
 				if is_instance_valid(i[0]):
 					if i[0] == apply:
 						i[2] = false
+			get_parent().get_node("MovingEnemies").check_stacking(apply)
 
 func _on_DamageFrequency_timeout():
 	for i in affectedEnemies:

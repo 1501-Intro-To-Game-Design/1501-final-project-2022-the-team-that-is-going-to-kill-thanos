@@ -88,7 +88,7 @@ func _ready():
 	rng.randomize()
 	current_health = max_health
 	current_speed = max_speed;
-	min_speed = 5 + (max_speed*0.10)
+	min_speed = 9 + (max_speed*0.10)
 	tempSpeed = current_speed
 	tempMaxSpeed = max_speed
 	$Health.max_value = max_health

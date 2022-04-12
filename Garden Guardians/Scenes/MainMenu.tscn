@@ -121,7 +121,7 @@ custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 2 )
-text = "Farm"
+text = "Farm (Easy)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,7 +135,7 @@ custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 2 )
-text = "Picnic"
+text = "Picnic (Medium)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -149,7 +149,7 @@ custom_fonts/font = ExtResource( 2 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 2 )
-text = "Kitchen"
+text = "Kitchen (Hard)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
