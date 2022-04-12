@@ -4,6 +4,7 @@ extends CanvasLayer
 # Declare member variables here. Examples:
 export (PackedScene) var levelOneScene
 export (PackedScene) var levelTwoScene
+export (PackedScene) var tutorialScene
 var currentLevel
 
 
@@ -73,6 +74,8 @@ func _on_InGameBack_pressed():
 		get_parent().get_node("Level").queue_free()
 	elif currentLevel == "Level2":
 		get_parent().get_node("Tablecloth").queue_free()
+	elif currentLevel == "Tutorial":
+		get_parent().get_node("Tutorial").queue_free()
 	$"/root/ui".hide_UI()
 	$"/root/ui"._ready()
 	show_menu()
@@ -80,6 +83,7 @@ func _on_InGameBack_pressed():
 	if $"/root/ui".paused:
 		$"/root/ui".paused = false
 		get_tree().paused = false
+	$"/root/ui".tutorialLevel = false
 
 func showInGameMenu():
 	$InGameMenu.show()
@@ -94,10 +98,16 @@ func _on_InGameResume_pressed():
 	get_tree().paused = false
 	hideInGameMenu()
 
-
 func _on_Level2_pressed():
 	$"/root/ui".show_UI()
 	hide_menu()
 	var level = levelTwoScene.instance()
 	get_parent().add_child(level)
 	currentLevel = "Level2"
+
+func _on_Tutorial_pressed():
+	$"/root/ui".show_UI()
+	hide_menu()
+	var level = tutorialScene.instance()
+	get_parent().add_child(level)
+	currentLevel = "Tutorial"

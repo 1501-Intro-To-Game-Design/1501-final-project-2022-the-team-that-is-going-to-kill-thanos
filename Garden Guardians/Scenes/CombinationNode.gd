@@ -50,6 +50,13 @@ func on_drag_end():
 					new_tower = marinara_spaghetti
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
+					if $"/root/ui".tutorialLevel:
+						get_parent().get_node("MergeTutorial").hide()
+						tower_to_combine.plate.milkPlate = true
+						get_parent().get_node("DairyTutorial").show()
+						$"/root/ui".wood += 11
+						$"/root/ui".metal += 7
+						$"/root/ui".update()
 					return true
 				elif towers[0].is_in_group("Parmesan"):
 					new_tower = baked_ratatouille
@@ -108,6 +115,13 @@ func on_drag_end():
 					new_tower = marinara_spaghetti
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
+					if $"/root/ui".tutorialLevel:
+						get_parent().get_node("MergeTutorial").hide()
+						tower_to_combine.plate.milkPlate = true
+						get_parent().get_node("DairyTutorial").show()
+						$"/root/ui".wood += 11
+						$"/root/ui".metal += 7
+						$"/root/ui".update()
 					return true
 				elif towers[0].is_in_group("Potato"):
 					new_tower = gnocchi

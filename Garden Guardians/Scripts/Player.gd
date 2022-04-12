@@ -48,10 +48,11 @@ func _process(delta):
 		speed = 20 * util.g_speed
 		hasBeenHit = true
 	if targets.size() == 1: 
-		if is_instance_valid(targets[0].target):
-			if targets[0].target != self:
-				targets.clear()
-				speed = 20 * util.g_speed
+		if is_instance_valid(targets[0]):
+			if is_instance_valid(targets[0].target):
+				if targets[0].target != self:
+					targets.clear()
+					speed = 20 * util.g_speed
 	if alive:
 		checkInCombat()
 		if moving:

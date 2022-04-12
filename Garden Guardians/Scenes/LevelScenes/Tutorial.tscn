@@ -1,0 +1,350 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://Scenes/LevelScenes/Tutorial.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/EnemyScenes/MovingEnemies.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/EnemyScenes/Path.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/TowerScenes/Plate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/TutorialMap.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/EnemyScenes/TutorialMovingEnemies.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/EnemyScenes/Chopstick.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/EnemyScenes/Fork.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/EnemyScenes/ToothpickHolder.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/EnemyScenes/Spoon.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/TowerScenes/TutorialPlate.gd" type="Script" id=12]
+[ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=13]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 color: hint_color;
+uniform float multiplier = 0.2;
+uniform float softness = 3.0;
+
+void fragment()
+{
+	float value = distance(UV, vec2(0.5));
+	COLOR = vec4(color.rgb, smoothstep(multiplier, softness, value));
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/color = Color( 1, 0, 0, 1 )
+shader_param/multiplier = -0.4
+shader_param/softness = 2.3
+
+[node name="Tutorial" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Plate" parent="." groups=["First", "Plate"] instance=ExtResource( 4 )]
+position = Vector2( 1421, 790 )
+script = ExtResource( 12 )
+
+[node name="Plate3" parent="." groups=["Plate"] instance=ExtResource( 4 )]
+position = Vector2( 607, 430 )
+script = ExtResource( 12 )
+
+[node name="Plate4" parent="." groups=["Plate"] instance=ExtResource( 4 )]
+position = Vector2( 311, 205 )
+script = ExtResource( 12 )
+
+[node name="Plate5" parent="." groups=["Plate", "Second"] instance=ExtResource( 4 )]
+position = Vector2( 1070, 680 )
+script = ExtResource( 12 )
+
+[node name="Plate6" parent="." groups=["Fourth", "Plate"] instance=ExtResource( 4 )]
+position = Vector2( 1599, 531 )
+script = ExtResource( 12 )
+
+[node name="Plate7" parent="." groups=["Plate"] instance=ExtResource( 4 )]
+position = Vector2( 738, 647 )
+script = ExtResource( 12 )
+
+[node name="Plate2" parent="." groups=["Plate"] instance=ExtResource( 4 )]
+position = Vector2( 804, 227 )
+script = ExtResource( 12 )
+
+[node name="Plate8" parent="." groups=["Plate"] instance=ExtResource( 4 )]
+position = Vector2( 976, 419 )
+script = ExtResource( 12 )
+
+[node name="Plate9" parent="." groups=["Plate"] instance=ExtResource( 4 )]
+position = Vector2( 1646, 289 )
+script = ExtResource( 12 )
+
+[node name="Plate10" parent="." groups=["Plate", "Third"] instance=ExtResource( 4 )]
+position = Vector2( 1286, 485 )
+script = ExtResource( 12 )
+
+[node name="Plate11" parent="." groups=["Plate"] instance=ExtResource( 4 )]
+position = Vector2( 292, 408 )
+script = ExtResource( 12 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1451, 225 )
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -5
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Node2D"]
+margin_right = 1920.0
+margin_bottom = 1080.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 2 )
+margin_right = 1920.0
+margin_bottom = 1078.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MovingEnemies" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 7 )
+importPathSceneArray = [ ExtResource( 3 ) ]
+enemyScene2 = [ ExtResource( 9 ), ExtResource( 11 ) ]
+enemyScene3 = [ ExtResource( 8 ), ExtResource( 10 ) ]
+enemyScene4 = [  ]
+
+[node name="PlateIntro" type="Label" parent="."]
+visible = false
+margin_left = 1201.0
+margin_top = 467.0
+margin_right = 1691.0
+margin_bottom = 598.0
+custom_fonts/font = ExtResource( 13 )
+text = "Click on a plate to 
+build a tower"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FruitIntro" type="Label" parent="."]
+visible = false
+margin_left = 510.0
+margin_top = 803.0
+margin_right = 1280.0
+margin_bottom = 934.0
+custom_fonts/font = ExtResource( 13 )
+text = "Build a fruit tower. They deal 
+low damage, but shoot quickly!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MorselIntro" type="Label" parent="."]
+visible = false
+margin_left = 525.0
+margin_top = 446.0
+margin_right = 1631.0
+margin_bottom = 577.0
+custom_fonts/font = ExtResource( 13 )
+text = "Next, build a morsel tower. It will spawn
+in morsels that will block and fight enemies!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FirstWaveTutorial" type="Label" parent="."]
+visible = false
+margin_left = 1037.0
+margin_top = 149.0
+margin_right = 1758.0
+margin_bottom = 548.0
+custom_fonts/font = ExtResource( 13 )
+text = "Press this button to start
+the first course of enemies!
+Be careful, they'll stop to
+attack you if you get close,
+although it's possible to use
+this to your advantage..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MorselPositionTutorial" type="Label" parent="."]
+visible = false
+margin_left = 129.0
+margin_top = 587.0
+margin_right = 937.0
+margin_bottom = 785.0
+custom_fonts/font = ExtResource( 13 )
+text = "Select the morsel tower,
+then push this button to select
+where the morsels will stand"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VegetableTutorial" type="Label" parent="."]
+visible = false
+margin_left = 298.0
+margin_top = 50.0
+margin_right = 1144.0
+margin_bottom = 449.0
+custom_fonts/font = ExtResource( 13 )
+text = "For this next round,
+lets build a vegetable tower.
+It will deal a lot of damage,
+but it shoots slowly. Pick up
+some resources from the ground
+if you haven't yet to afford it"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrainTutorial" type="Label" parent="."]
+visible = false
+margin_left = 868.0
+margin_top = 132.0
+margin_right = 1894.0
+margin_bottom = 330.0
+custom_fonts/font = ExtResource( 13 )
+text = "Next, build a grain tower.
+This will creat fields that slow down
+all enemies, and buff all morsels in them!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SecondWave" type="Label" parent="."]
+visible = false
+margin_left = 1382.0
+margin_top = 262.0
+margin_right = 1911.0
+margin_bottom = 326.0
+custom_fonts/font = ExtResource( 13 )
+text = "Try the next course!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FruitUpgrades" type="Label" parent="."]
+visible = false
+margin_left = 519.0
+margin_top = 65.0
+margin_right = 1767.0
+margin_bottom = 1067.0
+custom_fonts/font = ExtResource( 13 )
+text = "Good job! You'll notice that this wave had harder
+enemies, including one with a shield above it.
+Enemies with a shield icon are armoured.
+Armour reduces the damage every hit does.
+
+
+
+
+
+
+
+
+Let's upgrade our fruit tower twice to
+increase damage and fire rate! Click on the
+fruit tower and press the upgrade button below"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrainUpgrades" type="Label" parent="."]
+visible = false
+margin_left = 752.0
+margin_top = 71.0
+margin_right = 1793.0
+margin_bottom = 269.0
+custom_fonts/font = ExtResource( 13 )
+text = "Now upgrade the grain tower two times
+the same way. Having these two tier 3
+towers will let us do something special..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MergeTutorial" type="Label" parent="."]
+visible = false
+margin_left = 24.0
+margin_top = 55.0
+margin_right = 1687.0
+margin_bottom = 253.0
+custom_fonts/font = ExtResource( 13 )
+text = "Now that we have two tier 3 ingredients... we can merge them
+into a dish! Drag either the fruit or grain tower onto the other
+one to create a new merged tower on that plate!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DairyTutorial" type="Label" parent="."]
+visible = false
+margin_left = 250.0
+margin_top = 55.0
+margin_right = 1782.0
+margin_bottom = 320.0
+custom_fonts/font = ExtResource( 13 )
+text = "Now that we have freed up a plate, let's build a dairy tower.
+Dairy towers pierce through enemy armour, and deal more
+damage the longer they attack an enemy. They'll be useful
+to deal with stronger enemies"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DairyUpgrades" type="Label" parent="."]
+visible = false
+margin_left = 785.0
+margin_top = 200.0
+margin_right = 1512.0
+margin_bottom = 331.0
+custom_fonts/font = ExtResource( 13 )
+text = "We should upgrade the dairy
+tower a couple times as well"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VegetableOffshoot" type="Label" parent="."]
+visible = false
+margin_left = 24.0
+margin_top = 128.0
+margin_right = 1884.0
+margin_bottom = 393.0
+custom_fonts/font = ExtResource( 13 )
+text = "Finally, we'll upgrade the vegetable tower, but in a bit of a different way.
+For our tier 3 tower, instead of going down the main path, we'll choose
+the offshoot option. The offshoot can't be merged with any towers,
+but has a number of powerful upgrades available to it"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ThirdWave" type="Label" parent="."]
+visible = false
+margin_left = 1279.0
+margin_top = 183.0
+margin_right = 1867.0
+margin_bottom = 314.0
+custom_fonts/font = ExtResource( 13 )
+text = "Face the final course
+whenever you're ready!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Complete" type="Label" parent="."]
+visible = false
+margin_left = 345.0
+margin_top = 162.0
+margin_right = 1540.0
+margin_bottom = 226.0
+custom_fonts/font = ExtResource( 13 )
+text = "Congratulations! You have finished the tutorial!"
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -12,8 +12,8 @@
 animations = [ {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "Standing",
-"speed": 5.0
+"name": "Running",
+"speed": 4.0
 }, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
@@ -22,8 +22,8 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "Running",
-"speed": 4.0
+"name": "Standing",
+"speed": 5.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]

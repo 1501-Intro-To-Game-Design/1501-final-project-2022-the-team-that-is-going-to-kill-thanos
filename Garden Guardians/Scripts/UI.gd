@@ -16,6 +16,11 @@ var wood = -1
 var metal = -1
 var paused = false
 
+var firstWavePress = true
+var secondWavePress = false
+var thirdWavePress = false
+var tutorialLevel = false
+
 var hovering = false
 
 var playerLives = 25
@@ -68,12 +73,24 @@ func _input(event):
 				if hovering:
 					_load_n_play(roundStart,4)
 					emit_signal("nextRoundGo")
+					if tutorialLevel and firstWavePress:
+						firstWavePress = false
+						secondWavePress = true
+						get_parent().get_node("Tutorial").get_node("FirstWaveTutorial").hide()
+					elif tutorialLevel and secondWavePress:
+						secondWavePress = false
+						thirdWavePress = true
+						get_parent().get_node("Tutorial").get_node("SecondWave").hide()
+					elif tutorialLevel and thirdWavePress:
+						thirdWavePress = false
+						get_parent().get_node("Tutorial").get_node("ThirdWave").hide()
 
 func waveInProgress():
 	$NextButton.visible = false
 
 func waveEnd():
-	$NextButton.visible = true
+	if not tutorialLevel:
+		$NextButton.visible = true
 	_load_n_play(roundWin,10)
 
 func updateRound(roundNum):

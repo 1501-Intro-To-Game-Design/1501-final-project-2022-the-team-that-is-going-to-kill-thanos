@@ -191,9 +191,10 @@ func _process(_delta):
 					var index = -1
 					var highest = 0
 					for i in range(0, enemies.size()):
-						if(enemies[i].get_offset() > highest and not (enemies[i] in targeted_enemies)):
-							highest = enemies[i].get_offset()
-							index = i
+						if is_instance_valid(enemies[i]):
+							if(enemies[i].get_offset() > highest and not (enemies[i] in targeted_enemies)):
+								highest = enemies[i].get_offset()
+								index = i
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])
 					else:
