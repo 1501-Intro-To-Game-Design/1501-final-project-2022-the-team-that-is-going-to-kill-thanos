@@ -13,7 +13,7 @@ func _ready():
 			if not "First" in i.get_groups():
 				i.hide()
 	$PlateIntro.show()
-	$"/root/ui/NextButton".hide()
+	$"/root/ui".hideButton()
 	$"/root/ui".tutorialLevel = true
 	$"/root/ui".metal = 4
 	$"/root/ui".wood = 12

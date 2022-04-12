@@ -386,7 +386,7 @@ func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 				current_menu = $VUpgradeMenu/Carrot
 				get_parent().get_node("VegetableOffshoot").hide()
 				get_parent().get_node("ThirdWave").show()
-				$"/root/ui/NextButton".show()
+				$"/root/ui".showButton()
 			else:
 				x_animation($VUpgradeMenu/V2/VAreaCarrot)
 
@@ -933,7 +933,7 @@ func _unhandled_input(event):
 					firstMove = false
 					get_parent().get_node("MorselPositionTutorial").hide()
 					get_parent().get_node("FirstWaveTutorial").show()
-					$"/root/ui/NextButton".show()
+					$"/root/ui".showButton()
 			else:
 				ui.failedAction()
 			moveMode = false
@@ -987,7 +987,7 @@ func _on_GArea_input_event(viewport, event, shape_idx):
 					current_menu.get_node("Dairy").show()
 					current_menu.hide()
 					get_parent().get_node("SecondWave").show()
-					$"/root/ui/NextButton".show()
+					$"/root/ui".showButton()
 					get_parent().get_node("GrainTutorial").hide()
 				else:
 					$GUpgradeMenu/G1.show()

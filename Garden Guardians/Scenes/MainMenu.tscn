@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Fonts/Strawberry Muffins Demo.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/LevelScenes/Tablecloth.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/LevelScenes/Kitchen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/LevelScenes/Tutorial.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -19,7 +20,7 @@ layer = 2
 script = ExtResource( 1 )
 levelOneScene = ExtResource( 3 )
 levelTwoScene = ExtResource( 5 )
-tutorialScene = ExtResource( 5 )
+tutorialScene = ExtResource( 7 )
 levelThreeScene = ExtResource( 6 )
 
 [node name="Main" type="Node2D" parent="."]

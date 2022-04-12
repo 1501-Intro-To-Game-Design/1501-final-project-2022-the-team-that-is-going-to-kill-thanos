@@ -23,6 +23,7 @@ var thirdWavePress = false
 var tutorialLevel = false
 
 var hovering = false
+var nextButtonPos
 
 var playerLives = 25
 signal nextRoundGo
@@ -35,6 +36,7 @@ func _ready():
 	$Lives.text = String(playerLives)
 	$RestartButton.visible = false
 	playBackgroundTrack()
+	nextButtonPos = $NextButton.position
 
 func connect_stuff(name_of_root):
 	get_parent().get_node(name_of_root + "/MovingEnemies").connect("player_life_lost", self, "_on_player_life_lost")
@@ -178,3 +180,10 @@ func show_UI():
 	for i in get_children():
 		if not i.get_class() == "AudioStreamPlayer" and not "Delay Show" in i.get_groups():
 			i.show()
+
+func hideButton():
+	$NextButton.hide()
+	$NextButton2.hide()
+
+func showButton():
+	$NextButton.show()
