@@ -361,6 +361,7 @@ func _on_Attack_timeout():
 			
 func on_combat_end():
 	inCombat = false
+	target = null
 	$Attack.stop()
 	if(self.is_in_group("Morsels")):
 		$RegenWait.start()

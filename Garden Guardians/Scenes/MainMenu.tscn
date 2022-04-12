@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/MenuFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Scenes/LevelScenes/Level.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Fonts/Strawberry Muffins Demo.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/LevelScenes/Tablecloth.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/LevelScenes/Kitchen.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -18,9 +19,9 @@ layer = 2
 script = ExtResource( 1 )
 levelOneScene = ExtResource( 3 )
 levelTwoScene = ExtResource( 5 )
+levelThreeScene = ExtResource( 6 )
 
 [node name="Main" type="Node2D" parent="."]
-visible = false
 
 [node name="NewGame" type="Button" parent="Main"]
 margin_left = 760.0
@@ -213,6 +214,7 @@ __meta__ = {
 [connection signal="value_changed" from="Main/Volume" to="." method="_on_Volume_value_changed"]
 [connection signal="pressed" from="Levels/Level1" to="." method="_on_Level1_pressed"]
 [connection signal="pressed" from="Levels/Level2" to="." method="_on_Level2_pressed"]
+[connection signal="pressed" from="Levels/Level3" to="." method="_on_Level3_pressed"]
 [connection signal="pressed" from="Levels/Back" to="." method="_on_Back_pressed"]
 [connection signal="value_changed" from="InGameMenu/InGameVolume" to="." method="_on_InGameVolume_value_changed"]
 [connection signal="pressed" from="InGameMenu/InGameResume" to="." method="_on_InGameResume_pressed"]

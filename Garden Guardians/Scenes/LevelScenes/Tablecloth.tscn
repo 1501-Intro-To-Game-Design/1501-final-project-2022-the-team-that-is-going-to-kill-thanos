@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Map2.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/EnemyScenes/Path22.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/LevelScenes/Tablecloth.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/TowerScenes/Plate.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Sprites/UI Sprites/RedScreen.png" type="Texture" id=8]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -37,7 +38,7 @@ position = Vector2( 695, 450 )
 position = Vector2( 1369, 316 )
 
 [node name="Plate2" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1446, 754 )
+position = Vector2( 1442, 768 )
 
 [node name="Plate3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 1685, 311 )
@@ -49,7 +50,7 @@ position = Vector2( 1412, 522 )
 position = Vector2( 1050, 248 )
 
 [node name="Plate6" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1070, 682 )
+position = Vector2( 1070, 780 )
 
 [node name="Plate7" parent="." instance=ExtResource( 7 )]
 position = Vector2( 710, 312 )
@@ -67,7 +68,7 @@ position = Vector2( 474, 588 )
 position = Vector2( 264, 256 )
 
 [node name="Plate12" parent="." instance=ExtResource( 7 )]
-position = Vector2( 1059, 478 )
+position = Vector2( 1057, 516 )
 
 [node name="Node2D" type="Node2D" parent="."]
 z_index = -5
@@ -84,14 +85,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="Sprite" parent="."]
 visible = false
 material = SubResource( 2 )
-margin_right = 1920.0
-margin_bottom = 1078.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+position = Vector2( 960, 540 )
+texture = ExtResource( 8 )
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 4 )]
 importPathSceneArray = [ ExtResource( 3 ), ExtResource( 5 ) ]

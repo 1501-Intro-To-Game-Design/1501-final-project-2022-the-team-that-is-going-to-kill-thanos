@@ -6,6 +6,7 @@ export(Array, PackedScene) var enemyScene1
 export(Array, PackedScene) var enemyScene2
 export(Array, PackedScene) var enemyScene3
 export(Array, PackedScene) var enemyScene4
+export(Array, PackedScene) var enemyScene5
 var enemyPathManager = []
 export var difficulty_multiplier = 1.0
 var rng = RandomNumberGenerator.new()
@@ -25,6 +26,7 @@ var wave_hardness_multiplier = 1
 var thresh1 = 0.8
 var thresh2 = 0.8
 var thresh3 = 0.9
+var thresh4 = 0.8
 var deincroment = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -35,7 +37,6 @@ func _ready():
 	$"/root/ui".connect("restart", self, "reset_state")
 
 func reset_state():
-	print("yo")
 	enemys.clear()
 	enemystoKill = 0
 	dps.clear()
@@ -46,6 +47,7 @@ func reset_state():
 	thresh1 = 0.8
 	thresh2 = 0.8
 	thresh3 = 0.9
+	thresh4 = 0.8
 	wave = 0
 	wave_hardness_multiplier = 1
 
@@ -75,31 +77,39 @@ func start_wave():
 	#Threshhold movers
 	if wave == 5:
 		thresh1 -= 0.1
+		thresh4 -= .05
 	elif wave == 8:
 		thresh1 -= 0.15
+		thresh4 -= .15
 	elif wave == 11:
 		thresh1 -= 0.1
 		thresh2 -= 0.1
+		thresh4 -= .15
 	elif wave == 15:
 		 #dp = 160 || .02 = .3
 		thresh1 -= 0.15
 		thresh2 -= 0.1
 		thresh3 -= 0.1
+		thresh4 -= .15
 	elif wave == 20:
 		thresh1 -= 0.15
 		thresh2 -= 0.1
+		thresh4 -= .1
 	elif wave == 25:
 		thresh1 -= 0.1
 		thresh2 -= 0.15
 		thresh3 -= 0.1
+		thresh4 -= .1
 	
 	enemystoKill = 0
 	dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * difficulty_multiplier, 1.0)) # = (wave*7) -1
 	#5, 7, 10, 14, 19, 25, 31, 38, 46, 55
-	print(dP)
 	if wave > 3:
 		dP += 3
+	print("DP: ", dP)
 	budget = dP
+	#5, 7, 10, 18
+	#6, 9, 12, 21
 	$"/root/ui".updateRound(wave)
 	rng.randomize()
 	var value
@@ -131,6 +141,13 @@ func start_wave():
 			dps.append(4)
 			dP -= (4)
 			enemys.append(enemyScene2[value])
+			enemystoKill += 1
+		elif budget * thresh4 <= dP and wave > 1:	
+			value = rng.randi_range(0,enemyScene5.size()-1)
+			temp = enemyScene5[value].instance()
+			dps.append(2)
+			dP -= (2)
+			enemys.append(enemyScene5[value])
 			enemystoKill += 1
 		else:
 			value = rng.randi_range(0,enemyScene1.size()-1)
@@ -238,7 +255,7 @@ func updateEnemyLocation(delta):
 func get_offset(enemy_node):
 	for i in enemyPathManager:
 		if i[0] == enemy_node:
-			return i[1].get_offset()
+			return i[1].get_unit_offset()
 
 func set_offset(enemy_node, offset):
 	for i in enemyPathManager:
