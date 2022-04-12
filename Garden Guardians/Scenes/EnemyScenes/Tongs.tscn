@@ -3,12 +3,12 @@
 [ext_resource path="res://Sounds/Burbs/Foley/ChopStickAttack_sound2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/ChopStickAttack_sound1.wav" type="AudioStream" id=2]
 [ext_resource path="res://Sounds/Burbs/Foley/ChopStickAttack_sound3.wav" type="AudioStream" id=3]
-[ext_resource path="res://Scenes/EnemyScenes/Toothpick.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sprites/Enemy Sprites/tongs.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Animations/Chopsticks/Attack.tres" type="Animation" id=6]
-[ext_resource path="res://Sprites/Enemy Sprites/Chopsticks/chopsticks.png" type="Texture" id=7]
+[ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Animations/Chopsticks/Move.tres" type="Animation" id=8]
-[ext_resource path="res://Scenes/PFX/WoodChips.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/EnemyScenes/MetalToothpick.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 114, 280 )
@@ -44,22 +44,22 @@ tracks/1/keys = {
 }
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 5 )]
-scale = Vector2( 0.25, 0.25 )
-hit_pfx = ExtResource( 9 )
-pfx_amount = 12
+scale = Vector2( 0.2, 0.2 )
+hit_pfx = ExtResource( 7 )
+pfx_amount = 9
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 11.0
-damage = 1.5
+max_health = 4.0
+damage = 0.75
 attackSpeed = 0.5
 sounds = [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ]
 max_speed = 55
 spawns_on_death = true
-death_spawn_scene = ExtResource( 4 )
-num_spawn_on_death = 6
+death_spawn_scene = ExtResource( 9 )
+num_spawn_on_death = 2
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( -20, 12 )
-texture = ExtResource( 7 )
+texture = ExtResource( 4 )
 offset = Vector2( -35.5556, 35.5556 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
@@ -77,13 +77,13 @@ anims/Move = ExtResource( 8 )
 anims/RESET = SubResource( 4 )
 
 [node name="Health" parent="." index="11"]
-margin_left = -96.0
+margin_left = -91.0
 margin_top = -316.0
-margin_right = 100.0
+margin_right = 95.0
 margin_bottom = -293.0
 
 [node name="ColorRect" parent="Health/Node2D" index="0"]
-margin_left = -3.0
-margin_top = -3.0
-margin_right = 200.0
+margin_left = -4.0
+margin_top = -4.0
+margin_right = 191.0
 margin_bottom = 27.0

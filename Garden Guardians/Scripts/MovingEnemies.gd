@@ -148,15 +148,15 @@ func start_wave():
 		elif budget *thresh2 <= dP and wave > 2:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
-			dps.append(4)
-			dP -= (4)
+			dps.append(5)
+			dP -= (5)
 			enemys.append(enemyScene2[value])
 			enemystoKill += 1
 		elif budget * thresh1 <= dP and wave > 1 and enemyScene5.size() > 0:	
 			value = rng.randi_range(0,enemyScene5.size()-1)
 			temp = enemyScene5[value].instance()
-			dps.append(2)
-			dP -= (2)
+			dps.append(3)
+			dP -= (3)
 			enemys.append(enemyScene5[value])
 			enemystoKill += 1
 		else:

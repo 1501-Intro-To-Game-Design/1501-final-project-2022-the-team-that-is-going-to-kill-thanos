@@ -5,6 +5,7 @@ var player_in_range = false
 var target_types = ["closest", "farthest", "lowest", "highest", "closest_end", "closest_start"]
 var target_index = 4
 var in_area = false
+var combining_tower = null
 export (PackedScene) var x_scene
 export (PackedScene) var vegetable_scene
 export (PackedScene) var fruit_scene
@@ -233,8 +234,12 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off = 0, up
 		var tempM = tower.refundM
 		var towerT = tower_to_make.instance()
 		var tempPos
-		if tower.morsel_tower:
-			tempPos = tower.tower_morsels[0].global_position - tower.morselOffsets[0] - tower.global_position
+		if towerT.morsel_tower:
+			if combining_tower != null:
+				tempPos = combining_tower.tower_morsels[0].global_position - combining_tower.morselOffsets[0] - combining_tower.global_position
+				combining_tower = null
+			else:
+				tempPos = tower.tower_morsels[0].global_position - tower.morselOffsets[0] - tower.global_position
 		tower.queue_free()
 		tower = towerT
 		tower.refundW = tempW + (0.4 * wood_cost)
@@ -647,7 +652,8 @@ func _on_BigArea_mouse_exited():
 			#if tower != null and !moveMode:
 				#tower.show_range(false)
 
-func make_rib_plate():
+func make_rib_plate(new_tower):
+	combining_tower = new_tower
 	$PUpgradeMenu.show()
 	current_menu = $PUpgradeMenu/Backribs
 
@@ -852,9 +858,9 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and moveMode and event.is_action_released("Mouse"):
 			if tower.inRange:
-				tower.posOffset = event.position - tower.position + Vector2(0,60)
+				tower.posOffset = event.global_position - tower.global_position + Vector2(0,60)
 				for m in tower.tower_morsels:
-					m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
+					m._go_To(event.global_position + tower.morselOffsets[counter] + Vector2(0, 20))
 					counter += 1
 			else:
 				ui.failedAction()

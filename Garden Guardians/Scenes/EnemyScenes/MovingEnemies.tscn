@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/MovingEnemies.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/EnemyScenes/Toothpick.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Scenes/EnemyScenes/Chopstick.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/EnemyScenes/ChefsKnife.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/EnemyScenes/SteakKnife.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/EnemyScenes/WoodSpork.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/EnemyScenes/Tongs.tscn" type="PackedScene" id=13]
 
 [node name="MovingEnemies" type="Node2D"]
 script = ExtResource( 1 )
@@ -18,6 +20,7 @@ enemyScene1 = [ ExtResource( 2 ), ExtResource( 4 ) ]
 enemyScene2 = [ ExtResource( 3 ), ExtResource( 7 ), ExtResource( 6 ), ExtResource( 9 ) ]
 enemyScene3 = [ ExtResource( 5 ), ExtResource( 8 ), ExtResource( 11 ) ]
 enemyScene4 = [ ExtResource( 10 ) ]
+enemyScene5 = [ ExtResource( 13 ), ExtResource( 12 ) ]
 
 [node name="EnemySpawn" type="Timer" parent="."]
 one_shot = true

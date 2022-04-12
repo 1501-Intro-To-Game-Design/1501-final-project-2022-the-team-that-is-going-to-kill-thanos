@@ -42,7 +42,7 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Backribs"):
 					new_tower = tomato_backribs
-					towers[0].plate.make_rib_plate()
+					towers[0].plate.make_rib_plate(towers[0])
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
 					return true
@@ -71,7 +71,7 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Backribs"):
 					new_tower = ribtato_tower #CHANGE THIS
-					towers[0].plate.make_rib_plate()
+					towers[0].plate.make_rib_plate(towers[0])
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
 					return true
@@ -88,25 +88,25 @@ func on_drag_end():
 			elif tower_to_combine.is_in_group("Backribs"):
 				if towers[0].is_in_group("Tomato"):
 					new_tower = tomato_backribs
-					towers[0].plate.make_rib_plate()
+					towers[0].plate.make_rib_plate(tower_to_combine)
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Potato"):
 					new_tower = ribtato_tower
-					towers[0].plate.make_rib_plate()
+					towers[0].plate.make_rib_plate(tower_to_combine)
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Spaghetti"):
 					new_tower = rib_spaghetti
-					towers[0].plate.make_rib_plate()
+					towers[0].plate.make_rib_plate(tower_to_combine)
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Parmesan"):
 					new_tower = cheese_ribs
-					towers[0].plate.make_rib_plate()
+					towers[0].plate.make_rib_plate(tower_to_combine)
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
 					return true
@@ -130,7 +130,7 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Backribs"):
 					new_tower = rib_spaghetti
-					towers[0].plate.make_rib_plate()
+					towers[0].plate.make_rib_plate(towers[0])
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
 					return true
@@ -147,7 +147,7 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Backribs"):
 					new_tower = cheese_ribs
-					towers[0].plate.make_rib_plate()
+					towers[0].plate.make_rib_plate(towers[0])
 					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
 					towers[0].queue_free()
 					return true

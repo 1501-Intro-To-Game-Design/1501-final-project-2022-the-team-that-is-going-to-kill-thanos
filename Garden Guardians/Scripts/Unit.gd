@@ -429,9 +429,6 @@ func change_health(change, direct = false, pierce = false):
 		if(spawns_on_death):
 			for i in range (num_spawn_on_death):
 				var enemy_instance = death_spawn_scene.instance()
-				enemy_instance.spawned_num_wood = 0
-				enemy_instance.spawned_num_metal = 0
-				enemy_instance.get_node("Sprite").self_modulate = Color(.4, .3, .29)
 				get_parent().add_enemy_to_path(self, enemy_instance)
 				#get_parent().add_to_offset(enemy_instance, -15 + (i*20))
 				get_parent().enemystoKill += 1
