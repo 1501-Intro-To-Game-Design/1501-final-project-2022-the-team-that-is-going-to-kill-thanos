@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/Ratatouille.png" type="Texture" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 200.0
+radius = 225.0
 
 [node name="Tower2" instance=ExtResource( 1 )]
 attack_cooldown = 4.0

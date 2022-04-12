@@ -4,7 +4,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/WheatField.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 50.0
+radius = 60.0
 
 [node name="Area2D" instance=ExtResource( 1 )]
 z_index = -3
@@ -13,7 +13,7 @@ z_index = -3
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="4"]
-position = Vector2( 6, -9 )
+position = Vector2( 8.10224, -12.5738 )
 rotation = 0.261799
-scale = Vector2( 0.230609, 0.292982 )
+scale = Vector2( 0.284084, 0.333914 )
 texture = ExtResource( 2 )

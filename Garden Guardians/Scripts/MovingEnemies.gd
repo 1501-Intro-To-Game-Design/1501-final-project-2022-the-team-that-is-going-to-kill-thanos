@@ -55,7 +55,7 @@ func reset_state():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	updateEnemyLocation(delta)
-	if enemys.size() <= 0 and inProgres and enemystoKill == 0:
+	if enemys.size() <= 0 and inProgres and enemystoKill <= 3:
 		dps.clear() #jsut in case theres 1 left
 		inProgres = false
 		$EnemySpawn.stop()

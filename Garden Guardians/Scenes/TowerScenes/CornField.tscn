@@ -4,7 +4,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/FlourField.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 70.0
+radius = 80.0
 
 [node name="Node2D" instance=ExtResource( 1 )]
 z_index = 9
@@ -13,6 +13,6 @@ z_index = 9
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="4"]
-position = Vector2( -7, 25 )
-scale = Vector2( 0.37248, 0.510615 )
+position = Vector2( -8.49999, 30.5 )
+scale = Vector2( 0.416016, 0.556641 )
 texture = ExtResource( 2 )

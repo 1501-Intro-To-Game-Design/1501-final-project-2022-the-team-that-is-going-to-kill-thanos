@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/ribscheese.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 170.0
+radius = 195.0
 
 [node name="Tower2" groups=["Parmesan"] instance=ExtResource( 1 )]
 position = Vector2( 0, -29 )
