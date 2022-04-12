@@ -289,6 +289,7 @@ func setTarget(body):
 		if body.inCombat:
 			if body.target == self:
 				inCombat = true
+				$Bruh.start()
 				if not body in targets:
 					targets.append(body)
 					if targets.size() == 1:
@@ -298,6 +299,7 @@ func setTarget(body):
 				#$Attack.start()
 		else:
 			inCombat = true
+			$Bruh.start()
 			targets.append(body)
 			if targets.size() == 1:
 				hasBeenHit = false
@@ -348,4 +350,7 @@ func _on_RegenWait_timeout():
 
 
 func _on_Bruh_timeout():
-	pass # Replace with function body.
+	print("worked")
+	hasBeenHit = true
+	inCombat = false
+	speed = 20 * util.g_speed
