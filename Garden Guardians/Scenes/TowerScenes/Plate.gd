@@ -236,10 +236,10 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off = 0, up
 		var tempPos
 		if towerT.morsel_tower:
 			if combining_tower != null:
-				tempPos = combining_tower.tower_morsels[0].global_position - combining_tower.morselOffsets[0].global_position - combining_tower.global_position
+				tempPos = combining_tower.tower_morsels[0].global_position - combining_tower.morselOffsets[0] - combining_tower.global_position
 				combining_tower = null
 			else:
-				tempPos = tower.tower_morsels[0].global_position - tower.morselOffsets[0].global_position - tower.global_position
+				tempPos = tower.tower_morsels[0].global_position - tower.morselOffsets[0] - tower.global_position
 		tower.queue_free()
 		tower = towerT
 		tower.refundW = tempW + (0.4 * wood_cost)
