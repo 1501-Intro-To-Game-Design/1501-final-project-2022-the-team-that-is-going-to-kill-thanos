@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/EffectField.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Sprites/Tower Sprites/MacNCheeseField.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -12,5 +13,11 @@ shape = SubResource( 1 )
 [node name="RampTimer" type="Timer" parent="." index="4"]
 wait_time = 0.1
 autostart = true
+
+[node name="Sprite" type="Sprite" parent="." index="5"]
+position = Vector2( 7, 0 )
+rotation = 1.5708
+scale = Vector2( 0.06, 0.08 )
+texture = ExtResource( 2 )
 
 [connection signal="timeout" from="RampTimer" to="." method="_on_RampTimer_timeout"]
