@@ -82,26 +82,26 @@ func start_wave():
 	#4 = 0.6
 	if wave == 4: 
 		thresh1 -= 0.2 #0.6
-		thresh2 -= 0.05 #0.75
 	elif wave == 6:
 		thresh1 -= 0.1 #0.5
-		thresh2 -= 0.05 #0.7
 	elif wave == 8:
 		thresh1 -= 0.15 #0.35
-		thresh2 -= 0.15 #0.55
+		thresh2 -= 0.1 #0.7
 	elif wave == 11:
 		thresh1 -= 0.1 #0.25
-		thresh2 -= 0.15 #0.4
+		thresh2 -= 0.1 #0.6
 		thresh3 -= 0.15 #0.75
 	elif wave == 15:
 		 #dp = 160 || .02 = .3
 		thresh1 -= 0.15 #0.1
-		thresh2 -= 0.15 #0.25
+		thresh2 -= 0.15 #0.45
 		thresh3 -= 0.1 #0.65
 		thresh4 -= 0.1 #0.8
+	elif wave == 18:
+		thresh2 -= 0.15 #0.3	
 	elif wave == 20:
 		thresh1 -= 0.08 #0.02 
-		thresh2 -= 0.1 #0.15
+		thresh2 -= 0.15 #0.15
 		thresh3 -= 0.1 #0.55
 	elif wave == 25:
 		thresh2 -= 0.07 #0.08
@@ -114,8 +114,6 @@ func start_wave():
 	enemystoKill = 0
 	dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * difficulty_multiplier, 1.0)) # = (wave*7) -1
 	#5, 7, 10, 14, 19, 25, 31, 38, 46, 55
-	if wave > 3:
-		dP += 3
 	print("DP: ", dP)
 	budget = dP
 	#5, 7, 10, 18
@@ -161,7 +159,8 @@ func start_wave():
 			enemystoKill += 1
 		else:
 			value = 0
-			var rand_number = rng.randi_range(0, 6)
+			rng.randomize()
+			var rand_number = rng.randi_range(0, 7)
 			if rand_number == 1 and dP >= 2:
 				value = 1
 				dps.append(2)
