@@ -11,6 +11,7 @@ export (Resource) var lostLife
 export (Resource) var backgroundTrack
 export (Resource) var actionFailed
 signal restart
+var name_of_root_global
 var map_name = ""
 var wood = -1
 var metal = -1
@@ -28,8 +29,8 @@ signal nextRoundGo
 
 func _ready():
 	playerLives = 25
-	wood = 999 #16
-	metal = 999 #6
+	wood = 16 #16
+	metal = 6 #6
 	update()
 	$Lives.text = String(playerLives)
 	$RestartButton.visible = false
@@ -37,10 +38,16 @@ func _ready():
 
 func connect_stuff(name_of_root):
 	get_parent().get_node(name_of_root + "/MovingEnemies").connect("player_life_lost", self, "_on_player_life_lost")
+	name_of_root_global = name_of_root
 	if name_of_root == "Tablecloth":
 		$NextButton.global_position = $TableclothNode.global_position
+		$NextButton2.visible = false
 	elif name_of_root == "Level":
 		$NextButton.global_position = $FarmNode.global_position
+		$NextButton2.visible = false
+	elif name_of_root == "Kitchen":
+		$NextButton.global_position = $KitchenNode.global_position
+		$NextButton2.global_position = $KitchenNode2.global_position
 
 func add_wood():
 	wood += 1
@@ -87,11 +94,14 @@ func _input(event):
 
 func waveInProgress():
 	$NextButton.visible = false
+	$NextButton2.visible = false
 
 func waveEnd():
 	if not tutorialLevel:
 		$NextButton.visible = true
-	_load_n_play(roundWin,10)
+	if name_of_root_global == "Kitchen":
+		$NextButton2.visible = true
+	_load_n_play(roundWin,7)
 
 func updateRound(roundNum):
 	$Round.text = String(roundNum)	

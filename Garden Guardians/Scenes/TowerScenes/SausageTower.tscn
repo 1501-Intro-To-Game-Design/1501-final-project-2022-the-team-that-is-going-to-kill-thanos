@@ -10,7 +10,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/Sausage_Tower.png" type="Texture" id=8]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 200.0
+radius = 275.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 51.5, 23.5 )

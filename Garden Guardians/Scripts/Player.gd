@@ -30,6 +30,7 @@ export (Array, Resource) var movingSounds
 export (Resource) var dieSound
 export (Resource) var aliveSound
 var rng = RandomNumberGenerator.new()
+var targets_to_remove = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -53,6 +54,20 @@ func _process(delta):
 				if targets[0].target != self:
 					targets.clear()
 					speed = 20 * util.g_speed
+	if targets.size() > 0: 
+		for target in targets:
+			if is_instance_valid(target):
+				if target.target != self:
+					targets_to_remove.append(target)
+	if targets_to_remove.size() > 0:
+		for target in targets_to_remove:
+			targets.remove(targets.find(target))
+		if targets.size() == 0:
+			targets.clear()
+			print("combat end")
+			on_combat_end()
+		targets_to_remove.clear()
+
 	if alive:
 		checkInCombat()
 		if moving:
