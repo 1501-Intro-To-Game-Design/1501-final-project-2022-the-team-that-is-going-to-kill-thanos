@@ -71,9 +71,9 @@ __meta__ = {
 
 [node name="Volume" type="HSlider" parent="Main"]
 margin_left = 460.0
-margin_top = 760.0
+margin_top = 700.0
 margin_right = 1460.0
-margin_bottom = 1272.0
+margin_bottom = 1212.0
 custom_icons/grabber_highlight = ExtResource( 8 )
 custom_icons/grabber = ExtResource( 8 )
 min_value = -300.0
@@ -185,18 +185,14 @@ __meta__ = {
 [node name="InGameMenu" type="Node2D" parent="."]
 visible = false
 
-[node name="Shade2" type="Polygon2D" parent="InGameMenu"]
-visible = false
-polygon = PoolVector2Array( 428, 1021, 1435, 1021, 1434, 1000, 751, 999, 750, 774, 1105, 774, 1105, 681, 750, 680, 750, 572, 1050, 572, 1124, 572, 1124, 468, 720, 468, 720, 403, 1124, 403, 1124, 299, 720, 298, 720, 572, 750, 572, 751, 999, 428, 999, 428, 1174, -235, 1174, -230, 131, -232, -57, 720, -51, 1967, -53, 1960, 1172, 428, 1174 )
-
 [node name="Shade" type="Polygon2D" parent="InGameMenu"]
 polygon = PoolVector2Array( -50, -85, 2058, -82, 2019, 1128, -130, 1143 )
 
 [node name="InGameVolume" type="HSlider" parent="InGameMenu"]
 margin_left = 460.0
-margin_top = 760.0
+margin_top = 870.0
 margin_right = 1460.0
-margin_bottom = 960.0
+margin_bottom = 1070.0
 custom_icons/grabber_highlight = ExtResource( 8 )
 custom_icons/grabber = ExtResource( 8 )
 min_value = -300.0
