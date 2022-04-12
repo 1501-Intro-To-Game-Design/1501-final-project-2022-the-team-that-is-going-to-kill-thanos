@@ -278,10 +278,11 @@ func _on_CombatRange_body_entered(body):
 func checkType(body):
 	if(is_instance_valid(body)):
 		if ("Enemies" in body.get_groups()):
-			setTarget(body)
-			speed = 0
-			destination = Vector2.ZERO
-			direction = Vector2.ZERO
+			if(not body.inCombat):
+				setTarget(body)
+				speed = 0
+				destination = Vector2.ZERO
+				direction = Vector2.ZERO
 
 func setTarget(body):
 	if alive:
