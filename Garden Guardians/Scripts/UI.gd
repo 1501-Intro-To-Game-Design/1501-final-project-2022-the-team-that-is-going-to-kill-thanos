@@ -84,7 +84,7 @@ func waveEnd():
 	$NextButton.visible = true
 	if name_of_root_global == "Kitchen":
 		$NextButton2.visible = true
-	_load_n_play(roundWin,10)
+	_load_n_play(roundWin,7)
 
 func updateRound(roundNum):
 	$Round.text = String(roundNum)	
