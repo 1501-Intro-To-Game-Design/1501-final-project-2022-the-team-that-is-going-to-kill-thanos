@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/TowerScenes/ParmesanProjectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Morsels/CheeseRibs.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sounds/Burbs/Goofy/DairyShot.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/Tower Sprites/ribscheese.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 170.0
 
 [node name="Tower2" groups=["Parmesan"] instance=ExtResource( 1 )]
+position = Vector2( 0, -29 )
 attack_cooldown = 0.07
 spawn_cooldown = 8.0
 damageRampUp = 700.0
@@ -23,4 +25,9 @@ sounds = [ ExtResource( 4 ) ]
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-self_modulate = Color( 0.92549, 0.964706, 0.270588, 1 )
+position = Vector2( -9, -12 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 5 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( -14, 18 )

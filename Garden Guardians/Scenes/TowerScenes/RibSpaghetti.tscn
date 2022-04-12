@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/TowerScenes/SpaghettiProjectile.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Morsels/SpaghettiRibs.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sounds/Burbs/Goofy/GrainTrap.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/Tower Sprites/ribspaghetti.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 225.0
 
 [node name="Tower" groups=["Spaghetti"] instance=ExtResource( 1 )]
+position = Vector2( 0, -19 )
 attack_cooldown = 8.0
 spawn_cooldown = 8.0
 duration = 10
@@ -24,4 +26,9 @@ sounds = [ ExtResource( 4 ) ]
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-self_modulate = Color( 0.6, 0.580392, 0.0235294, 1 )
+position = Vector2( 0, -36 )
+scale = Vector2( 0.375, 0.375 )
+texture = ExtResource( 5 )
+
+[node name="ShootPoint" parent="." index="4"]
+position = Vector2( 0, -2 )
