@@ -9,11 +9,11 @@
 radius = 225.0
 
 [node name="Tower2" groups=["Marinara"] instance=ExtResource( 1 )]
-attack_cooldown = 10.0
+attack_cooldown = 8.0
 has_alt_attack = true
 duration = 10
-slowEffect = 0.5
-allyBuff = 0.1
+slowEffect = 0.6
+allyBuff = 0.25
 attacking_tower = true
 projectileScene = ExtResource( 2 )
 altProjectileScene = ExtResource( 3 )

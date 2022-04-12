@@ -59,13 +59,17 @@ func _process(delta):
 			if is_instance_valid(target):
 				if target.target != self:
 					targets_to_remove.append(target)
+					inCombat = false
+					hasBeenHit = true
 	if targets_to_remove.size() > 0:
 		for target in targets_to_remove:
-			targets.remove(targets.find(target))
+			targets.remove(targets.find(target))	
 		if targets.size() == 0:
 			targets.clear()
 			print("combat end")
 			on_combat_end()
+			inCombat = false
+			hasBeenHit = true
 		targets_to_remove.clear()
 
 	if alive:

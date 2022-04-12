@@ -14,9 +14,10 @@ height = 70.0
 
 [node name="Tower" instance=ExtResource( 1 )]
 position = Vector2( 0, -26 )
-attack_cooldown = 14.0
+attack_cooldown = 12.0
 duration = 10
 slowEffect = 0.3
+allyBuff = 0.15
 DOTDamage = 0.075
 attacking_tower = true
 projectileScene = ExtResource( 2 )

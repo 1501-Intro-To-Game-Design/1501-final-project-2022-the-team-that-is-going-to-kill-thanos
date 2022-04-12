@@ -14,7 +14,7 @@ extents = Vector2( 54.5, 39 )
 [node name="MacNCheeseTower" instance=ExtResource( 1 )]
 attack_cooldown = 0.063
 damageRampUp = 160.0
-slowEffect = 0.1
+slowEffect = 0.15
 slowAura = true
 slowAuraCap = 0.65
 slowAuraRampSpeed = 0.003
