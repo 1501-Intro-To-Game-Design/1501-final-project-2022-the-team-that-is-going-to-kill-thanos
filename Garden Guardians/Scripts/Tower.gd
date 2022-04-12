@@ -236,10 +236,12 @@ func _process(_delta):
 			var num_shots = 0
 			for i in range(targeted_enemies.size()):
 				if is_instance_valid(targeted_enemies[i]):
-					if not currentSingleTarget == targeted_enemies[i]:
+					if ramping_tower and is_instance_valid(currentSingleTarget) and targeted_enemies.has(currentSingleTarget):
+						attack(currentSingleTarget, 1)
+					elif not currentSingleTarget == targeted_enemies[i]:
 						incrementValue = 0
 						proj_count = 0
-					currentSingleTarget = targeted_enemies[i]
+						currentSingleTarget = targeted_enemies[i]
 					num_shots += 1
 					attack(targeted_enemies[i], num_shots)
 					if slowing_tower:
