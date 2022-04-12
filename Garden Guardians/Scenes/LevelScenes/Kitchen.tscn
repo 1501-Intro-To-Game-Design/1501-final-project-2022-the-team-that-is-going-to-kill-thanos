@@ -38,7 +38,7 @@ position = Vector2( 1715, 410 )
 position = Vector2( 1328, 585 )
 
 [node name="Plate3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 837, 491 )
+position = Vector2( 893, 490 )
 
 [node name="Plate4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 647, 293 )
@@ -53,7 +53,7 @@ position = Vector2( 948, 780 )
 position = Vector2( 1627, 733 )
 
 [node name="Plate8" parent="." instance=ExtResource( 4 )]
-position = Vector2( 578, 836 )
+position = Vector2( 590, 806 )
 
 [node name="Plate9" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1401, 302 )

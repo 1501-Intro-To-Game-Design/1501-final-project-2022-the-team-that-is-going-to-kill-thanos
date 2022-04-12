@@ -74,8 +74,8 @@ shape = SubResource( 2 )
 
 [node name="Shield" parent="." index="9"]
 visible = true
-position = Vector2( 120, -1320 )
-scale = Vector2( 1.5, 1.5 )
+position = Vector2( 107.692, -1338.46 )
+scale = Vector2( 1.7, 1.7 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
 autoplay = "Idle"
