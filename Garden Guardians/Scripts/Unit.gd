@@ -432,7 +432,7 @@ func change_health(change, direct = false, pierce = false):
 				var enemy_instance = death_spawn_scene.instance()
 				get_parent().add_enemy_to_path(self, enemy_instance)
 				#get_parent().add_to_offset(enemy_instance, -15 + (i*20))
-				get_parent().enemystoKill += 1
+			get_parent().enemystoKill += num_spawn_on_death	
 		destroy()
 	if(current_health > max_health):
 		current_health = max_health
