@@ -9,7 +9,7 @@ radius = 23.1948
 [node name="Projectile" instance=ExtResource( 1 )]
 position = Vector2( 0, -28 )
 speed = 130
-damage = 3.4
+damage = 2.75
 
 [node name="Sprite" parent="." index="0"]
 modulate = Color( 1, 1, 1, 1 )

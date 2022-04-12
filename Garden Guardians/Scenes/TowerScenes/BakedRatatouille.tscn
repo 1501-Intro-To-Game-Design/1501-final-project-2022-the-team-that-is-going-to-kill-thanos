@@ -9,7 +9,7 @@
 radius = 225.0
 
 [node name="Tower2" instance=ExtResource( 1 )]
-attack_cooldown = 4.0
+attack_cooldown = 2.5
 attacking_tower = true
 ratatouille_tower = true
 projectileScene = ExtResource( 2 )

@@ -448,7 +448,8 @@ func get_offset():
 	return (get_parent().get_offset(self))
 
 func set_offset(offset):
-	get_parent().set_offset(self, offset)
+	if offset != null:
+		get_parent().set_offset(self, offset)
 
 func hit_effect():
 	var pfx = hit_pfx.instance()

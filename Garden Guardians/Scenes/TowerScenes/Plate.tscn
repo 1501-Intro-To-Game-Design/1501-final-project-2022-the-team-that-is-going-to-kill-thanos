@@ -2932,7 +2932,6 @@ position = Vector2( 193, -121 )
 [connection signal="input_event" from="Target/Area2D" to="." method="_on_Target_input_event"]
 [connection signal="mouse_entered" from="Target/Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Target/Area2D" to="." method="_on_Area2D_mouse_exited"]
-[connection signal="input_event" from="BigArea" to="." method="_on_BigArea_input_event"]
 [connection signal="input_event" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_input_event"]
 [connection signal="mouse_entered" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_entered"]
 [connection signal="mouse_exited" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_exited"]

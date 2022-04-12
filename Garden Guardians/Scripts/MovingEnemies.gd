@@ -99,11 +99,11 @@ func start_wave():
 		thresh4 -= 0.1 #0.8
 	elif wave == 19:
 		thresh2 -= 0.15 #0.3	
-	elif wave == 23:
+	elif wave == 22:
 		thresh1 -= 0.08 #0.02 
 		thresh2 -= 0.15 #0.15
 		thresh3 -= 0.1 #0.55
-	elif wave == 26:
+	elif wave == 25:
 		thresh2 -= 0.07 #0.08
 		thresh3 -= 0.15 #0.4
 		thresh4 -= 0.1 #0.7

@@ -480,11 +480,11 @@ func _on_AbilityCooldown_timeout():
 			for i in enemies:
 				if not posessed:
 					if is_instance_valid(i):
-						if (i.spawned_num_wood + (i.spawned_num_metal * 3)) <= posession_DP_limit:
-							if (i.spawned_num_wood) + (i.spawned_num_metal * 3) > DPcost:
+						if (i.lives_lost) <= posession_DP_limit:
+							if (i.lives_lost) > DPcost:
 								posessedEnemy = i
 								posessed = true
-								DPcost = (i.spawned_num_wood) + (i.spawned_num_metal * 3)
+								DPcost = i.lives_cost
 			if not posessed:
 				$PosessCheck.start()
 			elif posessed:
