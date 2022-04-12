@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites/Enemy Sprites/woodspork.png" type="Texture" id=4]
 [ext_resource path="res://Animations/Spork/Attack.tres" type="Animation" id=5]
 [ext_resource path="res://Animations/Spork/Move.tres" type="Animation" id=6]
-[ext_resource path="res://Scenes/PFX/MetalChips.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/PFX/WoodChips.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scenes/EnemyScenes/WoodSporkProjectile.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]

@@ -95,11 +95,6 @@
 animations = [ {
 "frames": [ ExtResource( 9 ) ],
 "loop": true,
-"name": "Running",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
 "name": "Standing",
 "speed": 5.0
 }, {
@@ -107,6 +102,11 @@ animations = [ {
 "loop": true,
 "name": "Dead",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "Running",
+"speed": 4.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
@@ -215,7 +215,7 @@ __meta__ = {
 [node name="RegenTimer" type="Timer" parent="."]
 
 [node name="RegenWait" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
 [node name="Bruh" type="Timer" parent="."]

@@ -80,34 +80,34 @@ func start_wave():
 	#2 = 0.09
 	#3 = 0.25
 	#4 = 0.6
-	if wave == 4: 
+	if wave == 5: 
 		thresh1 -= 0.2 #0.6
-	elif wave == 6:
+	elif wave == 7:
 		thresh1 -= 0.1 #0.5
-	elif wave == 8:
+	elif wave == 10:
 		thresh1 -= 0.15 #0.35
 		thresh2 -= 0.1 #0.7
-	elif wave == 11:
+	elif wave == 13:
 		thresh1 -= 0.1 #0.25
 		thresh2 -= 0.1 #0.6
 		thresh3 -= 0.15 #0.75
-	elif wave == 15:
+	elif wave == 16:
 		 #dp = 160 || .02 = .3
 		thresh1 -= 0.15 #0.1
 		thresh2 -= 0.15 #0.45
 		thresh3 -= 0.1 #0.65
 		thresh4 -= 0.1 #0.8
-	elif wave == 18:
+	elif wave == 19:
 		thresh2 -= 0.15 #0.3	
-	elif wave == 20:
+	elif wave == 23:
 		thresh1 -= 0.08 #0.02 
 		thresh2 -= 0.15 #0.15
 		thresh3 -= 0.1 #0.55
-	elif wave == 25:
+	elif wave == 26:
 		thresh2 -= 0.07 #0.08
 		thresh3 -= 0.15 #0.4
 		thresh4 -= 0.1 #0.7
-	elif wave == 28:
+	elif wave == 29:
 		thresh3 -= 0.1 #0.3
 		thresh4 -= .07 #0.63
 	
@@ -128,28 +128,28 @@ func start_wave():
 		else:
 			bossFight = false
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist	
-		if budget *thresh4 <= dP and wave >= 10 and bossFight:
+		if budget *thresh4 <= dP and wave >= 13 and bossFight:
 			value = rng.randi_range(0,enemyScene4.size()-1)
 			temp = enemyScene4[value].instance()
 			dps.append(50)
 			dP -= (50)
 			enemys.append(enemyScene4[value])
 			enemystoKill += 1
-		elif budget *thresh3 <= dP and wave > 6:
+		elif budget *thresh3 <= dP and wave > 8:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
 			dps.append(18)
 			dP -= (18)
 			enemystoKill += 1
 			enemys.append(enemyScene3[value])
-		elif budget *thresh2 <= dP and wave > 3:	
+		elif budget *thresh2 <= dP and wave > 4:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
 			dps.append(9)
 			dP -= (9)
 			enemys.append(enemyScene2[value])
 			enemystoKill += 1
-		elif budget * thresh1 <= dP and wave > 1 and enemyScene5.size() > 0:	
+		elif budget * thresh1 <= dP and wave > 2 and enemyScene5.size() > 0:	
 			value = rng.randi_range(0,enemyScene5.size()-1)
 			temp = enemyScene5[value].instance()
 			dps.append(4)

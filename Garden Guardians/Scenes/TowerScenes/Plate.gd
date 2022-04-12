@@ -122,6 +122,9 @@ func _ready():
 func _process(delta):
 	var mouse_pos = get_global_mouse_position()
 	if mouse_pos.x < $TopLeft.global_position.x or mouse_pos.x > $TopRight.global_position.x or mouse_pos.y > $BotLeft.global_position.y or mouse_pos.y < $TopLeft.global_position.y:
+		for x in spawned_x:
+			if is_instance_valid(x):
+				x.queue_free()
 		if current_menu != null:
 			current_menu.hide()
 			$Sprite.texture = normal_plate
