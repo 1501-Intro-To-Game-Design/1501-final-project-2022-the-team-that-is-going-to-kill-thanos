@@ -118,8 +118,16 @@ func _ready():
 	$Text/ButterSE/NinePatchRect/WoodCost.text = String(dairyW[6])
 	$Text/ButterSE/NinePatchRect/MetalCost.text = String(dairyM[6])
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	var mouse_pos = get_global_mouse_position()
+	if mouse_pos.x < $TopLeft.global_position.x or mouse_pos.x > $TopRight.global_position.x or mouse_pos.y > $BotLeft.global_position.y or mouse_pos.y < $TopLeft.global_position.y:
+		if current_menu != null:
+			current_menu.hide()
+			$Sprite.texture = normal_plate
+			$Target.hide()
+			$Delete.hide()
+			if tower != null and !moveMode:
+				tower.show_range(false)
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
@@ -389,8 +397,8 @@ func _on_VAreaACD_input_event(viewport, event, shape_idx):
 				$Target.hide()
 				$Delete.hide()
 				tower.show_range(false)
-				tower.attack_cooldown -= 0.5
-				if tower.attack_cooldown < 3.1:
+				tower.attack_cooldown -= (0.5/util.g_speed)
+				if tower.attack_cooldown < (3.1/util.g_speed):
 					$VUpgradeMenu/Carrot/VAreaACD.hide()
 					$VUpgradeMenu/Carrot/OptionACD.hide() #could also change this to change sprite
 			else:
@@ -625,18 +633,19 @@ func _on_VAreaAOE_mouse_exited():
 	$Text/CherryAOE.hide()
 
 func _on_BigArea_mouse_exited():
-	if not(in_area):
-		if spawned_x.size() > 0:
-			for x in spawned_x:
-				x.queue_free()
-			spawned_x.clear()
-		if current_menu != null:
-			current_menu.hide()
-			$Sprite.texture = normal_plate
-			$Target.hide()
-			$Delete.hide()
-			if tower != null and !moveMode:
-				tower.show_range(false)
+	pass
+	#if not(in_area):
+		#if spawned_x.size() > 0:
+			#for x in spawned_x:
+				#x.queue_free()
+			#spawned_x.clear()
+		#if current_menu != null:
+			#current_menu.hide()
+			#$Sprite.texture = normal_plate
+			#$Target.hide()
+			#$Delete.hide()
+			#if tower != null and !moveMode:
+				#tower.show_range(false)
 
 func make_rib_plate():
 	$PUpgradeMenu.show()

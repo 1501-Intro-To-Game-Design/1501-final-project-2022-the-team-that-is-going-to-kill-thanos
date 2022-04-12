@@ -48,7 +48,7 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Spaghetti"):
 					new_tower = marinara_spaghetti
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -20, false)
 					towers[0].queue_free()
 					if $"/root/ui".tutorialLevel:
 						get_parent().get_node("MergeTutorial").hide()
@@ -60,7 +60,7 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Parmesan"):
 					new_tower = baked_ratatouille
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -34, false)
 					towers[0].queue_free()
 					return true
 			elif tower_to_combine.is_in_group("Potato"):
@@ -77,12 +77,12 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Spaghetti"):
 					new_tower = gnocchi
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -20, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Parmesan"):
 					new_tower = loaded_potato
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -22, false)
 					towers[0].queue_free()
 					return true
 			elif tower_to_combine.is_in_group("Backribs"):
@@ -113,7 +113,7 @@ func on_drag_end():
 			elif tower_to_combine.is_in_group("Spaghetti"):
 				if towers[0].is_in_group("Tomato"):
 					new_tower = marinara_spaghetti
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -20, false)
 					towers[0].queue_free()
 					if $"/root/ui".tutorialLevel:
 						get_parent().get_node("MergeTutorial").hide()
@@ -125,7 +125,7 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Potato"):
 					new_tower = gnocchi
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -20, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Backribs"):
@@ -136,13 +136,13 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Parmesan"):
 					new_tower = mac_n_cheese
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -20, false)
 					towers[0].queue_free()
 					return true
 			elif tower_to_combine.is_in_group("Parmesan"):
 				if towers[0].is_in_group("Tomato"):
 					new_tower = baked_ratatouille
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -34, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Backribs"):
@@ -153,12 +153,12 @@ func on_drag_end():
 					return true
 				elif towers[0].is_in_group("Potato"):
 					new_tower = loaded_potato
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -22, false)
 					towers[0].queue_free()
 					return true
 				elif towers[0].is_in_group("Spaghetti"):
 					new_tower = mac_n_cheese
-					towers[0].plate.simple_make_tower(new_tower, 0, 0, 0, false)
+					towers[0].plate.simple_make_tower(new_tower, 0, 0, -20, false)
 					towers[0].queue_free()
 					return true
 	return false

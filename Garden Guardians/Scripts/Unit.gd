@@ -111,8 +111,9 @@ func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if stunned:
-		var size = $Sprite.texture.get_size()
-		stun_pfx_ins.global_position = global_position + Vector2(0, -.5 * (size.y/2))
+		#var size = $Sprite.texture.get_size()
+		#stun_pfx_ins.global_position = global_position + Vector2(0, -.25 * (size.y/2))
+		stun_pfx_ins.global_position = $Health/Node2D.global_position + Vector2($Health.rect_size.x / 4, 0)
 	checkInCombat()
 	if (not inCombat) and (can_attack) and (ranged_morsel) and ranged_attacking:
 		ranged_attack() 
