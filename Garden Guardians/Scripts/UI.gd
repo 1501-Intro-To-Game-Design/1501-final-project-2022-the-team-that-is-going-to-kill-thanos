@@ -29,7 +29,7 @@ var playerLives = 25
 signal nextRoundGo
 
 func _ready():
-	playerLives = 25
+	playerLives = 25 #25
 	wood = 999 #16
 	metal = 999 #6
 	update()

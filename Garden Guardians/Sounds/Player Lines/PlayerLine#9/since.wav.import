@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/since.wav-6d65fd23fe2d81de61716b7894d9aa14.sample"
+
+[deps]
+
+source_file="res://Sounds/Player Lines/PlayerLine#9/since.wav"
+dest_files=[ "res://.import/since.wav-6d65fd23fe2d81de61716b7894d9aa14.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

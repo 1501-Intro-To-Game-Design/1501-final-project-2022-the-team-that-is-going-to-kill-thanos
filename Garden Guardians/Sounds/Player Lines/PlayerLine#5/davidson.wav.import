@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/davidson.wav-7e59c856d926dc355895aed6232c27e7.sample"
+
+[deps]
+
+source_file="res://Sounds/Player Lines/PlayerLine#5/davidson.wav"
+dest_files=[ "res://.import/davidson.wav-7e59c856d926dc355895aed6232c27e7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

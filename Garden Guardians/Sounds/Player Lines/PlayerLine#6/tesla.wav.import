@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/tesla.wav-aea7b7b52d06aa1f391b9c204516c2fd.sample"
+
+[deps]
+
+source_file="res://Sounds/Player Lines/PlayerLine#6/tesla.wav"
+dest_files=[ "res://.import/tesla.wav-aea7b7b52d06aa1f391b9c204516c2fd.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

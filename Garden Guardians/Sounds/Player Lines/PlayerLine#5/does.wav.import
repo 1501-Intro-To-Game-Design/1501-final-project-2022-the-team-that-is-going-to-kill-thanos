@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/does.wav-da013c7635fdfc8499138dfff79b3154.sample"
+
+[deps]
+
+source_file="res://Sounds/Player Lines/PlayerLine#5/does.wav"
+dest_files=[ "res://.import/does.wav-da013c7635fdfc8499138dfff79b3154.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

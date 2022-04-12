@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/invested.wav-121bd285913f13c983154f2629a76714.sample"
+
+[deps]
+
+source_file="res://Sounds/Player Lines/PlayerLine#7/invested.wav"
+dest_files=[ "res://.import/invested.wav-121bd285913f13c983154f2629a76714.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

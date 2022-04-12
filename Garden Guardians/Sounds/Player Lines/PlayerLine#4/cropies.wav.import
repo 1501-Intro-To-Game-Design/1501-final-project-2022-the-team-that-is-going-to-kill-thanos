@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cropies.wav-f4b8287ca740dfe6bf2a057b642de704.sample"
+
+[deps]
+
+source_file="res://Sounds/Player Lines/PlayerLine#4/cropies.wav"
+dest_files=[ "res://.import/cropies.wav-f4b8287ca740dfe6bf2a057b642de704.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

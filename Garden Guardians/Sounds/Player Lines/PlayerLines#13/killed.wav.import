@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/killed.wav-db5f6bd9afd7f4b5a995abfe7315a0e4.sample"
+
+[deps]
+
+source_file="res://Sounds/Player Lines/PlayerLines#13/killed.wav"
+dest_files=[ "res://.import/killed.wav-db5f6bd9afd7f4b5a995abfe7315a0e4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

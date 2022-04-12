@@ -27,7 +27,7 @@ var clicked = false
 #COSTS// each new element after the first is the cost of the upgrade -- 1, 2, 3, offshoot, upgrade1, up2, up3
 var vegW = [9, 14, 19, 15, 3, 6, 0] #SC, SD, ACD
 var vegM = [2, 3, 4, 7, 2, 2, 5]
-var fruitW = [12, 20, 30, 20, 0, 10, 8] #EC, AR, AOE
+var fruitW = [12, 20, 30, 20, 0, 15, 8] #EC, AR, AOE
 var fruitM = [0, 0, 0, 5, 10, 0, 4]
 var grainW = [4, 8, 13, 10, 4, 0, 25] #TEMP TD, DOT, PB
 var grainM = [5, 7, 11, 8, 1, 6, 0]

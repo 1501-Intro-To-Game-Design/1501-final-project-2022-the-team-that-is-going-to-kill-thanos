@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/god.wav-1c5aa4c6e07e148ae46114c7f54c77a0.sample"
+
+[deps]
+
+source_file="res://Sounds/Player Lines/PlayerLines#13/god.wav"
+dest_files=[ "res://.import/god.wav-1c5aa4c6e07e148ae46114c7f54c77a0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

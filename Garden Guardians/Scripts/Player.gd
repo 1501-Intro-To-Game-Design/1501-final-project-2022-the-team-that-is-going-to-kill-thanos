@@ -29,11 +29,35 @@ export (Array, Resource) var sounds
 export (Array, Resource) var movingSounds
 export (Resource) var dieSound
 export (Resource) var aliveSound
+
+export (Array, Resource) var line1
+export (Array, Resource) var line2
+export (Array, Resource) var line3
+export (Array, Resource) var line4
+export (Array, Resource) var line5
+export (Array, Resource) var line6
+export (Array, Resource) var line7
+export (Array, Resource) var line8
+export (Array, Resource) var line9
+export (Array, Resource) var line10
+export (Array, Resource) var line11
+export (Array, Resource) var line12
+export (Array, Resource) var line13
+export (Array, Resource) var line14 #Possible copyright problem
+export (Array, Resource) var line15
+export (Array, Resource) var line16 
+
+var playerLines = []
+var soundIncro = 0
+var tempS = 0
+
 var rng = RandomNumberGenerator.new()
 var targets_to_remove = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	playerLines = [line1, line2, line3, line4, line5, line6, line7, line8, line9, line10,
+				   line11, line12, line13, line14, line15, line16]
 	speed *= util.g_speed
 	attackSpeed *= util.g_speed
 	current_health = max_health
@@ -110,6 +134,14 @@ func _input(event):
 					direction = direction.normalized()
 					clicked = true
 					moving = true;
+					#sounds stuff
+					rng.randomize()
+					if soundIncro == 0:
+						tempS = rng.randi_range(0,playerLines.size()-1)
+					_load_n_play(playerLines[tempS][soundIncro], -1)
+					soundIncro += 1
+					if soundIncro >= playerLines[tempS].size():
+						soundIncro = 0
 				else: 
 					clicked = false
 			

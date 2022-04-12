@@ -506,7 +506,8 @@ func destroy(dropResources = true):
 				r = resource.instance() #spawn resources
 				r._spawn(false, global_position) # true = wood, false = metal
 				get_parent().add_child(r)
-	stun_pfx_ins.queue_free()
+	if is_instance_valid(stun_pfx_ins):
+		stun_pfx_ins.queue_free()
 	queue_free()
 
 
