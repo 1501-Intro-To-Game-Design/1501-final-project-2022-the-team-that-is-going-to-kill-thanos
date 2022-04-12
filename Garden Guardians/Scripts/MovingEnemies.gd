@@ -138,18 +138,18 @@ func start_wave():
 			dP -= (36)
 			enemys.append(enemyScene4[value])
 			enemystoKill += 1
-		elif budget *thresh3 <= dP and wave > 5:
+		elif budget *thresh3 <= dP and wave > 6:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
-			dps.append(9)
-			dP -= (9)
+			dps.append(11)
+			dP -= (11)
 			enemystoKill += 1
 			enemys.append(enemyScene3[value])
-		elif budget *thresh2 <= dP and wave > 2:	
+		elif budget *thresh2 <= dP and wave > 3:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
-			dps.append(5)
-			dP -= (5)
+			dps.append(6)
+			dP -= (6)
 			enemys.append(enemyScene2[value])
 			enemystoKill += 1
 		elif budget * thresh1 <= dP and wave > 1 and enemyScene5.size() > 0:	
@@ -248,14 +248,7 @@ func updateEnemyLocation(delta):
 			i[0].position = i[1].getPathLocation()
 			if i[1].get_unit_offset() >= 1:
 				i[0].destroy(false)
-				if i[0].spawned_num_wood + i[0].spawned_num_metal*3 >= 20:
-					emit_signal("player_life_lost", 5)
-				elif i[0].spawned_num_wood + i[0].spawned_num_metal*3 >= 5:
-					emit_signal("player_life_lost", 3)
-				elif i[0].spawned_num_wood + i[0].spawned_num_metal*3 >= 3:
-					emit_signal("player_life_lost", 2)
-				else:
-					emit_signal("player_life_lost", 1) 
+				emit_signal("player_life_lost", i[0].lives_lost) 
 
 				get_parent().get_node("ColorRect").show()
 				var t = Timer.new()

@@ -63,6 +63,7 @@ tracks/0/keys = {
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.25, 0.25 )
+lives_lost = 2
 hit_pfx = ExtResource( 7 )
 ranged_morsel = true
 proj_scene = ExtResource( 8 )

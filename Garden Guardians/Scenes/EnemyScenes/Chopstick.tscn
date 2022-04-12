@@ -45,6 +45,7 @@ tracks/1/keys = {
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 5 )]
 scale = Vector2( 0.25, 0.25 )
+lives_lost = 3
 hit_pfx = ExtResource( 9 )
 pfx_amount = 12
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]

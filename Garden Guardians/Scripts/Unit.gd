@@ -1,4 +1,5 @@
 extends RigidBody2D
+export var lives_lost = 1
 export (PackedScene) var hit_pfx
 export (PackedScene) var alt_pfx
 export var use_alt_pfx = false

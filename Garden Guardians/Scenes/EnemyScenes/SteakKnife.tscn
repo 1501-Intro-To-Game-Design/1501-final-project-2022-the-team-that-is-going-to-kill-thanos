@@ -45,6 +45,7 @@ tracks/1/keys = {
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 1 )]
 scale = Vector2( 0.35, 0.35 )
+lives_lost = 4
 hit_pfx = ExtResource( 8 )
 alt_pfx = ExtResource( 9 )
 use_alt_pfx = true
