@@ -159,8 +159,8 @@ func start_wave():
 		else:
 			value = 0
 			rng.randomize()
-			var rand_number = rng.randi_range(0, 7)
-			if rand_number == 1 and dP >= 2:
+			var rand_number = rng.randi_range(0, 9)
+			if rand_number == 1 and dP >= 2 and wave > 1:
 				value = 1
 				dps.append(2)
 				dP -= 2
