@@ -345,3 +345,7 @@ func _on_RegenTimer_timeout():
 
 func _on_RegenWait_timeout():
 	$RegenTimer.start()
+
+
+func _on_Bruh_timeout():
+	pass # Replace with function body.

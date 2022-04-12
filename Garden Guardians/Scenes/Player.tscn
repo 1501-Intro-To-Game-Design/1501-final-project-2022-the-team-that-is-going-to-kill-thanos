@@ -218,6 +218,8 @@ __meta__ = {
 wait_time = 5.0
 one_shot = true
 
+[node name="Bruh" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="Respawn" to="." method="_on_Respawn_timeout"]
 [connection signal="body_entered" from="CombatRange" to="." method="_on_CombatRange_body_entered"]
@@ -225,3 +227,4 @@ one_shot = true
 [connection signal="timeout" from="Attack" to="." method="_on_Attack_timeout"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_RegenTimer_timeout"]
 [connection signal="timeout" from="RegenWait" to="." method="_on_RegenWait_timeout"]
+[connection signal="timeout" from="Bruh" to="." method="_on_Bruh_timeout"]
