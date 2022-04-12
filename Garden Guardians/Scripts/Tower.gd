@@ -95,6 +95,8 @@ var posOffset = Vector2(0, 150)
 var rangePoints = []
 var rangePointsBorder = []
 
+var inField = []
+
 # Called when the node enters the scene tree for the first time.
 func getstuff():
 	return 5
@@ -533,7 +535,8 @@ func _on_AltAttackCooldown_timeout():
 			$StrafeDelay.start()
 	elif "Gnocchi" in self.get_groups():
 		if centreOfField.size() > 0:
-			for i in enemies:
+			inField = centreOfField[centreOfField.size()-1][1].inRange
+			for i in inField:
 				if is_instance_valid(i):
 					if i.path == centreOfField[centreOfField.size()-1][2]:
 						i.set_offset(centreOfField[centreOfField.size()-1][0])

@@ -11,6 +11,7 @@ var rampEffects = false
 var slowingCap = 0
 var rampSpeed = 0
 var auraRange = 0
+var inRange = []
 
 var rng = RandomNumberGenerator.new()
 
@@ -48,6 +49,8 @@ func _on_LifeTime_timeout():
 
 func _on_Area2D_body_entered(body):
 	if is_instance_valid(body):
+		if not body in inRange:
+			inRange.append(body)
 		var apply = body
 		var pullBack = false
 		for i in apply.pullingBack:
@@ -102,6 +105,8 @@ func _on_Area2D_body_entered(body):
 				
 func _on_Area2D_body_exited(body):
 	if is_instance_valid(body):
+		if body in inRange:
+			inRange.remove(inRange.find(body))
 		var apply = body
 		var pullBack
 		for i in apply.pullingBack:
