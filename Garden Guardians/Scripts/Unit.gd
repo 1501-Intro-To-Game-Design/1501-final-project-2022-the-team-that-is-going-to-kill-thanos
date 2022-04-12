@@ -111,8 +111,9 @@ func _go_To(loc): #This is just for when moarsals are told to go somewhere else
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if stunned:
-		var size = $Sprite.texture.get_size()
-		stun_pfx_ins.global_position = global_position + Vector2(0, -.5 * (size.y/2))
+		#var size = $Sprite.texture.get_size()
+		#stun_pfx_ins.global_position = global_position + Vector2(0, -.25 * (size.y/2))
+		stun_pfx_ins.global_position = $Health/Node2D.global_position + Vector2($Health.rect_size.x / 4, 0)
 	checkInCombat()
 	if (not inCombat) and (can_attack) and (ranged_morsel) and ranged_attacking:
 		ranged_attack() 
@@ -428,9 +429,6 @@ func change_health(change, direct = false, pierce = false):
 		if(spawns_on_death):
 			for i in range (num_spawn_on_death):
 				var enemy_instance = death_spawn_scene.instance()
-				enemy_instance.spawned_num_wood = 0
-				enemy_instance.spawned_num_metal = 0
-				enemy_instance.get_node("Sprite").self_modulate = Color(.4, .3, .29)
 				get_parent().add_enemy_to_path(self, enemy_instance)
 				#get_parent().add_to_offset(enemy_instance, -15 + (i*20))
 				get_parent().enemystoKill += 1

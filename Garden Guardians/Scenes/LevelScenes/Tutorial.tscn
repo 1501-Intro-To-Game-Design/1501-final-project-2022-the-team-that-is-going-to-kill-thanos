@@ -209,8 +209,8 @@ margin_right = 1894.0
 margin_bottom = 330.0
 custom_fonts/font = ExtResource( 13 )
 text = "Next, build a grain tower.
-This will creat fields that slow down
-all enemies, and buff all morsels in them!"
+They create fields that slow down
+all enemies, and buff all morsels within them!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -237,7 +237,7 @@ custom_fonts/font = ExtResource( 13 )
 text = "Good job! You'll notice that this wave had harder
 enemies, including one with a shield above it.
 Enemies with a shield icon are armoured.
-Armour reduces the damage every hit does.
+Armour reduces the damage every projectile does.
 
 
 

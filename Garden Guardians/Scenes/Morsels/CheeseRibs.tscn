@@ -8,7 +8,7 @@
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit3.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Burbs/Foley/MorsalHit2.wav" type="AudioStream" id=7]
 [ext_resource path="res://Sounds/Burbs/Goofy/MorsalExclimation3.wav" type="AudioStream" id=8]
-[ext_resource path="res://Sprites/Morsal Sprites/Rib.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Morsal Sprites/ribs_piercing.png" type="Texture" id=9]
 [ext_resource path="res://Animations/Backrib/Move.tres" type="Animation" id=10]
 [ext_resource path="res://Animations/Backrib/Idle.tres" type="Animation" id=11]
 [ext_resource path="res://Scenes/PFX/Blood.tscn" type="PackedScene" id=12]
@@ -53,7 +53,7 @@ pfx_amount = 15
 piercing = true
 groups_to_check = [ "Enemies" ]
 max_health = 35.0
-damage = 1.4
+damage = 2.5
 attackSpeed = 1.2
 sounds = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ) ]
 movingSounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ) ]
@@ -61,7 +61,6 @@ movingSounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ) ]
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 6, 6 )
 texture = ExtResource( 9 )
-offset = Vector2( -106.667, -90 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 100, -112.5 )

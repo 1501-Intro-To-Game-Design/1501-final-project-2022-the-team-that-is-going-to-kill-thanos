@@ -15,6 +15,7 @@ func _ready():
 	$InGameMenu/Shade.set_color(Color(0.2, 0.2, 0.2, 0.6))
 	$"/root/ui".connect("restart", self, "reset_state")
 	$Main.show()
+	initUIElements()
 
 func reset_state():
 	_on_InGameBack_pressed()
@@ -53,6 +54,7 @@ func hide_menu():
 
 func show_menu():
 	$Main.show()
+	$Background.show()
 
 
 func _on_Volume_value_changed(value):
@@ -121,3 +123,6 @@ func _on_Level3_pressed():
 	var level = levelThreeScene.instance()
 	get_parent().add_child(level)
 	currentLevel = "Level3"
+
+func initUIElements():
+	pass

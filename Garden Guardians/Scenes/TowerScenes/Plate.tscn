@@ -2794,6 +2794,18 @@ texture = ExtResource( 27 )
 [node name="VShapeDelete" type="CollisionShape2D" parent="Delete/VAreaDelete"]
 shape = SubResource( 8 )
 
+[node name="TopLeft" type="Node2D" parent="."]
+position = Vector2( -197, -121 )
+
+[node name="BotLeft" type="Node2D" parent="."]
+position = Vector2( -197, 179 )
+
+[node name="BotRight" type="Node2D" parent="."]
+position = Vector2( 193, 179 )
+
+[node name="TopRight" type="Node2D" parent="."]
+position = Vector2( 193, -121 )
+
 [connection signal="input_event" from="PlateArea" to="." method="_on_Area2D_input_event"]
 [connection signal="mouse_entered" from="PlateArea" to="." method="_on_PlateArea_mouse_entered"]
 [connection signal="mouse_exited" from="PlateArea" to="." method="_on_PlateArea_mouse_exited"]
@@ -2921,7 +2933,6 @@ shape = SubResource( 8 )
 [connection signal="mouse_entered" from="Target/Area2D" to="." method="_on_Area2D_mouse_entered"]
 [connection signal="mouse_exited" from="Target/Area2D" to="." method="_on_Area2D_mouse_exited"]
 [connection signal="input_event" from="BigArea" to="." method="_on_BigArea_input_event"]
-[connection signal="mouse_exited" from="BigArea" to="." method="_on_BigArea_mouse_exited"]
 [connection signal="input_event" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_input_event"]
 [connection signal="mouse_entered" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_entered"]
 [connection signal="mouse_exited" from="Delete/VAreaDelete" to="." method="_on_VAreaDelete_mouse_exited"]

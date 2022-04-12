@@ -5,6 +5,7 @@ var player_in_range = false
 var target_types = ["closest", "farthest", "lowest", "highest", "closest_end", "closest_start"]
 var target_index = 4
 var in_area = false
+var combining_tower = null
 export (PackedScene) var x_scene
 export (PackedScene) var vegetable_scene
 export (PackedScene) var fruit_scene
@@ -118,8 +119,16 @@ func _ready():
 	$Text/ButterSE/NinePatchRect/WoodCost.text = String(dairyW[6])
 	$Text/ButterSE/NinePatchRect/MetalCost.text = String(dairyM[6])
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _process(delta):
+	var mouse_pos = get_global_mouse_position()
+	if mouse_pos.x < $TopLeft.global_position.x or mouse_pos.x > $TopRight.global_position.x or mouse_pos.y > $BotLeft.global_position.y or mouse_pos.y < $TopLeft.global_position.y:
+		if current_menu != null:
+			current_menu.hide()
+			$Sprite.texture = normal_plate
+			$Target.hide()
+			$Delete.hide()
+			if tower != null and !moveMode:
+				tower.show_range(false)
 
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
@@ -225,8 +234,12 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off = 0, up
 		var tempM = tower.refundM
 		var towerT = tower_to_make.instance()
 		var tempPos
-		if tower.morsel_tower:
-			tempPos = tower.tower_morsels[0].global_position - tower.morselOffsets[0] - tower.global_position
+		if towerT.morsel_tower:
+			if combining_tower != null:
+				tempPos = combining_tower.tower_morsels[0].global_position - combining_tower.morselOffsets[0] - combining_tower.global_position
+				combining_tower = null
+			else:
+				tempPos = tower.tower_morsels[0].global_position - tower.morselOffsets[0] - tower.global_position
 		tower.queue_free()
 		tower = towerT
 		tower.refundW = tempW + (0.4 * wood_cost)
@@ -389,8 +402,8 @@ func _on_VAreaACD_input_event(viewport, event, shape_idx):
 				$Target.hide()
 				$Delete.hide()
 				tower.show_range(false)
-				tower.attack_cooldown -= 0.5
-				if tower.attack_cooldown < 3.1:
+				tower.attack_cooldown -= (0.5/util.g_speed)
+				if tower.attack_cooldown < (3.1/util.g_speed):
 					$VUpgradeMenu/Carrot/VAreaACD.hide()
 					$VUpgradeMenu/Carrot/OptionACD.hide() #could also change this to change sprite
 			else:
@@ -625,20 +638,22 @@ func _on_VAreaAOE_mouse_exited():
 	$Text/CherryAOE.hide()
 
 func _on_BigArea_mouse_exited():
-	if not(in_area):
-		if spawned_x.size() > 0:
-			for x in spawned_x:
-				x.queue_free()
-			spawned_x.clear()
-		if current_menu != null:
-			current_menu.hide()
-			$Sprite.texture = normal_plate
-			$Target.hide()
-			$Delete.hide()
-			if tower != null and !moveMode:
-				tower.show_range(false)
+	pass
+	#if not(in_area):
+		#if spawned_x.size() > 0:
+			#for x in spawned_x:
+				#x.queue_free()
+			#spawned_x.clear()
+		#if current_menu != null:
+			#current_menu.hide()
+			#$Sprite.texture = normal_plate
+			#$Target.hide()
+			#$Delete.hide()
+			#if tower != null and !moveMode:
+				#tower.show_range(false)
 
-func make_rib_plate():
+func make_rib_plate(new_tower):
+	combining_tower = new_tower
 	$PUpgradeMenu.show()
 	current_menu = $PUpgradeMenu/Backribs
 
@@ -843,9 +858,9 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and moveMode and event.is_action_released("Mouse"):
 			if tower.inRange:
-				tower.posOffset = event.position - tower.position + Vector2(0,60)
+				tower.posOffset = event.global_position - tower.global_position + Vector2(0,60)
 				for m in tower.tower_morsels:
-					m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
+					m._go_To(event.global_position + tower.morselOffsets[counter] + Vector2(0, 20))
 					counter += 1
 			else:
 				ui.failedAction()

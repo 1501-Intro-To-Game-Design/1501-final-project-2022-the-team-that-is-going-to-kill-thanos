@@ -27,3 +27,6 @@ func getPathLocation():
 
 func setOffset(offset):
 	$Pathway.set_offset(offset)
+
+func setUnitOffset(offset):
+	$Pathway.set_unit_offset(offset)

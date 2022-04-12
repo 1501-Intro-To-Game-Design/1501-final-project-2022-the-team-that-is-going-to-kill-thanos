@@ -8,7 +8,7 @@
 [ext_resource path="res://Sounds/Burbs/Foley/BackRibsAttack_Sound3.wav" type="AudioStream" id=6]
 [ext_resource path="res://Sounds/Burbs/Foley/BackRibsAttack_Sound2.wav" type="AudioStream" id=7]
 [ext_resource path="res://Scenes/PFX/Blood.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Sprites/Morsal Sprites/Rib.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Morsal Sprites/ribs_ninja.png" type="Texture" id=9]
 [ext_resource path="res://Animations/Backrib/Move.tres" type="Animation" id=10]
 [ext_resource path="res://Animations/Backrib/Idle.tres" type="Animation" id=11]
 
@@ -55,7 +55,7 @@ hit_pfx = ExtResource( 8 )
 pfx_amount = 15
 groups_to_check = [ "Enemies" ]
 max_health = 35.0
-damage = 0.9
+damage = 1.2
 attackSpeed = 0.6
 sounds = [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ) ]
 movingSounds = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ]
@@ -63,7 +63,6 @@ movingSounds = [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 3 ) ]
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 6, 6 )
 texture = ExtResource( 9 )
-offset = Vector2( -106.667, -90 )
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2( 60, -120 )

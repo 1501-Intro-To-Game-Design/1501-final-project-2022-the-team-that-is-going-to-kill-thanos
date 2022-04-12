@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/TowerScenes/PotatoProjectile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Tower.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/Tower Sprites/P_Tower.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Tower Sprites/LoadedPotato.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/TowerScenes/LoadedPotatoProjectile.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
@@ -18,7 +18,7 @@ upgrade = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" parent="." index="1"]
-position = Vector2( -4, -32 )
+position = Vector2( -2.38419e-07, -32 )
 scale = Vector2( 0.35, 0.35 )
 texture = ExtResource( 3 )
 

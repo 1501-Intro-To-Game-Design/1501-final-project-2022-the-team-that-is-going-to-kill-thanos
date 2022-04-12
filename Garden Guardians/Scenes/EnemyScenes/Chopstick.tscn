@@ -48,15 +48,14 @@ scale = Vector2( 0.25, 0.25 )
 hit_pfx = ExtResource( 9 )
 pfx_amount = 12
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 9.0
+max_health = 11.0
 damage = 1.5
 attackSpeed = 0.5
-spawned_num_wood = 4
 sounds = [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ]
 max_speed = 55
 spawns_on_death = true
 death_spawn_scene = ExtResource( 4 )
-num_spawn_on_death = 4
+num_spawn_on_death = 6
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( -20, 12 )
