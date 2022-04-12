@@ -90,4 +90,4 @@ position = Vector2( 799, 357 )
 
 [node name="MovingEnemies" parent="." instance=ExtResource( 2 )]
 importPathSceneArray = [ ExtResource( 3 ), ExtResource( 5 ) ]
-difficulty_multiplier = 1.5
+difficulty_multiplier = 1.8

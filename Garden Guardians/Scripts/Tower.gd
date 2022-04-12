@@ -193,12 +193,16 @@ func _process(_delta):
 						targeted_enemies.append(null)
 				elif(target_type == "closest_end"):
 					var index = -1
-					var highest = 0
+					var highest = 0.0
 					for i in range(0, enemies.size()):
 						if is_instance_valid(enemies[i]):
-							if(enemies[i].get_offset() > highest and not (enemies[i] in targeted_enemies)):
-								highest = enemies[i].get_offset()
-								index = i
+							if enemies[i].get_offset() != null:
+								if(enemies[i].get_offset() > highest and not (enemies[i] in targeted_enemies)):
+									highest = enemies[i].get_offset()
+									index = i
+							else:
+								print(enemies[i])
+								enemies[i].get_node("Sprite").self_modulate = Color(0, 0, 0, 1)
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])
 					else:
@@ -208,9 +212,13 @@ func _process(_delta):
 					var lowest = 10000
 					for i in range(0, enemies.size()):
 						if is_instance_valid(enemies[i]):
-							if(enemies[i].get_offset() < lowest and not (enemies[i] in targeted_enemies)):
-								lowest = enemies[i].get_offset()
-								index = i
+							if enemies[i].get_offset() != null:
+								if(enemies[i].get_offset() < lowest and not (enemies[i] in targeted_enemies)):
+									lowest = enemies[i].get_offset()
+									index = i
+							else:
+								print(enemies[i])
+								enemies[i].get_node("Sprite").self_modulate = Color(0, 0, 0, 1)
 					if not (index == -1):
 						targeted_enemies.append(enemies[index])
 					else:
