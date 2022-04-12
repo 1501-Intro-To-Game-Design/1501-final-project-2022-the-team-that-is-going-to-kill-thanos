@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/TowerScenes/OnionTower.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 250.0
+radius = 265.0
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 34, 60, 34, 20, 12, 20, -20, 0, -40, -15, -20, -15, 12, -50, 34 )

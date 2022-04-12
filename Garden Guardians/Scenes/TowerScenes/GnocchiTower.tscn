@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/Gnocchi.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 300.0
+radius = 315.0
 
 [node name="Tower2" groups=["Gnocchi"] instance=ExtResource( 1 )]
 position = Vector2( 0, -22 )

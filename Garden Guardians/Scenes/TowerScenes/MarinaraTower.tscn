@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/MarinaraSpaghetti.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 250.0
+radius = 265.0
 
 [node name="Tower2" groups=["Marinara"] instance=ExtResource( 1 )]
 position = Vector2( 0, -19 )

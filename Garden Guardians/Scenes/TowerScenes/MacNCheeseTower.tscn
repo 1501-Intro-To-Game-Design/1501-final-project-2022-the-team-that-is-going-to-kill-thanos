@@ -8,7 +8,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/MacNCheeseField.png" type="Texture" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 200.0
+radius = 215.0
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 54.5, 39 )

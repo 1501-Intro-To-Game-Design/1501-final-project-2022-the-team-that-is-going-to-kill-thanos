@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/Tower Sprites/O_Tower.png" type="Texture" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 270.0
+radius = 285.0
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 34, 60, 34, 20, 12, 10, -20, 0, -45, -5, -20, -15, 12, -50, 34 )

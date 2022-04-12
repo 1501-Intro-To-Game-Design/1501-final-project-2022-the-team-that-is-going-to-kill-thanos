@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/TowerScenes/LoadedPotatoProjectile.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 300.0
+radius = 315.0
 
 [node name="Tower" groups=["Potato"] instance=ExtResource( 2 )]
 attack_cooldown = 4.0

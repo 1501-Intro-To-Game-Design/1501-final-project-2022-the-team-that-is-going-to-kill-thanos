@@ -6,7 +6,7 @@
 [ext_resource path="res://Sounds/Burbs/Goofy/GrainTrap.wav" type="AudioStream" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 225.0
+radius = 240.0
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 39.0
