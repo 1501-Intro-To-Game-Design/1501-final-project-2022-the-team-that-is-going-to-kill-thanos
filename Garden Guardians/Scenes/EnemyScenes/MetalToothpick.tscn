@@ -43,17 +43,18 @@ tracks/1/keys = {
 }
 
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 2 )]
-scale = Vector2( 0.15, 0.15 )
+scale = Vector2( 0.2, 0.25 )
 z_index = 3
 hit_pfx = ExtResource( 8 )
 pfx_amount = 6
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 6.5
-damage = 2.5
+max_health = 3.0
+damage = 1.5
 spawned_num_metal = 1
 sounds = [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="Sprite" parent="." index="0"]
+self_modulate = Color( 0.627451, 0.972549, 0.988235, 1 )
 position = Vector2( 33, -20 )
 texture = ExtResource( 1 )
 

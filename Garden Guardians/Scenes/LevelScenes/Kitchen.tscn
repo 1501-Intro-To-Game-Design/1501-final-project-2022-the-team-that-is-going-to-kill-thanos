@@ -58,9 +58,6 @@ position = Vector2( 578, 836 )
 [node name="Plate9" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1401, 302 )
 
-[node name="Plate10" parent="." instance=ExtResource( 4 )]
-position = Vector2( 195, 735 )
-
 [node name="Plate11" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1172, 302 )
 

@@ -24,9 +24,10 @@ var wave_hardness_multiplier = 1
 
 #wave stuff
 var thresh1 = 0.8
+var thresh3 = 0.8
+var thresh4 = 0.9
+
 var thresh2 = 0.8
-var thresh3 = 0.9
-var thresh4 = 0.8
 var deincroment = -1
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -47,7 +48,7 @@ func reset_state():
 	thresh1 = 0.8
 	thresh2 = 0.8
 	thresh3 = 0.9
-	thresh4 = 0.8
+	thresh4 = 0.9
 	wave = 0
 	wave_hardness_multiplier = 1
 
@@ -75,31 +76,40 @@ func check_stacking(unit_to_check):
 
 func start_wave():
 	#Threshhold movers
-	if wave == 5:
-		thresh1 -= 0.1
-		thresh4 -= .05
+	#1 = 0.02
+	#2 = 0.09
+	#3 = 0.25
+	#4 = 0.6
+	if wave == 4: 
+		thresh1 -= 0.2 #0.6
+		thresh2 -= 0.05 #0.75
+	elif wave == 6:
+		thresh1 -= 0.1 #0.5
+		thresh2 -= 0.05 #0.7
 	elif wave == 8:
-		thresh1 -= 0.15
-		thresh4 -= .15
+		thresh1 -= 0.15 #0.35
+		thresh2 -= 0.15 #0.55
 	elif wave == 11:
-		thresh1 -= 0.1
-		thresh2 -= 0.1
-		thresh4 -= .15
+		thresh1 -= 0.1 #0.25
+		thresh2 -= 0.15 #0.4
+		thresh3 -= 0.15 #0.75
 	elif wave == 15:
 		 #dp = 160 || .02 = .3
-		thresh1 -= 0.15
-		thresh2 -= 0.1
-		thresh3 -= 0.1
-		thresh4 -= .15
+		thresh1 -= 0.15 #0.1
+		thresh2 -= 0.15 #0.25
+		thresh3 -= 0.1 #0.65
+		thresh4 -= 0.1 #0.8
 	elif wave == 20:
-		thresh1 -= 0.15
-		thresh2 -= 0.1
-		thresh4 -= .1
+		thresh1 -= 0.08 #0.02 
+		thresh2 -= 0.1 #0.15
+		thresh3 -= 0.1 #0.55
 	elif wave == 25:
-		thresh1 -= 0.1
-		thresh2 -= 0.15
-		thresh3 -= 0.1
-		thresh4 -= .1
+		thresh2 -= 0.07 #0.08
+		thresh3 -= 0.15 #0.4
+		thresh4 -= 0.1 #0.7
+	elif wave == 28:
+		thresh3 -= 0.1 #0.3
+		thresh4 -= .07 #0.63
 	
 	enemystoKill = 0
 	dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * difficulty_multiplier, 1.0)) # = (wave*7) -1
@@ -121,28 +131,28 @@ func start_wave():
 		else:
 			bossFight = false
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist	
-		if budget *thresh3 <= dP and wave >= 10 and bossFight:
+		if budget *thresh4 <= dP and wave >= 10 and bossFight:
 			value = rng.randi_range(0,enemyScene4.size()-1)
 			temp = enemyScene4[value].instance()
 			dps.append(36)
 			dP -= (36)
 			enemys.append(enemyScene4[value])
 			enemystoKill += 1
-		elif budget *thresh2 <= dP and wave > 5:
+		elif budget *thresh3 <= dP and wave > 5:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
 			dps.append(9)
 			dP -= (9)
 			enemystoKill += 1
 			enemys.append(enemyScene3[value])
-		elif budget *thresh1 <= dP and wave > 2:	
+		elif budget *thresh2 <= dP and wave > 2:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
 			dps.append(4)
 			dP -= (4)
 			enemys.append(enemyScene2[value])
 			enemystoKill += 1
-		elif budget * thresh4 <= dP and wave > 1:	
+		elif budget * thresh1 <= dP and wave > 1 and enemyScene5.size() > 0:	
 			value = rng.randi_range(0,enemyScene5.size()-1)
 			temp = enemyScene5[value].instance()
 			dps.append(2)
@@ -150,10 +160,16 @@ func start_wave():
 			enemys.append(enemyScene5[value])
 			enemystoKill += 1
 		else:
-			value = rng.randi_range(0,enemyScene1.size()-1)
+			value = 0
+			var rand_number = rng.randi_range(0, 6)
+			if rand_number == 1 and dP >= 2:
+				value = 1
+				dps.append(2)
+				dP -= 2
+			else:
+				dps.append(1)
+				dP -= 1
 			temp = enemyScene1[value].instance()
-			dps.append(1)
-			dP -= 1
 			enemys.append(enemyScene1[value])
 			enemystoKill += 1
 			#while (temp.spawned_num_wood + (temp.spawned_num_metal*3)) > dP:
