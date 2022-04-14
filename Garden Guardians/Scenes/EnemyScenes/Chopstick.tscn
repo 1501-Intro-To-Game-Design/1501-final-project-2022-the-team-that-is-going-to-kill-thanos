@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/ChopStickAttack_sound2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/ChopStickAttack_sound1.wav" type="AudioStream" id=2]
@@ -43,13 +43,21 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+bg_color = Color( 0.396078, 0.635294, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+resource_local_to_scene = true
+bg_color = Color( 0.552941, 0, 0, 1 )
+
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 5 )]
 scale = Vector2( 0.25, 0.25 )
 lives_lost = 3
 hit_pfx = ExtResource( 9 )
 pfx_amount = 12
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 7.5
+max_health = 8.5
 damage = 1.2
 attackSpeed = 0.5
 sounds = [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ]
@@ -82,6 +90,8 @@ margin_left = -96.0
 margin_top = -316.0
 margin_right = 100.0
 margin_bottom = -293.0
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
 
 [node name="ColorRect" parent="Health/Node2D" index="0"]
 margin_left = -3.0

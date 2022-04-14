@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scenes/PFX/WoodChips.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=2]
@@ -68,6 +68,14 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=7]
+resource_local_to_scene = true
+bg_color = Color( 0.396078, 0.635294, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+resource_local_to_scene = true
+bg_color = Color( 0.552941, 0, 0, 1 )
+
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.25, 0.25 )
 z_index = 2
@@ -75,12 +83,12 @@ lives_lost = 2
 hit_pfx = ExtResource( 1 )
 pfx_amount = 7
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 7.0
+max_health = 8.5
 damage = 3.7
 attackSpeed = 1.2
 spawned_num_wood = 2
 sounds = [ ExtResource( 3 ), ExtResource( 4 ) ]
-max_speed = 70
+max_speed = 85
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 6 )
@@ -106,6 +114,8 @@ margin_left = -60.0
 margin_top = -128.0
 margin_right = 60.0
 margin_bottom = -93.0
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
 
 [node name="ColorRect" parent="Health/Node2D" index="0"]
 margin_left = -5.0

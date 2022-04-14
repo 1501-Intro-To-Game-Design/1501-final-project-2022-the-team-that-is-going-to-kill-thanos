@@ -61,9 +61,9 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 1 )
 
 [node name="WLabel" type="Label" parent="."]
-margin_left = 123.0
+margin_left = 110.0
 margin_top = 1008.0
-margin_right = 221.0
+margin_right = 232.0
 margin_bottom = 1072.0
 custom_fonts/font = SubResource( 5 )
 text = "113"
@@ -71,13 +71,10 @@ align = 1
 valign = 1
 autowrap = true
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="MLabel" type="Label" parent="WLabel"]
 margin_left = 225.0
-margin_right = 324.0
+margin_right = 347.0
 margin_bottom = 64.0
 custom_fonts/font = SubResource( 6 )
 text = "133"
@@ -170,7 +167,6 @@ position = Vector2( 0, 2 )
 pause_mode = 2
 position = Vector2( -0.047699, -2.87668 )
 rotation = 1.5708
-scale = Vector2( 1, 1 )
 shape = SubResource( 7 )
 
 [node name="Label" type="Label" parent="RestartButton"]

@@ -26,22 +26,52 @@ var current_menu
 var moveMode = false
 var clicked = false
 #COSTS// each new element after the first is the cost of the upgrade -- 1, 2, 3, offshoot, upgrade1, up2, up3
-var vegW = [9, 14, 19, 15, 3, 6, 0] #SC, SD, ACD
-var vegM = [2, 3, 4, 7, 2, 2, 5]
-var fruitW = [12, 20, 30, 20, 0, 23, 8] #EC, AR, AOE
-var fruitM = [0, 0, 0, 5, 10, 0, 4]
-var grainW = [4, 8, 13, 10, 6, 0, 25] #TEMP TD, DOT, PB
-var grainM = [5, 7, 11, 8, 2, 6, 1]
-var dairyW = [11, 18, 24, 10, 0, 5, 10] #TEMP PDP, PC, SE
-var dairyM = [7, 10, 15, 17, 12, 4, 1]
-var proW = [0, 0, 0, 12, 6, 0, 10] #AttackSpeed, Damage, ExtraUnit
-var proM = [4, 7, 10, 6, 1, 3, 10]
+var vegW = [] #SC, SD, ACD
+var vegM = []
+var fruitW = [] #EC, AR, AOE
+var fruitM = []
+var grainW = [] #TEMP TD, DOT, PB
+var grainM = []
+var dairyW = [] #TEMP PDP, PC, SE
+var dairyM = []
+var proW = [] #AttackSpeed, Damage, ExtraUnit
+var proM = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	current_menu = $TowerMenu
 	target_index = 4
 	$Target/Text.text = "Closest to End"
+	vegW = [round(9 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(14 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(19 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(15 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(9 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0] #SC, SD, ACD
+	vegM = [round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(3 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(5 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
+	fruitW = [round(12 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(20 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(30 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(20 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(23 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(8 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #EC, AR, AOE
+	fruitM = [0, 0, 0, round(5 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
+	grainW = [round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(8 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(13 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(8 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(26 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #TEMP TD, DOT, PB
+	grainM = [round(5 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(1 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(8 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(1 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
+	dairyW = [round(11 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(18 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(24 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #TEMP PDP, PC, SE
+	dairyM = [round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(15 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(17 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(12 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(1 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
+	proW = [0, 0, 0, round(12 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #AttackSpeed, Damage, ExtraUnit
+	proM = [round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(1 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(3 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
+	for num in vegW:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in vegM:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in fruitW:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in fruitM:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in grainW:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in grainM:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in dairyW:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in dairyM:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in proW:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
+	for num in proM:
+		num = round(num * get_parent().get_node("MovingEnemies").difficulty_multiplier)
 	
 	#Sets
 	$Text/Turnip/NinePatchRect/WoodCost.text = String(vegW[0])

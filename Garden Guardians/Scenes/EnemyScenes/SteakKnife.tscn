@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sounds/Burbs/Foley/SteakKnifeAttack_Sound1.wav" type="AudioStream" id=2]
@@ -43,6 +43,14 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=4]
+resource_local_to_scene = true
+bg_color = Color( 0.396078, 0.635294, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+bg_color = Color( 0.552941, 0, 0, 1 )
+
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 1 )]
 scale = Vector2( 0.35, 0.35 )
 lives_lost = 4
@@ -52,13 +60,13 @@ use_alt_pfx = true
 pfx_amount = 15
 armored = true
 groups_to_check = [ "Morsels", "Traps", "Player", "Resources", "Traitor" ]
-max_health = 40.0
+max_health = 43.0
 damage = 13.0
 attackSpeed = 1.5
 spawned_num_wood = 3
 spawned_num_metal = 4
 sounds = [ ExtResource( 2 ), ExtResource( 3 ) ]
-max_speed = 55
+max_speed = 65
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 4 )
@@ -95,6 +103,8 @@ margin_left = -114.0
 margin_top = -299.0
 margin_right = 116.0
 margin_bottom = -264.0
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
 
 [node name="ColorRect" parent="Health/Node2D" index="0"]
 margin_left = -3.0

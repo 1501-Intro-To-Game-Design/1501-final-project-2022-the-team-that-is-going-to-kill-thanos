@@ -47,5 +47,5 @@ self_modulate = Color( 1, 1, 1, 0.509804 )
 position = Vector2( 135, 8 )
 rotation = 1.5708
 scale = Vector2( 1.3, 1.5 )
-z_index = -3
+z_index = -6
 texture = ExtResource( 6 )

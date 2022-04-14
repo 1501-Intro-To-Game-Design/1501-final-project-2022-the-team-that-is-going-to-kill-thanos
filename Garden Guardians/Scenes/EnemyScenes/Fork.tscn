@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sprites/Enemy Sprites/Fork/fork.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=2]
@@ -68,6 +68,14 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+bg_color = Color( 0.396078, 0.635294, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+resource_local_to_scene = true
+bg_color = Color( 0.552941, 0, 0, 1 )
+
 [node name="Unit" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.25, 0.25 )
 z_index = 2
@@ -75,7 +83,7 @@ lives_lost = 3
 hit_pfx = ExtResource( 6 )
 pfx_amount = 12
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 20.0
+max_health = 23.0
 damage = 4.8
 attackSpeed = 1.2
 spawned_num_metal = 2
@@ -106,6 +114,8 @@ margin_left = -95.0
 margin_top = -270.0
 margin_right = 95.0
 margin_bottom = -235.0
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
 
 [node name="ColorRect" parent="Health/Node2D" index="0"]
 margin_left = -5.0

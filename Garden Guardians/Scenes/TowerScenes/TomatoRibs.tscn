@@ -13,7 +13,7 @@ radius = 200.0
 [node name="Tower" groups=["Tomato"] instance=ExtResource( 2 )]
 position = Vector2( 0, -66 )
 attack_cooldown = 0.375
-spawn_cooldown = 8.0
+spawn_cooldown = 10.0
 attacking_tower = true
 morsel_tower = true
 projectileScene = ExtResource( 1 )

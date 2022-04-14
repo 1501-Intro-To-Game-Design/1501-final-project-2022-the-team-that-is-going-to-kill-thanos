@@ -1,4 +1,5 @@
 extends RigidBody2D
+export var metal_toothpick = false
 export var lives_lost = 1
 export (PackedScene) var hit_pfx
 export (PackedScene) var alt_pfx
@@ -79,7 +80,10 @@ func _ready():
 		$Shield.show()
 	if ranged_morsel and "Enemies" in get_groups():
 		get_parent().get_parent().get_node("Player").connect("died", self, "_on_player_died")
-	original_mod = $Sprite.get_self_modulate()
+	if metal_toothpick:
+		original_mod = Color(0.6, 1, 1, 1)
+	else:
+		original_mod = Color(1, 1, 1, 1)
 	if(is_instance_valid($AnimationPlayer)):
 		$AnimationPlayer.playback_speed = util.g_speed
 	max_speed *= util.g_speed
@@ -377,6 +381,7 @@ func on_combat_end():
 		$RangedAttack.start(attackSpeed + 1)
 		if(ranged_enemies.size() > 0):
 			ranged_attacking = true
+			check_if_stacking()
 	#if(is_instance_valid($AnimationPlayer) and not inCombat):
 		#$AnimationPlayer.play("RESET")
 		#$AnimationPlayer.stop()
@@ -625,6 +630,7 @@ func _on_RangeArea_body_entered(body):
 		ranged_enemies.append(body)
 		if not inCombat:
 			ranged_attacking = true
+			check_if_stacking()
 			current_speed = 0
 
 
@@ -650,10 +656,12 @@ func _on_Range2_body_entered(body):
 		ranged_enemies.append(body)
 		if not inCombat:
 			ranged_attacking = true
+			check_if_stacking()
 			current_speed = 0
 	if(body.is_in_group("Player") and body.alive):
 		ranged_enemies.append(body)
 		if not inCombat:
+			check_if_stacking()
 			ranged_attacking = true
 			current_speed = 0
 

@@ -481,7 +481,7 @@ func _on_AbilityCooldown_timeout():
 							if (i.lives_lost) > DPcost:
 								posessedEnemy = i
 								posessed = true
-								DPcost = i.lives_cost
+								DPcost = i.lives_lost
 			if not posessed:
 				$PosessCheck.start()
 			elif posessed:

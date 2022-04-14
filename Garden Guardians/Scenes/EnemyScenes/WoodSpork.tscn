@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Sounds/Burbs/Foley/SporkAttack_Sound2.wav" type="AudioStream" id=1]
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=2]
@@ -61,6 +61,14 @@ tracks/0/keys = {
 "values": [ 0.0, 20.0, 40.0, -40.0, 0.0 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=6]
+resource_local_to_scene = true
+bg_color = Color( 0.396078, 0.635294, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+resource_local_to_scene = true
+bg_color = Color( 0.552941, 0, 0, 1 )
+
 [node name="Unit2" groups=["Enemies"] instance=ExtResource( 2 )]
 scale = Vector2( 0.25, 0.25 )
 lives_lost = 2
@@ -68,10 +76,11 @@ hit_pfx = ExtResource( 7 )
 ranged_morsel = true
 proj_scene = ExtResource( 8 )
 groups_to_check = [ "Morsels", "Traps", "Player", "Traitor" ]
-max_health = 11.0
-damage = 3.0
+max_health = 13.0
+damage = 3.5
 spawned_num_wood = 2
 sounds = [ ExtResource( 3 ), ExtResource( 1 ) ]
+max_speed = 55
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 4 )
@@ -113,6 +122,8 @@ margin_left = -84.0
 margin_top = -283.0
 margin_right = 84.0
 margin_bottom = -248.0
+custom_styles/fg = SubResource( 6 )
+custom_styles/bg = SubResource( 7 )
 
 [node name="ColorRect" parent="Health/Node2D" index="0"]
 margin_left = -5.0

@@ -53,9 +53,6 @@ margin_bottom = 35.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Node2D" type="Node2D" parent="Health"]
 z_index = -1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/SuperScenes/Unit.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Tower Sprites/Meat_Cube.png" type="Texture" id=2]
@@ -74,6 +74,14 @@ tracks/1/keys = {
 "values": [ 0.0 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+bg_color = Color( 0.396078, 0.635294, 0.141176, 1 )
+
+[sub_resource type="StyleBoxFlat" id=6]
+resource_local_to_scene = true
+bg_color = Color( 0.552941, 0, 0, 1 )
+
 [node name="Unit2" groups=["Morsels"] instance=ExtResource( 1 )]
 scale = Vector2( 0.05, 0.05 )
 mass = 0.00102041
@@ -114,6 +122,8 @@ margin_left = -240.0
 margin_top = -480.0
 margin_right = 260.0
 margin_bottom = -405.0
+custom_styles/fg = SubResource( 5 )
+custom_styles/bg = SubResource( 6 )
 
 [node name="ColorRect" parent="Health/Node2D" index="0"]
 margin_left = -20.0
