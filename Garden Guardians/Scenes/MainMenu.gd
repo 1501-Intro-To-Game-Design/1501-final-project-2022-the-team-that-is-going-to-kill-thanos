@@ -126,3 +126,7 @@ func _on_Level3_pressed():
 
 func initUIElements():
 	pass
+
+
+func _on_Mobile_toggled(button_pressed:bool):
+	util.on_desktop = not button_pressed

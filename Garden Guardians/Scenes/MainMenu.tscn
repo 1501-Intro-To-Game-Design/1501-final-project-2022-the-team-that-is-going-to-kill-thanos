@@ -51,9 +51,6 @@ custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 2 )
 text = "New Game"
 expand_icon = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Exit" type="Button" parent="Main"]
 margin_left = 760.0
@@ -95,6 +92,16 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Mobile" type="CheckBox" parent="Main"]
+margin_left = 815.0
+margin_top = 602.0
+margin_right = 1115.0
+margin_bottom = 677.0
+custom_fonts/font = ExtResource( 2 )
+custom_styles/normal = SubResource( 2 )
+text = "On Mobile"
+align = 1
 
 [node name="Levels" type="Node2D" parent="."]
 visible = false
@@ -285,6 +292,7 @@ __meta__ = {
 [connection signal="pressed" from="Main/NewGame" to="." method="_on_NewGame_pressed"]
 [connection signal="pressed" from="Main/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="value_changed" from="Main/Volume" to="." method="_on_Volume_value_changed"]
+[connection signal="toggled" from="Main/Mobile" to="." method="_on_Mobile_toggled"]
 [connection signal="pressed" from="Levels/Level1" to="." method="_on_Level1_pressed"]
 [connection signal="pressed" from="Levels/Level2" to="." method="_on_Level2_pressed"]
 [connection signal="pressed" from="Levels/Level3" to="." method="_on_Level3_pressed"]
