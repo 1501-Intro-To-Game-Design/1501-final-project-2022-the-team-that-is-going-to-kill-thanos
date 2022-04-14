@@ -113,7 +113,12 @@ func start_wave():
 		thresh4 -= .07 #0.63
 	
 	enemystoKill = 0
-	dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * difficulty_multiplier, 1.0)) # = (wave*7) -1
+	if difficulty_multiplier > 1 and difficulty_multiplier < 1.4:
+		dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * (difficulty_multiplier + 0.1), 1.0)) # = (wave*7) -1
+	elif difficulty_multiplier > 1 and difficulty_multiplier < 2:
+		dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * (difficulty_multiplier + 0.3), 1.0)) # = (wave*7) -1
+	else:
+		dP = int(stepify((((wave * (wave + 1))/2 * wave_hardness_multiplier) + 4) * difficulty_multiplier, 1.0)) # = (wave*7) -1	
 	#5, 7, 10, 14, 19, 25, 31, 38, 46, 55
 	budget = dP
 	#5, 7, 10, 18
@@ -143,14 +148,14 @@ func start_wave():
 			dP -= (18)
 			enemystoKill += 1
 			enemys.append(enemyScene3[value])
-		elif budget *thresh2 <= dP and wave > 4:	
+		elif budget *thresh2 <= dP and wave > 5:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
 			dps.append(9)
 			dP -= (9)
 			enemys.append(enemyScene2[value])
 			enemystoKill += 1
-		elif budget * thresh1 <= dP and wave > 2 and enemyScene5.size() > 0:	
+		elif budget * thresh1 <= dP and wave > 3 and enemyScene5.size() > 0:	
 			value = rng.randi_range(0,enemyScene5.size()-1)
 			temp = enemyScene5[value].instance()
 			dps.append(4)
