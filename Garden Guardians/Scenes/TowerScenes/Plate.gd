@@ -166,7 +166,7 @@ func _process(delta):
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			current_menu.show()
 			if not (tower == null):
 				$Target.show()
@@ -176,7 +176,7 @@ func _on_Area2D_input_event(viewport, event, shape_idx):
 
 func _on_VArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = make_tower("vegetable", -19)
 			if worked:
 				current_menu.hide()
@@ -316,7 +316,7 @@ func upgrade():
 
 func _on_PArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = make_tower("protein", -40)
 			if worked:
 				current_menu.hide()
@@ -345,7 +345,7 @@ func x_animation(obj):
 
 func _on_VArea1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, vegW[1], vegM[1], -25) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -360,7 +360,7 @@ func _on_VArea1_input_event(viewport, event, shape_idx):
 
 func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.offshoot_upgrade, vegW[3], vegM[3], -42) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -375,7 +375,7 @@ func _on_VAreaCarrot_input_event(viewport, event, shape_idx):
 
 func _on_VAreaPotato_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, vegW[2], vegM[2], -28) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -390,7 +390,7 @@ func _on_VAreaPotato_input_event(viewport, event, shape_idx):
 
 func _on_VAreaSC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(vegW[4], vegM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -409,7 +409,7 @@ func _on_VAreaSC_input_event(viewport, event, shape_idx):
 
 func _on_VAreaSD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(vegW[5], vegM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -427,7 +427,7 @@ func _on_VAreaSD_input_event(viewport, event, shape_idx):
 
 func _on_VAreaACD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(vegW[6], vegM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -445,7 +445,7 @@ func _on_VAreaACD_input_event(viewport, event, shape_idx):
 
 func _on_VAreaF1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, fruitW[1], fruitM[1], -80) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -460,7 +460,7 @@ func _on_VAreaF1_input_event(viewport, event, shape_idx):
 
 func _on_VAreaTomato_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, fruitW[2], fruitM[2], -68) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -475,7 +475,7 @@ func _on_VAreaTomato_input_event(viewport, event, shape_idx):
 
 func _on_VAreaCherry_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.offshoot_upgrade, fruitW[3], fruitM[3], -79) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -491,7 +491,7 @@ func _on_VAreaCherry_input_event(viewport, event, shape_idx):
 
 func _on_VAreaEC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(fruitW[4], fruitM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -510,7 +510,7 @@ func _on_VAreaEC_input_event(viewport, event, shape_idx):
 
 func _on_VAreaAR_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(fruitW[5], fruitM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -529,7 +529,7 @@ func _on_VAreaAR_input_event(viewport, event, shape_idx):
 
 func _on_VAreaAOE_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(fruitW[6], fruitM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -548,7 +548,7 @@ func _on_VAreaAOE_input_event(viewport, event, shape_idx):
 
 func _on_FArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = make_tower("fruit", -80)
 			if worked:
 				current_menu.hide()
@@ -700,8 +700,8 @@ func _on_Text_mouse_exited():
 
 func _on_Text_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			if event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
+			if event.pressed == util.on_desktop:
 				target_index += 1
 				if target_index >= target_types.size():
 					target_index = 0
@@ -722,7 +722,7 @@ func _on_Text_gui_input(event):
 
 func _on_VAreaP1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, proW[1], proM[1], -23) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -737,7 +737,7 @@ func _on_VAreaP1_input_event(viewport, event, shape_idx):
 
 func _on_VAreaBackribs_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, proW[2], proM[2], -23) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -752,7 +752,7 @@ func _on_VAreaBackribs_input_event(viewport, event, shape_idx):
 
 func _on_VAreaNakedChicken_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.offshoot_upgrade, proW[3], proM[3], -45) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -767,7 +767,7 @@ func _on_VAreaNakedChicken_input_event(viewport, event, shape_idx):
 
 func _on_VAreaAS_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(proW[4], proM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -786,7 +786,7 @@ func _on_VAreaAS_input_event(viewport, event, shape_idx):
 
 func _on_VAreaAD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(proW[5], proM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -805,7 +805,7 @@ func _on_VAreaAD_input_event(viewport, event, shape_idx):
 
 func _on_VAreaUnit_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(proW[6], proM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -878,7 +878,7 @@ func _on_VAreaUnit_mouse_exited():
 
 func _on_VAreaMove_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and !moveMode and event.is_action_released("Mouse"):
+		if event.button_index == BUTTON_LEFT and !moveMode and (event.is_action_released("Mouse") or (!util.on_desktop and !event.pressed)):
 			moveMode = true
 			current_menu.hide()
 			$Sprite.texture = normal_plate
@@ -889,11 +889,12 @@ func _on_VAreaMove_input_event(viewport, event, shape_idx):
 func _unhandled_input(event):
 	var counter = 0
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and moveMode and event.is_action_released("Mouse"):
+		if event.button_index == BUTTON_LEFT and moveMode and (event.is_action_released("Mouse") or (!util.on_desktop and !event.pressed)):
 			if tower.inRange:
 				tower.posOffset = event.global_position - tower.global_position + Vector2(0,60)
 				for m in tower.tower_morsels:
-					m._go_To(event.global_position + tower.morselOffsets[counter] + Vector2(0, 20))
+					m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
+					print(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
 					counter += 1
 			else:
 				ui.failedAction()
@@ -911,7 +912,7 @@ func _on_VAreaMove_mouse_exited():
 
 func _on_VAreaDelete_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			if not (tower == null):
 				current_menu.hide()
 				$Sprite.texture = normal_plate
@@ -937,7 +938,7 @@ func _on_VAreaDelete_mouse_exited():
 
 func _on_GArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = make_tower("grain", -56)
 			if worked:
 				current_menu.hide()
@@ -950,7 +951,7 @@ func _on_GArea_input_event(viewport, event, shape_idx):
 
 func _on_VAreaG1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, grainW[1], grainM[1], -47) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -964,7 +965,7 @@ func _on_VAreaG1_input_event(viewport, event, shape_idx):
 
 func _on_VAreaSpaghetti_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, grainW[2], grainM[2], -22) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -977,7 +978,7 @@ func _on_VAreaSpaghetti_input_event(viewport, event, shape_idx):
 
 func _on_VAreaPretzel_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.offshoot_upgrade, grainW[3], grainM[3], -25) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -991,7 +992,7 @@ func _on_VAreaPretzel_input_event(viewport, event, shape_idx):
 
 func _on_VAreaTD_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(grainW[4], grainM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1008,7 +1009,7 @@ func _on_VAreaTD_input_event(viewport, event, shape_idx):
 
 func _on_VAreaDOT_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(grainW[5], grainM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1025,7 +1026,7 @@ func _on_VAreaDOT_input_event(viewport, event, shape_idx):
 
 func _on_VAreaPB_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(grainW[6], grainM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1098,7 +1099,7 @@ func _on_VAreaPB_mouse_exited():
 
 func _on_DArea_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = make_tower("dairy", -46)
 			if worked:
 				current_menu.hide()
@@ -1111,7 +1112,7 @@ func _on_DArea_input_event(viewport, event, shape_idx):
 
 func _on_VAreaD1_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, dairyW[1], dairyM[1], -42) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1125,7 +1126,7 @@ func _on_VAreaD1_input_event(viewport, event, shape_idx):
 
 func _on_VAreaParmesan_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.upgrade, dairyW[2], dairyM[2], -33) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1139,7 +1140,7 @@ func _on_VAreaParmesan_input_event(viewport, event, shape_idx):
 
 func _on_VAreaButter_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = simple_make_tower(tower.offshoot_upgrade, dairyW[3], dairyM[3], -25) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1153,7 +1154,7 @@ func _on_VAreaButter_input_event(viewport, event, shape_idx):
 
 func _on_VAreaPDP_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(dairyW[4], dairyM[4]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1169,7 +1170,7 @@ func _on_VAreaPDP_input_event(viewport, event, shape_idx):
 
 func _on_VAreaPC_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(dairyW[5], dairyM[5]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1186,7 +1187,7 @@ func _on_VAreaPC_input_event(viewport, event, shape_idx):
 
 func _on_VAreaSE_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
 			var worked = buy_something(dairyW[6], dairyM[6]) #tower to make, wood cost, metal cost
 			if worked:
 				current_menu.hide()
@@ -1276,8 +1277,8 @@ func _on_Area2D_mouse_exited():
 
 func _on_Target_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT and event.pressed:
-			if event.pressed:
+		if event.button_index == BUTTON_LEFT and event.pressed == util.on_desktop:
+			if event.pressed == util.on_desktop:
 				target_index += 1
 				if target_index >= target_types.size():
 					target_index = 0

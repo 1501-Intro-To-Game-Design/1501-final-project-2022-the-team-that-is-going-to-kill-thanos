@@ -314,7 +314,7 @@ func prepareAttackTimer():
 func prepareSpawnTimer():
 	$Spawn.start(spawn_cooldown)
 	var t = Timer.new()
-	t.set_wait_time(3.5 / util.g_speed)
+	t.set_wait_time(2.3 / util.g_speed)
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
@@ -544,6 +544,7 @@ func _on_Spawn_timeout():
 	get_parent().add_enemy_to_path(self, enemy_instance)
 	get_parent().enemystoKill += 1
 	if not inCombat:
+		$AnimationPlayer.stop()
 		$AnimationPlayer.play("Move")
 	else:
 		$AnimationPlayer.play("Attack")
