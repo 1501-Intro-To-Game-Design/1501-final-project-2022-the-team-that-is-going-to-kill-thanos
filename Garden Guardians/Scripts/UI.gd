@@ -51,7 +51,7 @@ func connect_stuff(name_of_root):
 		$NextButton.global_position = $KitchenNode.global_position
 		$NextButton2.global_position = $KitchenNode2.global_position
 	wood = round(16 * get_parent().get_node(name_of_root + "/MovingEnemies").difficulty_multiplier)
-	metal = round(6 * get_parent().get_node(name_of_root + "/MovingEnemies").difficulty_multiplier)
+	metal = round(60 * get_parent().get_node(name_of_root + "/MovingEnemies").difficulty_multiplier)
 	update()
 
 func add_wood():

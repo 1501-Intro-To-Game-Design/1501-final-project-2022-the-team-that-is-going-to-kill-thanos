@@ -269,10 +269,10 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off = 0, up
 		var tempPos
 		if towerT.morsel_tower:
 			if combining_tower != null:
-				tempPos = combining_tower.tower_morsels[0].global_position - combining_tower.morselOffsets[0] - combining_tower.global_position
+				tempPos = combining_tower.tower_morsels[0].position - combining_tower.morselOffsets[0] - combining_tower.position
 				combining_tower = null
 			else:
-				tempPos = tower.tower_morsels[0].global_position - tower.morselOffsets[0] - tower.global_position
+				tempPos = tower.tower_morsels[0].position - tower.morselOffsets[0] - tower.position
 		tower.queue_free()
 		tower = towerT
 		tower.refundW = tempW + (0.4 * wood_cost)
@@ -891,7 +891,7 @@ func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and moveMode and (event.is_action_released("Mouse") or (!util.on_desktop and !event.pressed)):
 			if tower.inRange:
-				tower.posOffset = event.global_position - tower.global_position + Vector2(0,60)
+				tower.posOffset = event.position - tower.position + Vector2(0,60)
 				for m in tower.tower_morsels:
 					m._go_To(event.position + tower.morselOffsets[counter] + Vector2(0, 20))
 					print(event.position + tower.morselOffsets[counter] + Vector2(0, 20))

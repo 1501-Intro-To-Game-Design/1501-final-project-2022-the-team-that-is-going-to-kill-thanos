@@ -380,17 +380,17 @@ func make_Baby():
 		if(not morselPositions[0]): #Does this ever happen? // ya I think so
 			morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 			morsel.morselNum = 0
-			morsel._go_To(morsel.global_position + morselOffsets[0] + posOffset)
+			morsel._go_To(morsel.position + morselOffsets[0] + posOffset)
 			morselPositions[0] = true
 		elif(not morselPositions[1]):
 			morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 			morsel.morselNum = 1
-			morsel._go_To(morsel.global_position + morselOffsets[1] + posOffset)
+			morsel._go_To(morsel.position + morselOffsets[1] + posOffset)
 			morselPositions[1] = true
 		elif(not morselPositions[2]):
 			morsel.position = $ShootPoint.get_global_position()  #in the future replace this with (go to the neerest point on the path)
 			morsel.morselNum = 2
-			morsel._go_To(morsel.global_position + morselOffsets[2] + posOffset)
+			morsel._go_To(morsel.position + morselOffsets[2] + posOffset)
 			morselPositions[2] = true
 	
 func spawn_remainder():
