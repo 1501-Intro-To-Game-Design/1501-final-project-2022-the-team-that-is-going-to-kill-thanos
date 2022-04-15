@@ -112,6 +112,9 @@ func _on_Level2_pressed():
 
 func _on_Tutorial_pressed():
 	$"/root/ui".show_UI()
+	$"/root/ui".firstWavePress = true
+	$"/root/ui".secondWavePress = false
+	$"/root/ui".thirdWavePress = false
 	hide_menu()
 	var level = tutorialScene.instance()
 	get_parent().add_child(level)

@@ -43,6 +43,10 @@ var proM = [4, 7, 10, 6, 1, 3, 10]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	firstClick = true
+	firstTower = true
+	firstMove = true
+	milkPlate = false
 	current_menu = $TowerMenu
 	target_index = 4
 	$Target/Text.text = "Closest to End"
