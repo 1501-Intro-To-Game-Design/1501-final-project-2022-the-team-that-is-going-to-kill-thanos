@@ -17,6 +17,7 @@ var dP = 0
 var budget = 0
 var toPluck = 0 
 var bossFight = true
+var difficulty_multiplier = 1.0
 signal player_life_lost(livesLost)
 
 #wave stuff
