@@ -421,6 +421,8 @@ func change_health(change, direct = false, pierce = false):
 		$RegenWait.stop()
 		red_glow()
 		hit_effect()
+		if(not inCombat and current_health > 0 and not is_in_group("Enemies")):
+			$RegenWait.start()
 	elif(change > 0):
 		green_glow()
 	else:

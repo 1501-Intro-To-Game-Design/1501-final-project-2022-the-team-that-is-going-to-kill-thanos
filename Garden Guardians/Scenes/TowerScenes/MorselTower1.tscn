@@ -15,7 +15,7 @@ extents = Vector2( 60, 47 )
 
 [node name="Tower" instance=ExtResource( 1 )]
 position = Vector2( 0, -43 )
-spawn_cooldown = 13.0
+spawn_cooldown = 12.0
 morsel_tower = true
 upgrade = ExtResource( 5 )
 sounds = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ]

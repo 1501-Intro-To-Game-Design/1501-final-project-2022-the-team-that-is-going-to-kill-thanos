@@ -94,6 +94,7 @@ func _process(delta):
 			on_combat_end()
 			inCombat = false
 			hasBeenHit = true
+			$RegenWait.start()
 		targets_to_remove.clear()
 
 	if alive:
@@ -210,6 +211,8 @@ func change_health(change):
 	current_health += change
 	$Health.value = current_health
 	if(change < 0):
+		$RegenTimer.stop()
+		$RegenWait.stop()
 		red_glow()
 		hit_effect()
 		hasBeenHit = true
@@ -274,6 +277,10 @@ func _on_Respawn_timeout():
 func _on_CombatRange_body_entered(body):
 	if(body.is_in_group("Resources")):
 		body.add_resource()
+	elif body.is_in_group("Enemies"):
+		speed = 0
+		destination = Vector2.ZERO
+		direction = Vector2.ZERO
 	checkType(body)
 
 func checkType(body):

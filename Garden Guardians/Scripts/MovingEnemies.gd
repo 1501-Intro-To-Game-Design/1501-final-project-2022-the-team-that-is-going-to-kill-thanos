@@ -1,5 +1,5 @@
 extends Node2D
-
+#grain cost
 #Import the enemy and path scenes
 export var importPathSceneArray = []
 export(Array, PackedScene) var enemyScene1
@@ -134,32 +134,32 @@ func start_wave():
 		else:
 			bossFight = false
 	while dP > 0: #picks a random unit, removes its danger point value from this waves allowence, then adds it to enemytospawnlist	
-		if budget *thresh4 <= dP and wave >= 13 and bossFight:
+		if budget *thresh4 <= dP and wave >= 15 and bossFight:
 			value = rng.randi_range(0,enemyScene4.size()-1)
 			temp = enemyScene4[value].instance()
-			dps.append(50)
-			dP -= (50)
+			dps.append(55)
+			dP -= (55)
 			enemys.append(enemyScene4[value])
 			enemystoKill += 1
-		elif budget *thresh3 <= dP and wave > 8:
+		elif budget *thresh3 <= dP and wave > 10:
 			value = rng.randi_range(0,enemyScene3.size()-1)
 			temp = enemyScene3[value].instance()
-			dps.append(18)
-			dP -= (18)
+			dps.append(25)
+			dP -= (25)
 			enemystoKill += 1
 			enemys.append(enemyScene3[value])
-		elif budget *thresh2 <= dP and wave > 5:	
+		elif budget *thresh2 <= dP and wave > 8:	
 			value = rng.randi_range(0,enemyScene2.size()-1)
 			temp = enemyScene2[value].instance()
-			dps.append(9)
-			dP -= (9)
+			dps.append(16)
+			dP -= (16)
 			enemys.append(enemyScene2[value])
 			enemystoKill += 1
 		elif budget * thresh1 <= dP and wave > 3 and enemyScene5.size() > 0:	
 			value = rng.randi_range(0,enemyScene5.size()-1)
 			temp = enemyScene5[value].instance()
-			dps.append(4)
-			dP -= (4)
+			dps.append(8)
+			dP -= (8)
 			enemys.append(enemyScene5[value])
 			enemystoKill += 1
 		else:

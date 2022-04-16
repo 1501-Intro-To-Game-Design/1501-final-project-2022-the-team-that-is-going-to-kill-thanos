@@ -46,8 +46,8 @@ func _ready():
 	vegM = [round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(3 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(5 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
 	fruitW = [round(12 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(20 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(25 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(20 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(23 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(8 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #EC, AR, AOE
 	fruitM = [0, 0, 0, round(5 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
-	grainW = [round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(12 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(8 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(24 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #TEMP TD, DOT, PB
-	grainM = [round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(5 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(1 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(1 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
+	grainW = [round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(9 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(16 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(14 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(24 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #TEMP TD, DOT, PB
+	grainM = [round(3 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(3 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(3 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(2 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(1 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
 	dairyW = [round(11 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(18 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(24 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #TEMP PDP, PC, SE
 	dairyM = [round(7 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(15 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(17 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(12 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(4 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(1 * get_parent().get_node("MovingEnemies").difficulty_multiplier)]
 	proW = [0, 0, 0, round(12 * get_parent().get_node("MovingEnemies").difficulty_multiplier), round(6 * get_parent().get_node("MovingEnemies").difficulty_multiplier), 0, round(10 * get_parent().get_node("MovingEnemies").difficulty_multiplier)] #AttackSpeed, Damage, ExtraUnit
@@ -269,10 +269,16 @@ func simple_make_tower(tower_to_make, wood_cost, metal_cost, y_spawn_off = 0, up
 		var tempPos
 		if towerT.morsel_tower:
 			if combining_tower != null:
-				tempPos = combining_tower.tower_morsels[0].position - combining_tower.morselOffsets[0] - combining_tower.position
+				if combining_tower.tower_morsels.size() > 0:
+					tempPos = combining_tower.tower_morsels[0].position - combining_tower.morselOffsets[0] - combining_tower.position
+				else:
+					tempPos =  Vector2.ZERO
 				combining_tower = null
 			else:
-				tempPos = tower.tower_morsels[0].position - tower.morselOffsets[0] - tower.position
+				if tower.tower_morsels.size() > 0:
+					tempPos = tower.tower_morsels[0].position - tower.morselOffsets[0] - tower.position
+				else:
+					tempPos = Vector2.ZERO
 		tower.queue_free()
 		tower = towerT
 		tower.refundW = tempW + (0.4 * wood_cost)

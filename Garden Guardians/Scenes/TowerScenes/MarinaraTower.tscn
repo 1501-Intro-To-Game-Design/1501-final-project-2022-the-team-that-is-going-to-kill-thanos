@@ -13,7 +13,6 @@ radius = 265.0
 position = Vector2( 0, -19 )
 attack_cooldown = 8.0
 has_alt_attack = true
-alt_attack_cooldown = 1.5
 duration = 10
 slowEffect = 0.6
 allyBuff = 0.25
